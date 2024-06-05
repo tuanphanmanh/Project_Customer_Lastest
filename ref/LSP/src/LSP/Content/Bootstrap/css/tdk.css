@@ -1,0 +1,217 @@
+﻿.mandatory
+{
+    border-color: red !important;    
+}
+        
+.cursor-1, .cursor-link
+{
+    cursor: pointer;    
+}
+        
+.grid-checkbox-col
+{
+    padding: 0px !important;
+    vertical-align: middle !important;    
+}
+        
+.grid-checkbox
+{
+    height: 12px !important;
+    margin-top: 3px !important;
+}
+        
+._criteria
+{
+    display: inherit;
+}
+
+._toggle-detail {
+    display:none;
+}
+
+.btn-tiny-down {
+    padding: 0px 6px !important;
+    border-radius: 20px !important;
+}
+
+.divider {
+    display: inline;
+    margin-right:7px;
+}
+
+.table > thead > tr > th 
+{
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #eee 0%, #e5e5e5 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+    
+    text-align: center;
+    vertical-align: middle;
+}    
+.table > thead > tr > th.sorting_asc:after {
+    content: "\f0de" !important;
+    top: 4px;
+    color: #555;
+}     
+.table > thead > tr > th.sorting_desc:after {
+    content: "\f0dd" !important;
+    top: -6px;
+    color: #555;
+}
+.dataTable > thead > tr > th.sorting_desc, .dataTable > thead > tr > th.sorting_asc {
+    background-image: linear-gradient(to bottom, #104C96 0%, #e3e7ed 100%);
+    background-repeat: repeat-x;
+}
+
+#dynamic-table > thead > tr > th[class*=sorting]:after {
+    float: right;
+    display: inline;
+    content: "\f0dc";
+    font-family: FontAwesome;
+    font-size: 13px;
+    font-weight: normal;
+    color: #555;
+    cursor: pointer;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+
+.btn-sm,
+.btn-group-sm > .btn {
+    line-height: 1;
+}
+.btn-group, .btn-group-sm {
+    width:100%;
+}
+
+.multiselect.btn {
+    text-align :left;
+}
+.multiselect.btn .fa {
+    float:right;
+}
+.multiselect-container {
+    width: 500px;
+    max-height: 300px;
+    overflow: auto;
+}
+.multiselect-container .form-horizontal .form-group,
+.multiselect-container .form-group {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.btn-decision
+{
+    width : 66px;
+} 
+.btsorting
+{
+    border: none;
+    background-color: #576AD3 !important;
+    width: 15px;
+    padding: 0px;
+    cursor: pointer;
+}
+.modal-icon
+{
+    height: 35px;
+}
+.line-br
+{
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+    width: 100%;
+}
+.text-large
+{
+    font-size: 20px;
+}
+.ellipsis{
+    text-align: left;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/** pagination css **/
+.pagination 
+{
+	border-radius: 2px;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+.pagination > li > a,
+.pagination > li > span {
+	background-color: transparent;
+	border: 0 none;
+}
+.pagination > li > a:hover,
+.pagination > li > a:focus {
+	text-decoration: none;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+	color: #4f93e3;
+	background-color: #eee;
+	border-color: #ddd;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus,
+.pagination > .active > span > a,
+.pagination > .active > span > a:hover,
+.pagination > .active > span > a:focus {
+	color: white !important;
+	cursor: default;
+	background-color: #4f93e3;
+	border-color: #4f93e3;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span,
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+	margin-left: 0;
+	border: 0 none;
+	border-radius: 0;
+}
+.pagination-row label,
+.pagination-row span {
+	color: black !important;
+	font-weight: normal !important;
+}
+
+._pagination-goto > input[type=text]
+{
+    border:1px solid #DDD;
+    font-size: 8pt;
+    height: 21px;
+    padding: 2px;
+    width: 40px;
+}
+._btn-go
+{
+    height: 21px;
+}
+.page-size
+{
+    height: 25px;
+}
+/** end pagination css **/

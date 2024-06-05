@@ -1,0 +1,282 @@
+<ejs-dialog [isModal]='true' #modal id="modalsigner" [visible]='visible' [animationSettings]='animationSettings'
+    [showCloseIcon]='false' [width]="'50%'" [height]="'92vh'" [busyIf]="loading" >
+    <ng-template #content>
+        <div class="frame-1171275211 signer">
+            <div class="frame-1000006348">
+                <div class="frame-1000003997">
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input type="text" pInputText [placeholder]='"SearchWithThreeDot" | localize' [(ngModel)]="searchFilter"
+                            (keyup)="changeKey($event)" />
+                    </span>
+                </div>
+                <div class="tag">
+                    <div class="frame-45445">
+                        <ejs-tab id="user" #user heightAdjustMode='Content' height="100%" (selected)="onChangeType($event)" >
+                            <e-tabitems >
+                                <e-tabitem [headerTemplate]="All">
+                                    <ng-template #All>
+                                        <div class="frame-45416">
+                                            <div class="all">{{appSession.tenant.tenancyName}}</div>
+                                        </div>
+                                    </ng-template>
+                                </e-tabitem>
+                                <e-tabitem [headerTemplate]="Management">
+                                    <ng-template #Management>
+                                        <div class="frame-45417">
+                                            <div class="management">{{l('Management')}}</div>
+                                        </div>
+                                    </ng-template>
+                                </e-tabitem>
+                                <e-tabitem [headerTemplate]="Division">
+                                    <ng-template #Division>
+                                        <div class="frame-45418">
+                                            <div class="my-division">{{l('MyDivision')}}</div>
+                                        </div>
+                                    </ng-template>
+                                </e-tabitem>
+                                <e-tabitem [headerTemplate]="Other">
+                                    <ng-template #Other>
+                                        <div class="frame-45416">
+                                            <div class="all">ASMCs</div>
+                                        </div>
+                                    </ng-template>
+                                </e-tabitem>
+                                <e-tabitem [headerTemplate]="Template">
+                                    <ng-template #Template>
+                                        <div class="frame-45419">
+                                            <div class="my-template">{{l('MyTemplate')}}</div>
+                                        </div>
+                                    </ng-template>
+                                </e-tabitem>
+                                <e-tabitem [headerTemplate]="Vendor">
+                                    <ng-template #Vendor>
+                                        <div class="frame-45416">
+                                            <div class="all">{{l('Vendor')}}</div>
+                                        </div>
+                                    </ng-template>
+                                </e-tabitem>
+                            </e-tabitems>
+                        </ejs-tab>
+                    </div>
+                </div>
+                <div class="frame-1171275523" *ngIf="activeType!==-1 && activeType!==0">
+                    <ejs-checkbox #selectAll [checked]="false" [(ngModel)]="isSelectAll" [disabled]="!searchResult.length"
+                        (change)="onSelectAllChange($event)"></ejs-checkbox>
+                    <div class="select-all">{{!isSelectAll ? l("SelectAll") : l("UnselectAll")}}</div>
+                </div>
+                <p-listbox *ngIf="activeType!==0" id="listView" #listView [options]="searchResult" [(ngModel)]="selectedAll" optionLabel="fullName"
+                    dataKey="id" [showToggleAll]="false" (scroll)="onScroll()"
+                    [multiple]="true" [checkbox]="true" (onClick)="onChangeSelect($event)">
+                    <ng-template let-data pTemplate="item">
+                        <div class="frame-3073">
+                            <div class="frame-3041">
+                                <img class="ellipse-3281"
+                                    [src]="!data.imgUrl ? 'assets/common/images/default-profile-picture.png' : data.imgUrl" />
+                                <div class="frame-2988">
+                                    <div class="frame-1171275486">
+                                        <div class="frame-1171275511" #targetEl >
+                                            <div class="frame-3075">
+                                                <div class="le-minh-thu">{{data.fullName}}</div>
+                                                <div class="frame-1171275485">
+                                                    <div class="dgm-division-head">{{data.title}}</div>
+                                                </div>
+                                            </div>
+                                            <div class="frame-1171275512">
+                                                <div class="hnthulm-toyotavn-com-vn">{{data.email}}</div>
+                                            </div>
+                                        </div>
+                                        <svg class="octicon-info-24" width="24" height="24" viewBox="0 0 24 24" (click)="showInfo(data?.id); op.toggle($event, targetEl);"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M13 7.5C13 7.76522 12.8946 8.01957 12.7071 8.20711C12.5196 8.39464 12.2652 8.5 12 8.5C11.7348 8.5 11.4804 8.39464 11.2929 8.20711C11.1054 8.01957 11 7.76522 11 7.5C11 7.23478 11.1054 6.98043 11.2929 6.79289C11.4804 6.60536 11.7348 6.5 12 6.5C12.2652 6.5 12.5196 6.60536 12.7071 6.79289C12.8946 6.98043 13 7.23478 13 7.5ZM10 11.25C10 11.0511 10.079 10.8603 10.2197 10.7197C10.3603 10.579 10.5511 10.5 10.75 10.5H12.25C12.4489 10.5 12.6397 10.579 12.7803 10.7197C12.921 10.8603 13 11.0511 13 11.25V15.5H13.75C13.9489 15.5 14.1397 15.579 14.2803 15.7197C14.421 15.8603 14.5 16.0511 14.5 16.25C14.5 16.4489 14.421 16.6397 14.2803 16.7803C14.1397 16.921 13.9489 17 13.75 17H10.75C10.5511 17 10.3603 16.921 10.2197 16.7803C10.079 16.6397 10 16.4489 10 16.25C10 16.0511 10.079 15.8603 10.2197 15.7197C10.3603 15.579 10.5511 15.5 10.75 15.5H11.5V12H10.75C10.5511 12 10.3603 11.921 10.2197 11.7803C10.079 11.6397 10 11.4489 10 11.25Z"
+                                                fill="#3F2BC8" />
+                                            <path
+                                                d="M12 1C18.075 1 23 5.925 23 12C23 18.075 18.075 23 12 23C5.925 23 1 18.075 1 12C1 5.925 5.925 1 12 1ZM2.5 12C2.5 14.5196 3.50089 16.9359 5.28249 18.7175C7.06408 20.4991 9.48044 21.5 12 21.5C14.5196 21.5 16.9359 20.4991 18.7175 18.7175C20.4991 16.9359 21.5 14.5196 21.5 12C21.5 9.48044 20.4991 7.06408 18.7175 5.28249C16.9359 3.50089 14.5196 2.5 12 2.5C9.48044 2.5 7.06408 3.50089 5.28249 5.28249C3.50089 7.06408 2.5 9.48044 2.5 12Z"
+                                                fill="#3F2BC8" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="empty">
+                        <div class="no-data-found">
+                            <svg width="90" height="91" viewBox="0 0 90 91" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_1169_111417)">
+                                <path d="M45 90.5C69.8528 90.5 90 70.3528 90 45.5C90 20.6472 69.8528 0.5 45 0.5C20.1472 0.5 0 20.6472 0 45.5C0 70.3528 20.1472 90.5 45 90.5Z" fill="#F7F9FA"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.73047 55.2257L19.6167 41.7607H70.5111L81.3052 55.2257V75.5982H8.73047V55.2257Z" fill="#BDC5D1"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M61.3019 8.82568H19.3596C18.9359 8.82568 18.5859 9.17566 18.5859 9.59932V65.0434C18.5859 65.4671 18.9359 65.8171 19.3596 65.8171H70.6776C71.1013 65.8171 71.4513 65.4671 71.4513 65.0434V18.9567L61.3019 8.82568Z" fill="white"/>
+                                <path d="M71.4334 18.9567L61.3025 8.82568H61.2656L62.8313 19.0672C63.0524 20.5224 64.4154 21.517 65.8522 21.296L71.4334 20.4487V18.9567Z" fill="#E7EAF3"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M60.7489 36.0134H29.5823C28.9376 36.0134 28.4219 35.4976 28.4219 34.8529V19.1775C28.4219 18.5328 28.9376 18.0171 29.5823 18.0171H60.7489C61.3936 18.0171 61.9094 18.5328 61.9094 19.1775V34.8529C61.9094 35.4792 61.3936 36.0134 60.7489 36.0134Z" fill="#E7EAF3"/>
+                                <path opacity="0.05" fill-rule="evenodd" clip-rule="evenodd" d="M60.7489 36.0134H29.5823C28.9376 36.0134 28.4219 35.4976 28.4219 34.8529V19.1775C28.4219 18.5328 28.9376 18.0171 29.5823 18.0171H60.7489C61.3936 18.0171 61.9094 18.5328 61.9094 19.1775V34.8529C61.9094 35.4792 61.3936 36.0134 60.7489 36.0134Z" fill="black"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M60.1782 43.2528H29.8405C29.6011 43.2528 29.3984 43.0502 29.3984 42.8107C29.3984 42.5713 29.6011 42.3687 29.8405 42.3687H60.1966C60.4361 42.3687 60.6387 42.5713 60.6387 42.8107C60.6387 43.0502 60.4361 43.2528 60.1782 43.2528Z" fill="#E7EAF3"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M60.1782 46.6049H29.8405C29.6011 46.6049 29.3984 46.4022 29.3984 46.1628C29.3984 45.9233 29.6011 45.7207 29.8405 45.7207H60.1966C60.4361 45.7207 60.6387 45.9233 60.6387 46.1628C60.6387 46.4022 60.4361 46.6049 60.1782 46.6049Z" fill="#E7EAF3"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M51.5761 49.976H29.8405C29.6011 49.976 29.3984 49.7733 29.3984 49.5339C29.3984 49.2944 29.6011 49.0918 29.8405 49.0918H51.5945C51.834 49.0918 52.0366 49.2944 52.0366 49.5339C52.0366 49.7733 51.834 49.976 51.5761 49.976Z" fill="#E7EAF3"/>
+                                <path d="M36.3066 30.5611C36.5093 29.9717 36.7487 29.3822 37.025 28.8296C37.4855 27.8902 38.0934 26.8771 39.0144 26.3061C40.1748 25.5877 41.2616 26.2509 42.0721 27.1719C42.7168 27.9087 43.3247 28.7191 44.2272 29.1428C44.9272 29.4743 45.7008 29.5296 46.4376 29.327C47.6165 29.0138 48.6112 28.1665 49.3848 27.264C49.4769 27.1534 49.569 27.0429 49.6611 26.914C50.2321 26.1035 50.6374 24.9615 49.919 24.1141C49.7901 23.9668 49.6427 23.8378 49.4585 23.7273C49.0533 23.4879 48.5375 23.3958 48.0954 23.5247C47.6165 23.6536 47.3034 24.0589 47.2297 24.5378C47.2113 24.6115 47.2113 24.7036 47.2113 24.7773C47.1928 25.5877 47.6902 26.343 48.2612 26.8956C49.348 27.9271 50.8953 28.3323 52.3504 28.406C52.9215 28.4428 53.4741 28.406 54.0451 28.3507" stroke="white" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round"/>
+                                <path d="M19.4481 6.64007C19.0147 6.85633 18.5813 6.64007 18.3646 6.20755L16.5225 1.66613C16.3058 1.23361 16.5225 0.801097 16.9559 0.584839C17.3894 0.368581 17.8228 0.584839 18.0395 1.01736L19.8816 5.55878C20.0983 6.09942 19.8816 6.53194 19.4481 6.64007Z" fill="#EB0A1E"/>
+                                <path d="M16.089 10.9655C15.8723 11.1818 15.6555 11.2899 15.3305 11.1818L10.6711 10.3167C10.2377 10.2086 9.91264 9.77608 10.021 9.34356C10.1294 8.91104 10.5628 8.58666 10.9962 8.69479L15.6555 9.55982C16.089 9.66795 16.414 10.1005 16.3057 10.533C16.1973 10.7492 16.1973 10.8574 16.089 10.9655Z" fill="#EB0A1E"/>
+                                <path d="M25.6248 6.09944C25.5164 6.09944 25.4081 5.99131 25.1913 5.99131C24.8663 5.66692 24.7579 5.23441 25.083 4.80189L28.0086 1.01737C28.3337 0.692984 28.7671 0.584855 29.2005 0.909243C29.5256 1.23363 29.634 1.66615 29.3089 2.09866L26.3833 5.88318C26.1666 5.99131 25.8415 6.09944 25.6248 6.09944Z" fill="#EB0A1E"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M63.6416 55.2256C61.6338 55.2256 59.9944 56.8465 59.9944 58.8543C59.9944 60.8621 58.3734 62.4831 56.3657 62.4831H45.0005H33.6354C31.6276 62.4831 30.0067 60.8621 30.0067 58.8543C30.0067 56.8465 28.3857 55.2256 26.3595 55.2256H8.62109V77.3296C8.62109 80.2215 10.9789 82.5792 13.8708 82.5792H45.0005H76.1303C79.0222 82.5792 81.38 80.2215 81.38 77.3296V55.2256H63.6416Z" fill="#E7EAF3"/>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0_1169_111417">
+                                <rect width="90" height="90" fill="white" transform="translate(0 0.5)"/>
+                                </clipPath>
+                                </defs>
+                            </svg>
+                            {{l('NoData')}}
+                        </div>
+                    </ng-template>
+                </p-listbox>
+                <ejs-listview *ngIf="activeType===0" id='listviewT' [dataSource]='searchResultTemplate'
+                    (select)="selectTemplate($event)" [showCheckBox]='false'  [headerTitle]="'SignerTemplate' | localize" [showIcon]='true' [showHeader]='true'
+                    height="'40vh'">
+                    <ng-template  #template let-data>
+                        <div class="frame-3073">
+                            <div class="frame-3041">
+                                <img class="ellipse-3281" *ngIf="!data?.localName"
+                                    [src]="!data.imgUrl ? 'assets/common/images/default-profile-picture.png' : data.imgUrl" />
+                                <div class="frame-2988" *ngIf="!data?.localName">
+                                    <div class="frame-1171275486">
+                                        <div class="frame-1171275511">
+                                            <div class="frame-3075">
+                                                <div class="le-minh-thu">{{data.fullName}}</div>
+                                                <div class="frame-1171275485">
+                                                    <div class="dgm-division-head">{{data.title}}</div>
+                                                </div>
+                                            </div>
+                                            <div class="frame-1171275512">
+                                                <div class="hnthulm-toyotavn-com-vn">{{data.email}}</div>
+                                            </div>
+                                        </div>
+                                        <svg class="octicon-info-24" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M13 7.5C13 7.76522 12.8946 8.01957 12.7071 8.20711C12.5196 8.39464 12.2652 8.5 12 8.5C11.7348 8.5 11.4804 8.39464 11.2929 8.20711C11.1054 8.01957 11 7.76522 11 7.5C11 7.23478 11.1054 6.98043 11.2929 6.79289C11.4804 6.60536 11.7348 6.5 12 6.5C12.2652 6.5 12.5196 6.60536 12.7071 6.79289C12.8946 6.98043 13 7.23478 13 7.5ZM10 11.25C10 11.0511 10.079 10.8603 10.2197 10.7197C10.3603 10.579 10.5511 10.5 10.75 10.5H12.25C12.4489 10.5 12.6397 10.579 12.7803 10.7197C12.921 10.8603 13 11.0511 13 11.25V15.5H13.75C13.9489 15.5 14.1397 15.579 14.2803 15.7197C14.421 15.8603 14.5 16.0511 14.5 16.25C14.5 16.4489 14.421 16.6397 14.2803 16.7803C14.1397 16.921 13.9489 17 13.75 17H10.75C10.5511 17 10.3603 16.921 10.2197 16.7803C10.079 16.6397 10 16.4489 10 16.25C10 16.0511 10.079 15.8603 10.2197 15.7197C10.3603 15.579 10.5511 15.5 10.75 15.5H11.5V12H10.75C10.5511 12 10.3603 11.921 10.2197 11.7803C10.079 11.6397 10 11.4489 10 11.25Z"
+                                                fill="#3F2BC8" />
+                                            <path
+                                                d="M12 1C18.075 1 23 5.925 23 12C23 18.075 18.075 23 12 23C5.925 23 1 18.075 1 12C1 5.925 5.925 1 12 1ZM2.5 12C2.5 14.5196 3.50089 16.9359 5.28249 18.7175C7.06408 20.4991 9.48044 21.5 12 21.5C14.5196 21.5 16.9359 20.4991 18.7175 18.7175C20.4991 16.9359 21.5 14.5196 21.5 12C21.5 9.48044 20.4991 7.06408 18.7175 5.28249C16.9359 3.50089 14.5196 2.5 12 2.5C9.48044 2.5 7.06408 3.50089 5.28249 5.28249C3.50089 7.06408 2.5 9.48044 2.5 12Z"
+                                                fill="#3F2BC8" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="frame-2988" *ngIf="data?.localName">
+                                    <div class="frame-1171275486">
+                                        <div class="frame-1171275511">
+                                            <div class="frame-3075">
+                                                <div class="le-minh-thu">{{data.localName}}</div>
+                                            </div>
+                                        </div>
+                                        <svg class="octicon-info-24" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M13 7.5C13 7.76522 12.8946 8.01957 12.7071 8.20711C12.5196 8.39464 12.2652 8.5 12 8.5C11.7348 8.5 11.4804 8.39464 11.2929 8.20711C11.1054 8.01957 11 7.76522 11 7.5C11 7.23478 11.1054 6.98043 11.2929 6.79289C11.4804 6.60536 11.7348 6.5 12 6.5C12.2652 6.5 12.5196 6.60536 12.7071 6.79289C12.8946 6.98043 13 7.23478 13 7.5ZM10 11.25C10 11.0511 10.079 10.8603 10.2197 10.7197C10.3603 10.579 10.5511 10.5 10.75 10.5H12.25C12.4489 10.5 12.6397 10.579 12.7803 10.7197C12.921 10.8603 13 11.0511 13 11.25V15.5H13.75C13.9489 15.5 14.1397 15.579 14.2803 15.7197C14.421 15.8603 14.5 16.0511 14.5 16.25C14.5 16.4489 14.421 16.6397 14.2803 16.7803C14.1397 16.921 13.9489 17 13.75 17H10.75C10.5511 17 10.3603 16.921 10.2197 16.7803C10.079 16.6397 10 16.4489 10 16.25C10 16.0511 10.079 15.8603 10.2197 15.7197C10.3603 15.579 10.5511 15.5 10.75 15.5H11.5V12H10.75C10.5511 12 10.3603 11.921 10.2197 11.7803C10.079 11.6397 10 11.4489 10 11.25Z"
+                                                fill="#3F2BC8" />
+                                            <path
+                                                d="M12 1C18.075 1 23 5.925 23 12C23 18.075 18.075 23 12 23C5.925 23 1 18.075 1 12C1 5.925 5.925 1 12 1ZM2.5 12C2.5 14.5196 3.50089 16.9359 5.28249 18.7175C7.06408 20.4991 9.48044 21.5 12 21.5C14.5196 21.5 16.9359 20.4991 18.7175 18.7175C20.4991 16.9359 21.5 14.5196 21.5 12C21.5 9.48044 20.4991 7.06408 18.7175 5.28249C16.9359 3.50089 14.5196 2.5 12 2.5C9.48044 2.5 7.06408 3.50089 5.28249 5.28249C3.50089 7.06408 2.5 9.48044 2.5 12Z"
+                                                fill="#3F2BC8" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ejs-listview>
+            </div>
+            <div class="frame-1000006327">
+                <div class="frame-1171275487" pDroppable="selectedCC" (onDrop)="dropSigner()">
+                    <div class="frame-1171275493">
+                        <div class="cc">{{l('Signers')}}</div>
+                    </div>
+                    <p-tabView #listViewSigner id="listViewSigner"
+                        [scrollable]="false" (onClose)="onCloseSigner($event)">
+                        <p-tabPanel *ngFor="let tab of selectedSigner" [closable]="activeType!==0" >
+                            <ng-template pTemplate="header">
+                                <div class="frame-1171275488" pDraggable="selectedSigner"  (onDragStart)="dragSignerStart(tab)" (onDragEnd)="dragSignerEnd()">
+                                    <img class="ellipse-329" [src]="tab?.imgUrl" />
+                                    <div class="yuki-tanabe">{{tab?.fullName}}</div>
+                                </div>
+                            </ng-template>
+                        </p-tabPanel>
+                    </p-tabView>
+                </div>
+                <div class="frame-11712754871"  pDroppable="selectedSigner" (onDrop)="dropCC()">
+                    <div class="frame-1171275493">
+                        <div class="cc">CC</div>
+                        <ejs-switch id="checkedd" [checked]="isAddCC" (checkedChange)="changeAddType($event)" ></ejs-switch>
+                    </div>
+                    <p-tabView #listViewCC id="listViewCC"
+                        [scrollable]="false" (onClose)="onCloseCC($event)">
+                        <p-tabPanel *ngFor="let tab of selectedCC" [closable]="activeType!==0">
+                            <ng-template pTemplate="header">
+                                <div class="frame-1171275488" pDraggable="selectedCC"  (onDragStart)="dragCCStart(tab)" (onDragEnd)="dragCCEnd()">
+                                    <img class="ellipse-329" [src]="tab?.imgUrl" />
+                                    <div class="yuki-tanabe">{{tab?.fullName}}</div>
+                                </div>
+                            </ng-template>
+                        </p-tabPanel>
+                    </p-tabView>
+                </div>
+                <div class="frame-1171275332">
+                    <div class="frame-1000006325" (click)="hide()">
+                        <div class="not-now">{{l('Cancel')}}</div>
+                    </div>
+                    <div class="component-38" [ngClass]="selectedCC.length > 0 || selectedSigner.length > 0 ? '' : 'disabled'" (click)="submit()">
+                        <div class="esign">{{l('Add')}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <p-overlayPanel #op [showCloseIcon]="true">
+        <ng-template pTemplate="content">
+            <div class="frame-1171275744">
+                <div class="property-1-variant-6">
+                    <img src="assets/common/images/profile.svg" />
+                    <div class="frame-1171275743">
+                        <div class="full-name">Full name</div>
+                        <div class="hieu-vu-tuan">{{selectSignerInfo?.fullName}}</div>
+                    </div>
+                </div>
+                <div class="property-1-default">
+                    <img src="assets/common/images/location.svg" />
+                    <div class="frame-1171275743">
+                        <div class="office-location">Office Location</div>
+                        <div class="head-office">{{selectSignerInfo?.officeLocation ?? ' '}}</div>
+                    </div>
+                </div>
+                <div class="property-1-variant-2">
+                    <img src="assets/common/images/briefcase.svg" />
+                    <div class="frame-1171275743">
+                        <div class="title">{{l('Title')}}</div>
+                        <div class="am">{{selectSignerInfo?.title ?? ' '}}</div>
+                    </div>
+                </div>
+                <div class="property-1-variant-3">
+                    <img src="assets/common/images/briefcase.svg" />
+                    <div class="frame-1171275743">
+                        <div class="company">Company</div>
+                        <div class="tmv">{{selectSignerInfo?.company?? ' '}}</div>
+                    </div>
+                </div>
+                <div class="property-1-variant-4">
+                    <img src="assets/common/images/briefcase.svg" />
+                    <div class="frame-1171275743">
+                        <div class="department">Department</div>
+                        <div class="software-development">{{selectSignerInfo?.department ?? ' '}}</div>
+                    </div>
+                </div>
+                <div class="property-1-variant-5">
+                    <div class="vuesax-linear-sms">
+                        <img src="assets/common/images/sms.svg" />
+                    </div>
+                    <div class="frame-1171275743">
+                        <div class="email">Email</div>
+                        <div class="hieuvt-toyotavn-com-vn">{{selectSignerInfo?.email ?? ' '}}</div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-overlayPanel>
+</ejs-dialog>

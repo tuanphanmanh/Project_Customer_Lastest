@@ -1,0 +1,178 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .dxpCtrl .dxpPageNumber.dxpCurrentPageNumber::before,
+    .dxpCtrl .dxpPageNumber.dxpCurrentPageNumber::after {
+        background-color: white;
+        content: none;
+    }
+
+    .dxgvTable_MetropolisBlue .dxgvControl_MetropolisBlue {
+        width: 900px !important;
+    }
+
+    .dxgvTable_MetropolisBlue .dxgvTable td.dxgv.dxgvDetailCell {
+        padding: 10px 0;
+    }
+
+    .AssignDL_Time {
+        display: inline-block;
+        margin-bottom: 4px;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        try {
+
+            $(".UI_Tab .titleframe").click(function () {
+                var _href = $(this).attr("href");
+                document.location.href = _href;
+                /*
+                $(".UI_Tab .tabtitle .titleframe, .UI_Tab .tabcont .contframe").removeClass("active");
+                $(this).addClass("active");
+                var val = $(this).attr("val");
+                $(".UI_Tab .tabcont div[val='" + val + "'].contframe").addClass("active");
+                */
+            });
+
+        } catch (ex) {
+            console.error(ex.message, null);
+        }
+    });
+
+</script>
+<div class="UI_Tab">
+    <div class="tabtitle">
+        <div class="titleframe T0 active" val="T0" href="#"><span>Supplier Info</span></div>
+        <div class="titleframe T1 " val="T1" href="/TB_M_ROUTING"><span>Routing</span></div>
+        <div class="titleframe T2 " val="T2" href="/TB_M_TRUCK_SUPPLIER"><span>Truck Supplier</span></div>
+        <div class="titleframe T3" val="T3" href="/TB_M_SUPPLIER_PIC"><span>Supplier PIC</span></div>
+    </div>
+    <div class="clear"></div>
+    <div class="tabcont">
+        <div class="contframe T1 active" val="T1">
+            <div class="dxcontent_list">
+                <div class="content-header content-title">
+                     @Html.Partial("_TB_M_SUPPLIER_INFOSearch")
+                    <div class="action-area">
+                        @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                                (Html.Toyota().Page.ControllerName.ToString(), "New"))
+                        {
+                            @Html.DevExpress().Button(settings =>
+                                {
+                                    settings.Name = "btnAdd";
+                                    settings.Text = "Add New";
+                                    settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsAdd16x16;
+                                    settings.ClientSideEvents.Click = "Add";
+                                }).GetHtml()
+                        }
+                    </div>                                      
+                </div>
+                                               
+                 @using (Html.BeginForm()) {
+	               @Html.Partial("_TB_M_SUPPLIER_INFOList")
+                }
+               
+
+            <div class="content-header content-title register">    
+                <div class="action-area" style="float: right;margin-right:2px;margin-top:0px">
+                    @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				        (Html.Toyota().Page.ControllerName.ToString(), "Upload"))
+                        {
+				            <button class="btn btn-primary btn-xs" type="button" onclick="IMPORT_SUPPLIER_INFO(); return false;">
+                        <i class="fa fa-upload"></i> Upload</button>
+			            }  
+                </div> 
+            </div>
+
+    @Html.DevExpress().PopupControl(settings =>
+        {
+            settings.HeaderText = "IMPORT SUPPLIER INFO";
+                settings.Name = "popIMPORT_SUPPLIER_INFO";
+                settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+                settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+                settings.Modal = true;
+                //settings.ShowCloseButton = true;
+                settings.CloseAction = CloseAction.CloseButton;
+                settings.PopupAnimationType = AnimationType.Fade;
+                settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+                settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+                settings.SetContent(() =>
+                {
+                    Html.RenderPartial("_TB_R_SUPPLIER_INFOImport");
+                });
+                settings.ClientSideEvents.CloseUp = "OnPopSUPPLIER_INFOCloseUp";
+            }).GetHtml()
+
+
+                @Html.DevExpress().PopupControl(settings =>
+                    {
+                        settings.HeaderText = "TB_M_SUPPLIER_INFO Management";
+                        settings.Name = "popTB_M_SUPPLIER_INFO";
+                        settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+                        settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+                        settings.Modal = true;
+                        settings.ShowCloseButton = true;
+                        settings.CloseAction = CloseAction.CloseButton;
+                        settings.PopupAnimationType = AnimationType.Fade;
+                        settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+                        settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+                        settings.SetContent(() =>
+                        {
+                            Html.RenderPartial("_TB_M_SUPPLIER_INFOEdit");
+                        });
+                        settings.ClientSideEvents.CloseUp = "OnPopTB_M_SUPPLIER_INFOCloseUp";
+                    }).GetHtml()
+
+               @* @Html.DevExpress().PopupControl(settings =>
+                    {
+                        settings.HeaderText = "Supplier DL Time";
+                        settings.Name = "popDL_Time";
+                        settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+                        settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+                        settings.Modal = true;
+                        settings.ShowCloseButton = true;
+                        settings.CloseAction = CloseAction.CloseButton;
+                        settings.PopupAnimationType = AnimationType.Fade;
+                        settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+                        settings.Height = System.Web.UI.WebControls.Unit.Pixel(200);
+                        settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+                        settings.SetContent(() =>
+                        {
+                            Html.RenderPartial("_TB_M_SUPPLIER_DL_TIMEEdit");
+                        });
+                        settings.ClientSideEvents.CloseUp = "OnPopDL_TIMECloseUp";
+                    }).GetHtml()
+                *@
+                @Html.DevExpress().PopupControl(settings =>
+                    {
+                        settings.HeaderText = "Supplier ORDER Time";
+                        settings.Name = "popOR_Time";
+                        settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+                        settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+                        settings.Modal = true;
+                        settings.ShowCloseButton = true;
+                        settings.CloseAction = CloseAction.CloseButton;
+                        settings.PopupAnimationType = AnimationType.Fade;
+                        settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+                        settings.Height = System.Web.UI.WebControls.Unit.Pixel(200);
+                        settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+                        settings.SetContent(() =>
+                        {
+                            Html.RenderPartial("_TB_M_SUPPLIER_OR_TIMEEdit");
+                        });
+                        settings.ClientSideEvents.CloseUp = "OnPopOR_TIMECloseUp";
+                    }).GetHtml()
+
+                @section HeadScript {
+                    <script src="@Url.Content("~/Content/Scripts/App/TB_M_SUPPLIER_INFO.js")" type="text/javascript"></script>
+                }
+            </div>
+        </div>
+        <div class="contframe T2" val="T2"></div>
+        <div class="contframe T3" val="T3"></div>
+    </div>
+</div>

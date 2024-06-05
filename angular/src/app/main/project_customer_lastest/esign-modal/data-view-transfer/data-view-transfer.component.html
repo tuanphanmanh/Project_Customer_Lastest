@@ -1,0 +1,163 @@
+<ejs-grid [dataSource]='dataInput' #listviewInstance [selectionSettings]="selectionOptions" [allowSelection]='true' (rowSelecting)="onRowSelected($event)" (rowDeselecting)="onRowDeSelected($event)" >
+    <e-columns>
+        <e-column field="checked" type="checkbox">
+            <ng-template #template let-data>
+                <div class="frame-1000006368">
+                    <div class="frame-1171275576">
+                        <div class="frame-1171275721">
+                            <div *ngIf="!data.isRead" class="ellipse-2073"></div>
+                            <div *ngIf="data.isRead" class="ellipse-20731"></div>
+                        </div>
+                        <div class="frame-1171275722">
+                            <img class="ellipse-328"
+                                [src]="!data?.requesterImgUrl ? 'assets/common/images/default-profile-picture.png' :  data?.requesterImgUrl" />
+                        </div>
+                    </div>
+                    <div class="frame-1171275575">
+                        <div class="frame-1171275574">
+                            <div class="frame-1171275572">
+                                <div class="trinh-mai-my">
+                                    {{data.fromRequester}}</div>
+                            </div>
+                            <div class="frame-1171275584">
+                                <div class="frame-45326" *ngIf="data?.statusCode != 'Completed'">
+                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_1532_167792)">
+                                            <path
+                                                d="M8.13782 7.05895L6.46469 5.80411V3.24797C6.46469 2.99095 6.25694 2.7832 5.99992 2.7832C5.74291 2.7832 5.53516 2.99095 5.53516 3.24797V6.03652C5.53516 6.18291 5.60395 6.32095 5.72106 6.40833L7.58008 7.8026C7.66373 7.86534 7.76134 7.89555 7.85847 7.89555C8.00022 7.89555 8.13965 7.83188 8.23075 7.70918C8.38509 7.5042 8.34325 7.2128 8.13782 7.05895Z"
+                                                fill="#848484" />
+                                            <path
+                                                d="M6 0C2.6914 0 0 2.6914 0 6C0 9.3086 2.6914 12 6 12C9.3086 12 12 9.3086 12 6C12 2.6914 9.3086 0 6 0ZM6 11.0705C3.20449 11.0705 0.929508 8.79551 0.929508 6C0.929508 3.20449 3.20449 0.929508 6 0.929508C8.79598 0.929508 11.0705 3.20449 11.0705 6C11.0705 8.79551 8.79551 11.0705 6 11.0705Z"
+                                                fill="#848484" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_1532_167792">
+                                                <rect width="12" height="12" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+
+                                    <div class="_03-21-2023">{{formatDate(data.requestDate)}}
+                                    </div>
+                                </div>
+                                <div *ngIf="data.isFollowUp" class="star">
+                                    <svg class="star2" width="18" height="18" viewBox="0 0 16 14" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M14.9556 5.87731L11.8411 8.91331L12.5766 13.2013C12.6086 13.3888 12.5316 13.5783 12.3776 13.6903C12.2906 13.7538 12.1871 13.7858 12.0836 13.7858C12.0041 13.7858 11.9241 13.7668 11.8511 13.7283L8.00008 11.7038L4.14958 13.7278C3.98158 13.8168 3.77708 13.8023 3.62308 13.6898C3.46908 13.5778 3.39208 13.3883 3.42408 13.2008L4.15958 8.91281L1.04458 5.87731C0.908578 5.74431 0.859078 5.54531 0.918078 5.36481C0.977078 5.18431 1.13358 5.05181 1.32208 5.02431L5.62658 4.39931L7.55158 0.498313C7.72008 0.156812 8.28008 0.156812 8.44858 0.498313L10.3736 4.39931L14.6781 5.02431C14.8666 5.05181 15.0231 5.18381 15.0821 5.36481C15.1411 5.54581 15.0916 5.74381 14.9556 5.87731Z"
+                                            fill="#FFC107"
+                                        />
+                                    </svg>
+                                </div>
+                                <div *ngIf="!data.isFollowUp" class="star">
+                                    <svg class="star2" width="18" height="18" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.082 5.36481C15.023 5.18381 14.8665 5.05181 14.678 5.02431L10.3735 4.39931L8.44848 0.498313C8.27998 0.156812 7.71998 0.156812 7.55148 0.498313L5.62648 4.39931L1.32198 5.02431C1.13348 5.05181 0.97698 5.18381 0.91798 5.36481C0.85898 5.54581 0.90798 5.74431 1.04448 5.87731L4.15898 8.91331L3.42348 13.2013C3.39148 13.3888 3.46848 13.5783 3.62248 13.6903C3.77698 13.8033 3.98098 13.8173 4.14898 13.7283L7.99998 11.7043L11.8505 13.7283C11.9235 13.7668 12.0035 13.7858 12.083 13.7858C12.1865 13.7858 12.29 13.7538 12.377 13.6903C12.531 13.5783 12.608 13.3888 12.576 13.2013L11.8405 8.91331L14.955 5.87731C15.0915 5.74431 15.1405 5.54581 15.082 5.36481ZM10.954 8.38131C10.8365 8.49581 10.7825 8.66181 10.81 8.82381L11.4185 12.3723L8.23198 10.6973C8.15998 10.6588 8.07998 10.6393 7.99998 10.6393C7.91998 10.6393 7.83998 10.6583 7.76748 10.6968L4.58098 12.3718L5.18948 8.82331C5.21698 8.66131 5.16348 8.49581 5.04548 8.38081L2.46798 5.86831L6.02998 5.35081C6.19298 5.32731 6.33348 5.22481 6.40648 5.07731L7.99998 1.84931L9.59298 5.07731C9.66598 5.22481 9.80648 5.32731 9.96948 5.35081L13.5315 5.86831L10.954 8.38131Z" fill="#979797"/>
+                                    </svg>
+                                </div>
+                                <!-- <div *ngIf="data.isFollowUp" class="star">
+                                    <svg class="star2" width="22" height="22" viewBox="0 0 16 14" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M14.9556 5.87731L11.8411 8.91331L12.5766 13.2013C12.6086 13.3888 12.5316 13.5783 12.3776 13.6903C12.2906 13.7538 12.1871 13.7858 12.0836 13.7858C12.0041 13.7858 11.9241 13.7668 11.8511 13.7283L8.00008 11.7038L4.14958 13.7278C3.98158 13.8168 3.77708 13.8023 3.62308 13.6898C3.46908 13.5778 3.39208 13.3883 3.42408 13.2008L4.15958 8.91281L1.04458 5.87731C0.908578 5.74431 0.859078 5.54531 0.918078 5.36481C0.977078 5.18431 1.13358 5.05181 1.32208 5.02431L5.62658 4.39931L7.55158 0.498313C7.72008 0.156812 8.28008 0.156812 8.44858 0.498313L10.3736 4.39931L14.6781 5.02431C14.8666 5.05181 15.0231 5.18381 15.0821 5.36481C15.1411 5.54581 15.0916 5.74381 14.9556 5.87731Z"
+                                            fill="#FFC107"
+                                        />
+                                    </svg>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="frame-1171275577">
+                            <div class="frame-1171275580">
+                                <div class="get-approval-for-new-esign-project text-line-clamp-ellipsis">
+                                    {{data.title}}
+                                </div>
+                                <div class="expense-report-for-lastest-accounts-from text-line-clamp-ellipsis">
+                                    {{data.message}}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="frame-45329">
+                            <div class="frame-45442">
+                                <div class="frame-1171275578">
+                                    <div class="frame-45443">
+                                        <img *ngIf="data.statusCode==='OnProgress' && data.isSigned === 'Signed'" class="background-1" src="assets/common/images/background-1.png" />
+                                        <img *ngIf="data.statusCode==='OnProgress' && data.isSigned === 'NotSigned'" class="background-1" src="assets/common/images/background-10.png" />
+                                        <img *ngIf="data.statusCode==='Completed'" class="background-1" src="assets/common/images/fi-rr-check.svg" />
+                                        <svg *ngIf="data.statusCode==='Rejected'"
+                                            class="vuesax-bold-close-circle"
+                                            width="20"
+                                            height="20"
+                                            viewBox="0 0 20 20"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                            <path
+                                                d="M9.99996 1.66699C5.40829 1.66699 1.66663 5.40866 1.66663 10.0003C1.66663 14.592 5.40829 18.3337 9.99996 18.3337C14.5916 18.3337 18.3333 14.592 18.3333 10.0003C18.3333 5.40866 14.5916 1.66699 9.99996 1.66699ZM12.8 11.917C13.0416 12.1587 13.0416 12.5587 12.8 12.8003C12.675 12.9253 12.5166 12.9837 12.3583 12.9837C12.2 12.9837 12.0416 12.9253 11.9166 12.8003L9.99996 10.8837L8.08329 12.8003C7.95829 12.9253 7.79996 12.9837 7.64163 12.9837C7.48329 12.9837 7.32496 12.9253 7.19996 12.8003C6.95829 12.5587 6.95829 12.1587 7.19996 11.917L9.11663 10.0003L7.19996 8.08366C6.95829 7.84199 6.95829 7.44199 7.19996 7.20033C7.44163 6.95866 7.84163 6.95866 8.08329 7.20033L9.99996 9.11699L11.9166 7.20033C12.1583 6.95866 12.5583 6.95866 12.8 7.20033C13.0416 7.44199 13.0416 7.84199 12.8 8.08366L10.8833 10.0003L12.8 11.917Z"
+                                                fill="#E81447"
+                                            />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="due-date" *ngIf="data?.expectedDate && data?.statusCode != 'Completed'" [innerHtml]="dueDate(data)">
+                                </div>
+                                <div *ngIf="data.statusCode === 'OnProgress'" class="property-1-status-progress-s-no-icon">
+                                    <div class="on-progress">{{l('OnProgress')}}</div>
+                                </div>
+
+                                <div *ngIf="data.statusCode === 'Waiting'" class="property-1-status-progress-s-no-icon">
+                                    <div class="on-progress">{{l('Waiting')}}</div>
+                                </div>
+
+                                <div *ngIf="data.statusCode === 'Draft'" class="property-1-status-draft-s-no-icon">
+                                    <div class="on-draft">{{l('Draft')}}</div>
+                                </div>
+
+                                <div *ngIf="data.statusCode === 'Completed'" class="property-1-status-completed-s-no-icon">
+                                    <div class="on-completed">{{l('Completed')}}</div>
+                                </div>
+
+                                <div *ngIf="data.statusCode === 'Rejected'" class="property-1-status-rejected-s-no-icon">
+                                    <div class="on-rejected">{{l('Rejected')}}</div>
+                                </div>
+
+                                <div *ngIf="data.statusCode === 'Revoked'" class="property-1-status-revoked-s-no-icon">
+                                    <div class="on-revoked">{{l('Revoked')}}</div>
+                                </div>
+                                <div *ngIf="data.isTransfer" class="property-1-transfer-blue-1">
+                                    <img class="transfer-blue" src="assets/common/images/transfer-blue0.png" />
+                                </div>
+                            </div>
+                            <div class="component-1">
+                                <div class="frame-1171275193">
+                                    <ng-container class="groupSigner"
+                                        *ngFor="let signe of data.listSignerBySystemIdDto, let j = index">
+                                        <div class="frame-1171275723" *ngIf=" j < 5 || ( j == 5 && data.totalSignerCount === 6)">
+                                            <img class="ellipse-3282"
+                                                [src]="!signe.imgUrl ? 'assets/common/images/default-profile-picture.png' :  signe.imgUrl" />
+                                            <div class="success-2" *ngIf="signe.statusCode==='Completed'">
+                                                <svg width="8" height="8" viewBox="0 0 8 8" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <rect x="0.25" y="0.25" width="7.5" height="7.5" rx="3.75"
+                                                        fill="#13BD1A" />
+                                                    <path
+                                                        d="M2.83231 5.5C2.78848 5.50006 2.74507 5.49233 2.70457 5.47724C2.66408 5.46215 2.6273 5.44001 2.59635 5.41209L1.59584 4.51194C1.53411 4.45553 1.49966 4.37945 1.5 4.30028C1.50035 4.22112 1.53545 4.14529 1.59767 4.08931C1.65989 4.03334 1.74418 4.00175 1.83217 4.00144C1.92016 4.00114 2.00472 4.03213 2.06742 4.08767L2.85689 4.79794L5.95891 2.56515C6.02804 2.51573 6.11613 2.49298 6.20388 2.5019C6.29162 2.51081 6.37185 2.55067 6.42699 2.61272C6.48212 2.67478 6.50766 2.75397 6.498 2.83293C6.48834 2.9119 6.44427 2.9842 6.37545 3.03398L3.04041 5.43437C2.98135 5.4769 2.90795 5.50005 2.83231 5.5Z"
+                                                        fill="white" />
+                                                    <rect x="0.25" y="0.25" width="7.5" height="7.5" rx="3.75"
+                                                        stroke="white" stroke-width="0.5" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                    <div class="frame-1171275194" *ngIf="data.totalSignerCount > 6">
+                                        <div class="_10">+{{data.totalSignerCount - 5 }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </e-column>
+    </e-columns>
+</ejs-grid>

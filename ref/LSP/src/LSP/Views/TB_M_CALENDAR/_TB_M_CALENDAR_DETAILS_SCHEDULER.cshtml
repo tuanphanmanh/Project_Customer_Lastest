@@ -1,0 +1,58 @@
+﻿@using LSP.Models
+@Html.DevExpress().Scheduler(
+    settings => {
+        settings.Name = "scheduler";
+        settings.CallbackRouteValues = new { Controller = "TB_M_CALENDAR", Action = "CalendarScheduler" };
+        
+        settings.Storage.Appointments.Assign(LSP.Models.TB_M_CALENDAR.SchedulerStorageProvider.DefaultAppointmentStorage);
+        settings.Storage.Resources.Assign(LSP.Models.TB_M_CALENDAR.SchedulerStorageProvider.DefaultResourceStorage);
+
+        settings.ActiveViewType = SchedulerViewType.Day;
+        settings.Start = DateTime.Today;
+        settings.Width = System.Web.UI.WebControls.Unit.Pixel(900);
+        settings.Views.DayView.Styles.ScrollAreaHeight = 600;
+
+        settings.GroupType = SchedulerGroupType.Date;
+        settings.Styles.Appointment.Font.Bold = true;
+        settings.Styles.Appointment.Font.Size = 8;
+        settings.Styles.DateHeader.Font.Size = 8;
+        settings.Styles.DayHeader.Font.Size = 8;
+        settings.Styles.FormButton.Font.Size = 8;
+        settings.Styles.VerticalResourceHeader.Font.Size = 8;        
+        
+        settings.Views.DayView.ResourcesPerPage = 10;
+        settings.Views.WorkWeekView.Enabled = false;
+        settings.Views.WorkWeekView.ResourcesPerPage = 10;
+        settings.Views.FullWeekView.Enabled = true;
+        settings.Views.FullWeekView.ResourcesPerPage = 10;
+        settings.Views.WeekView.Enabled = false;
+        settings.Views.MonthView.ResourcesPerPage = 10;
+        settings.Views.MonthView.ShowWeekend = true;
+        settings.Views.MonthView.AppointmentDisplayOptions.StartTimeVisibility = AppointmentTimeVisibility.Never;
+        settings.Views.MonthView.AppointmentDisplayOptions.EndTimeVisibility = AppointmentTimeVisibility.Never;
+        settings.Views.MonthView.AppointmentDisplayOptions.StatusDisplayType = AppointmentStatusDisplayType.Bounds;
+        settings.Views.MonthView.AppointmentDisplayOptions.ShowRecurrence = true;
+        settings.Views.MonthView.MonthViewStyles.DateCellBody.Height = System.Web.UI.WebControls.Unit.Pixel(50);
+
+        settings.OptionsBehavior.HighlightSelectionHeaders = true;        
+        settings.Views.DayView.TimeSlots.Add(new TimeSlot(new TimeSpan(0, 20, 0), "20 minutes"));
+        settings.Views.DayView.TimeSlots.Add(new TimeSlot(new TimeSpan(0, 1, 0), "1 minutes"));
+        
+        settings.Views.AgendaView.Enabled = false;       
+        
+        TimeScale[] timeScales = new TimeScale[] {
+            new TimeScaleYear() { Enabled = false },
+            new TimeScaleQuarter() { Enabled = false },
+            new TimeScaleMonth(),
+            new TimeScaleFixedInterval() { Enabled = false },
+            new TimeScaleDay(),
+            new TimeScaleHour() { Enabled = true },
+        };
+        settings.Views.TimelineView.Scales.AddRange(timeScales);
+        settings.Views.TimelineView.ResourcesPerPage = 10;
+        settings.OptionsCustomization.AllowAppointmentCreate = UsedAppointmentType.None;
+        settings.OptionsCustomization.AllowAppointmentEdit = UsedAppointmentType.None;
+        settings.OptionsCustomization.AllowAppointmentDelete = UsedAppointmentType.None; 
+
+}).Bind(LSP.Models.TB_M_CALENDAR.TB_M_CALENDARProvider.Instance.TB_M_CALENDAR_GetAppointments(new LSP.Models.TB_M_CALENDAR.TB_R_APPOINTMENTSInfo()),
+        LSP.Models.TB_M_CALENDAR.TB_M_CALENDARProvider.Instance.TB_M_CALENDAR_GetResources(new LSP.Models.TB_M_CALENDAR.TB_R_RESOURCESInfo())).GetHtml()

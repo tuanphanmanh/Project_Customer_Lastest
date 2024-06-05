@@ -1,0 +1,74 @@
+<div class="tab-detail">
+    <div class="frame-1171275729">
+        <div>
+            <!-- <button *ngIf="isRefDocument" class="frame-1171275594"> -->
+            <button class="frame-1171275594" *ngIf="allowAction && isRefDocument" (click)="searchRequest.show()">
+                <svg class="vuesax-linear-add" width="12" height="12" viewBox="0 0 12 12" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 6H9" stroke="#3F2BC8" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M6 9V3" stroke="#3F2BC8" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <div class="download-all">{{l('RefDocument')}}</div>
+            </button>
+        </div>
+    </div>
+
+    <!-- Documents -->
+    <div class="frame-1000006512">
+        <div class="frame-1000006437" *ngIf="references?.length > 0">
+            <ng-container [ngTemplateOutlet]="listDocument"></ng-container>
+            <ng-template #listDocument>
+                <ng-container *ngFor="let document of references; let i = index">
+                    <div class="detail" [ngStyle]="document?.isAdditionalDoc === true ? {'box-shadow': 'var(--esign-boxshadow-btn-icon-box-shadow, 0px 1.25px 2.15px 0px rgba(250, 0, 0, 0.81), 0px 0px 0.94px 0px rgb(230 0 0 / 60%))'} : {}">
+                        <div class="frame-1171275238">
+                            <div class="_1">{{i + 1}}</div>
+                        </div>
+                        <svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.5 7.5H11.25V12H0.75V3.75H1.5V1.5H2.25V0H10.5V7.5ZM3 0.75V1.5H9V7.5H9.75V0.75H3ZM2.25 2.25V3.75H4.2832L8.0332 7.5H8.25V2.25H2.25ZM10.5 11.25V8.25H7.7168L3.9668 4.5H1.5V11.25H10.5Z" fill="#3F2BC8" stroke="#3F2BC8" stroke-width="0.2"/>
+                        </svg>
+                        <div class="frame-45362">
+                            <div class="frame-45360" (click)="viewRefRequest(document.requestRefId)">
+                                <div class="_68342023">{{document?.title}}</div>
+                            </div>
+                            <div class="frame-45366">
+                                <input disabled class="note" [id]="'note-'+i" [(ngModel)]="document.note" (focusout)="onFocusOut(document)" (keydown)="onKeyDown($event,i)" placeholder="Note here..."/>
+                                <svg *ngIf="allowAction && isRefDocument" class="file-edit" width="12" height="12" (click)="editNote(i)"
+                                    viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_4130_131700)">
+                                    <path d="M10.5229 2.87997L13.12 5.47712M8.79145 15H15M1.86572 11.5371L1 15L4.46287 14.1343L14.4931 4.10409C14.8177 3.7794 15 3.33908 15 2.87997C15 2.42085 14.8177 1.98054 14.4931 1.65584L14.3442 1.50694C14.0195 1.18235 13.5791 1 13.12 1C12.6609 1 12.2206 1.18235 11.8959 1.50694L1.86572 11.5371Z" stroke="#3F2BC8" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </g>
+                                    <defs>
+                                    <clipPath id="clip0_4130_131700">
+                                    <rect width="16" height="16" fill="white"/>
+                                    </clipPath>
+                                    </defs>
+                                </svg>
+                            </div>
+                        </div>
+                        <div *ngIf="allowAction" class="vuesax-linear-arrow-right" (click)="viewRefRequest(document.requestRefId)">
+                            <svg class="vuesax-linear-arrow-right2" width="12" height="13" viewBox="0 0 12 13"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M4.45508 10.46L7.71508 7.20004C8.10008 6.81504 8.10008 6.18504 7.71508 5.80004L4.45508 2.54004"
+                                    stroke="#3F2BC8" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-template>
+        </div>
+        <div class="frame-1171275410" *ngIf="!references?.length">
+            <svg class="vector45" width="71" height="80" viewBox="0 0 71 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M55.814 40.9302C57.0791 40.9302 58.307 41.0791 59.5349 41.2651V22.3256L37.2093 0H7.44186C3.31163 0 0 3.31163 0 7.44186V66.9767C0 71.107 3.31163 74.4186 7.44186 74.4186H36.5023C34.6047 71.1442 33.4884 67.3488 33.4884 63.2558C33.4884 50.9395 43.4977 40.9302 55.814 40.9302ZM33.4884 5.5814L53.9535 26.0465H33.4884V5.5814ZM59.5349 65.1163V59.5349H44.6512V52.093H59.5349V46.5116L70.6977 55.814L59.5349 65.1163ZM52.093 66.9767H66.9767V74.4186H52.093V80L40.9302 70.6977L52.093 61.3954V66.9767Z"
+                    fill="#D780FF" fill-opacity="0.2" />
+            </svg>
+            <div class="no-records">{{l('NoData')}}</div>
+        </div>
+    </div>
+    <!-- End  Documents -->
+</div>
+<search-request #searchRequest [requestId]="requestId" [references]="references" (modalSave)="saveRefDocument($event)"></search-request>

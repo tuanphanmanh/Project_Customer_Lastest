@@ -1,0 +1,63 @@
+<ejs-dialog [isModal]='true' #modal id="modal" [visible]='visible' [animationSettings]='animationSettings'
+    [showCloseIcon]='false' [width]='dialogWidth'>
+    <ng-template #content>
+        <div class="frame-1171275385">
+            <div class="frame-1171275284">
+                <div class="vuesax-linear-close-circle" (click)="hide()">
+                    <div class="vuesax-linear-close-circle2">
+                        <svg class="close-circle" width="36" height="37" viewBox="0 0 36 37" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.7549 22.7459L22.2449 14.2559" stroke="#3F2BC8" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M22.2449 22.7459L13.7549 14.2559" stroke="#3F2BC8" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="frame-1171275674">
+                <div class="frame-1171275283">
+                    <div class="frame">
+                        <svg class="fluent-warning-28-regular" width="75" height="75" viewBox="0 0 75 75" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M40.1786 53.571C40.1786 54.2814 39.8964 54.9627 39.3941 55.465C38.8918 55.9673 38.2104 56.2495 37.5 56.2495C36.7896 56.2495 36.1083 55.9673 35.606 55.465C35.1037 54.9627 34.8215 54.2814 34.8215 53.571C34.8215 52.8606 35.1037 52.1793 35.606 51.6769C36.1083 51.1746 36.7896 50.8924 37.5 50.8924C38.2104 50.8924 38.8918 51.1746 39.3941 51.6769C39.8964 52.1793 40.1786 52.8606 40.1786 53.571ZM35.4911 44.8656C35.4911 45.3984 35.7028 45.9094 36.0795 46.2861C36.4563 46.6629 36.9672 46.8745 37.5 46.8745C38.0328 46.8745 38.5438 46.6629 38.9206 46.2861C39.2973 45.9094 39.509 45.3984 39.509 44.8656V27.4549C39.509 26.9221 39.2973 26.4111 38.9206 26.0344C38.5438 25.6576 38.0328 25.446 37.5 25.446C36.9672 25.446 36.4563 25.6576 36.0795 26.0344C35.7028 26.4111 35.4911 26.9221 35.4911 27.4549V44.8656ZM31.05 11.1692C33.8518 6.09598 41.1483 6.0933 43.95 11.1692L68.7268 56.0353C71.4375 60.9451 67.8858 66.9638 62.2795 66.9638H12.742C7.13576 66.9638 3.58129 60.9478 6.29201 56.0379L31.05 11.1692ZM40.4304 13.1112C40.141 12.5875 39.7165 12.151 39.2011 11.847C38.6858 11.543 38.0984 11.3827 37.5 11.3827C36.9017 11.3827 36.3143 11.543 35.799 11.847C35.2836 12.151 34.8591 12.5875 34.5697 13.1112L9.80897 57.9799C9.52756 58.4898 9.38401 59.0643 9.39251 59.6466C9.40101 60.229 9.56126 60.799 9.85743 61.3005C10.1536 61.8019 10.5755 62.2175 11.0813 62.5061C11.5872 62.7946 12.1596 62.9463 12.742 62.946H62.2768C62.859 62.9458 63.4311 62.7938 63.9366 62.5051C64.4421 62.2163 64.8636 61.8007 65.1594 61.2993C65.4553 60.7979 65.6153 60.2281 65.6237 59.646C65.632 59.0638 65.4885 58.4896 65.2072 57.9799L40.4304 13.1112Z"
+                                fill="#FF8A00" />
+                        </svg>
+                    </div>
+                    <div class="frame-1171275480">
+                        <div class="assign-required-signatures">Assign required signatures</div>
+                        <div class="frame-1171275481">
+
+                            <div class="you-haven-t-assigned-any-signature-s-for-the-following-signers">
+                                You haven&#039;t assigned any signature(s) for the following
+                                signers.
+                            </div>
+                            <div class="you-haven-t-assigned-any-signature-s-for-the-following-signers">
+                                You will exclude them from the Signer List when you press Submit Anyway.
+                            </div>
+                        </div>
+                        <div class="frame-1171275671">
+                            <ng-container class="groupSigner" *ngFor="let signer of listMissingSignature, let i = index" >
+                                <div class="frame-1171275672">
+                                    <div class="ellipse-1"></div>
+                                    <div class="ha-le-van">{{signer.fullName}}</div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="frame-1171275387">
+                <div class="frame-1171275438">
+                    <div class="component-38" (click)="hide()">
+                        <div class="cancel">{{l('Cancel')}}</div>
+                    </div>
+                    <div class="component-37" (click)="submit()">
+                        <div class="submit-anyway">{{l('SubmitAnyway')}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</ejs-dialog>

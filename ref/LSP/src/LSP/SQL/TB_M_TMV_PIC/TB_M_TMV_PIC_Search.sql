@@ -1,0 +1,2 @@
+﻿EXEC TB_M_TMV_PIC_Search 
+		@PIC_NAME,@SUPPLIERS

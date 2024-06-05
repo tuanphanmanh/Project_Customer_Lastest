@@ -1,0 +1,391 @@
+﻿@using LSP.Models
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = LSP.Models.Common.PageSize_M(); //10
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = Common.PageSizeItemSettings(); //new string[] { "10", "20", "50" };
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.SettingsResizing.ColumnResizeMode = ColumnResizeMode.Control;
+    settings.SettingsResizing.Visualization = ResizingMode.Live;
+    settings.SettingsBehavior.AllowEllipsisInText = true;
+
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 7;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+    settings.CallbackRouteValues = new { Controller = "TB_R_PART_STOCK", Action = "GridCallback" };
+
+    settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Auto;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.Styles.FocusedRow.BackColor = System.Drawing.Color.LightGray;
+    settings.Styles.Row.ForeColor = System.Drawing.Color.Black;
+
+    //Export       
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+    settings.SettingsDetail.ExportMode = GridViewDetailExportMode.Expanded;
+    settings.SettingsExport.RenderBrick = (sender, e) =>
+    {
+        if (e.RowType != GridViewRowType.Header) return;
+
+        if ((e.Column as GridViewDataColumn).FieldName == "STOCK_QTY")
+        {
+            e.BrickStyle.BackColor = System.Drawing.Color.Yellow;
+            e.BrickStyle.ForeColor = System.Drawing.Color.Black;
+        }
+    };
+
+    settings.SettingsExport.BeforeExport = (sender, e) =>
+    {
+        MVCxGridView gridView = sender as MVCxGridView;
+        if (sender == null)
+            return;
+        gridView.Columns["Op."].Visible = false;
+    };
+
+    //Toolbar
+    settings.Toolbars.Add(toolbar =>
+    {
+        toolbar.Enabled = true;
+        toolbar.EnableAdaptivity = true;
+        toolbar.Position = GridToolbarPosition.Top;
+        toolbar.ItemAlign = GridToolbarItemAlign.Left;
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                Html.DevExpress().ButtonEdit(s =>
+                {
+                    s.Name = "search";
+                    s.Properties.NullText = "Search inline...";
+                    s.Properties.Buttons
+                        .Add()
+                        .Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
+                }).Render();
+            });
+        });
+
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnExportXls";
+                    s.ClientSideEvents.Click = "function(s, e) {gvList.ExportTo(ASPxClientGridViewExportFormat.Xls);}";
+                    s.Text = "Export to Xls";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxls16x16;
+                }).GetHtml();
+            });
+        });
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnStockDetails";
+                    s.ClientSideEvents.Click = "showStockDetail";
+                    s.Text = "STOCK MONTH Details";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.SpreadsheetCreatestockchartvolumeopenhighlowclose16x16;
+                }).GetHtml();
+            });
+        });
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnStockDetailsIO";
+                    s.ClientSideEvents.Click = "showStockDetailIO";
+                    s.Text = "STOCK I/O Details";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.FormatListbullets16x16;
+                }).GetHtml();
+            });
+        });
+
+        //toolbar.Items.Add(GridViewToolbarCommand.ExportToXlsx);
+        toolbar.Items.Add(GridViewToolbarCommand.ShowFilterEditor);
+        toolbar.Items.Add(GridViewToolbarCommand.ClearFilter);
+        toolbar.Items.Add(GridViewToolbarCommand.ShowGroupPanel);
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "Help";
+                    s.ClientSideEvents.Init = "function(s, e) { }";
+                    s.ClientSideEvents.Click = "function(s, e) { }";
+                    s.Text = "Help";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.HelpIndex16x16gray;
+                }).GetHtml();
+            });
+        });
+
+
+    });
+    //For Search panel
+    settings.SettingsSearchPanel.CustomEditorName = "search";
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "Op.";
+        c.Width = System.Web.UI.WebControls.Unit.Pixel(70);
+        c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+        c.SetDataItemTemplateContent(
+            content =>
+            {
+                System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+                    strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Edit(this)' title='Edit'><i class='fa fa-pencil'></i></a>"));
+                }
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Delete"))
+                {
+                    strBuilder.Append(string.Concat(" <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Delete(this)'  title='Delete'><i class='fa fa-trash-o'></i></a>"));
+                }
+                Html.ViewContext.Writer.Write(strBuilder.ToString());
+            });
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "No.";
+        c.FieldName = "Row_No";
+        c.Width = 50;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+    }
+    );
+    /*settings.Columns.Add(c =>
+        {
+            c.Caption = "PART ID";
+            c.FieldName = "PART_ID";
+            c.Width = 70;
+        }
+    );*/
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "SUPPLIER";
+        c.FieldName = "SUPPLIER_CODE";
+        c.Width = 70;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "PART NO";
+        c.FieldName = "PART_NO";
+        c.Width = 100;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+    });
+    /*
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "SFX";
+        c.FieldName = "COLOR_SFX";
+        c.Width = 40;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+    });*/
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "PART NAME";
+        c.FieldName = "PART_NAME";
+        c.CellStyle.Font.Size = 6;
+        c.Width = 120;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "SHOP";
+        c.FieldName = "SHOP";
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+        c.Width = 60;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "BACK NO";
+        c.FieldName = "BACK_NO";
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+        c.Width = 60;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "STOCK QTY";
+        c.FieldName = "STOCK_QTY";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.BackColor = System.Drawing.Color.Yellow;
+        c.HeaderStyle.ForeColor = System.Drawing.Color.Black;
+        c.ExportCellStyle.BackColor = System.Drawing.Color.Yellow;
+        c.Width = 65;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "STOCK MIN";
+        c.FieldName = "MIN_STOCK";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.BackColor = System.Drawing.Color.LawnGreen;
+        c.HeaderStyle.ForeColor = System.Drawing.Color.Black;
+        c.ExportCellStyle.BackColor = System.Drawing.Color.Yellow;
+        c.Width = 65;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "STOCK MAX";
+        c.FieldName = "MAX_STOCK";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.BackColor = System.Drawing.Color.LawnGreen;
+        c.HeaderStyle.ForeColor = System.Drawing.Color.Black;
+        c.ExportCellStyle.BackColor = System.Drawing.Color.Yellow;
+        c.Width = 65;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "ALARM";
+        c.FieldName = "STOCK_WARNING";
+        c.Width = 60;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.BackColor = System.Drawing.Color.Yellow;
+        c.HeaderStyle.ForeColor = System.Drawing.Color.Black;
+        c.ExportCellStyle.BackColor = System.Drawing.Color.Yellow;
+        c.CellStyle.Font.Bold = true;
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "STOCK_WARNING"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "Not IsNullOrEmpty([STOCK_WARNING])";
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "LAST OUT PROD. VEHICLE";
+        c.FieldName = "LAST_OUT_PROD_VEHICLE";
+        c.Width = 170;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "LAST WORKING DATE";
+        c.FieldName = "WORKING_DATE";
+        c.Width = 70;
+        c.PropertiesEdit.DisplayFormatString = "dd/MM/yy";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "LAST STOCK DATE";
+        c.FieldName = "STOCK_DATE";
+        c.Width = 90;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.PropertiesEdit.DisplayFormatString = "dd/MM/yy HH:mm";
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "IS ACTIVE?";
+        c.FieldName = "IS_ACTIVE";
+        c.Width = 60;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.VerticalAlign = System.Web.UI.WebControls.VerticalAlign.Middle;
+        c.SetDataItemTemplateContent(cc =>
+        {
+            Html.DevExpress().CheckBox(checkboxSettings =>
+            {
+                checkboxSettings.Name = "IS_ACTIVE_" + cc.KeyValue.ToString();
+                checkboxSettings.Checked = Convert.ToString(DataBinder.Eval(cc.DataItem, "IS_ACTIVE")) == "Y" ? true : false;
+                checkboxSettings.Properties.ClientSideEvents.CheckedChanged = "function() { return false; }";
+            }).Render();
+        });
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "UPDATED BY";
+        c.FieldName = "UPDATED_BY";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 70;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "REMARKS";
+        c.FieldName = "REMARKS";
+        c.CellStyle.Font.Size = 6;
+        c.Width = 80;
+    });
+
+
+    settings.HtmlRowPrepared = (s, e) =>
+    {
+        MVCxGridView gridView = s as MVCxGridView;
+
+        if (e.RowType != GridViewRowType.Data) return;
+
+        string vSTATUS = e.GetValue("IS_ACTIVE").ToString();
+        if (vSTATUS == "N" || vSTATUS == "")
+        {
+            e.Row.BackColor = System.Drawing.ColorTranslator.FromHtml("#999999");
+        }
+    };
+
+    //PART_IN_OUT
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+    settings.SettingsDetail.ShowDetailRow = true;
+    settings.SetDetailRowTemplateContent(c =>
+    {
+        ViewContext.Writer.Write(
+                    "<b>PART IN/OUT:</b> "
+               /* + string.Concat("<a class='btnCollectionNew AssignColor' href='#editPartIN' data-part-id='", DataBinder.Eval(c.DataItem, "PART_ID"),
+                       "' onclick='return PART_IN_OUT_New(this)' title='NEW TB_R_PART_IN_OUT' >Assign PART IN OUT</a>",
+
+                       "<div class='clear'></div>")*/
+               );
+
+        Html.RenderAction("PART_IN_OUT_GridCallback",
+                new LSP.Models.TB_R_PART_IN_OUT.TB_R_PART_IN_OUTInfo() { PART_ID = int.Parse(DataBinder.Eval(c.DataItem, "PART_ID").ToString()) });
+    });
+    settings.PreRender = (sender, e) =>
+    {
+        ((MVCxGridView)sender).DetailRows.ExpandRow(-1);
+    };
+
+}).Bind(LSP.Models.TB_R_PART_STOCK.TB_R_PART_STOCKProvider.Instance.TB_R_PART_STOCK_Search(Model ?? new LSP.Models.TB_R_PART_STOCK.TB_R_PART_STOCKInfo())).GetHtml()
+
+

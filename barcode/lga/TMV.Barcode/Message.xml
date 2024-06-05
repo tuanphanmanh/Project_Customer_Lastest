@@ -1,0 +1,16 @@
+<?xml version="1.0" standalone="yes"?>
+<Messages>
+  <M00000AWRN01>Khong the Logout.</M00000AWRN01>
+  <M00000AWRN02>Khong the Undo 2 lan.</M00000AWRN02>  
+  <M00000AWRN03>'{0}' nằm trong Floor khác.</M00000AWRN03>
+  <M00000AWRN04>Part '{0}' khong dung.</M00000AWRN04>
+  <M00000AWRN05>không có Back '{0}' </M00000AWRN05>
+  <M00000AWRN06>'{0}' nằm trong Rack khác.</M00000AWRN06>
+  <M00000AWRN07>Khong the Undo.</M00000AWRN07>
+  <M00000AWRN08>Thong tin quet khong dung.</M00000AWRN08>
+  <M00000AWRN09>Part {0} khong dung voi Kanban </M00000AWRN09>
+  <M00000AWRN10>User '{0}' khong dung.</M00000AWRN10>
+  <M00000AWRN11>Part '{0}' khong dung.</M00000AWRN11>
+  <M00000AWRN12>không có Module '{0}'</M00000AWRN12>
+  <M00000AWRN13>Module đã xong hoặc đang được Unpack</M00000AWRN13>    
+</Messages>

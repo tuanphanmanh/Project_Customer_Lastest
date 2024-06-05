@@ -1,0 +1,658 @@
+﻿{
+  "DataContractVersion": "1.1",
+  "DocumentTypes": [
+    {
+      "DocumentTypeId": "TMVTEST.IT.InvoiceHead",
+      "Group": "TMVTEST",
+      "Category": "IT",
+      "Name": "InvoiceHead",
+      "OptionalUniqueIdentifier": "",
+      "TypeField": {
+        "FieldId": "TMVTEST.IT.InvoiceHead.DocumentType",
+        "FieldName": "Document Type"
+      },
+      "Fields": [
+        {
+          "FieldId": "TMVTEST.IT.InvoiceHead.InvoiceNo",
+          "FieldName": "Invoice No",
+          "IsMultiValue": false,
+          "Type": "Text",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#038a18"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "v"
+            }
+          ]
+        },
+        {
+          "FieldId": "TMVTEST.IT.InvoiceHead.InvoiceDate",
+          "FieldName": "Invoice Date",
+          "IsMultiValue": false,
+          "Type": "Date",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#fa6616"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "c"
+            }
+          ]
+        },
+        {
+          "FieldId": "TMVTEST.IT.InvoiceHead.BuyerName",
+          "FieldName": "Buyer Name",
+          "IsMultiValue": false,
+          "Type": "Text",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#8a97a0"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "y"
+            }
+          ]
+        },
+        {
+          "FieldId": "TMVTEST.IT.InvoiceHead.FlightNo",
+          "FieldName": "Flight No",
+          "IsMultiValue": false,
+          "Type": "Text",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#6eb84a"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "l"
+            }
+          ]
+        },
+        {
+          "FieldId": "TMVTEST.IT.InvoiceHead.FromLocation",
+          "FieldName": "From Location",
+          "IsMultiValue": false,
+          "Type": "Text",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#d252f9"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "r"
+            }
+          ]
+        },
+        {
+          "FieldId": "TMVTEST.IT.InvoiceHead.ToLocation",
+          "FieldName": "To Location",
+          "IsMultiValue": false,
+          "Type": "Text",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#e8c342"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "a"
+            }
+          ]
+        },
+        {
+          "FieldId": "TMVTEST.IT.InvoiceHead.SellerInvoiceNo",
+          "FieldName": "Seller Invoice No",
+          "IsMultiValue": false,
+          "Type": "Text",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#75c99c"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "e"
+            }
+          ]
+        },
+        {
+          "FieldId": "TMVTEST.IT.InvoiceHead.BillNo",
+          "FieldName": "Bill No",
+          "IsMultiValue": false,
+          "Type": "Text",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#fca027"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "q"
+            }
+          ]
+        },
+        {
+          "FieldId": "TMVTEST.IT.InvoiceHead.EstimateDepartureDate",
+          "FieldName": "Estimate Departure Date",
+          "IsMultiValue": false,
+          "Type": "Date",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#7d9ce2"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "m"
+            }
+          ]
+        },
+        {
+          "FieldId": "TMVTEST.IT.InvoiceHead.Fob",
+          "FieldName": "Fob",
+          "IsMultiValue": false,
+          "Type": "Number",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#8660d2"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "w"
+            }
+          ]
+        },
+        {
+          "FieldId": "TMVTEST.IT.InvoiceHead.Freight",
+          "FieldName": "Freight",
+          "IsMultiValue": false,
+          "Type": "Number",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#86b289"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "g"
+            }
+          ]
+        },
+        {
+          "FieldId": "TMVTEST.IT.InvoiceHead.Insurance",
+          "FieldName": "Insurance",
+          "IsMultiValue": false,
+          "Type": "Number",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#22aa55"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "h"
+            }
+          ]
+        },
+        {
+          "FieldId": "TMVTEST.IT.InvoiceHead.Amount",
+          "FieldName": "Amount",
+          "IsMultiValue": false,
+          "Type": "Number",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#90c4e3"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "j"
+            }
+          ]
+        },
+        {
+          "FieldId": "TMVTEST.IT.InvoiceHead.GrossWeight",
+          "FieldName": "Gross Weight",
+          "IsMultiValue": false,
+          "Type": "Number",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#6e6990"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "k"
+            }
+          ]
+        },
+        {
+          "FieldId": "TMVTEST.IT.InvoiceHead.NetWeight",
+          "FieldName": "Net Weight",
+          "IsMultiValue": false,
+          "Type": "Number",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#8ba0bf"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "z"
+            }
+          ]
+        },
+        {
+          "FieldId": "TMVTEST.IT.InvoiceHead.Measure",
+          "FieldName": "Measure",
+          "IsMultiValue": false,
+          "Type": "Number",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#a588b0"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "x"
+            }
+          ]
+        },
+        {
+          "FieldId": "TMVTEST.IT.InvoiceHead.NumberofCases",
+          "FieldName": "Number of Cases",
+          "IsMultiValue": false,
+          "Type": "Number",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#d183e1"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "FieldId": "TMVTEST.IT.InvoiceHead.MarksandNos",
+          "FieldName": "Marks and Nos",
+          "IsMultiValue": false,
+          "Type": "Text",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#733bca"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "FieldId": "TMVTEST.IT.InvoiceHead.CountryofOrigin",
+          "FieldName": "Country of Origin",
+          "IsMultiValue": false,
+          "Type": "Text",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#efcf6b"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "DocumentTypeId": "TMVTEST.IT.InvoiceDetails",
+      "Group": "TMVTEST",
+      "Category": "IT",
+      "Name": "InvoiceDetails",
+      "OptionalUniqueIdentifier": "",
+      "TypeField": {
+        "FieldId": "TMVTEST.IT.InvoiceDetails.DocumentType",
+        "FieldName": "Document Type"
+      },
+      "Fields": [
+        {
+          "FieldId": "TMVTEST.IT.InvoiceDetails.InvoiceNo",
+          "FieldName": "Invoice No",
+          "IsMultiValue": false,
+          "Type": "Text",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#038a18"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "v"
+            }
+          ]
+        },
+        {
+          "FieldId": "TMVTEST.IT.InvoiceDetails.BuyerNo",
+          "FieldName": "Buyer Code",
+          "IsMultiValue": false,
+          "Type": "Text",
+          "DeriveFieldsFormat": "",
+          "Components": [],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#fa6616"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "y"
+            }
+          ]
+        },
+        {
+          "FieldId": "TMVTEST.IT.InvoiceDetails.PartList",
+          "FieldName": "Part List",
+          "IsMultiValue": false,
+          "Type": "Table",
+          "DeriveFieldsFormat": "",
+          "Components": [
+            {
+              "FieldId": "TMVTEST.IT.InvoiceDetails.PartList.CaseNo",
+              "FieldName": "Case No",
+              "IsMultiValue": false,
+              "Type": "Text",
+              "DeriveFieldsFormat": "",
+              "Components": [],
+              "SetValues": [],
+              "Metadata": []
+            },
+            {
+              "FieldId": "TMVTEST.IT.InvoiceDetails.PartList.OrderNo",
+              "FieldName": "Order No",
+              "IsMultiValue": false,
+              "Type": "Text",
+              "DeriveFieldsFormat": "",
+              "Components": [],
+              "SetValues": [],
+              "Metadata": []
+            },
+            {
+              "FieldId": "TMVTEST.IT.InvoiceDetails.PartList.ItemNo",
+              "FieldName": "Item No",
+              "IsMultiValue": false,
+              "Type": "Text",
+              "DeriveFieldsFormat": "",
+              "Components": [],
+              "SetValues": [],
+              "Metadata": []
+            },
+            {
+              "FieldId": "TMVTEST.IT.InvoiceDetails.PartList.PartNo",
+              "FieldName": "Part No",
+              "IsMultiValue": false,
+              "Type": "Text",
+              "DeriveFieldsFormat": "",
+              "Components": [],
+              "SetValues": [],
+              "Metadata": []
+            },
+            {
+              "FieldId": "TMVTEST.IT.InvoiceDetails.PartList.PartName",
+              "FieldName": "Part Name",
+              "IsMultiValue": false,
+              "Type": "Text",
+              "DeriveFieldsFormat": "",
+              "Components": [],
+              "SetValues": [],
+              "Metadata": []
+            },
+            {
+              "FieldId": "TMVTEST.IT.InvoiceDetails.PartList.Qty",
+              "FieldName": "Qty",
+              "IsMultiValue": false,
+              "Type": "Number",
+              "DeriveFieldsFormat": "",
+              "Components": [],
+              "SetValues": [],
+              "Metadata": []
+            },
+            {
+              "FieldId": "TMVTEST.IT.InvoiceDetails.PartList.Fob",
+              "FieldName": "Fob",
+              "IsMultiValue": false,
+              "Type": "Number",
+              "DeriveFieldsFormat": "",
+              "Components": [],
+              "SetValues": [],
+              "Metadata": []
+            },
+            {
+              "FieldId": "TMVTEST.IT.InvoiceDetails.PartList.Amount",
+              "FieldName": "Amount",
+              "IsMultiValue": false,
+              "Type": "Number",
+              "DeriveFieldsFormat": "",
+              "Components": [],
+              "SetValues": [],
+              "Metadata": []
+            },
+            {
+              "FieldId": "TMVTEST.IT.InvoiceDetails.PartList.TRFCode",
+              "FieldName": "TRF Code",
+              "IsMultiValue": false,
+              "Type": "Text",
+              "DeriveFieldsFormat": "",
+              "Components": [],
+              "SetValues": [],
+              "Metadata": []
+            }
+          ],
+          "SetValues": [],
+          "Metadata": [
+            {
+              "Key": "Color",
+              "Value": "#8a97a0"
+            },
+            {
+              "Key": "Hotkey",
+              "Value": "a"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Groups": [
+    {
+      "Name": "TMVTEST",
+      "Categories": [
+        "IT"
+      ]
+    }
+  ],
+  "SupportedLanguages": [
+    {
+      "Name": "Undetermined Language",
+      "Code": "und"
+    },
+    {
+      "Name": "Bulgarian",
+      "Code": "bul"
+    },
+    {
+      "Name": "Cantonese",
+      "Code": "yue"
+    },
+    {
+      "Name": "Danish",
+      "Code": "dan"
+    },
+    {
+      "Name": "Dutch",
+      "Code": "nld"
+    },
+    {
+      "Name": "English",
+      "Code": "eng"
+    },
+    {
+      "Name": "French",
+      "Code": "fra"
+    },
+    {
+      "Name": "Georgian",
+      "Code": "kat"
+    },
+    {
+      "Name": "German",
+      "Code": "deu"
+    },
+    {
+      "Name": "Greek",
+      "Code": "ell"
+    },
+    {
+      "Name": "Hebrew",
+      "Code": "heb"
+    },
+    {
+      "Name": "Hindi",
+      "Code": "hin"
+    },
+    {
+      "Name": "Italian",
+      "Code": "ita"
+    },
+    {
+      "Name": "Japanese",
+      "Code": "jpn"
+    },
+    {
+      "Name": "Korean",
+      "Code": "kor"
+    },
+    {
+      "Name": "Macedonian",
+      "Code": "mkd"
+    },
+    {
+      "Name": "Mandarin",
+      "Code": "zho"
+    },
+    {
+      "Name": "Marathi",
+      "Code": "mar"
+    },
+    {
+      "Name": "Norwegian",
+      "Code": "nor"
+    },
+    {
+      "Name": "Polish",
+      "Code": "pol"
+    },
+    {
+      "Name": "Portuguese",
+      "Code": "por"
+    },
+    {
+      "Name": "Romanian",
+      "Code": "ron"
+    },
+    {
+      "Name": "Russian",
+      "Code": "rus"
+    },
+    {
+      "Name": "Serbian",
+      "Code": "srp"
+    },
+    {
+      "Name": "Spanish",
+      "Code": "spa"
+    },
+    {
+      "Name": "Swedish",
+      "Code": "swe"
+    },
+    {
+      "Name": "Telugu",
+      "Code": "tel"
+    }
+  ]
+}

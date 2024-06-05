@@ -1,0 +1,34 @@
+﻿@*
+---Phần Search trên form
+TextBox : .textbox
+DateEdit : .textdate
+ComboBox : .textcombobox
+*@
+<div class="dxcontent_search"> 
+    <div class="itembox">
+		<label class="placehoder">USER_ID</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtUSER_ID";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">USER_NAME</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtUSER_NAME";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+   
+     <div class="itembox">     
+		@Html.DevExpress().Button(settings =>
+		{
+			settings.Name = "btnSearch";
+			settings.Text = "Search";
+            settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsSearch16x16devav;
+			settings.ClientSideEvents.Click = "DoSearch";
+		}).GetHtml()
+    </div>
+</div>

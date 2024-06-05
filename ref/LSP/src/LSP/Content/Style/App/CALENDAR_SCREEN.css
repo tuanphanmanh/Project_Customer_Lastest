@@ -1,0 +1,37 @@
+﻿body{ 
+    margin:0;
+    padding:0; 
+    font-family: 'Open Sans' , Arial;
+    font-size: 13px ; 
+    font-weight: 600; 
+    background:url("/Content/Images/App/grain.png") #f7f7f7; 
+    transition: display 0.2s ease-in-out 0s; 
+    overflow:hidden;
+}
+
+.calendar{
+	float: left;
+}
+
+.styleTable{
+	border: 1px solid #ccc;
+}
+
+.styleTable th {
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+.styleTable td {
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+.types{
+	border: 1px solid #ccc;
+	width: 255px;
+	float: right;
+	margin-top: 25px;
+    background-color: #04ABFF;
+    color: yellow;
+}

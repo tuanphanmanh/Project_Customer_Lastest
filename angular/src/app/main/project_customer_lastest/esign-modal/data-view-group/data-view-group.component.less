@@ -1,0 +1,32 @@
+.e-listview#ui-list {
+    height: 100%;
+}
+
+::ng-deep{
+    .e-icon-gdownarrow{
+        display: none !important;
+    }
+}
+#listviewGroup {
+    height: 100%;
+    border: none;
+    margin: 0;
+    > div.e-list-container {
+        > .e-list-parent.e-ul {
+            li.e-list-group-item {
+                height: 25px;
+                line-height: 22px;
+                padding: 0 5px;
+                background: aliceblue;
+                font: 500 14px "Roboto", sans-serif;
+            }
+            li.e-list-item {
+                min-height: 100px;
+                padding: 8px;
+                border-color: #edebe9;
+                border-style: solid;
+                border-width: 0 0 1px 0;
+            }
+        }
+    }
+}

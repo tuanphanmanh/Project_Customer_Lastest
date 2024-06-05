@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            color: #888888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Completion Notification</h1>
+        </div>
+        <div class="content">
+            <p>Hello Admin,</p>
+            <p>TMV.EXRATE.TOOL has successfully completed its task. Here are some detailed information:</p>
+            <ul>
+				<li><strong>Email Received Time:</strong> {{EmailReceivedTime}}</li>
+                <li><strong>Result:</strong> Success</li>
+                <li><strong>Beginning Time:</strong> {{BeginningTime}}</li>
+				<li><strong>End Time:</strong> {{EndTime}}</li>
+				<li><strong>Total Running Time:</strong> {{Duration}}</li>
+            </ul>
+            <p>Please review and ensure that everything is as expected.</p>
+            <p>Thank you for using our tool!</p>
+        </div>
+        <div class="footer">
+            <p>This email is sent automatically. Please do not reply to this email.</p>
+        </div>
+    </div>
+</body>
+</html>

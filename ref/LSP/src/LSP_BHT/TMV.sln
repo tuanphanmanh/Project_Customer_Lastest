@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMV.Common", "TMV.Common\TMV.Common.csproj", "{45C58421-8B89-4640-A40E-9620BADC0D11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMV.DataAccess", "TMV.DataAccesss\TMV.DataAccess.csproj", "{77548342-836A-440B-8672-88120C319221}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMV.ObjectInfo", "TMV.ObjectInfo\TMV.ObjectInfo.csproj", "{D23E24BB-2E62-4020-A8FC-EE24A1462A96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMV.BusinessObject", "TMV.BusinessObject\TMV.BusinessObject.csproj", "{60F0E2BD-78FE-4DE5-8C0E-F53FDA055286}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMV.Barcode", "TMV.Barcode\TMV.Barcode.csproj", "{52979B31-9186-4B3F-ABA4-01A64018D9AB}"
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 6
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = TMV.Barcode\\TMV.Barcode.csproj
+		SccProjectName1 = \u0022$/25\u0020LSP\u0020Local\u0020Part\u0020Andon/04\u0020PU/LSP_BHT/TMV.Barcode\u0022,\u0020MGVGAAAA
+		SccLocalPath1 = TMV.Barcode
+		SccProjectUniqueName2 = TMV.BusinessObject\\TMV.BusinessObject.csproj
+		SccProjectName2 = \u0022$/25\u0020LSP\u0020Local\u0020Part\u0020Andon/04\u0020PU/LSP_BHT/TMV.BusinessObject\u0022,\u0020LNVGAAAA
+		SccLocalPath2 = TMV.BusinessObject
+		SccProjectUniqueName3 = TMV.Common\\TMV.Common.csproj
+		SccProjectName3 = \u0022$/25\u0020LSP\u0020Local\u0020Part\u0020Andon/04\u0020PU/LSP_BHT/TMV.Common\u0022,\u0020FQVGAAAA
+		SccLocalPath3 = TMV.Common
+		SccProjectUniqueName4 = TMV.DataAccesss\\TMV.DataAccess.csproj
+		SccProjectName4 = \u0022$/25\u0020LSP\u0020Local\u0020Part\u0020Andon/04\u0020PU/LSP_BHT/TMV.DataAccesss\u0022,\u0020PSVGAAAA
+		SccLocalPath4 = TMV.DataAccesss
+		SccProjectUniqueName5 = TMV.ObjectInfo\\TMV.ObjectInfo.csproj
+		SccProjectName5 = \u0022$/25\u0020LSP\u0020Local\u0020Part\u0020Andon/04\u0020PU/LSP_BHT/TMV.ObjectInfo\u0022,\u0020WUVGAAAA
+		SccLocalPath5 = TMV.ObjectInfo
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45C58421-8B89-4640-A40E-9620BADC0D11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45C58421-8B89-4640-A40E-9620BADC0D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45C58421-8B89-4640-A40E-9620BADC0D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45C58421-8B89-4640-A40E-9620BADC0D11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77548342-836A-440B-8672-88120C319221}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77548342-836A-440B-8672-88120C319221}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77548342-836A-440B-8672-88120C319221}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77548342-836A-440B-8672-88120C319221}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D23E24BB-2E62-4020-A8FC-EE24A1462A96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D23E24BB-2E62-4020-A8FC-EE24A1462A96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D23E24BB-2E62-4020-A8FC-EE24A1462A96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D23E24BB-2E62-4020-A8FC-EE24A1462A96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60F0E2BD-78FE-4DE5-8C0E-F53FDA055286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60F0E2BD-78FE-4DE5-8C0E-F53FDA055286}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60F0E2BD-78FE-4DE5-8C0E-F53FDA055286}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60F0E2BD-78FE-4DE5-8C0E-F53FDA055286}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52979B31-9186-4B3F-ABA4-01A64018D9AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52979B31-9186-4B3F-ABA4-01A64018D9AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52979B31-9186-4B3F-ABA4-01A64018D9AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52979B31-9186-4B3F-ABA4-01A64018D9AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

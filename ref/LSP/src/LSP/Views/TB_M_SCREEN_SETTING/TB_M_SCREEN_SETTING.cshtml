@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="dxcontent_list">
+    <div class="content-header content-title">
+            @Html.Partial("_TB_M_SCREEN_SETTINGSearch")        
+    </div>
+    @using (Html.BeginForm()) {
+	    @Html.Partial("_TB_M_SCREEN_SETTINGList")
+    }                               
+</div>
+@section HeadScript{
+    <script type="text/javascript" src="@Url.Content("~/Content/Scripts/App/TB_M_SCREEN_SETTING.js")"></script>
+}
+         
+
+      

@@ -1,0 +1,107 @@
+<div>
+    <div *ngIf="comments?.length > 0" style="height: calc(100% - 50px);margin-bottom: 10px;margin-top: 8px; overflow-y: scroll;">
+        <ejs-listview  #listviewComment [dataSource]='comments' [enableVirtualization]=false
+            class="grid-comment" [showHeader]='false'>
+            <ng-template #template let-data>
+                <div class="frame-1000006404">
+                    <div class="comment1">
+                        <div class="frame-3">
+                            <div class="frame-1171275535">
+                                <div class="frame-2">
+                                    <div class="frame-1171275624">
+                                        <div class="avatar">
+                                            <img class="ellipse-2" [src]="!data.signerImgUrl ? 'assets/common/images/default-profile-picture.png' : data.signerImgUrl" />
+                                        </div>
+                                    </div>
+                                    <div class="frame-1171275625">
+                                        <div class="frame-1171275626">
+                                            <div class="yuki-tanabe">{{data.signerName}}</div>
+                                            <div class="frame-1171275627">
+                                                <!-- <div class="icon-park-lock">
+                                                    <svg *ngIf="!data.isPublic" class="group" width="10" height="11"
+                                                        viewBox="0 0 10 11" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M9 5H1C0.723858 5 0.5 5.22386 0.5 5.5V10C0.5 10.2761 0.723858 10.5 1 10.5H9C9.27614 10.5 9.5 10.2761 9.5 10V5.5C9.5 5.22386 9.27614 5 9 5Z"
+                                                            fill="#EB0A1E" stroke="black" stroke-linejoin="round" />
+                                                        <path
+                                                            d="M2.5 5V3C2.5 1.61929 3.6193 0.5 5 0.5C6.3807 0.5 7.5 1.61929 7.5 3V5"
+                                                            stroke="black" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path d="M5 7V8.5" stroke="white" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                    <svg *ngIf="data.isPublic" class="group" width="10" height="11"
+                                                        viewBox="0 0 10 11" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M8.75 5.01172H1.25C0.973858 5.01172 0.75 5.23558 0.75 5.51172V10.0117C0.75 10.2879 0.973858 10.5117 1.25 10.5117H8.75C9.02614 10.5117 9.25 10.2879 9.25 10.0117V5.51172C9.25 5.23558 9.02614 5.01172 8.75 5.01172Z"
+                                                            fill="#2F88FF" stroke="black" stroke-linejoin="round" />
+                                                        <path
+                                                            d="M2.5 5V3.00117C2.4987 1.71755 3.48068 0.641795 4.77148 0.512792C6.06225 0.38379 7.24183 1.24352 7.5 2.50148"
+                                                            stroke="black" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path d="M5 7V8.5" stroke="white" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                </div> -->
+                                                <div class="_14-min">{{formatDate(data.creationTime)}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="frame-1">
+                                            <div
+                                                class="thank-you-for-your-effort-you-need-to-consider-about-development-time-for-this-project">
+                                                {{data.content}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ejs-listview>
+    </div>
+    <div class="frame-1171275410" *ngIf="!comments?.length">
+        <svg class="vector45" width="71" height="80" viewBox="0 0 71 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M55.814 40.9302C57.0791 40.9302 58.307 41.0791 59.5349 41.2651V22.3256L37.2093 0H7.44186C3.31163 0 0 3.31163 0 7.44186V66.9767C0 71.107 3.31163 74.4186 7.44186 74.4186H36.5023C34.6047 71.1442 33.4884 67.3488 33.4884 63.2558C33.4884 50.9395 43.4977 40.9302 55.814 40.9302ZM33.4884 5.5814L53.9535 26.0465H33.4884V5.5814ZM59.5349 65.1163V59.5349H44.6512V52.093H59.5349V46.5116L70.6977 55.814L59.5349 65.1163ZM52.093 66.9767H66.9767V74.4186H52.093V80L40.9302 70.6977L52.093 61.3954V66.9767Z"
+                fill="#D780FF" fill-opacity="0.2" />
+        </svg>
+        <div class="no-records">{{l('NoData')}}</div>
+    </div>
+    <div class="comment" *ngIf="statusCode!=='Draft' && allowAction" >
+        <div class="frame-1171275633">
+            <!-- <div class="frame-1171275335">
+                <div class="icon-park-unlock"title="Public Comment">
+                    <svg class="group" width="14" height="16" viewBox="0 0 14 16" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12.625 7.26758H1.375C0.960786 7.26758 0.625 7.60336 0.625 8.01758V14.7676C0.625 15.1818 0.960786 15.5176 1.375 15.5176H12.625C13.0392 15.5176 13.375 15.1818 13.375 14.7676V8.01758C13.375 7.60336 13.0392 7.26758 12.625 7.26758Z"
+                            fill="#2F88FF" stroke="black" stroke-linejoin="round" />
+                        <path
+                            d="M3.25 7.25V4.25176C3.24805 2.32633 4.72101 0.712692 6.65721 0.519189C8.59338 0.325685 10.3627 1.61528 10.75 3.50221"
+                            stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M7 10.25V12.5" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+            </div> -->
+            <textarea id="textareacomment" (keyup)="changeKey($event)" #default rows="1" [placeholder]="'Type a public comment...'" [(ngModel)]="messageInput" class="w100"></textarea>
+            <button [busyIf]="saving" class="vuesax-bold-send" [disabled]="saving" (click)="submitComment()">
+                <svg *ngIf="!checkInput(messageInput)" class="send" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M15.0579 7.09251L7.92461 3.52584C3.13294 1.12584 1.16628 3.09251 3.56628 7.88418L4.29128 9.33418C4.49961 9.75918 4.49961 10.2508 4.29128 10.6758L3.56628 12.1175C1.16628 16.9092 3.12461 18.8758 7.92461 16.4758L15.0579 12.9092C18.2579 11.3092 18.2579 8.69251 15.0579 7.09251ZM12.3663 10.6258H7.86628C7.52461 10.6258 7.24128 10.3425 7.24128 10.0008C7.24128 9.65918 7.52461 9.37584 7.86628 9.37584H12.3663C12.7079 9.37584 12.9913 9.65918 12.9913 10.0008C12.9913 10.3425 12.7079 10.6258 12.3663 10.6258Z"
+                        fill="#8F8F91" />
+                </svg>
+                <svg *ngIf="checkInput(messageInput)" class="send" width="20" height="20"
+                    viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M15.0579 7.09251L7.92461 3.52584C3.13294 1.12584 1.16628 3.09251 3.56628 7.88418L4.29128 9.33418C4.49961 9.75918 4.49961 10.2508 4.29128 10.6758L3.56628 12.1175C1.16628 16.9092 3.12461 18.8758 7.92461 16.4758L15.0579 12.9092C18.2579 11.3092 18.2579 8.69251 15.0579 7.09251ZM12.3663 10.6258H7.86628C7.52461 10.6258 7.24128 10.3425 7.24128 10.0008C7.24128 9.65918 7.52461 9.37584 7.86628 9.37584H12.3663C12.7079 9.37584 12.9913 9.65918 12.9913 10.0008C12.9913 10.3425 12.7079 10.6258 12.3663 10.6258Z"
+                        fill="#3F2BC8" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>

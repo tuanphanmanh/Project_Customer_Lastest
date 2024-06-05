@@ -1,0 +1,5 @@
+﻿EXEC TB_M_ROUTING_Search 
+		@SUPPLIER_CODE ,
+		@DOCK ,
+		@ROUTING ,
+		@TRUCK_NAME 

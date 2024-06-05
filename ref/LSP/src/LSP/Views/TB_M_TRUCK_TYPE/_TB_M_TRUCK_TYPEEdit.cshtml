@@ -1,0 +1,125 @@
+﻿<table class="edit-form">
+	<tr>
+        <td class="label"> 
+			Name
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings => 
+    			{
+                    settings.Name = "_NAME";
+                    settings.ControlStyle.CssClass = "textbox"; 
+                    settings.Width = 200;
+                }).GetHtml() 
+           
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			Weight
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_WEIGHT";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1M;
+                settings.Properties.NumberType = SpinEditNumberType.Float;
+                settings.Properties.DecimalPlaces = 2;
+                settings.Properties.DisplayFormatString = "0";
+                settings.Properties.MaxLength = 9;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			Cost  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_COST";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1M;
+                settings.Properties.NumberType = SpinEditNumberType.Float;
+                settings.Properties.DecimalPlaces = 2;
+                settings.Properties.DisplayFormatString = "0";
+                settings.Properties.MaxLength = 9;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			OT
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_OT";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1M;
+                settings.Properties.NumberType = SpinEditNumberType.Float;
+                settings.Properties.DecimalPlaces = 2;
+                settings.Properties.DisplayFormatString = "0";
+                settings.Properties.MaxLength = 9;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			IS ACTIVE  
+		</td>
+        <td>
+            @Html.DevExpress().CheckBox(
+            settings =>
+            {
+                settings.Name = "_IS_ACTIVE";
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+ 
+    <tr>
+        <td colspan="2" style="padding-top: 20px;">
+            <div style="float: right; margin-right: 20px;">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnCancel";
+                    settings.ControlStyle.CssClass = "button";
+                    settings.Text = "Cancel";
+                    settings.ClientSideEvents.Click = "OnBtnCancelClicked";
+                }).GetHtml()
+            </div>
+            <div style="float: right; margin-right: 5px">
+			 @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				 (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+					@Html.DevExpress().Button(settings =>
+					{
+						settings.Name = "btnUpdate";
+						settings.ControlStyle.CssClass = "button";
+						settings.Text = "Save";
+						settings.UseSubmitBehavior = true;
+						settings.ClientSideEvents.Click = "function(s, e){ OnBtnUpdateClicked(this) }";
+					}).GetHtml()
+				}
+            </div>
+            <span id="userStatus" class="action-status"></span>
+        </td>
+    </tr>
+</table>
+
+

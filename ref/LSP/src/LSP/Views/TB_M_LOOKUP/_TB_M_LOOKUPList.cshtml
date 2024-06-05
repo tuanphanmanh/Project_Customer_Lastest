@@ -1,0 +1,230 @@
+﻿@using LSP.Models;
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = Common.PageSize(); //10
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = Common.PageSizeItemSettings(); //new string[] { "10", "20", "50" };
+    //settings.SettingsResizing.ColumnResizeMode = ColumnResizeMode.Control;
+    //settings.SettingsResizing.Visualization = ResizingMode.Live;
+    //settings.SettingsBehavior.AllowEllipsisInText = true;
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 7;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+    settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Auto;
+    settings.CallbackRouteValues = new { Controller = "TB_M_LOOKUP", Action = "GridCallback" };
+    
+     /* For batch edit setting: BEGIN*/
+    //Action for batch update
+    settings.SettingsEditing.BatchUpdateRouteValues = new { Controller = "TB_M_LOOKUP", Action = "BatchEditingUpdateModel" };
+
+    settings.SettingsEditing.Mode = GridViewEditingMode.Batch;
+    settings.SettingsEditing.BatchEditSettings.EditMode = GridViewBatchEditMode.Row;
+
+    settings.SettingsEditing.BatchEditSettings.StartEditAction = GridViewBatchStartEditAction.DblClick;
+    settings.SettingsEditing.BatchEditSettings.HighlightDeletedRows = true;
+
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.Caption = "Op.";
+    settings.CommandColumn.ShowDeleteButton = true;
+    settings.CommandColumn.ShowRecoverButton = false;
+
+    settings.CommandColumn.ShowNewButtonInHeader = true;
+    settings.CommandColumn.Width = 80;
+    settings.CommandColumn.ButtonRenderMode = GridCommandButtonRenderMode.Button;
+
+    settings.SettingsCommandButton.DeleteButton.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsDelete16x16gray;
+    settings.SettingsCommandButton.DeleteButton.Text = "Del";
+    settings.SettingsCommandButton.NewButton.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsAdd16x16gray; 
+    /* For batch edit setting: END*/
+
+    /*settings.Columns.Add(c =>
+    {
+        c.Caption = "";
+        c.Width = System.Web.UI.WebControls.Unit.Pixel(70);
+        c.CellStyle.CssClass = "edit_delete";
+        c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        c.SetDataItemTemplateContent(
+            content =>
+            {
+                System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+                    strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Edit(this)' title='Edit'><i class='fa fa-edit'></i></a>"));
+                }
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Delete"))
+                {
+                    strBuilder.Append(string.Concat(" <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Delete(this)'  title='Delete'><i class='fa fa-trash-o'></i></a>"));
+                }
+                Html.ViewContext.Writer.Write(strBuilder.ToString());
+            });
+        c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+    });
+    */
+    
+    settings.Columns.Add(c =>
+        {
+          
+            c.Caption = "NO";
+            c.FieldName = "ROW_NO";
+            c.Width = 50;
+            c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+        });
+    
+    settings.Columns.AddBand(domainBand =>
+    {
+        domainBand.Caption = "DOMAIN";
+        domainBand.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        domainBand.Columns.Add(
+            c =>
+            {
+                c.Caption = "CODE";
+                c.FieldName = "DOMAIN_CODE";                               
+            });
+
+        domainBand.Columns.Add(
+            c =>
+            {
+                c.Caption = "ITEM CODE";
+                c.FieldName = "ITEM_CODE";
+                c.Width = 130;
+            });
+               
+    });
+            	
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "ITEM VALUE";
+            c.FieldName = "ITEM_VALUE";
+            c.Width = 430;
+            c.EditorProperties().Memo(p =>
+            {
+                p.MaxLength = 2048;
+                p.Rows = 3;
+                p.Height = System.Web.UI.WebControls.Unit.Pixel(70);
+            });
+        }
+    );
+    
+	settings.Columns.Add(c =>
+        {
+            c.Caption = "ORDER";
+            c.FieldName = "ITEM_ORDER";
+            c.Width = 60;
+        }
+    );
+	settings.Columns.Add(c =>
+        {
+            c.Caption = "DESCRIPTION";
+            c.FieldName = "DESCRIPTION";
+            c.Width = 239;
+            c.EditorProperties().Memo(p =>
+            {
+                p.MaxLength = 255;
+                p.Rows = 3;
+                p.Height = System.Web.UI.WebControls.Unit.Pixel(70);
+            });
+        }
+    );
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "IS USED?";
+        c.FieldName = "IS_USE_BOL";
+        c.ColumnType = MVCxGridViewColumnType.CheckBox;
+        c.Width = 60;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "IS RESTRICTED?";
+        c.FieldName = "IS_RESTRICT_BOL";
+        c.ColumnType = MVCxGridViewColumnType.CheckBox;
+        c.Width = 80;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+
+     //for full width of cell editor in columns    
+    settings.CellEditorInitialize = (s, e) =>
+    {
+        ASPxEdit editor = (ASPxEdit)e.Editor;
+        editor.ValidationSettings.Display = Display.Dynamic;
+    };     
+    
+    /*
+    settings.Columns.Add(
+        c =>
+        {
+            c.Caption = "QR CODE";
+            //c.FieldName = "ITEM_VALUE_QR";
+            c.Width = 130;
+            c.CellStyle.Font.Size = 6;
+            c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+            c.SetDataItemTemplateContent(
+                content =>
+                {
+                    System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+                    strBuilder.Append(
+                        string.Concat("<div id='QR_CODE_" + DataBinder.Eval(content.DataItem, "ID") + "' value='" + DataBinder.Eval(content.DataItem, "ITEM_VALUE") + "'>",
+                                      String.Format("{0} - {1} - {2}", DataBinder.Eval(content.DataItem, "DOMAIN_CODE"), DataBinder.Eval(content.DataItem, "ITEM_CODE"), DataBinder.Eval(content.DataItem, "ITEM_VALUE")),
+                                     "</div> <script type='text/javascript'> GenerateQRCode('#QR_CODE_" + DataBinder.Eval(content.DataItem, "ID") + "'); </script>"));
+                    Html.ViewContext.Writer.Write(strBuilder.ToString());
+                }
+            );
+        }
+    );
+    
+  
+	settings.Columns.Add(c =>
+        {
+            c.Caption = "IS USED?";
+            c.FieldName = "IS_USE";
+            c.SetDataItemTemplateContent(cc =>
+            {
+                Html.DevExpress().CheckBox(checkboxSettings =>
+                {
+                    checkboxSettings.Name = "IS_USE_" + cc.KeyValue.ToString();
+                    checkboxSettings.Checked = Convert.ToString(DataBinder.Eval(cc.DataItem, "IS_USE")) == "Y"? true : false;
+                    checkboxSettings.Properties.ClientSideEvents.CheckedChanged = "function() { return false; }";
+                    checkboxSettings.ClientEnabled = false;
+                }).Render();
+            });
+        }
+    );
+	settings.Columns.Add(c =>
+        {
+            c.Caption = "IS RESTRICTED?";
+            c.FieldName = "IS_RESTRICT";
+            c.SetDataItemTemplateContent(cc =>
+            {
+                Html.DevExpress().CheckBox(checkboxSettings =>
+                {
+                    checkboxSettings.Name = "IS_RESTRICT_" + cc.KeyValue.ToString();
+                    checkboxSettings.Checked = Convert.ToString(DataBinder.Eval(cc.DataItem, "IS_RESTRICT")) == "Y" ? true : false;
+                    checkboxSettings.Properties.ClientSideEvents.CheckedChanged = "function() { return false; }";
+                    checkboxSettings.ClientEnabled = false;
+                }).Render();
+            });
+        }
+    );
+    
+
+    settings.ClientSideEvents.EndCallback = "ReGenerateQRCode";
+     */
+     
+}).Bind(LSP.Models.TB_M_LOOKUP.TB_M_LOOKUPProvider.Instance.TB_M_LOOKUP_Search(Model ?? new LSP.Models.TB_M_LOOKUP.TB_M_LOOKUPInfo())).GetHtml()

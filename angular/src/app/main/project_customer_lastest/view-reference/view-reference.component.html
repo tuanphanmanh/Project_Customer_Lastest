@@ -1,0 +1,25 @@
+<div [class]="containerClass + ' main-page'">
+    <div class="frame-1000006426">
+        <div class="frame-1000006455" (click)="backPage()">
+            <div class="frame-1000006295">
+                <div class="vuesax-linear-arrow-left">
+                    <div class="vuesax-linear-arrow-left2">
+                        <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M14.9998 19.9201L8.47984 13.4001C7.70984 12.6301 7.70984 11.3701 8.47984 10.6001L14.9998 4.08008"
+                                stroke="#E81447" stroke-width="1.5" stroke-miterlimit="10"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="frame-1000003978">View reference document</div>
+    </div>
+    <div class="view-ref">
+        <request-detail #requestReference [request]="referenceRequest" [allowAction]="false" class="w100 frame-request-detail">
+        </request-detail>
+    </div>
+</div>
+

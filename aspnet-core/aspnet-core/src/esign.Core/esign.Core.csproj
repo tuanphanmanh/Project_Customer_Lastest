@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <Import Project="..\..\common.props"></Import>
+
+  <PropertyGroup>
+    <TargetFrameworks>net7.0</TargetFrameworks>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+    <AssemblyName>esign.Core</AssemblyName>
+    <PackageId>esign.Core</PackageId>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <UserSecretsId>MyCompanyName-prod-894FDFC1-6482-4A56-926A-3C46C9FE0329</UserSecretsId>
+    <RootNamespace>esign</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\esign\*.xml;Net\Emailing\EmailTemplates\default.html" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FirebaseAdmin" Version="2.4.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+    <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.2.2" />
+    <PackageReference Include="Azure.Identity" Version="1.8.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
+    <PackageReference Include="Castle.Windsor.MsDependencyInjection" Version="3.4.0" />
+    <PackageReference Include="PayPalHttp" Version="1.0.1" />
+    <PackageReference Include="PayPalCheckoutSdk" Version="1.0.4" />
+    <PackageReference Include="Radius" Version="2.0.0.2" />
+    <PackageReference Include="Stripe.net" Version="40.13.0" />
+    <PackageReference Include="System.ServiceModel.Http" Version="6.0.0" />
+    <PackageReference Include="TimeZoneConverter" Version="6.0.1" />
+    <PackageReference Include="SkiaSharp" Version="2.88.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Abp.ZeroCore.IdentityServer4.vNext.EntityFrameworkCore" Version="8.0.0" />
+    <PackageReference Include="Abp.AutoMapper" Version="8.0.0" />
+    <PackageReference Include="Abp.MailKit" Version="8.0.0" />
+    <PackageReference Include="Abp.Zero.Ldap" Version="8.0.0" />
+    <PackageReference Include="Twilio" Version="6.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Abp.AspNetZeroCore\Abp.AspNetZeroCore.csproj" />
+    <ProjectReference Include="..\esign.Application.Shared\esign.Application.Shared.csproj" />
+    <ProjectReference Include="..\esign.Core.Shared\esign.Core.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,51 @@
+<ejs-dialog [header]='dialogHeader' [isModal]='isModal' #createOrEditConfig id="createOrEditConfig" [visible]='visible'
+    (close)="onCloseDialog()"
+    [animationSettings]='animationSettings' [showCloseIcon]='dialogCloseIcon' [width]='dialogWidth'>
+    <ng-template #content>
+        <form #mstPurchasePurposeForm="ngForm" *ngIf="createOrEditForm" [formGroup]="createOrEditForm" novalidate
+            autocomplete="off">
+            <div class="create-edit-form">
+                <div class="col-12 d-flex justify-content-around mt-2" hasError="code">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                        <esign-input [text]="l('Code')" [placeholder]="l('Code')" isRequired="true" [isValidate]="true"
+                            disabled="{{rowdata.id > 0}}"
+                            name="code" formControlName="code" [(ngModel)]="rowdata.code"></esign-input>
+                        <div class="error-message" errorMessage>
+                            <div *ifError="'required'">{{'Required'| localize}} *</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-around mt-2"  hasError="value">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                        <esign-input [text]="l('Value')" [placeholder]="l('Value')"  [type]="'number'" formControlName="value" [(ngModel)]="rowdata.value" name="value"
+                        ></esign-input>
+                        <div class="error-message" errorMessage>
+                            <div *ifError="'required'">{{'Required'| localize}} *</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-around mt-2">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                        <esign-input [text]="l('StringValue')" [placeholder]="l('StringValue')"
+                            formControlName="stringValue" name="stringValue" [(ngModel)]="rowdata.stringValue"
+                        ></esign-input>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-around mt-2">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                        <esign-textarea [text]="l('Description')" [placeholder]="l('Description')"
+                            formControlName="description" name="description" [(ngModel)]="rowdata.description"
+                        ></esign-textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="button-action-form d-flex justify-content-end align-items-center">
+                <div class="button-action mr-2">
+                    <button ejs-button [isPrimary]="true" (click)="save()" iconCss="fas fa-save"
+                        cssClass="e-outline">{{ 'Save' | localize }}</button>
+                    <button class="ghost" #submitBtn></button>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</ejs-dialog>

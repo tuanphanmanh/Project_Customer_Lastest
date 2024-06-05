@@ -1,0 +1,172 @@
+﻿@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = 10;
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50" };
+    
+    
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.CallbackRouteValues = new { Controller = "TB_R_UP_PLAN_H", Action = "GridCallback" };
+	
+	settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Visible;
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 7;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Left;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+	
+	settings.Columns.Add(c =>
+	{
+		c.Caption = "";
+		c.Width = System.Web.UI.WebControls.Unit.Pixel(70);
+		c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+		c.SetDataItemTemplateContent(
+			content =>
+			{
+				System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+				if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				   (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+				{
+					strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Edit(this)' title='Edit'><i class='fa fa-edit'></i></a>"));
+				}
+				if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				   (Html.Toyota().Page.ControllerName.ToString(), "Delete"))
+				{
+					strBuilder.Append(string.Concat(" <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Delete(this)'  title='Delete'><i class='fa fa-trash-o'></i></a>"));
+				}
+				Html.ViewContext.Writer.Write(strBuilder.ToString());
+			});
+	});
+	 
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "ORDER NO";
+					c.FieldName = "ORDER_NO";
+				}
+			);
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "LINE";
+					c.FieldName = "LINE";
+				}
+			);
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "CASE NO";
+					c.FieldName = "CASE_NO";
+				}
+			);
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "SUPPLIER CODE";
+					c.FieldName = "SUPPLIER_CODE";
+				}
+			);
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "UNPACKING TIME";
+					c.FieldName = "UNPACKING_TIME";
+				}
+			);
+			settings.Columns.Add(c =>
+				{
+					c.Caption = "UNPACKING DATE";
+					c.FieldName = "UNPACKING_DATE";
+					c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+				}
+			);
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "NO IN DATE";
+					c.FieldName = "NO_IN_DATE";
+				}
+			);
+			settings.Columns.Add(c =>
+				{
+					c.Caption = "WORKING DATE";
+					c.FieldName = "WORKING_DATE";
+					c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+				}
+			);
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "SHIFT";
+					c.FieldName = "SHIFT";
+				}
+			);
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "INCOMP REASON";
+					c.FieldName = "INCOMP_REASON";
+				}
+			);
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "UP STATUS";
+					c.FieldName = "UP_STATUS";
+				}
+			);
+     
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "IS ACTIVE?";
+                c.FieldName = "IS_ACTIVE";
+                c.SetDataItemTemplateContent(cc =>
+                {
+                    Html.DevExpress().CheckBox(checkboxSettings =>
+                    {
+                        checkboxSettings.Name = "_IS_ACTIVE_" + Convert.ToString(DataBinder.Eval(cc.DataItem, "ID"));
+                        checkboxSettings.Checked = Convert.ToString(DataBinder.Eval(cc.DataItem, "IS_ACTIVE")) == "Y" ? true : false;
+                        checkboxSettings.Properties.ClientSideEvents.CheckedChanged = "function() { return false; }";
+                        //checkboxSettings.ClientEnabled = false;
+                    }).Render();
+                });
+            });
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "IS CURRENT?";
+                c.FieldName = "IS_CURRENT";
+                c.SetDataItemTemplateContent(cc =>
+                {
+                    Html.DevExpress().CheckBox(checkboxSettings =>
+                    {
+                        checkboxSettings.Name = "_IS_CURRENT_" + Convert.ToString(DataBinder.Eval(cc.DataItem, "ID"));
+                        checkboxSettings.Checked = Convert.ToString(DataBinder.Eval(cc.DataItem, "IS_CURRENT")) == "Y" ? true : false;
+                        checkboxSettings.Properties.ClientSideEvents.CheckedChanged = "function() { return false; }";
+                        //checkboxSettings.ClientEnabled = false;
+                    }).Render();
+                });
+            });
+
+            //Master
+            settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+            settings.SettingsDetail.ShowDetailRow = true;
+            settings.SetDetailRowTemplateContent(c =>
+            {
+                ViewContext.Writer.Write(
+                    "<b>PLAN D:</b> " +
+                    string.Concat("<a class='btnCollectionNew AssignPLAN_D' href='#edit' data-id='", DataBinder.Eval(c.DataItem, "ID"),
+                                        "' onclick='return PLAN_DNew(this)' title='New Plan D' >Assign Plan D</a>",
+
+                                        "<div class='clear'></div>"));
+                //string.Format(@"<a href="""" class=""dxbButton right"" id='btnAssignDolly' style=""margin-right:5px;"" onclick=""return AssignDolly('{0}')"">"+
+                //                           @"<div class=""dxb"">Add New Printer Dolly</div></a>", DataBinder.Eval(c.DataItem, "ID")));
+                Html.RenderAction("PLAN_D_GridCallback",
+                        new LSP.Models.TB_R_UP_PLAN_D.TB_R_UP_PLAN_DInfo() { UP_PLAN_H_ID = DataBinder.Eval(c.DataItem, "ID").ToString() });
+            });
+            settings.PreRender = (sender, e) =>
+            {
+                ((MVCxGridView)sender).DetailRows.ExpandRow(-1);
+            };
+    
+}).Bind(LSP.Models.TB_R_UP_PLAN_H.TB_R_UP_PLAN_HProvider.Instance.TB_R_UP_PLAN_H_Search(Model ?? new LSP.Models.TB_R_UP_PLAN_H.TB_R_UP_PLAN_HInfo())).GetHtml()
+

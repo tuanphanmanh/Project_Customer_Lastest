@@ -1,0 +1,1 @@
+﻿EXEC TB_R_ASSEMBLY_DATA_Delete @id

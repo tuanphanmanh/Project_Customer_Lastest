@@ -1,0 +1,91 @@
+﻿@*
+---Phần Edit form, CssClass Validate
+    --Class (.hide) thẻ cha nếu bỏ qua
+
+TextBox : .val-required (Check Null), .val-integer (Check Integer)
+TimeEdit : .val-time (Check định dạng time)
+*@
+<table class="edit-form">
+	<tr>
+        <td class="label"> 
+			SUPPLIER ID  
+		</td>
+        <td>
+            @Html.DevExpress().ComboBox(settings =>
+            {
+                settings.Name = "_SUPPLIER_ID";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+
+                settings.Properties.ValueField = "ID";
+                settings.Properties.ValueType = typeof(string);
+
+                settings.Properties.Columns.Add("ID", "ID");
+                settings.Properties.Columns.Add("SUPPLIER_CODE", "CODE");
+                settings.Properties.Columns.Add("SUPPLIER_NAME", "NAME"); 
+                settings.Properties.TextFormatString = "{0} - {1} - {2}";
+                settings.SelectedIndex = 0;
+                
+            }).BindList(LSP.Models.TB_M_SUPPLIER_INFO.TB_M_SUPPLIER_INFOProvider.Instance.TB_M_SUPPLIER_INFO_Gets("")).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			TRUCK NAME  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_TRUCK_NAME";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			IS ACTIVE  
+		</td>
+        <td>
+            @Html.DevExpress().CheckBox(
+            settings =>
+            { 
+                settings.Name = "_IS_ACTIVE";
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()  
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	 
+    <tr>
+        <td colspan="2" style="padding-top: 20px;">
+            <div style="float: right; margin-right: 20px;">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnCancel";
+                    settings.ControlStyle.CssClass = "button";
+                    settings.Text = "Cancel";
+                    settings.ClientSideEvents.Click = "OnBtnCancelClicked";
+                }).GetHtml()
+            </div>
+            <div style="float: right; margin-right: 5px">
+			 @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				 (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+					@Html.DevExpress().Button(settings =>
+					{
+						settings.Name = "btnUpdate";
+						settings.ControlStyle.CssClass = "button";
+						settings.Text = "Save";
+						settings.UseSubmitBehavior = true;
+						settings.ClientSideEvents.Click = "function(s, e){ OnBtnUpdateClicked(this) }";
+					}).GetHtml()
+				}
+            </div>
+            <span id="userStatus" class="action-status"></span>
+        </td>
+    </tr>
+</table>
+

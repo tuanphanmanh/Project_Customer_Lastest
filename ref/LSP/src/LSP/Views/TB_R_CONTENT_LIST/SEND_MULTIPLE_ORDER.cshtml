@@ -1,0 +1,84 @@
+﻿@*
+---Phần Edit form, CssClass Validate
+    --Class (.hide) thẻ cha nếu bỏ qua
+
+TextBox : .val-required (Check Null), .val-integer (Check Integer)
+TimeEdit : .val-time (Check định dạng time)
+*@
+@{    
+    string _user = Request.Cookies[LSP.Models.CookieFields.COOKIE_NAME][LSP.Models.CookieFields.USERNAME];
+}
+<table class="edit-form SEND_ORDER" id="tb_SEND_MULTIPLE_ORDER">
+	<tr>
+        <td class="label"> 
+			Order Date:
+		</td>
+        <td>
+            @Html.DevExpress().DateEdit(settings =>
+            {
+                settings.Name = "_ORDER_SEND_DATE";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "dateedit";
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+                settings.Date = DateTime.Now;
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>              
+    </tr>     
+    <tr> <td> <br /></td></tr>
+	<tr>
+        <td class="label"> 
+			Suppliers:
+		</td>
+        <td>
+			@Html.DevExpress().ListBox(settings => {
+                settings.Name = "_SUPPLIER_TO_SEND_ORDER";                
+                settings.Width = 300;
+                settings.Height = 300;        
+                settings.Properties.EnableClientSideAPI = true;
+                settings.Properties.SelectionMode = ListEditSelectionMode.CheckColumn;
+                settings.Properties.EnableSelectAll = true;
+                settings.Properties.FilteringSettings.ShowSearchUI = true;                                                    
+                settings.Properties.ValueField = "SUPPLIER_NAME";
+                settings.Properties.ValueType = typeof(string);                
+                settings.Properties.Columns.Add("SUPPLIER_CODE", "CODE");
+                settings.Properties.Columns.Add("SUPPLIER_NAME", "NAME");                
+                settings.Properties.ClientSideEvents.SelectedIndexChanged = "SUPPLIER_SEND_ORDERSelectionChanged";
+                settings.Properties.ClientSideEvents.Init = "CheckBoxList_Init";                       
+            }).BindList(LSP.Models.TB_M_SUPPLIER_INFO.TB_M_SUPPLIER_INFOProvider.Instance.TB_M_SUPPLIER_INFO_GetsAllNameByUser(_user)).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr> <td> <br /></td></tr>   
+    <tr>
+        <td colspan="2" style="padding-top: 20px;">
+            <div style="float: right; margin-right: 150px;">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnSendORDERCancel";
+                    settings.ControlStyle.CssClass = "button";
+                    settings.Text = "Cancel";
+                    settings.ClientSideEvents.Click = "OnPopSEND_MULTIPLE_ORDERCloseUp";
+                    settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsCancel16x16gray;
+                }).GetHtml()
+            </div>
+            <div style="float: right; margin-right: 5px">
+			 @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				 (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+					@Html.DevExpress().Button(settings =>
+					{
+                        settings.Name = "BtnSendMultiORDER";
+						settings.ControlStyle.CssClass = "button";
+						settings.Text = "Send Multi-Orders";
+						settings.UseSubmitBehavior = true;
+                        settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.MailSend16x16office2013;
+                        settings.ClientSideEvents.Click = "function(s, e){ OnBtnSEND_MULTIPLE_ORDERUpdateClicked(this) }";
+					}).GetHtml()
+				}
+            </div>
+            <span id="userStatus" class="action-status"></span>
+        </td>
+    </tr>
+</table>

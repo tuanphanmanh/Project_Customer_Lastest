@@ -1,0 +1,127 @@
+SE        A WAYBILL
+NON-NEGOTIABLE
+(2) Shipper / Exporter (5) D
+ocument No.
+TOYOTA MOTOR VIETNAM CO. LTD ON 236100170939
+
+BEHALF OF
+(6) Export References
+TOYOTA MOTOR ASIA PACIFIC PTE LTD
+
+1 WALLICH STREET #36-01 GUOCO TOWER
+SINGAPORE 078881
+
+(3) Consignee(complete name and address) (7) Forwarding Agent-References
+TOYOTA MOTOR PHILIPPINES
+CORPORATION
+
+BARANGAY PULONG, STA CRUZ, SANTA
+
+ROSA, LUGUNA 4026, THE PHILIPPINES
+
+(4) Notify Party (complete name and address) (8) Point and Country of Origin (for the Merchant＇s reference only)
+TOYOTA MOTOR PHILIPPINES
+
+CORPORATION
+(9) Also Notify Party (complete name and address)
+BARANGAY PULONG, STA CRUZ, SANTA
+
+ROSA, LUGUNA 4026, THE PHILIPPINES
+
+(12) Pre-carriage by (13) Place of Receipt/Date This Sea Waybill is issued at the request and for the convenience of the Merchant, but is nevertheless
+HAIPHONG subject to the terms and conditions of the Carrier＇s standard long form Bill of Lading for this trade
+which may be viewed online at [http://www.evergreen-line.com] or a copy obtained from the Carrier
+or its agents.
+(14) Ocean Vessel/Voy. No. (15) Port of Loading (10) Onward Inland Routing/Export Instructions (which are contracted separately by
+UNI-PRUDENT 0872-354N HAIPHONG CY Merchants entirely for their own account and risk)
+
+(16) Port of Discharge
+MANILA
+(17) Place of Delivery
+MANILA
+
+Particulars furnished by the Merchant
+(18) Container No. And Seal No. (19)   Quantity And (21) Measurement (M³)
+Marks & Nos.      Kind of Packages (20) Description  of  Goods         Gross Weight (KGS)
+CONTAINER NO./SEAL NO.           39.1520 CBM
+
+3,905.600 KGS
+
+CAAU5765497/40H/EMCLEQ5070/  16 CASES   (HI-CUBE)
+1 X 40H
+
+INVOICE NO: 0001294      13 CASES OF TOYOTA KD PARTS FOR
+
+ASSEMBLY OF MODEL VIOS ATIGA
+
+CASE NO:PH0409 - PH0421; 3 CASES OF TOYOTA KD PARTS FOR ASSEMBLY
+
+CONTAINER RENBAN NO:     OF MODEL INNOVA
+
+A0125                    HS CODE: 8481.80
+
+EXP/IMP: TMV/TMP
+
+PORT OF DISCHARGE:MANILA ORDER NUMBER
+
+COUNTRY OF ORIGIN:       811C715BR202104834W13;
+
+VIETNAM                  811C715BR202104758W13
+
+INVOICE NO:0001294; 0001295
+* THE BALANCE OF BILL OF LADING SEE ATTACHED LIST *
+
+TOTAL NUMBER OF ATTACHED 1 PAGE
+"OCEAN FREIGHT PREPAID AT SINGAPORE"
+SHIPPER'S LOAD & COUNT
+16 CASES (23)
+Declared Value $                                                     .
+
+If Merchant enters actual value of Goods
+(22)TOTAL NUMBER OF ONE(1) CONTAINER ONLY a n d p a y s t h e a p p l i c a b l e a d  v a l o r e m
+CONTAINERS OR PACKAGES  ta ri ff rat e , Ca r rie r＇s pack age limita tio n
+(IN WORDS) shall not apply.
+(24) FREIGHT & CHARGES Revenue Tons Rate          Per Prepaid Collect
+AS   ARRANGED
+
+(25) Waybill No.
+EGLV
+(27) Number of Original Waybills
+NIL (0)
+(29) Prepaid at
+SINGAPORE
+(30) Collect at
+
+236100170939
+(28) Place and Date of Issue (31) Exchange Rate (32) Exchange Rate
+SINGAPORE APR.16,2021
+
+(26) Service Type/Mode (33) Laden on Board EVERGREEN MARINE (SINGAPORE) PTE LTD.
+
+FCL/FCL O/O APR.16,2021 As agent for the Carrier and the Vessel Provider Evergreen Marine Corp. (Taiwan) Ltd.
+
+UNI-PRUDENT 0872-354N doing business as "Evergreen Line"
+HAIPHONG, VIETNAM
+By_______________________________________________________________
+
+FORM NO. DOC-I-006-02
+ATTACHMENT
+
+(18)Container No.And Seal no. (19)Quantity And
+M.V. UNI-PRUDENT 0872-354N  B/L NO. EGLV236100170939
+ATTACHED LIST PAGE :1/1
+
+Mark & Nos. Kind of Packages (20)Description of Goods
+
+INVOICE NO: 0001295
+
+CASE NO:BA0409 - BA0411;
+CONTAINER RENBAN NO:
+A0125
+EXP/IMP: TMV/TMP
+
+PORT OF DISCHARGE:MANILA
+
+COUNTRY OF ORIGIN:
+
+VIETNAM

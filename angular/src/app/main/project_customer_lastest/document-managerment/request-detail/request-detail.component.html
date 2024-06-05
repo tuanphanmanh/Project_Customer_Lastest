@@ -1,0 +1,779 @@
+<!-- Request Info -->
+<div class="frame-1000006281" [busyIf]="isLoading" *ngIf="request.id && request?.summary">
+    <div class="frame-1000006414">
+        <div class="get-approval-for-new-esign-project2">
+            {{request.summary?.title}}
+        </div>
+    </div>
+
+</div>
+<!-- End Request Info -->
+<div class="frame-10000063682" *ngIf="request.id">
+    <div class="frame-10000064102">
+        <!-- Requester Info -->
+        <div class="frame-10000064092">
+            <div class="frame-1000006416">
+                <div class="component-41">
+                    <img class="ellipse-2070" [src]="!request?.summary.requesterImgUrl ? 'assets/common/images/default-profile-picture.png' :  request?.summary.requesterImgUrl" />
+                </div>
+                <div class="frame-1000003925">
+                    <div class="frame-10000063662">
+                        <div class="frame-1000006415">
+                            <div class="frame-1000006419">
+                                <div class="frame-1000006371">
+                                    <div class="hung-nguyen-viet-it2">
+                                        {{request.summary.fromRequester}}
+                                    </div>
+                                    <div class="frame-10000039922">
+                                        <div class="vuesax-linear-briefcase">
+                                            <div class="vuesax-linear-briefcase2">
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                    <rect width="16" height="16" fill="url(#pattern01)" />
+                                                    <defs>
+                                                        <pattern id="pattern01" patternContentUnits="objectBoundingBox"
+                                                            width="1" height="1">
+                                                            <use xlink:href="#image0_1398_27576"
+                                                                transform="scale(0.00568182)" />
+                                                        </pattern>
+                                                        <image id="image0_1398_27576" width="176" height="176"
+                                                            xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALAAAACwCAYAAACvt+ReAAAACXBIWXMAAAsTAAALEwEAmpwYAAAE7WlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLWMwMDIgNzkuMTY0NDYwLCAyMDIwLzA1LzEyLTE2OjA0OjE3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIzLTEwLTEwVDEwOjQwOjM0KzA3OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMy0xMC0xMFQxMDo0MTo0MCswNzowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMy0xMC0xMFQxMDo0MTo0MCswNzowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6M2FhOTY4YzYtYWU0Zi1iMjQxLWFlYWYtMTMwZGNiNzg5NDk1IiB4bXBNTTpEb2N1bWVudElEPSJ4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" />
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="it-division">
+                                            {{request.summary.requesterDepartment}}</div>
+                                    </div>
+                                    <div class="frame-10000063712">
+                                        <div class="vuesax-linear-buildings">
+                                            <svg class="buildings" width="16" height="16" viewBox="0 0 16 16"
+                                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M8.66659 14.6673H3.33325C1.99992 14.6673 1.33325 14.0006 1.33325 12.6673V7.33398C1.33325 6.00065 1.99992 5.33398 3.33325 5.33398H6.66659V12.6673C6.66659 14.0006 7.33325 14.6673 8.66659 14.6673Z"
+                                                    stroke="#3F2BC8" stroke-miterlimit="10" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path
+                                                    d="M6.73991 2.66602C6.68658 2.86602 6.66659 3.08602 6.66659 3.33268V5.33268H3.33325V3.99935C3.33325 3.26602 3.93325 2.66602 4.66659 2.66602H6.73991Z"
+                                                    stroke="#3F2BC8" stroke-miterlimit="10" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path d="M9.33325 5.33398V8.66732" stroke="#3F2BC8"
+                                                    stroke-miterlimit="10" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path d="M12 5.33398V8.66732" stroke="#3F2BC8" stroke-miterlimit="10"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                <path
+                                                    d="M11.3333 11.334H9.99992C9.63325 11.334 9.33325 11.634 9.33325 12.0007V14.6673H11.9999V12.0007C11.9999 11.634 11.6999 11.334 11.3333 11.334Z"
+                                                    stroke="#3F2BC8" stroke-miterlimit="10" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path d="M4 8.66602V11.3327" stroke="#3F2BC8" stroke-miterlimit="10"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                <path
+                                                    d="M6.66675 12.6673V3.33398C6.66675 2.00065 7.33341 1.33398 8.66675 1.33398H12.6667C14.0001 1.33398 14.6667 2.00065 14.6667 3.33398V12.6673C14.6667 14.0007 14.0001 14.6673 12.6667 14.6673H8.66675C7.33341 14.6673 6.66675 14.0007 6.66675 12.6673Z"
+                                                    stroke="#3F2BC8" stroke-miterlimit="10" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                        <div class="it-infrastructure-security-service">
+                                            {{request.summary.system}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="frame-10000063722">
+                                    <div class="frame-1000006279" *ngIf="request?.summary && allowAction">
+                                        <div class="frame-1171275741 btnClone" *ngIf="request.summary?.isClone">
+                                            <div class="btnCloneWarp">
+                                                <div class="frame-235" (click)="CloneRequest(0)">
+                                                    <div class="frame-1171275740">
+                                                        <svg class="frame" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M15.9375 18.75H7.1875C6.44158 18.75 5.72621 18.4537 5.19876 17.9262C4.67132 17.3988 4.375 16.6834 4.375 15.9375V7.1875C4.375 6.44158 4.67132 5.72621 5.19876 5.19876C5.72621 4.67132 6.44158 4.375 7.1875 4.375H15.9375C16.6834 4.375 17.3988 4.67132 17.9262 5.19876C18.4537 5.72621 18.75 6.44158 18.75 7.1875V15.9375C18.75 16.6834 18.4537 17.3988 17.9262 17.9262C17.3988 18.4537 16.6834 18.75 15.9375 18.75Z" fill="#2FB2E1"></path>
+                                                            <path d="M6.25 3.125H15.4641C15.2696 2.57705 14.9104 2.10268 14.4356 1.76699C13.9609 1.43129 13.3939 1.2507 12.8125 1.25H4.0625C3.31658 1.25 2.60121 1.54632 2.07376 2.07376C1.54632 2.60121 1.25 3.31658 1.25 4.0625V12.8125C1.2507 13.3939 1.43129 13.9609 1.76699 14.4356C2.10268 14.9104 2.57705 15.2696 3.125 15.4641V6.25C3.125 5.4212 3.45424 4.62634 4.04029 4.04029C4.62634 3.45424 5.4212 3.125 6.25 3.125Z" fill="#2FB2E1"></path>
+                                                        </svg>
+                                                    <div class="group-234">
+                                                        <div class="clone">Clone</div>
+                                                    </div>
+                                                    </div>
+                                                    <svg class="frame-237" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M2 5L7 10L12 5H2Z" fill="#2FB2E1"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="frame-1171275266" (click)="CloneRequest(1)">
+                                                <div class="sample">
+                                                    <svg class="frame2" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M15.9375 18.75H7.1875C6.44158 18.75 5.72621 18.4537 5.19876 17.9262C4.67132 17.3988 4.375 16.6834 4.375 15.9375V7.1875C4.375 6.44158 4.67132 5.72621 5.19876 5.19876C5.72621 4.67132 6.44158 4.375 7.1875 4.375H15.9375C16.6834 4.375 17.3988 4.67132 17.9262 5.19876C18.4537 5.72621 18.75 6.44158 18.75 7.1875V15.9375C18.75 16.6834 18.4537 17.3988 17.9262 17.9262C17.3988 18.4537 16.6834 18.75 15.9375 18.75Z" fill="#2FB2E1"></path>
+                                                    <path d="M6.25 3.125H15.4641C15.2696 2.57705 14.9104 2.10268 14.4356 1.76699C13.9609 1.43129 13.3939 1.2507 12.8125 1.25H4.0625C3.31658 1.25 2.60121 1.54632 2.07376 2.07376C1.54632 2.60121 1.25 3.31658 1.25 4.0625V12.8125C1.2507 13.3939 1.43129 13.9609 1.76699 14.4356C2.10268 14.9104 2.57705 15.2696 3.125 15.4641V6.25C3.125 5.4212 3.45424 4.62634 4.04029 4.04029C4.62634 3.45424 5.4212 3.125 6.25 3.125Z" fill="#2FB2E1"></path>
+                                                    </svg>
+                                                    <div class="clone-without-fields">{{l('CloneWithoutFields')}}</div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="solar-multiple-forward-right-bold" (click)="shareModal.show()" *ngIf="request.summary?.statusCode !== 'Draft' && ('Pages.Business.ViewDocument.Share' | permission)">
+                                            <svg class="group" width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M10.3318 2.18467L15.3088 6.60867C16.2388 7.43567 16.7048 7.84967 16.8768 8.33867C17.0274 8.76751 17.0274 9.23483 16.8768 9.66367C16.7048 10.1517 16.2398 10.5657 15.3088 11.3927L10.3308 15.8177C9.90884 16.1927 9.69784 16.3807 9.51884 16.3877C9.44188 16.3906 9.36528 16.3757 9.29503 16.3441C9.22478 16.3125 9.16277 16.2651 9.11384 16.2057C8.99984 16.0667 8.99984 15.7847 8.99984 15.2197V12.4297C6.57184 12.4297 4.00684 13.2097 2.13484 14.5937C1.15984 15.3137 0.67184 15.6737 0.48684 15.6607C0.406327 15.6591 0.327695 15.6361 0.259113 15.5939C0.190531 15.5516 0.1345 15.4918 0.0968397 15.4207C0.000839658 15.2607 0.0858398 14.7627 0.25584 13.7677C1.36084 7.30067 5.81084 5.57067 8.99984 5.57067V2.78067C8.99984 2.21567 8.99984 1.93367 9.11384 1.79467C9.16287 1.73537 9.22492 1.68819 9.29517 1.6568C9.36541 1.6254 9.44196 1.61064 9.51884 1.61367C9.69884 1.61967 9.90884 1.80867 10.3318 2.18467Z"
+                                                    fill="#00000099" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M12.9887 0.990094C13.0557 0.917859 13.1362 0.859524 13.2257 0.81842C13.3152 0.777316 13.412 0.754248 13.5104 0.750533C13.6088 0.746819 13.707 0.762531 13.7994 0.796772C13.8918 0.831013 13.9765 0.883112 14.0487 0.950094L19.2647 5.79409C19.7455 6.24056 20.1263 6.78378 20.3821 7.38801C20.6378 7.99224 20.7627 8.64379 20.7486 9.29977C20.7344 9.95575 20.5815 10.6013 20.2999 11.1939C20.0183 11.7865 19.6143 12.3128 19.1147 12.7381L14.0247 17.0711C13.9497 17.135 13.8629 17.1835 13.7691 17.2138C13.6754 17.2441 13.5766 17.2557 13.4784 17.2479C13.3802 17.24 13.2846 17.2129 13.1968 17.1681C13.1091 17.1232 13.0311 17.0616 12.9672 16.9866C12.9033 16.9116 12.8548 16.8248 12.8245 16.731C12.7942 16.6373 12.7826 16.5385 12.7904 16.4403C12.7983 16.3421 12.8254 16.2465 12.8702 16.1587C12.915 16.071 12.9767 15.993 13.0517 15.9291L18.1417 11.5961C18.4802 11.3081 18.7538 10.9517 18.9446 10.5504C19.1354 10.149 19.239 9.71179 19.2486 9.2675C19.2583 8.8232 19.1737 8.38191 19.0005 7.97265C18.8273 7.5634 18.5694 7.19548 18.2437 6.89309L13.0277 2.05009C12.9555 1.98313 12.8971 1.90258 12.856 1.81307C12.8149 1.72355 12.7918 1.62681 12.7881 1.52838C12.7844 1.42995 12.8001 1.33175 12.8344 1.23939C12.8686 1.14703 12.9207 1.06232 12.9877 0.990094H12.9887Z"
+                                                    fill="#00000099" />
+                                            </svg>
+                                            {{l('Share')}}
+                                        </div>
+                                        <!-- Draft -->
+                                        <div class="component-122" *ngIf="request.summary?.isDelete && ('Pages.Business.ViewDocument.Delete' | permission)" (click)="deleteDraft()">
+                                            <div class="vuesax-bold-trash">
+                                                <svg class="trash" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M17.5581 4.35768C16.2165 4.22435 14.8748 4.12435 13.5248 4.04935V4.04102L13.3415 2.95768C13.2165 2.19102 13.0331 1.04102 11.0831 1.04102H8.8998C6.95814 1.04102 6.7748 2.14102 6.64147 2.94935L6.46647 4.01602C5.69147 4.06602 4.91647 4.11602 4.14147 4.19102L2.44147 4.35768C2.09147 4.39102 1.84147 4.69935 1.87481 5.04102C1.90814 5.38268 2.20814 5.63268 2.55814 5.59935L4.25814 5.43268C8.6248 4.99935 13.0248 5.16602 17.4415 5.60768C17.4665 5.60768 17.4831 5.60768 17.5081 5.60768C17.8248 5.60768 18.0998 5.36602 18.1331 5.04102C18.1581 4.69935 17.9081 4.39102 17.5581 4.35768Z"
+                                                        fill="#00000099" />
+                                                    <path
+                                                        d="M16.0264 6.78398C15.8264 6.57565 15.5514 6.45898 15.2681 6.45898H4.73475C4.45142 6.45898 4.16809 6.57565 3.97642 6.78398C3.78475 6.99232 3.67642 7.27565 3.69309 7.56732L4.20975 16.1173C4.30142 17.384 4.41809 18.9673 7.32642 18.9673H12.6764C15.5848 18.9673 15.7014 17.3923 15.7931 16.1173L16.3098 7.57565C16.3264 7.27565 16.2181 6.99232 16.0264 6.78398ZM11.3848 14.7923H8.60975C8.26809 14.7923 7.98475 14.509 7.98475 14.1673C7.98475 13.8257 8.26809 13.5423 8.60975 13.5423H11.3848C11.7264 13.5423 12.0098 13.8257 12.0098 14.1673C12.0098 14.509 11.7264 14.7923 11.3848 14.7923ZM12.0848 11.459H7.91809C7.57642 11.459 7.29309 11.1757 7.29309 10.834C7.29309 10.4923 7.57642 10.209 7.91809 10.209H12.0848C12.4264 10.209 12.7098 10.4923 12.7098 10.834C12.7098 11.1757 12.4264 11.459 12.0848 11.459Z"
+                                                        fill="#00000099" />
+                                                </svg>
+                                            </div>
+                                            <div class="delete">{{l('Delete')}}</div>
+                                        </div>
+                                        <div (click)="editRequest()" class="component-1211"
+                                            *ngIf="request.summary?.isEdit && ('Pages.Business.ViewDocument.Edit' | permission)">
+                                            <div class="vuesax-bold-edit">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                                                    <g filter="url(#filter0_di_6567_282200)">
+                                                      <path d="M14.49 1.66406H7.50671C4.47338 1.66406 2.66504 3.4724 2.66504 6.50573V13.4808C2.66504 16.5224 4.47338 18.3308 7.50671 18.3308H14.4817C17.515 18.3308 19.3233 16.5224 19.3233 13.4891V6.50573C19.3317 3.4724 17.5233 1.66406 14.49 1.66406ZM10.1233 14.5891C9.88171 14.8308 9.42338 15.0641 9.09004 15.1141L7.04004 15.4058C6.96504 15.4141 6.89004 15.4224 6.81505 15.4224C6.47338 15.4224 6.15671 15.3058 5.93171 15.0808C5.65671 14.8058 5.54004 14.4058 5.60671 13.9641L5.89838 11.9141C5.94838 11.5724 6.17338 11.1224 6.42338 10.8808L10.14 7.16406C10.2067 7.33906 10.2733 7.51406 10.365 7.71406C10.4483 7.88906 10.54 8.0724 10.64 8.23906C10.7233 8.38073 10.815 8.51406 10.89 8.61406C10.9817 8.75573 11.09 8.88906 11.1567 8.96406C11.1983 9.0224 11.2317 9.06406 11.2483 9.08073C11.4567 9.33073 11.6983 9.56406 11.9067 9.73906C11.965 9.7974 11.9983 9.83073 12.015 9.83906C12.14 9.93906 12.265 10.0391 12.3733 10.1141C12.5067 10.2141 12.64 10.3058 12.7817 10.3808C12.9483 10.4808 13.1317 10.5724 13.315 10.6641C13.5067 10.7474 13.6817 10.8224 13.8567 10.8808L10.1233 14.5891ZM15.4733 9.23906L14.7067 10.0141C14.6567 10.0641 14.59 10.0891 14.5233 10.0891C14.4983 10.0891 14.465 10.0891 14.4483 10.0808C12.7567 9.5974 11.4067 8.2474 10.9233 6.55573C10.8983 6.46406 10.9233 6.36406 10.99 6.30573L11.765 5.53073C13.0317 4.26406 14.24 4.28906 15.4817 5.53073C16.115 6.16406 16.4233 6.7724 16.4233 7.40573C16.415 8.00573 16.1067 8.60573 15.4733 9.23906Z" fill="black" fill-opacity="0.6"/>
+                                                    </g>
+                                                    <defs>
+                                                      <filter id="filter0_di_6567_282200" x="1.72504" y="0.724063" width="18.5382" height="18.856" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                                        <feOffset/>
+                                                        <feGaussianBlur stdDeviation="0.47"/>
+                                                        <feComposite in2="hardAlpha" operator="out"/>
+                                                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+                                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6567_282200"/>
+                                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_6567_282200" result="shape"/>
+                                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                                        <feOffset dy="1.25"/>
+                                                        <feGaussianBlur stdDeviation="1.075"/>
+                                                        <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                                                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.21 0"/>
+                                                        <feBlend mode="normal" in2="shape" result="effect2_innerShadow_6567_282200"/>
+                                                      </filter>
+                                                    </defs>
+                                                  </svg>
+                                            </div>
+                                            <div class="edit2">{{l('Edit')}}</div>
+                                        </div>
+                                        <div class="component-1201" *ngIf="request.summary?.isSignAndSubmit  && ('Pages.Business.ViewDocument.Submit' | permission)">
+                                            <div class="vuesax-bold-send-2">
+                                                <img src="assets/common/images/next-action.svg" />
+                                            </div>
+                                            <div class="preview btn-text-shadow">{{l('SignAndSubmit')}}</div>
+                                        </div>
+                                        <!-- End Draft  -->
+                                        <!-- Waiting -->
+                                        <div class="component-121" (click)="remindModal.show()" *ngIf="request.summary?.isRemind && ('Pages.Business.ViewDocument.Remind' | permission)">
+                                            <img style="height: 21px;" src="assets/common/images/notification.svg" />
+                                            <div class="remind">{{l('Remind')}}</div>
+                                        </div>
+                                        <div class="component-120" (click)="revokeModal.show()" *ngIf="request.summary?.isRevoke">
+                                            <div class="frame1">
+                                                <svg class="group-1171275197" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M9.36944 0.25C9.48055 0.25 9.58915 0.272385 9.68864 0.314668C9.78982 0.356945 9.87933 0.416639 9.95558 0.492914L14.9299 5.46724C15.0062 5.54267 15.0659 5.63305 15.1082 5.73418C15.1505 5.83366 15.1728 5.94226 15.1728 6.05337V7.71147C15.1728 8.16937 14.8016 8.54054 14.3438 8.54054C13.8859 8.54054 13.5147 8.16937 13.5147 7.71147V6.88245H9.36944C8.911 6.88245 8.54042 6.51182 8.54042 6.05337V1.90811H2.73704C2.2794 1.90811 1.90799 2.27952 1.90799 2.73716V14.3439C1.90799 14.8015 2.2794 15.1729 2.73704 15.1729H8.54042C8.99827 15.1729 9.36944 15.5441 9.36944 16.002C9.36944 16.4599 8.99827 16.8311 8.54042 16.8311H2.73704C1.36578 16.8311 0.249878 15.7152 0.249878 14.3439V2.73716C0.249878 1.3659 1.36578 0.25 2.73704 0.25H9.36944ZM10.1985 3.08039V5.22429H12.3424L10.1985 3.08039Z"
+                                                        fill="#00000099" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M14.7821 17.4856L14.8993 18.1983C14.6892 18.2324 14.4765 18.2498 14.2637 18.2505L14.1041 18.2479L14.1306 17.5261C14.3486 17.534 14.5669 17.5205 14.7821 17.4856ZM12.8586 17.2209C13.0165 17.2945 13.1799 17.3552 13.3473 17.4028L13.4736 17.4359L13.3018 18.1377C13.0948 18.0877 12.8921 18.0214 12.6957 17.9392L12.5495 17.8746L12.8586 17.2209ZM13.2231 9.6899C13.3649 9.83035 13.3649 10.0589 13.2231 10.2001L12.8611 10.5586C14.297 10.0306 15.9533 10.3578 17.0791 11.4751C18.6412 13.0249 18.6412 15.538 17.079 17.0882C16.8721 17.2933 16.646 17.4736 16.4041 17.627C16.3927 17.6345 16.381 17.6418 16.3694 17.649C16.3654 17.6512 16.3615 17.6536 16.3576 17.656L16.3516 17.6599C16.1839 17.7628 16.0092 17.8529 15.8288 17.9297L15.6925 17.9847L15.431 17.3109C15.6337 17.2332 15.8284 17.1355 16.0125 17.0186L15.9864 17.0339L16.1002 16.9608C16.2652 16.8485 16.4207 16.7203 16.5651 16.5772C17.8429 15.3092 17.8429 13.2537 16.5651 11.986C15.5755 11.0039 14.0844 10.7679 12.8551 11.3438C12.85 11.3462 12.8452 11.3485 12.8403 11.3509L13.2231 11.7305C13.3649 11.8717 13.3649 12.0996 13.2231 12.2407C13.0809 12.3816 12.8507 12.3819 12.7086 12.2407L11.6802 11.2203C11.5384 11.0794 11.5384 10.8508 11.6802 10.71L12.7086 9.6899C12.8507 9.54868 13.0809 9.54868 13.2231 9.6899ZM11.8213 16.4568C11.8592 16.4984 11.8976 16.5384 11.9422 16.5826C12.0291 16.6684 12.1201 16.7489 12.2149 16.8238L12.3109 16.8969L11.8792 17.4781C11.7209 17.3622 11.5706 17.2342 11.4288 17.0941C11.3931 17.0587 11.3603 17.0252 11.3287 16.9918L11.2821 16.9415L11.8213 16.4568ZM11.1588 15.348C11.2159 15.5111 11.286 15.6695 11.3688 15.8218L11.4332 15.9348L10.8078 16.3033C10.6987 16.1207 10.605 15.9302 10.5271 15.7334L10.4718 15.5848L11.1588 15.348ZM10.2597 14.0173L10.9853 14.0652C10.9738 14.238 10.9761 14.4115 10.9922 14.5838L11.0069 14.7128L10.2861 14.8083C10.2509 14.5462 10.242 14.2812 10.2597 14.0173ZM11.0232 12.5742C11.209 12.6499 11.2979 12.8608 11.2217 13.0453C11.2037 13.089 11.1863 13.134 11.1689 13.1821C11.1646 13.1939 11.1598 13.2055 11.1544 13.2167L11.1578 13.2182C11.1342 13.2857 11.1128 13.3547 11.0935 13.4249L11.0663 13.531L10.3587 13.364C10.3795 13.2772 10.4031 13.1914 10.4293 13.107L10.4708 12.9814C10.4749 12.9672 10.4792 12.9525 10.4844 12.9379C10.5054 12.8801 10.5265 12.8252 10.5488 12.7713C10.625 12.5868 10.8374 12.4986 11.0232 12.5742Z"
+                                                        fill="#00000099" stroke="#00000099" stroke-width="0.3" />
+                                                </svg>
+                                            </div>
+                                            <div class="revoke">{{l('Revoke')}}</div>
+                                        </div>
+
+                                        <div class="component-119" (click)="rejectModal.show()" *ngIf="request.summary?.isReject && ('Pages.Business.ViewDocument.Reject' | permission)">
+                                            <div class="vuesax-bold-close-circle">
+                                                <svg class="close-circle" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M10.0001 1.66602C5.40841 1.66602 1.66675 5.40768 1.66675 9.99935C1.66675 14.591 5.40841 18.3327 10.0001 18.3327C14.5917 18.3327 18.3334 14.591 18.3334 9.99935C18.3334 5.40768 14.5917 1.66602 10.0001 1.66602ZM12.8001 11.916C13.0417 12.1577 13.0417 12.5577 12.8001 12.7993C12.6751 12.9243 12.5167 12.9827 12.3584 12.9827C12.2001 12.9827 12.0417 12.9243 11.9167 12.7993L10.0001 10.8827L8.08341 12.7993C7.95841 12.9243 7.80008 12.9827 7.64175 12.9827C7.48341 12.9827 7.32508 12.9243 7.20008 12.7993C6.95842 12.5577 6.95842 12.1577 7.20008 11.916L9.11675 9.99935L7.20008 8.08268C6.95842 7.84102 6.95842 7.44102 7.20008 7.19935C7.44175 6.95768 7.84175 6.95768 8.08341 7.19935L10.0001 9.11601L11.9167 7.19935C12.1584 6.95768 12.5584 6.95768 12.8001 7.19935C13.0417 7.44102 13.0417 7.84102 12.8001 8.08268L10.8834 9.99935L12.8001 11.916Z"
+                                                        fill="#E81447" />
+                                                </svg>
+                                            </div>
+                                            <div class="reject">{{l('Reject')}}</div>
+                                        </div>
+
+                                        <div class="component-122-1" (click)="reassignModal.show(request.id)" *ngIf="request.summary?.isReassign && ('Pages.Business.ViewDocument.Reassign' | permission)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
+                                                <path d="M10.5 1.5H6.75C3 1.5 1.5 3 1.5 6.75V11.25C1.5 15 3 16.5 6.75 16.5" stroke="black" stroke-opacity="0.6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M16.5 7.5V9.75" stroke="black" stroke-opacity="0.6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M16.5 7.5H13.5C11.25 7.5 10.5 6.75 10.5 4.5V1.5L16.5 7.5Z" stroke="black" stroke-opacity="0.6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M12.6133 12.675C12.5833 12.675 12.5383 12.675 12.5008 12.675C11.7133 12.645 11.0908 12.0075 11.0908 11.2125C11.0908 10.4025 11.7433 9.75 12.5533 9.75C13.3633 9.75 14.0158 10.41 14.0158 11.2125C14.0233 12.0075 13.4008 12.6525 12.6133 12.675Z" stroke="black" stroke-opacity="0.6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M10.4981 14.9336C9.50063 15.6011 9.50063 16.6886 10.4981 17.3561C11.6306 18.1136 13.4906 18.1136 14.6231 17.3561C15.6206 16.6886 15.6206 15.6011 14.6231 14.9336C13.4906 14.1836 11.6381 14.1836 10.4981 14.9336Z" stroke="black" stroke-opacity="0.6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                            <div class="reassign">{{l('Reassign')}}</div>
+                                        </div>
+
+                                        <div class="component-121-1" (click)="StartSigning()"
+                                            *ngIf="request.summary.isSign && ('Pages.Business.ViewDocument.Sign' | permission)">
+                                            <img src="assets/common/images/search-status.svg" />
+                                            <div class="preview btn-text-shadow">{{ 'Preview' | localize }}</div>
+                                        </div>
+                                        <button [busyIf]="isLoading" [disabled]="isLoading" class="component-120-1"  (click)="SignNow()"
+                                            *ngIf="request.summary.isSign && ('Pages.Business.ViewDocument.Sign' | permission)"  >
+                                            <div class="vuesax-bold-send-2">
+                                                <img src="assets/common/images/Frame_1000006363.svg" />
+                                            </div>
+                                            <div class="preview btn-text-shadow">{{l('SignNow')}}</div>
+                                        </button>
+                                        <!-- End Waiting -->
+                                    </div>
+                                    <div class="over-view">
+                                        <div>
+                                            <div *ngIf="request.summary.statusCode === 'OnProgress'" class="property-1-status-progress-s-no-icon">
+                                                <div class="on-progress">{{l('OnProgress')}}</div>
+                                            </div>
+                                            <div *ngIf="request.summary.statusCode === 'Waiting'" class="property-1-status-progress-s-no-icon">
+                                                <div class="on-progress">{{l('Waiting')}}</div>
+                                            </div>
+                                            <div *ngIf="request.summary.statusCode === 'Draft'" class="property-1-status-draft-s-no-icon">
+                                                <div class="on-draft">{{l('Draft')}}</div>
+                                            </div>
+                                            <div *ngIf="request.summary.statusCode === 'Completed'" class="property-1-status-completed-s-no-icon">
+                                                <div class="on-completed">{{l('Completed')}}</div>
+                                            </div>
+                                            <div *ngIf="request.summary.statusCode === 'Rejected'" class="property-1-status-rejected-s-no-icon">
+                                                <div class="on-rejected">{{l('Rejected')}}</div>
+                                            </div>
+                                            <div *ngIf="request.summary.statusCode === 'Revoked'" class="property-1-status-revoked-s-no-icon">
+                                                <div class="on-revoked">{{l('Revoked')}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="frame-10000063732">
+                                            <div class="tue-12-09-2023-18-52">
+                                                {{formatDate(request.summary.requestDate, true)}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="frame-expect">
+                                <div class="frame-expect1">
+                                    <div class="frame-1000006544" *ngIf="request?.summary?.expectedDate">
+                                        <div class="expected-date">{{l('ExpectedDate')}}</div>
+                                        <div class="frame-1000006114">
+                                            <div class="frame-1000006084">
+                                                <div class="frame-1000003962">
+                                                    <div class="frame-1000006420">
+                                                        <div class="vuesax-outline-calendar">
+                                                            <svg class="calendar" width="14" height="15"
+                                                                viewBox="0 0 14 15" fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M4.66699 3.85449C4.42783 3.85449 4.22949 3.65616 4.22949 3.41699V1.66699C4.22949 1.42783 4.42783 1.22949 4.66699 1.22949C4.90616 1.22949 5.10449 1.42783 5.10449 1.66699V3.41699C5.10449 3.65616 4.90616 3.85449 4.66699 3.85449Z"
+                                                                    fill="#97A7B7" />
+                                                                <path
+                                                                    d="M9.33301 3.85449C9.09384 3.85449 8.89551 3.65616 8.89551 3.41699V1.66699C8.89551 1.42783 9.09384 1.22949 9.33301 1.22949C9.57217 1.22949 9.77051 1.42783 9.77051 1.66699V3.41699C9.77051 3.65616 9.57217 3.85449 9.33301 3.85449Z"
+                                                                    fill="#97A7B7" />
+                                                                <path
+                                                                    d="M4.95833 8.95835C4.8825 8.95835 4.80667 8.94086 4.73667 8.91169C4.66083 8.88253 4.6025 8.84168 4.54417 8.78918C4.43917 8.67835 4.375 8.53252 4.375 8.37502C4.375 8.29919 4.3925 8.22335 4.42167 8.15335C4.45083 8.08335 4.49167 8.01919 4.54417 7.96086C4.6025 7.90836 4.66083 7.86751 4.73667 7.83834C4.94667 7.75084 5.20917 7.79752 5.3725 7.96086C5.4775 8.07169 5.54167 8.22335 5.54167 8.37502C5.54167 8.41002 5.53583 8.45086 5.53 8.49169C5.52417 8.52669 5.5125 8.56169 5.495 8.59669C5.48333 8.63169 5.46583 8.66668 5.4425 8.70168C5.425 8.73085 5.39583 8.76001 5.3725 8.78918C5.26167 8.89418 5.11 8.95835 4.95833 8.95835Z"
+                                                                    fill="#97A7B7" />
+                                                                <path
+                                                                    d="M7.00033 8.95802C6.92449 8.95802 6.84866 8.94052 6.77866 8.91136C6.70282 8.88219 6.64449 8.84134 6.58616 8.78884C6.48116 8.67801 6.41699 8.53218 6.41699 8.37468C6.41699 8.29885 6.43449 8.22301 6.46366 8.15301C6.49283 8.08301 6.53366 8.01885 6.58616 7.96052C6.64449 7.90802 6.70282 7.86717 6.77866 7.83801C6.98866 7.74467 7.25116 7.79719 7.41449 7.96052C7.51949 8.07135 7.58366 8.22302 7.58366 8.37468C7.58366 8.40968 7.57783 8.45052 7.57199 8.49136C7.56616 8.52636 7.55449 8.56135 7.53699 8.59635C7.52532 8.63135 7.50783 8.66635 7.48449 8.70135C7.46699 8.73051 7.43782 8.75968 7.41449 8.78884C7.30366 8.89384 7.15199 8.95802 7.00033 8.95802Z"
+                                                                    fill="#97A7B7" />
+                                                                <path
+                                                                    d="M9.04134 8.95802C8.96551 8.95802 8.88967 8.94052 8.81967 8.91136C8.74384 8.88219 8.68551 8.84134 8.62718 8.78884C8.60384 8.75968 8.58051 8.73051 8.55717 8.70135C8.53384 8.66635 8.51634 8.63135 8.50468 8.59635C8.48718 8.56135 8.47551 8.52636 8.46967 8.49136C8.46384 8.45052 8.45801 8.40968 8.45801 8.37468C8.45801 8.22302 8.52218 8.07135 8.62718 7.96052C8.68551 7.90802 8.74384 7.86717 8.81967 7.83801C9.03551 7.74467 9.29217 7.79719 9.45551 7.96052C9.56051 8.07135 9.62467 8.22302 9.62467 8.37468C9.62467 8.40968 9.61884 8.45052 9.61301 8.49136C9.60717 8.52636 9.59551 8.56135 9.57801 8.59635C9.56634 8.63135 9.54884 8.66635 9.52551 8.70135C9.50801 8.73051 9.47884 8.75968 9.45551 8.78884C9.34467 8.89384 9.19301 8.95802 9.04134 8.95802Z"
+                                                                    fill="#97A7B7" />
+                                                                <path
+                                                                    d="M4.95833 11.0002C4.8825 11.0002 4.80667 10.9827 4.73667 10.9535C4.66667 10.9244 4.6025 10.8835 4.54417 10.831C4.43917 10.7202 4.375 10.5685 4.375 10.4169C4.375 10.341 4.3925 10.2652 4.42167 10.1952C4.45083 10.1194 4.49167 10.0552 4.54417 10.0027C4.76 9.78686 5.15667 9.78686 5.3725 10.0027C5.4775 10.1135 5.54167 10.2652 5.54167 10.4169C5.54167 10.5685 5.4775 10.7202 5.3725 10.831C5.26167 10.936 5.11 11.0002 4.95833 11.0002Z"
+                                                                    fill="#97A7B7" />
+                                                                <path
+                                                                    d="M7.00033 11.0002C6.84866 11.0002 6.69699 10.936 6.58616 10.831C6.48116 10.7202 6.41699 10.5685 6.41699 10.4169C6.41699 10.341 6.43449 10.2652 6.46366 10.1952C6.49283 10.1194 6.53366 10.0552 6.58616 10.0027C6.80199 9.78686 7.19866 9.78686 7.41449 10.0027C7.46699 10.0552 7.50782 10.1194 7.53699 10.1952C7.56616 10.2652 7.58366 10.341 7.58366 10.4169C7.58366 10.5685 7.51949 10.7202 7.41449 10.831C7.30366 10.936 7.15199 11.0002 7.00033 11.0002Z"
+                                                                    fill="#97A7B7" />
+                                                                <path
+                                                                    d="M9.04134 11.0002C8.88967 11.0002 8.73801 10.936 8.62718 10.831C8.57468 10.7785 8.53384 10.7144 8.50468 10.6385C8.47551 10.5685 8.45801 10.4927 8.45801 10.4169C8.45801 10.341 8.47551 10.2652 8.50468 10.1952C8.53384 10.1194 8.57468 10.0552 8.62718 10.0027C8.76134 9.86853 8.96551 9.80435 9.15217 9.84519C9.19301 9.85102 9.22801 9.86269 9.26301 9.88019C9.29801 9.89185 9.33301 9.90937 9.36801 9.9327C9.39718 9.9502 9.42634 9.97937 9.45551 10.0027C9.56051 10.1135 9.62467 10.2652 9.62467 10.4169C9.62467 10.5685 9.56051 10.7202 9.45551 10.831C9.34467 10.936 9.19301 11.0002 9.04134 11.0002Z"
+                                                                    fill="#97A7B7" />
+                                                                <path
+                                                                    d="M11.9587 6.24023H2.04199C1.80283 6.24023 1.60449 6.0419 1.60449 5.80273C1.60449 5.56357 1.80283 5.36523 2.04199 5.36523H11.9587C12.1978 5.36523 12.3962 5.56357 12.3962 5.80273C12.3962 6.0419 12.1978 6.24023 11.9587 6.24023Z"
+                                                                    fill="#97A7B7" />
+                                                                <path
+                                                                    d="M9.33333 13.7712H4.66667C2.5375 13.7712 1.3125 12.5462 1.3125 10.417V5.45866C1.3125 3.32949 2.5375 2.10449 4.66667 2.10449H9.33333C11.4625 2.10449 12.6875 3.32949 12.6875 5.45866V10.417C12.6875 12.5462 11.4625 13.7712 9.33333 13.7712ZM4.66667 2.97949C2.99833 2.97949 2.1875 3.79033 2.1875 5.45866V10.417C2.1875 12.0853 2.99833 12.8962 4.66667 12.8962H9.33333C11.0017 12.8962 11.8125 12.0853 11.8125 10.417V5.45866C11.8125 3.79033 11.0017 2.97949 9.33333 2.97949H4.66667Z"
+                                                                    fill="#97A7B7" />
+                                                            </svg>
+                                                        </div>
+                                                        <div class="_14-09-2023">
+                                                            {{formatDate(request.summary.expectedDate, true)}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="frame-1000006544">
+                                        <div class="expected-date">{{l('DigitalSignature')}}</div>
+                                        <ejs-switch id="checked" [checked]="request.summary?.isDigitalSignature"></ejs-switch>
+                                    </div>
+                                </div>
+                                <div class="frame-1000003998" *ngIf="request.summary?.isTransfered">
+                                    <div class="frame-1000006527">
+                                        <div class="frame-1171275380">
+                                            <img class="ellipse-2070" [src]="!request.summary?.transferImgUrl ? 'assets/common/images/default-profile-picture.png' :  request.summary?.transferImgUrl" />
+                                            <div class="frame-10000063663">
+                                                <div class="frame-1171275454">
+                                                    <div class="frame-1171275453">
+                                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                            <rect width="12" height="12" fill="url(#pattern02)" />
+                                                            <defs>
+                                                                <pattern id="pattern02"
+                                                                    patternContentUnits="objectBoundingBox" width="1"
+                                                                    height="1">
+                                                                    <use xlink:href="#image0_1333_21821"
+                                                                        transform="scale(0.00195312)" />
+                                                                </pattern>
+                                                                <image id="image0_1333_21821" width="512" height="512"
+                                                                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAFyGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLWMwMDIgNzkuMTY0NDYwLCAyMDIwLzA1LzEyLTE2OjA0OjE3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIzLTEwLTEwVDE5OjE2OjM5KzA3OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMy0xMC0xMFQxOToyOTozNiswNzowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMy0xMC0xMFQxOToyOTozNiswNzowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ZGUyOGVlYjgtNmQ1Ni03NTQ3LTlkZDMtMDY0Y2FiZmQzMzhhIiB4bXBNTTpEb2N1bWVudElEPSJh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" />
+                                                            </defs>
+                                                        </svg>
+                                                        <div class="tranfer-from">{{l('TransferredFrom')}}:</div>
+                                                        <div class="vu-tuan-hieu">
+                                                            {{' ' + request.summary?.transferFromUser}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="frame-11712754532">
+                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                        <rect width="16" height="16" fill="url(#pattern1)" />
+                                                        <defs>
+                                                            <pattern id="pattern1"
+                                                                patternContentUnits="objectBoundingBox" width="1"
+                                                                height="1">
+                                                                <use xlink:href="#image0_1333_21831"
+                                                                    transform="scale(0.00568182)" />
+                                                            </pattern>
+                                                            <image id="image0_1333_21831" width="176" height="176"
+                                                                xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALAAAACwCAYAAACvt+ReAAAACXBIWXMAAAsTAAALEwEAmpwYAAAE7WlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLWMwMDIgNzkuMTY0NDYwLCAyMDIwLzA1LzEyLTE2OjA0OjE3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIzLTEwLTEwVDEwOjQwOjM0KzA3OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMy0xMC0xMFQxMDo0MTo0MCswNzowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMy0xMC0xMFQxMDo0MTo0MCswNzowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6M2FhOTY4YzYtYWU0Zi1iMjQxLWFlYWYtMTMwZGNiNzg5NDk1IiB4bXBNTTpEb2N1bWVudElEPSJ4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" />
+                                                        </defs>
+                                                    </svg>
+                                                    <div class="frame-1171275455">
+                                                        <div class="it-division2">
+                                                            {{request.summary?.transferDepartment}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Requester Info -->
+        <div class="frame-1000006540">
+            <!-- Summary -->
+            <div class="payment-expense-more23">
+                <ejs-accordion>
+                    <e-accordionitems>
+                        <e-accordionitem [expanded]="request?.summary?.category?.includes('Ringi')" [disabled]="!request?.summary?.category?.includes('Ringi')" >
+                            <ng-template #header>
+                                <div class="frame-348">
+                                    <div class="frame-1000006160">
+                                        <svg class="mdi-category-plus-outline" width="16" height="16"
+                                            viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M7.33301 7.33301V1.33301H1.33301V7.33301M2.66634 5.99967V2.66634H5.99967V5.99967M13.333 4.33301C13.333 5.26634 12.5997 5.99967 11.6663 5.99967C10.733 5.99967 9.99967 5.26634 9.99967 4.33301C9.99967 3.39967 10.7397 2.66634 11.6663 2.66634C12.593 2.66634 13.333 3.40634 13.333 4.33301ZM4.33301 9.33301L1.33301 14.6663H7.33301M5.05301 13.333H3.61301L4.33301 12.053M14.6663 4.33301C14.6663 2.66634 13.333 1.33301 11.6663 1.33301C9.99967 1.33301 8.66634 2.66634 8.66634 4.33301C8.66634 5.99967 9.99967 7.33301 11.6663 7.33301C13.333 7.33301 14.6663 5.99967 14.6663 4.33301ZM12.6663 11.333V9.33301H11.333V11.333H9.33301V12.6663H11.333V14.6663H12.6663V12.6663H14.6663V11.333H12.6663Z"
+                                                fill="#97A7B7" />
+                                        </svg>
+                                        <div class="category2">{{l('Category')}}:</div>
+                                    </div>
+                                    <div class="ringi-frame-contract">
+                                        {{request.summary.category}}
+                                    </div>
+                                </div>
+                            </ng-template>
+                            <ng-template #content>
+                                <div class="frame-1000006516">
+                                    <div class="frame-3463">
+                                        <div class="totalroi">
+                                            <div class="frame-3502">
+                                                <div class="frame-1000006160">
+                                                    <div class="vuesax-linear-wallet-2">
+                                                        <svg class="vuesax-linear-wallet-22" width="16" height="16"
+                                                            viewBox="0 0 16 16" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M8.66699 6H4.66699" stroke="#97A7B7"
+                                                                stroke-width="1.5" stroke-linecap="round"
+                                                                stroke-linejoin="round" />
+                                                            <path
+                                                                d="M14.6665 7.31376V8.68713C14.6665 9.0538 14.3732 9.35377 13.9998 9.36711H12.6931C11.9731 9.36711 11.3132 8.84044 11.2532 8.12044C11.2132 7.70044 11.3731 7.30711 11.6531 7.03377C11.8998 6.78044 12.2398 6.63379 12.6131 6.63379H13.9998C14.3732 6.64712 14.6665 6.94709 14.6665 7.31376Z"
+                                                                stroke="#97A7B7" stroke-width="1.5"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                            <path
+                                                                d="M11.653 7.033C11.373 7.30633 11.213 7.69967 11.253 8.11967C11.313 8.83967 11.973 9.36633 12.693 9.36633H13.9997V10.333C13.9997 12.333 12.6663 13.6663 10.6663 13.6663H4.66634C2.66634 13.6663 1.33301 12.333 1.33301 10.333V5.66634C1.33301 3.85301 2.42634 2.58634 4.12634 2.37301C4.29968 2.34634 4.47967 2.33301 4.66634 2.33301H10.6663C10.8397 2.33301 11.0063 2.33967 11.1663 2.36633C12.8863 2.56633 13.9997 3.83967 13.9997 5.66634V6.63302H12.613C12.2397 6.63302 11.8997 6.77967 11.653 7.033Z"
+                                                                stroke="#97A7B7" stroke-width="1.2"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                        </svg>
+                                                    </div>
+                                                    <div class="total-cost">{{l('TotalCost')}}</div>
+                                                </div>
+                                                <div class="ringi-frame-contract">
+                                                    {{request.summary.totalCost}}
+                                                </div>
+                                            </div>
+                                            <div class="frame-349">
+                                                <div class="frame-1000006160">
+                                                    <div class="vuesax-linear-card">
+                                                        <div class="vuesax-linear-card2">
+                                                            <svg class="card" width="16" height="16" viewBox="0 0 16 16"
+                                                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M1.33301 5.66992H14.6663" stroke="#97A7B7"
+                                                                    stroke-width="1.2" stroke-miterlimit="10"
+                                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                                <path d="M4 11.0029H5.33333" stroke="#97A7B7"
+                                                                    stroke-width="1.2" stroke-miterlimit="10"
+                                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                                <path d="M7 11.0029H9.66667" stroke="#97A7B7"
+                                                                    stroke-width="1.2" stroke-miterlimit="10"
+                                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                                <path
+                                                                    d="M4.29301 2.33691H11.6997C14.073 2.33691 14.6663 2.92358 14.6663 5.26358V10.7369C14.6663 13.0769 14.073 13.6636 11.7063 13.6636H4.29301C1.92634 13.6702 1.33301 13.0836 1.33301 10.7436V5.26358C1.33301 2.92358 1.92634 2.33691 4.29301 2.33691Z"
+                                                                    stroke="#97A7B7" stroke-width="1.2"
+                                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div class="roi-years">ROI (years)</div>
+                                                </div>
+                                                <div class="ringi-frame-contract">
+                                                    {{request.summary.roi}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="frame-347">
+                                            <div class="frame-10000061592">
+                                                <div class="vuesax-outline-calendar2">
+                                                    <div class="vuesax-outline-calendar3">
+                                                        <svg class="calendar3" width="16" height="16"
+                                                            viewBox="0 0 16 16" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M5.33301 3.83301C5.05967 3.83301 4.83301 3.60634 4.83301 3.33301V1.33301C4.83301 1.05967 5.05967 0.833008 5.33301 0.833008C5.60634 0.833008 5.83301 1.05967 5.83301 1.33301V3.33301C5.83301 3.60634 5.60634 3.83301 5.33301 3.83301Z"
+                                                                fill="#97A7B7" />
+                                                            <path
+                                                                d="M10.667 3.83301C10.3937 3.83301 10.167 3.60634 10.167 3.33301V1.33301C10.167 1.05967 10.3937 0.833008 10.667 0.833008C10.9403 0.833008 11.167 1.05967 11.167 1.33301V3.33301C11.167 3.60634 10.9403 3.83301 10.667 3.83301Z"
+                                                                fill="#97A7B7" />
+                                                            <path
+                                                                d="M5.66667 9.66655C5.58 9.66655 5.49333 9.64656 5.41333 9.61322C5.32667 9.57989 5.26 9.53321 5.19333 9.47321C5.07333 9.34654 5 9.17988 5 8.99988C5 8.91322 5.02 8.82655 5.05333 8.74655C5.08667 8.66655 5.13333 8.59322 5.19333 8.52655C5.26 8.46655 5.32667 8.41987 5.41333 8.38654C5.65333 8.28654 5.95333 8.33989 6.14 8.52655C6.26 8.65322 6.33333 8.82655 6.33333 8.99988C6.33333 9.03988 6.32667 9.08656 6.32 9.13322C6.31333 9.17322 6.3 9.21322 6.28 9.25322C6.26667 9.29322 6.24667 9.33321 6.22 9.37321C6.2 9.40655 6.16667 9.43988 6.14 9.47321C6.01333 9.59321 5.84 9.66655 5.66667 9.66655Z"
+                                                                fill="#97A7B7" />
+                                                            <path
+                                                                d="M7.99967 9.66658C7.91301 9.66658 7.82634 9.64659 7.74634 9.61326C7.65967 9.57992 7.59301 9.53324 7.52634 9.47324C7.40634 9.34658 7.33301 9.17992 7.33301 8.99992C7.33301 8.91325 7.35301 8.82658 7.38634 8.74658C7.41968 8.66658 7.46634 8.59325 7.52634 8.52659C7.59301 8.46659 7.65967 8.41991 7.74634 8.38657C7.98634 8.27991 8.28634 8.33992 8.47301 8.52659C8.59301 8.65325 8.66634 8.82658 8.66634 8.99992C8.66634 9.03992 8.65967 9.08659 8.65301 9.13326C8.64634 9.17326 8.63301 9.21325 8.61301 9.25325C8.59967 9.29325 8.57968 9.33325 8.55301 9.37325C8.53301 9.40658 8.49967 9.43991 8.47301 9.47324C8.34634 9.59324 8.17301 9.66658 7.99967 9.66658Z"
+                                                                fill="#97A7B7" />
+                                                            <path
+                                                                d="M10.3337 9.66658C10.247 9.66658 10.1603 9.64659 10.0803 9.61326C9.99366 9.57992 9.92699 9.53324 9.86033 9.47324C9.83366 9.43991 9.80699 9.40658 9.78032 9.37325C9.75366 9.33325 9.73366 9.29325 9.72033 9.25325C9.70033 9.21325 9.68699 9.17326 9.68033 9.13326C9.67366 9.08659 9.66699 9.03992 9.66699 8.99992C9.66699 8.82658 9.74033 8.65325 9.86033 8.52659C9.92699 8.46659 9.99366 8.41991 10.0803 8.38657C10.327 8.27991 10.6203 8.33992 10.807 8.52659C10.927 8.65325 11.0003 8.82658 11.0003 8.99992C11.0003 9.03992 10.9937 9.08659 10.987 9.13326C10.9803 9.17326 10.967 9.21325 10.947 9.25325C10.9337 9.29325 10.9137 9.33325 10.887 9.37325C10.867 9.40658 10.8337 9.43991 10.807 9.47324C10.6803 9.59324 10.507 9.66658 10.3337 9.66658Z"
+                                                                fill="#97A7B7" />
+                                                            <path
+                                                                d="M5.66667 11.9998C5.58 11.9998 5.49333 11.9798 5.41333 11.9465C5.33333 11.9131 5.26 11.8665 5.19333 11.8065C5.07333 11.6798 5 11.5065 5 11.3331C5 11.2465 5.02 11.1598 5.05333 11.0798C5.08667 10.9931 5.13333 10.9198 5.19333 10.8598C5.44 10.6131 5.89333 10.6131 6.14 10.8598C6.26 10.9865 6.33333 11.1598 6.33333 11.3331C6.33333 11.5065 6.26 11.6798 6.14 11.8065C6.01333 11.9265 5.84 11.9998 5.66667 11.9998Z"
+                                                                fill="#97A7B7" />
+                                                            <path
+                                                                d="M7.99967 11.9998C7.82634 11.9998 7.65301 11.9265 7.52634 11.8065C7.40634 11.6798 7.33301 11.5065 7.33301 11.3331C7.33301 11.2465 7.35301 11.1598 7.38634 11.0798C7.41968 10.9931 7.46634 10.9198 7.52634 10.8598C7.77301 10.6131 8.22634 10.6131 8.47301 10.8598C8.53301 10.9198 8.57967 10.9931 8.61301 11.0798C8.64634 11.1598 8.66634 11.2465 8.66634 11.3331C8.66634 11.5065 8.59301 11.6798 8.47301 11.8065C8.34634 11.9265 8.17301 11.9998 7.99967 11.9998Z"
+                                                                fill="#97A7B7" />
+                                                            <path
+                                                                d="M10.3337 11.9999C10.1603 11.9999 9.98699 11.9266 9.86033 11.8066C9.80033 11.7466 9.75366 11.6733 9.72033 11.5866C9.68699 11.5066 9.66699 11.4199 9.66699 11.3333C9.66699 11.2466 9.68699 11.1599 9.72033 11.0799C9.75366 10.9933 9.80033 10.9199 9.86033 10.8599C10.0137 10.7066 10.247 10.6333 10.4603 10.6799C10.507 10.6866 10.547 10.6999 10.587 10.7199C10.627 10.7333 10.667 10.7533 10.707 10.78C10.7403 10.8 10.7737 10.8333 10.807 10.8599C10.927 10.9866 11.0003 11.1599 11.0003 11.3333C11.0003 11.5066 10.927 11.6799 10.807 11.8066C10.6803 11.9266 10.507 11.9999 10.3337 11.9999Z"
+                                                                fill="#97A7B7" />
+                                                            <path
+                                                                d="M13.6663 6.55957H2.33301C2.05967 6.55957 1.83301 6.3329 1.83301 6.05957C1.83301 5.78624 2.05967 5.55957 2.33301 5.55957H13.6663C13.9397 5.55957 14.1663 5.78624 14.1663 6.05957C14.1663 6.3329 13.9397 6.55957 13.6663 6.55957Z"
+                                                                fill="#97A7B7" />
+                                                            <path
+                                                                d="M10.6667 15.1663H5.33333C2.9 15.1663 1.5 13.7663 1.5 11.333V5.66634C1.5 3.23301 2.9 1.83301 5.33333 1.83301H10.6667C13.1 1.83301 14.5 3.23301 14.5 5.66634V11.333C14.5 13.7663 13.1 15.1663 10.6667 15.1663ZM5.33333 2.83301C3.42667 2.83301 2.5 3.75967 2.5 5.66634V11.333C2.5 13.2397 3.42667 14.1663 5.33333 14.1663H10.6667C12.5733 14.1663 13.5 13.2397 13.5 11.333V5.66634C13.5 3.75967 12.5733 2.83301 10.6667 2.83301H5.33333Z"
+                                                                fill="#97A7B7" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div class="total-cost">Project
+                                                    Schedule</div>
+                                            </div>
+                                            <div class="frame-1000006555">
+                                                <div class="ringi-frame-contract">
+                                                    {{formatDate(request.summary.projectScheduleFrom)}}
+                                                </div>
+                                                <div class="frame-1000006301">
+                                                    <div class="arrow-2">
+                                                        <div class="group5">
+                                                            <svg class="group-1000003932" width="11" height="7"
+                                                                viewBox="0 0 11 7" fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M10.2288 2.61506L9.26707 1.67701L7.70001 0.148507C7.36805 -0.170525 6.80176 0.0580354 6.80176 0.515157V3.48169V6.15299C6.80176 6.61011 7.36805 6.83867 7.70001 6.51488L10.2288 4.04833C10.634 3.65787 10.634 3.01028 10.2288 2.61506Z"
+                                                                    fill="#ACB9C5" />
+                                                                <path d="M0.134766 3.33301H8.13477H0.134766Z"
+                                                                    fill="#97A7B7" fill-opacity="0.8" />
+                                                                <path
+                                                                    d="M0.134766 1.83301H-1.36523V4.83301H0.134766V1.83301ZM8.13477 4.83301C8.96319 4.83301 9.63477 4.16143 9.63477 3.33301C9.63477 2.50458 8.96319 1.83301 8.13477 1.83301V4.83301ZM0.134766 4.83301H8.13477V1.83301H0.134766V4.83301Z"
+                                                                    fill="#ACB9C5" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="ringi-frame-contract">
+                                                    {{formatDate(request.summary.projectScheduleTo)}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="frame-10000062802">
+                                        <div
+                                            class="total-cost">
+                                            {{request.summary.description}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </e-accordionitem>
+                    </e-accordionitems>
+                </ejs-accordion>
+            </div>
+            <!-- End Summary -->
+            <div class="payment-expense-more2">
+                <!-- Public Message -->
+                <div class="frame-1000006517">
+                    <div class="frame-1000006280">
+                        <div class="vuesax-linear-messages">
+                            <div class="messages">
+                                <svg class="group2-1" width="11" height="11" viewBox="0 0 11 11" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10.9873 3.19334V5.86001C10.9873 6.03334 10.9807 6.20001 10.9607 6.36001C10.8073 8.16001 9.74732 9.05332 7.79399 9.05332H7.52732C7.36066 9.05332 7.20065 9.13333 7.10065 9.26666L6.30066 10.3333C5.94733 10.8067 5.37398 10.8067 5.02065 10.3333L4.22064 9.26666C4.13398 9.15333 3.94065 9.05332 3.79399 9.05332H3.52732C1.40066 9.05332 0.333984 8.52667 0.333984 5.86001V3.19334C0.333984 1.24001 1.23399 0.180006 3.02732 0.0266724C3.18732 0.00667236 3.35399 0 3.52732 0H7.79399C9.92065 0 10.9873 1.06667 10.9873 3.19334Z"
+                                        stroke="#97A7B7" stroke-width="1.2" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+
+                                <svg class="vector110" width="11" height="10" viewBox="0 0 11 10" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10.653 3.52635V6.19301C10.653 8.15301 9.75303 9.20635 7.9597 9.35968C7.9797 9.19968 7.98637 9.03301 7.98637 8.85968V6.19301C7.98637 4.06635 6.9197 2.99967 4.79303 2.99967H0.526367C0.353034 2.99967 0.186367 3.00635 0.0263672 3.02635C0.179701 1.23301 1.2397 0.333008 3.19303 0.333008H7.4597C9.58636 0.333008 10.653 1.39968 10.653 3.52635Z"
+                                        stroke="#97A7B7" stroke-width="1.2" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+
+                                <svg class="vector111" width="16" height="16"></svg>
+
+                                <svg class="vector112" width="2" height="2" viewBox="0 0 2 2" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.997326 0.833333H1.00333" stroke="#97A7B7" stroke-width="1.2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+
+                                <svg class="vector113" width="1" height="2" viewBox="0 0 1 2" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.663341 0.833333H0.669341" stroke="#97A7B7" stroke-width="1.2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+
+                                <svg class="vector114" width="1" height="2" viewBox="0 0 1 2" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.330333 0.833333H0.336333" stroke="#97A7B7" stroke-width="1.2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </div>
+                        <p class="message-to-all-signer" style="white-space: pre-line;" >
+                            {{request.summary.message}}
+                        </p>
+                    </div>
+                </div>
+                <!-- End Public Message -->
+                <!-- Private Message -->
+                <div class="frame-1000006516">
+                    <div class="frame-3462">
+                        <div class="frame-350">
+                            <div class="frame-1000006160">
+                                <div class="vuesax-linear-message-search">
+                                    <div class="vuesax-linear-message-search2">
+                                        <div class="message-search">
+                                            <svg class="group3" width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M7.79968 13.2468C7.35968 13.8335 6.63967 13.8335 6.19967 13.2468L5.19967 11.9135C5.08633 11.7668 4.84634 11.6468 4.66634 11.6468H4.33301C1.66634 11.6468 0.333008 10.9801 0.333008 7.64681V4.31348C0.333008 1.64681 1.66634 0.313477 4.33301 0.313477H9.66634C12.333 0.313477 13.6663 1.64681 13.6663 4.31348V7.64681"
+                                                    stroke="#97A7B7" stroke-width="1.2" stroke-miterlimit="10"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+
+                                            <svg class="group4" width="5" height="5" viewBox="0 0 5 5" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M1.26562 1.86664V1.40001C1.26562 0.624181 1.49895 0 2.66562 0C3.83229 0 4.06562 0.624181 4.06562 1.40001V1.86664"
+                                                    stroke="#97A7B7" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path
+                                                    d="M3.83301 4.66624H1.49967C0.566341 4.66624 0.333008 4.43291 0.333008 3.49957V3.03288C0.333008 2.09954 0.566341 1.86621 1.49967 1.86621H3.83301C4.76634 1.86621 4.99967 2.09954 4.99967 3.03288V3.49957C4.99967 4.43291 4.76634 4.66624 3.83301 4.66624Z"
+                                                    stroke="#97A7B7" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+
+                                            <svg class="vector118" width="16" height="16"></svg>
+
+                                            <svg class="vector119" width="1" height="1" viewBox="0 0 1 1" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0.664632 0.333333H0.67062" stroke="#97A7B7" stroke-width="1.2"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+
+                                            <svg class="vector120" width="2" height="1" viewBox="0 0 2 1" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0.996664 0.333333H1.00265" stroke="#97A7B7" stroke-width="1.2"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+
+                                            <svg class="vector121" width="1" height="1" viewBox="0 0 1 1" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0.329672 0.333333H0.33566" stroke="#97A7B7" stroke-width="1.2"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="total-cost">{{l('Private')}}:</div>
+                            </div>
+                            <div class="ringi-frame-contract">
+                                {{request.summary.privateMessage}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Private Message -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="frame-1000006369" *ngIf="request.id">
+    <!-- Detail and history -->
+    <ejs-tab id="tab_default" heightAdjustMode='Content' (selecting)="tab_default_selecting($event)" >
+        <e-tabitems>
+            <e-tabitem [headerTemplate]="headerSigner">
+                <ng-template #headerSigner>
+                    <div class="text-header-tab">
+                        <div class="separator2"></div>
+                        <svg class="clarity-users-line" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_1552_38148)">
+                                <path
+                                    d="M9.94439 9.61154C11.4444 9.61154 12.6111 8.38932 12.6111 6.88932C12.6111 5.38932 11.3888 4.22266 9.88883 4.22266C8.38883 4.22266 7.22217 5.44488 7.22217 6.88932C7.22217 8.38932 8.44439 9.61154 9.94439 9.61154ZM9.88883 5.33377C9.94439 5.33377 9.94439 5.33377 9.88883 5.33377C10.7777 5.33377 11.4999 6.05599 11.4999 6.94488C11.4999 7.83377 10.7777 8.50043 9.88883 8.50043C8.99995 8.50043 8.33328 7.77821 8.33328 6.94488C8.33328 6.05599 9.0555 5.33377 9.88883 5.33377Z"
+                                    fill="#3F2BC8" />
+                                <path
+                                    d="M18.1666 9.27784C17.111 8.33339 15.7221 7.83339 14.2777 7.88895H13.8333C13.7221 8.33339 13.5555 8.72228 13.3333 9.05561C13.6666 9.00006 13.9444 9.00006 14.2777 9.00006C15.3333 8.9445 16.3888 9.27783 17.2221 9.88895V13.8889H18.3333V9.4445L18.1666 9.27784Z"
+                                    fill="#3F2BC8" />
+                                <path
+                                    d="M12.9999 4.33312C13.2777 3.66645 14.0555 3.33312 14.7777 3.61089C15.4444 3.88867 15.7777 4.66645 15.4999 5.38867C15.2777 5.88867 14.7777 6.222 14.2777 6.222C14.1666 6.222 13.9999 6.22201 13.8888 6.16645C13.9444 6.44423 13.9444 6.722 13.9444 6.94423V7.27756C14.0555 7.27756 14.1666 7.33312 14.2777 7.33312C15.6666 7.33312 16.7777 6.22201 16.7777 4.88867C16.7777 3.49978 15.6666 2.38867 14.3333 2.38867C13.4444 2.38867 12.6666 2.83312 12.2222 3.61089C12.4999 3.77756 12.7777 3.99978 12.9999 4.33312Z"
+                                    fill="#3F2BC8" />
+                                <path
+                                    d="M6.66675 9.11031C6.44453 8.77697 6.27786 8.38809 6.16675 7.94364H5.7223C4.27786 7.88809 2.88897 8.38809 1.83341 9.27697L1.66675 9.44364V13.8881H2.77786V9.88808C3.66675 9.27697 4.66675 8.94364 5.7223 8.9992C6.05564 8.9992 6.38897 9.05475 6.66675 9.11031Z"
+                                    fill="#3F2BC8" />
+                                <path
+                                    d="M5.72215 7.27743C5.83326 7.27743 5.94437 7.27743 6.05548 7.22188V6.88854C6.05548 6.61077 6.05548 6.33299 6.11104 6.11077C5.99993 6.16632 5.83326 6.16632 5.72215 6.16632C4.99993 6.16632 4.38881 5.55521 4.38881 4.83299C4.38881 4.11077 4.99993 3.49965 5.72215 3.49965C6.2777 3.49965 6.7777 3.83299 6.99993 4.33299C7.22215 4.05521 7.55548 3.77743 7.83326 3.55521C7.11104 2.38854 5.61104 1.99965 4.44437 2.72188C3.2777 3.4441 2.88881 4.9441 3.61104 6.11077C4.05548 6.83299 4.83326 7.27743 5.72215 7.27743Z"
+                                    fill="#3F2BC8" />
+                                <path
+                                    d="M14.5001 12.6113L14.389 12.4446C13.2779 11.2224 11.7223 10.5002 10.0557 10.5557C8.389 10.5002 6.77789 11.2224 5.66678 12.4446L5.55566 12.6113V16.8335C5.55566 17.3335 5.94455 17.7779 6.50011 17.7779H13.6112C14.1112 17.7779 14.5557 17.3335 14.5557 16.8335V12.6113H14.5001ZM13.389 16.6668H6.66678V13.0002C7.55566 12.1113 8.77789 11.6668 10.0557 11.6668C11.2779 11.6113 12.5001 12.1113 13.389 13.0002V16.6668Z"
+                                    fill="#3F2BC8" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_1552_38148">
+                                    <rect width="20" height="20" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        {{l('Signers')}}
+                    </div>
+                </ng-template>
+                <ng-template #content class="e-item-warp">
+                    <tab-signer #tabSigner [signers]="request.signers" [isRequester]="isRequester" [addCC]="request?.summary?.addCC" [totalSigners]="request.totalSignerCount" [totalSignersSigned]="totalSignerSigned()" ></tab-signer>
+                </ng-template>
+            </e-tabitem>
+            <e-tabitem [headerTemplate]="headerAttch">
+                <ng-template #headerAttch>
+                    <div class="text-header-tab">
+                        <div class="separator2"></div>
+                        <svg class="iconamoon-attachment-duotone" width="21" height="20" viewBox="0 0 21 20" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5.5 12.5V7.5C5.5 6.17392 6.02678 4.90215 6.96447 3.96447C7.90215 3.02678 9.17392 2.5 10.5 2.5C11.8261 2.5 13.0979 3.02678 14.0355 3.96447C14.9732 4.90215 15.5 6.17392 15.5 7.5V14.1667C15.5 15.0507 15.1488 15.8986 14.5237 16.5237C13.8986 17.1488 13.0507 17.5 12.1667 17.5C11.2826 17.5 10.4348 17.1488 9.80964 16.5237C9.18452 15.8986 8.83333 15.0507 8.83333 14.1667V7.5C8.83333 7.05797 9.00893 6.63405 9.32149 6.32149C9.63405 6.00893 10.058 5.83333 10.5 5.83333C10.942 5.83333 11.366 6.00893 11.6785 6.32149C11.9911 6.63405 12.1667 7.05797 12.1667 7.5V14.1667"
+                                stroke="#3F2BC8" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        {{l('Attachments')}}
+                    </div>
+                </ng-template>
+                <ng-template #content class="e-item-warp">
+                    <tab-attachment [allowAction]="allowAction" [request]="request" [TabMenuFilter]="TabMenuFilter" [documents]="request.documents" [requestId]="request.id" [isUploadFile]="request?.summary?.isAddFile" ></tab-attachment>
+                </ng-template>
+            </e-tabitem>
+            <e-tabitem [headerTemplate]="headerRef" >
+                <ng-template #headerRef>
+                    <div class="text-header-tab">
+                        <div class="separator2"></div>
+                        <svg width="18" height="14" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.5 7.5H11.25V12H0.75V3.75H1.5V1.5H2.25V0H10.5V7.5ZM3 0.75V1.5H9V7.5H9.75V0.75H3ZM2.25 2.25V3.75H4.2832L8.0332 7.5H8.25V2.25H2.25ZM10.5 11.25V8.25H7.7168L3.9668 4.5H1.5V11.25H10.5Z" fill="#3F2BC8" stroke="#3F2BC8" stroke-width="0.2"/>
+                        </svg>
+                        {{l('RefDocuments')}}
+
+                        <div class="tabTotalCount" *ngIf="request.refDocument.length > 0" (click)="showTabRefDocuments(request.refDocument, $event)">{{request.refDocument.length}}</div>
+                    </div>
+                </ng-template>
+                <ng-template #content class="e-item-warp">
+                    <tab-reference [allowAction]="allowAction"
+                                    [backPageUrl]="backPageUrl"
+                                    [request]="request"
+                                    [TabMenuFilter]="TabMenuFilter"
+                                    [references]="request.refDocument"
+                                    [requestId]="request.id"
+                                    [isRefDocument]="request?.summary?.statusCode == 'OnProgress' && request?.summary?.requesterUserId == appSession.userId"
+                                     (onAddRefSuccess)="onAddRefSuccess()"></tab-reference>
+                </ng-template>
+            </e-tabitem>
+            <e-tabitem [headerTemplate]="headerHistory">
+                <ng-template #headerHistory>
+                    <div class="text-header-tab">
+                        <div class="separator2"></div>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5.72087 5.73537C6.70791 4.74506 8.00788 4.12775 9.39915 3.98869C10.7904 3.84963 12.1869 4.19742 13.3504 4.97278C14.5139 5.74814 15.3725 6.90305 15.7797 8.24063C16.187 9.5782 16.1177 11.0156 15.5837 12.3078C15.0497 13.6001 14.084 14.667 12.8514 15.3269C11.6187 15.9868 10.1952 16.1987 8.8238 15.9265C7.45235 15.6542 6.21777 14.9148 5.33055 13.8341C4.44332 12.7535 3.95837 11.3986 3.95837 10.0004C3.95837 9.83461 3.89253 9.67564 3.77532 9.55843C3.65811 9.44122 3.49913 9.37537 3.33337 9.37537C3.16761 9.37537 3.00864 9.44122 2.89143 9.55843C2.77422 9.67564 2.70837 9.83461 2.70837 10.0004C2.70831 11.6879 3.29356 13.3232 4.36436 14.6275C5.43515 15.9318 6.92519 16.8243 8.58042 17.1528C10.2357 17.4813 11.9536 17.2256 13.4414 16.4292C14.9291 15.6327 16.0946 14.3449 16.739 12.7853C17.3835 11.2257 17.467 9.49081 16.9754 7.87648C16.4838 6.26215 15.4475 4.8683 14.0432 3.93259C12.6388 2.99688 10.9534 2.57724 9.27426 2.74521C7.59511 2.91318 6.02621 3.65836 4.83504 4.8537C4.81406 4.87453 4.79456 4.89681 4.77671 4.92037L3.72921 3.87204C3.67319 3.81589 3.60231 3.7769 3.52489 3.75964C3.44748 3.74239 3.36675 3.74759 3.29219 3.77463C3.21762 3.80167 3.15233 3.84943 3.10397 3.9123C3.05562 3.97517 3.02621 4.05053 3.01921 4.12954L2.72504 7.37037C2.71954 7.43117 2.72747 7.49244 2.74827 7.54983C2.76906 7.60723 2.80222 7.65936 2.84539 7.70253C2.88855 7.74569 2.94068 7.77885 2.99808 7.79964C3.05547 7.82044 3.11674 7.82837 3.17754 7.82287L6.41921 7.52787C6.4979 7.52046 6.57286 7.49081 6.63534 7.44239C6.69782 7.39398 6.74524 7.32879 6.77206 7.25444C6.79889 7.18008 6.80401 7.09963 6.78683 7.02248C6.76965 6.94533 6.73088 6.87465 6.67504 6.81871L5.65171 5.79537C5.67619 5.77707 5.6993 5.75702 5.72087 5.73537Z"
+                                fill="#3F2BC8" />
+                            <path
+                                d="M10.625 5.83301C10.625 5.66725 10.5592 5.50828 10.4419 5.39107C10.3247 5.27386 10.1658 5.20801 10 5.20801C9.83424 5.20801 9.67527 5.27386 9.55806 5.39107C9.44085 5.50828 9.375 5.66725 9.375 5.83301V9.99967C9.37496 10.1056 9.40185 10.2099 9.45317 10.3026C9.50448 10.3953 9.57852 10.4734 9.66833 10.5297L12.1683 12.0922C12.3089 12.1801 12.4786 12.2087 12.6402 12.1715C12.7203 12.153 12.7959 12.1191 12.8627 12.0714C12.9296 12.0238 12.9864 11.9634 13.03 11.8938C13.0736 11.8242 13.103 11.7467 13.1166 11.6658C13.1302 11.5848 13.1277 11.5019 13.1093 11.4219C13.0909 11.3419 13.0569 11.2663 13.0092 11.1994C12.9616 11.1326 12.9013 11.0757 12.8317 11.0322L10.625 9.65301V5.83301Z"
+                                fill="#3F2BC8" />
+                        </svg>
+                        {{l('History')}}
+                    </div>
+                </ng-template>
+                <ng-template #content class="e-item-warp">
+                    <tab-history [history]="request.history"></tab-history>
+                </ng-template>
+            </e-tabitem>
+            <e-tabitem [headerTemplate]="headerComment">
+                <ng-template #headerComment>
+                    <div class="text-header-tab">
+                        <svg width="20" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M7.99998 15.2073C7.53998 15.2073 7.10665 14.974 6.79998 14.5673L5.79998 13.234C5.77998 13.2073 5.69998 13.174 5.66665 13.1673H5.33331C2.55331 13.1673 0.833313 12.414 0.833313 8.66732V5.33398C0.833313 2.38732 2.38665 0.833984 5.33331 0.833984H10.6666C13.6133 0.833984 15.1666 2.38732 15.1666 5.33398V8.66732C15.1666 11.614 13.6133 13.1673 10.6666 13.1673H10.3333C10.28 13.1673 10.2333 13.194 10.2 13.234L9.19998 14.5673C8.89331 14.974 8.45998 15.2073 7.99998 15.2073ZM5.33331 1.83398C2.94665 1.83398 1.83331 2.94732 1.83331 5.33398V8.66732C1.83331 11.6807 2.86665 12.1673 5.33331 12.1673H5.66665C6.00665 12.1673 6.39331 12.3607 6.59998 12.634L7.59998 13.9673C7.83331 14.274 8.16665 14.274 8.39998 13.9673L9.39998 12.634C9.61998 12.3407 9.96665 12.1673 10.3333 12.1673H10.6666C13.0533 12.1673 14.1666 11.054 14.1666 8.66732V5.33398C14.1666 2.94732 13.0533 1.83398 10.6666 1.83398H5.33331Z"
+                                fill="#3F2BC8" />
+                            <path
+                                d="M11.3334 5.83398H4.66669C4.39335 5.83398 4.16669 5.60732 4.16669 5.33398C4.16669 5.06065 4.39335 4.83398 4.66669 4.83398H11.3334C11.6067 4.83398 11.8334 5.06065 11.8334 5.33398C11.8334 5.60732 11.6067 5.83398 11.3334 5.83398Z"
+                                fill="#3F2BC8" />
+                            <path
+                                d="M8.66669 9.16602H4.66669C4.39335 9.16602 4.16669 8.93935 4.16669 8.66602C4.16669 8.39268 4.39335 8.16602 4.66669 8.16602H8.66669C8.94002 8.16602 9.16669 8.39268 9.16669 8.66602C9.16669 8.93935 8.94002 9.16602 8.66669 9.16602Z"
+                                fill="#3F2BC8" />
+                        </svg>
+                        {{l('Comment')}}
+                    </div>
+                </ng-template>
+                <ng-template #content class="e-item-warp">
+                    <tab-comment [comments]="request.comments" [statusCode]="request?.summary?.statusCode" [requestId]="request.id" (addComment)="addComment()" [allowAction]="allowAction"></tab-comment>
+                </ng-template>
+            </e-tabitem>
+        </e-tabitems>
+    </ejs-tab>
+    <!-- End Detail and history -->
+</div>
+<remind-modal #remindModal (onRemind)="remindRequest($event)"></remind-modal>
+<revoke-modal #revokeModal (onRevoke)="revokeRequest($event)" ></revoke-modal>
+<reject-modal #rejectModal (onReject)="rejectRequest($event)"></reject-modal>
+<reassign-modal #reassignModal [listSigner]="paramSigner" [requesterId]="this.request.summary?.requesterUserId" (modalSave)="onReassignRequest()"></reassign-modal>
+<sign-success #successModal (modalSave)="onSignSuccess.emit(null)"></sign-success>
+<share-request #shareModal [requestId]="request.id" [listSigner]="paramSigner" [requesterId]="this.request.summary?.requesterUserId" (modalSave)="onShareSuccess.emit(null)"></share-request>

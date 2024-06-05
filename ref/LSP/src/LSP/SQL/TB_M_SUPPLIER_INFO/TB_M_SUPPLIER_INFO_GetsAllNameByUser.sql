@@ -1,0 +1,1 @@
+﻿EXEC TB_M_SUPPLIER_INFO_GetsAllNameByUser @USER_NAME

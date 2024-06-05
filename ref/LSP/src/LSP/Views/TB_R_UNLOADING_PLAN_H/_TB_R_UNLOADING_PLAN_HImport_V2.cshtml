@@ -1,0 +1,41 @@
+﻿@using (Html.BeginForm("IMPORT_UNLOADING_PLAN_H_CallbacksUpload_V2", "TB_R_UNLOADING_PLAN_H", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{ 
+    <table class="edit-form import_form">
+        <caption style="text-align: center; color: black; font-weight: bold;">UNLOADING PLAN H</caption>
+
+        <tr>
+            <td class="label">File name
+            </td>
+            <td>
+                @Html.DevExpress().UploadControl(settings =>
+           {
+               settings.Name = "_IMPORT_UNLOADING_PLAN_H_V2";
+               settings.Width = 400;
+               settings.NullText = "Select file...";
+               settings.ShowProgressPanel = true;
+               settings.ShowUploadButton = true;
+               settings.AdvancedModeSettings.EnableMultiSelect = false;
+               settings.CallbackRouteValues = new { Controller = "TB_R_UNLOADING_PLAN_H", Action = "IMPORT_UNLOADING_PLAN_H_CallbacksUpload_V2" };
+               settings.ClientSideEvents.FileUploadComplete = "function(s,e) { UNLOADING_PLAN_H_OnFileUploadComplete_V2(s,e)}";
+
+           }).GetHtml()
+                <span class="messageerror"></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-top: 20px;">
+                <div style="float: right; margin-right: 20px;">
+                    @Html.DevExpress().Button(settings =>
+                   {
+                       settings.Name = "btnImportCancel_V2";
+                       settings.ControlStyle.CssClass = "button";
+                       settings.Text = "Cancel";
+                       settings.ClientSideEvents.Click = "OnBtnImportCancelClicked_V2";
+                   }).GetHtml()
+                </div>
+                
+                <span id="userStatus" class="action-status"></span>
+            </td>
+        </tr>
+    </table>
+}

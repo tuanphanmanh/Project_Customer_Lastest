@@ -1,0 +1,146 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+
+.dxpCtrl .dxpPageNumber.dxpCurrentPageNumber::before, 
+.dxpCtrl .dxpPageNumber.dxpCurrentPageNumber::after { background-color:white; content:none;  }
+.dxgvTable_MetropolisBlue .dxgvControl_MetropolisBlue { width: 900px !important; }
+
+.dxgvTable_MetropolisBlue .dxgvTable td.dxgv.dxgvDetailCell { padding: 10px 0; }
+
+.Assign { display: inline-block; margin-bottom: 4px; }
+
+</style>
+
+<div class="dxcontent_list">
+	<div class="content-header content-title">
+         @Html.Partial("_TB_R_PART_HIKIATESearch")
+		<div class="action-area">
+			@if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				(Html.Toyota().Page.ControllerName.ToString(), "New"))
+              {
+				@Html.DevExpress().Button(settings =>
+				{
+					settings.Name = "btnAdd";
+					settings.Text = "Add New";
+                    settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsAdd16x16;
+					settings.ClientSideEvents.Click = "Add";
+				}).GetHtml()
+			}
+		</div>           
+	</div>
+   
+     @using (Html.BeginForm()) {
+	     @Html.Partial("_TB_R_PART_HIKIATEList")
+     }
+	
+    <div class="content-header content-title">
+        @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				(Html.Toyota().Page.ControllerName.ToString(), "New"))
+        {
+            <div class="action-area" style="float: right; margin-right: 2px; margin-top: 0px">
+                <button class="btn btn-primary btn-xs" type="button" onclick="IMPORT_PART_HIKIATE(); return false;">
+                    <i class="fa fa-upload"></i> Upload</button>
+            </div>
+
+             <div class="action-area" style="float: right; margin-right: 2px; margin-top: 0px">
+                <button class="btn btn-primary btn-xs" type="button" onclick="DOWNLOAD_PART_HIKIATE_TEMPLATE(); return false;">
+                    <i class="fa fa-upload"></i> Download Template</button>
+            </div>
+        }
+    </div>
+
+	@Html.DevExpress().PopupControl(settings =>
+	{
+		settings.HeaderText = "TB_R_PART_HIKIATE Management";
+		settings.Name = "popTB_R_PART_HIKIATE";
+		settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+		settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+		settings.Modal = true;
+		settings.ShowCloseButton = true;
+        settings.CloseAction = CloseAction.CloseButton;
+		settings.PopupAnimationType = AnimationType.Fade;
+		settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+		settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+		settings.SetContent(() =>
+		{
+			Html.RenderPartial("_TB_R_PART_HIKIATEEdit");
+		});
+		settings.ClientSideEvents.CloseUp = "OnPopTB_R_PART_HIKIATECloseUp";
+	}).GetHtml()
+
+    @Html.DevExpress().PopupControl(settings =>
+        {
+            settings.HeaderText = "IMPORT PART HIKIATE";
+            settings.Name = "popPART_HIKIATE";
+            settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+            settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+            settings.Modal = true;
+            settings.ShowCloseButton = true;
+            settings.CloseAction = CloseAction.CloseButton;
+            settings.PopupAnimationType = AnimationType.Fade;
+            settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+            settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+            settings.SetContent(() =>
+            {
+                Html.RenderPartial("_TB_R_PART_HIKIATEImport");
+            });
+            settings.ClientSideEvents.CloseUp = "OnPopPART_HIKIATECloseUp";
+        }).GetHtml()
+
+
+    @Html.DevExpress().PopupControl(settings =>
+    {
+        settings.HeaderText = "HIKIATE STOCK STD";
+        settings.Name = "popSTOCK";
+        settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+        settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.Modal = true;
+        settings.ShowCloseButton = true;
+        settings.CloseAction = CloseAction.CloseButton;
+        settings.PopupAnimationType = AnimationType.Fade;
+        settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+        settings.Height = System.Web.UI.WebControls.Unit.Pixel(200);
+        settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+        settings.SetContent(() =>
+        {
+            Html.RenderPartial("_TB_R_PART_HIKIATE_STOCK_STDEdit");
+        });
+        settings.ClientSideEvents.CloseUp = "OnPopSTOCKCloseUp";
+    }).GetHtml()
+
+    @Html.DevExpress().PopupControl(settings =>
+    {
+        settings.HeaderText = "Details";
+        settings.Name = "popDetails";
+            settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+            settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+            settings.Modal = true;
+            settings.ShowCloseButton = true;
+            settings.CloseAction = CloseAction.CloseButton;
+            settings.PopupAnimationType = AnimationType.Fade;
+            settings.Width = System.Web.UI.WebControls.Unit.Pixel(1200); 
+            settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+            settings.SetContent(() =>
+            {
+                Html.RenderPartial("_TB_R_PART_HIKIATE_DETAILS");
+            });
+            settings.ClientSideEvents.CloseUp = "OnpopDetailsCloseUp";
+        }).GetHtml()
+
+     @Html.DevExpress().LoadingPanel(
+        settings => {
+        settings.Name = "LoadingPanel";
+        settings.Modal = true;
+        settings.Text = "Processing...";
+        settings.Width = 160;
+        settings.ContainerElementID = "";
+    }
+    ).GetHtml()   
+
+	@section HeadScript {
+		<script src="@Url.Content("~/Content/Scripts/App/TB_R_PART_HIKIATE.js")" type="text/javascript"></script>
+	}
+</div>

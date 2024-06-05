@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeadScript{
+    <style>
+        #widget-content {
+            margin-top: 8px;
+        }
+
+        .widget-header {
+            color: #000 !important;
+        }
+
+        .widget-box {
+            margin-bottom: 12px !important;
+        }
+
+        li.divider {
+            border: 2px solid #e5e5e5;
+        }
+    </style>
+}
+
+<div id="widget-content">
+
+    <div class="col-xs-12 col-sm-8">
+        <div class="widget-box">
+            <div class="widget-header">
+                <h5 class="widget-title">Application Desk</h5>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    <img src="@Url.Content("~/Content/Images/desk.jpg")" style="width: 100%; height: auto;" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-4">
+        <div class="widget-box">                     
+            <div class="widget-header">
+                <h5 class="widget-title">IT Support</h5>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    <strong>Need assistance with your application? We’ll get you the help you need.</strong>
+                    <br />
+                    <br />
+                    <i class="fa fa-envelope"></i>
+                    <a href="mailto:support@toyotavn.com.vn">support@toyotavn.com.vn</a>, 
+                    <i class="fa fa-phone"></i>
+                    (861) 2222
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

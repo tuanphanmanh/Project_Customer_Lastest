@@ -1,0 +1,189 @@
+﻿@*
+---Phần Edit form, CssClass Validate
+    --Class (.hide) thẻ cha nếu bỏ qua
+
+TextBox : .val-required (Check Null), .val-integer (Check Integer)
+TimeEdit : .val-time (Check định dạng time)
+*@
+<table class="edit-form">
+	 
+	<tr>
+        <td class="label"> 
+			BACK NO  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_BACK_NO";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			PART NO  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_PART_NO";
+                settings.Width = 200;                
+                settings.ControlStyle.CssClass = "textbox val-required";
+                settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
+                settings.Properties.ValidationSettings.RequiredField.ErrorText = "PART NO is required";
+                settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Right;
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			COLOR SFX  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_COLOR_SFX";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			PART NAME  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_PART_NAME";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			BOX SIZE  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_BOX_SIZE";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                settings.ControlStyle.CssClass = "textbox val-required";
+                settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
+                settings.Properties.ValidationSettings.RequiredField.ErrorText = "BOX SIZE is required";
+                settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Right;
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			BOX QTY  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_BOX_QTY";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.Properties.MinValue = 0;
+                settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                settings.ControlStyle.CssClass = "textbox val-required";
+                settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
+                settings.Properties.ValidationSettings.RequiredField.ErrorText = "BOX QTY is required";
+                settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Right;
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			PC ADDRESS  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_K_PC_ADDRESS";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			WH SPS PICKING  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_WH_SPS_PICKING";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	  
+	<tr>
+        <td class="label"> 
+			IS ACTIVE  
+		</td>
+        <td>
+            @Html.DevExpress().CheckBox(
+            settings =>
+            {
+                settings.Name = "_K_IS_ACTIVE";
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()  
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="padding-top: 20px;">
+            <div style="float: right; margin-right: 20px;">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnKanbanCancel";
+                    settings.ControlStyle.CssClass = "button";
+                    settings.Text = "Cancel";
+                    settings.ClientSideEvents.Click = "OnBtnKanbanCancelClicked";
+                    settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsCancel16x16;
+                }).GetHtml()
+            </div>
+            <div style="float: right; margin-right: 5px">
+			 @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				 (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+					@Html.DevExpress().Button(settings =>
+					{
+						settings.Name = "btnKanbanUpdate";
+						settings.ControlStyle.CssClass = "button";
+						settings.Text = "Save";
+						settings.UseSubmitBehavior = true;
+                        settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.SaveSave16x16;
+						settings.ClientSideEvents.Click = "function(s, e){ OnBtnKanbanUpdateClicked(this) }";
+					}).GetHtml()
+				}
+            </div>
+            <span id="userStatus" class="action-status"></span>
+        </td>
+    </tr>
+</table>
+

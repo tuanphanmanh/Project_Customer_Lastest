@@ -1,0 +1,3 @@
+EXEC TB_M_TRUCK_Search
+		@TRUCK_TYPE,
+		@NAME

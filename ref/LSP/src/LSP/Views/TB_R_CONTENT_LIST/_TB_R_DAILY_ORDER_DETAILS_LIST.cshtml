@@ -1,0 +1,372 @@
+﻿@using LSP.Models
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvDetailsList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = LSP.Models.Common.PageSize_M(); //10
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = Common.PageSizeItemSettings(); //new string[] { "10", "20", "50" };
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+
+    settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Visible;
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 7;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+    settings.CallbackRouteValues = new { Controller = "TB_R_CONTENT_LIST", Action = "OrderDetails_GridCallback" };
+       
+     //Export
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+    //settings.SettingsExport.RenderBrick = (s, e) =>
+    //{
+    //    if (e.RowType == DevExpress.Web.GridViewRowType.Header)
+    //    {
+    //        e.BrickStyle.Font = new System.Drawing.Font("Calibri", 11, System.Drawing.FontStyle.Bold);
+    //        e.BrickStyle.BackColor = System.Drawing.Color.White;
+    //        e.BrickStyle.ForeColor = System.Drawing.Color.Black;         
+    //        e.Text = string.Format("{0}", e.Text);
+    //    }       
+    //};  
+    
+    //Toolbar
+    settings.Toolbars.Add(toolbar =>
+    {
+        toolbar.Enabled = true;
+        toolbar.EnableAdaptivity = true;
+        toolbar.Position = GridToolbarPosition.Top;
+        toolbar.ItemAlign = GridToolbarItemAlign.Left;
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                Html.DevExpress().ButtonEdit(s =>
+                {
+                    s.Name = "detailssearch";
+                    s.Properties.NullText = "Search inline...";
+                    s.Properties.Buttons
+                        .Add()
+                        .Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
+                }).Render();
+            });
+        });
+         
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnDetailsExportXls";
+                    s.ClientSideEvents.Click = "function(s, e) {gvDetailsList.ExportTo(ASPxClientGridViewExportFormat.Xls);}";
+                    s.Text = "Export to Xls";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxls16x16;
+                }).GetHtml();
+            });
+        });
+        
+    });
+    //For Search panel
+    settings.SettingsSearchPanel.CustomEditorName = "detailssearch";
+     
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "No.";
+            c.FieldName = "ROW_NO";
+            c.Width = 50;
+            c.FixedStyle = GridViewColumnFixedStyle.Left;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "SUPPLIER CODE";
+            c.FieldName = "SUPPLIER_CODE";
+            c.Width = 60;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.FixedStyle = GridViewColumnFixedStyle.Left;
+        }
+    );
+    
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "WORKING MONTH";
+            c.FieldName = "WORKING_MONTH";
+            c.PropertiesEdit.DisplayFormatString = "MM/yyyy";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.FixedStyle = GridViewColumnFixedStyle.Left;
+            c.Width = 60;
+        }
+    );
+
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "ORDER NO.";
+            c.FieldName = "ORDER_NO";            
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.FixedStyle = GridViewColumnFixedStyle.Left;
+            c.Width = 150;
+        }
+    );        
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "PART NO";
+        c.FieldName = "PART_NO";        
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+        c.Width = 100;
+    }
+    );
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "PART NAME";
+        c.FieldName = "PART_NAME";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.Font.Size = 6;
+        c.Width = 100;
+    }
+    );
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "PACKAGING SIZE";
+        c.FieldName = "BOX_SIZE";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 70;
+    }
+    );
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "1";
+        c.FieldName = "DAY_1";
+        c.Width = 60;
+        c.ExportWidth = 70;
+     
+        
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "2";
+        c.FieldName = "DAY_2";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "3";
+        c.FieldName = "DAY_3";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    }); 
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "4";
+        c.FieldName = "DAY_4";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "5";
+        c.FieldName = "DAY_5";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "6";
+        c.FieldName = "DAY_6";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "7";
+        c.FieldName = "DAY_7";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "8";
+        c.FieldName = "DAY_8";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "9";
+        c.FieldName = "DAY_9";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "10";
+        c.FieldName = "DAY_10";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+     
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "11";
+        c.FieldName = "DAY_11";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "12";
+        c.FieldName = "DAY_12";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "13";
+        c.FieldName = "DAY_13";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    }); 
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "14";
+        c.FieldName = "DAY_14";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "15";
+        c.FieldName = "DAY_15";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "16";
+        c.FieldName = "DAY_16";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "17";
+        c.FieldName = "DAY_17";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "18";
+        c.FieldName = "DAY_18";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "19";
+        c.FieldName = "DAY_19";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "20";
+        c.FieldName = "DAY_20";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "21";
+        c.FieldName = "DAY_21";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "22";
+        c.FieldName = "DAY_22";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "23";
+        c.FieldName = "DAY_23";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "24";
+        c.FieldName = "DAY_24";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "25";
+        c.FieldName = "DAY_25";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "26";
+        c.FieldName = "DAY_26";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "27";
+        c.FieldName = "DAY_27";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "28";
+        c.FieldName = "DAY_28";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "29";
+        c.FieldName = "DAY_29";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "30";
+        c.FieldName = "DAY_30";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "31";
+        c.FieldName = "DAY_31";
+        c.Width = 60;
+        c.ExportWidth = 70;
+    });
+     
+
+}).Bind(LSP.Models.TB_R_DAILY_ORDER.TB_R_DAILY_ORDERProvider.Instance.TB_R_DAILY_ORDER_GET_PIVOT_MONTH_V2(Model ?? new LSP.Models.TB_R_DAILY_ORDER.TB_R_DAILY_ORDER_PIVOTInfo())).GetHtml()

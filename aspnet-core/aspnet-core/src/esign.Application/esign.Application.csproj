@@ -1,0 +1,84 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props"></Import>
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+    <AssemblyName>esign.Application</AssemblyName>
+    <PackageId>esign.Application</PackageId>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <RootNamespace>esign</RootNamespace>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<NoWarn>CA1416</NoWarn>
+		<NoWarn>CS0618</NoWarn>
+		<NoWarn>CS0219</NoWarn>
+		<NoWarn>IDE0090</NoWarn>
+	</PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Abp.EntityFrameworkCore.EFPlus" Version="8.0.0" />
+    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="FastMember" Version="1.5.0" />
+    <PackageReference Include="FirebaseAdmin" Version="2.4.0" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+    <PackageReference Include="NPOI" Version="2.5.6" />
+    <PackageReference Include="Quartz" Version="3.8.0" />
+    <PackageReference Include="Radius" Version="2.0.0.2" />
+    <PackageReference Include="Syncfusion.Pdf.Net.Core" Version="23.1.40" />
+    <PackageReference Include="System.ServiceModel.Http" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\esign.Application.Shared\esign.Application.Shared.csproj" />
+    <ProjectReference Include="..\esign.Core\esign.Core.csproj" />
+    <ProjectReference Include="..\esign.EntityFrameworkCore\esign.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="EFY_SIGN">
+      <HintPath>..\..\lib\EFY_SIGN.dll</HintPath>
+    </Reference>
+    <Reference Include="GemBox.Spreadsheet">
+      <HintPath>..\GemBox.Spreadsheet.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\lib\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="lib.rssp.connector">
+      <HintPath>..\..\lib\lib.rssp.connector.dll</HintPath>
+    </Reference>
+    <Reference Include="lib.rssp.exsig">
+      <HintPath>..\..\lib\lib.rssp.exsig.dll</HintPath>
+    </Reference>
+    <Reference Include="lib.rssp.office">
+      <HintPath>..\..\lib\lib.rssp.office.dll</HintPath>
+    </Reference>
+    <Reference Include="lib.rssp.pdf">
+      <HintPath>..\..\lib\lib.rssp.pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="lib.rssp.xml">
+      <HintPath>..\..\lib\lib.rssp.xml.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicPie.Security">
+      <HintPath>..\..\lib\LogicPie.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework">
+      <HintPath>..\..\lib\metroframework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.DocumentFormat.OpenXml">
+      <HintPath>..\..\lib\Microsoft.Office.DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

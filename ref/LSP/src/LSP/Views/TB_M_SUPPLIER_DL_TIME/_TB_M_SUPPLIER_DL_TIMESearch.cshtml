@@ -1,0 +1,38 @@
+﻿@*
+---Phần Search trên form
+TextBox : .textbox, .autobind (cho ô find gia tri tu dong)
+DateEdit : .textdate
+ComboBox : .textcombobox
+*@
+<div class="dxcontent_search"> 
+    <div class="itembox">
+		<label class="placehoder">SUPPLIER ID</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtSUPPLIER_ID";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">DELIVERY SEQ</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtDELIVERY_SEQ";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    
+    <div class="itembox">    
+		@if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+			(Html.Toyota().Page.ControllerName.ToString(), "Search"))
+		{	
+			@Html.DevExpress().Button(settings =>
+			{
+				settings.Name = "btnSearch";
+				settings.Text = "Search";
+				settings.ClientSideEvents.Click = "DoSearch";
+                settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsSearch16x16devav;
+			}).GetHtml()
+		}
+    </div>
+</div>

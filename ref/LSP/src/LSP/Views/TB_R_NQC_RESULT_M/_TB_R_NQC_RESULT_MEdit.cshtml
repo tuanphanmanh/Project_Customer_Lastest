@@ -1,0 +1,627 @@
+﻿<table class="edit-form">
+	<tr>
+        <td class="label"> 
+			CFC  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_CFC";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			Part no  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_PART_NO";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			PROD_SFX  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_PROD_SFX";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			Production month  
+		</td>
+        <td>
+            @Html.DevExpress().DateEdit(settings =>
+            {
+                settings.Name = "_PRODUCTION_MONTH";
+                settings.ControlStyle.CssClass = "dateedit";
+                settings.Width = 200;
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			Parts matching key  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_PARTS_MATCHING_KEY";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY01  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY01";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			DAILY_QTY02  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY02";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY03  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY03";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY04  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY04";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			DAILY_QTY05  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY05";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY06  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY06";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY07  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY07";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			DAILY_QTY08  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY08";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY09  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY09";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY10  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY10";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			DAILY_QTY11  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY11";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY12  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY12";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY13  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY13";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			DAILY_QTY14  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY14";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY15  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY15";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY16  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY16";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			DAILY_QTY17  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY17";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY18  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY18";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY19  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY19";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			DAILY_QTY20  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY20";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY21  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY21";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY22  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY22";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			DAILY_QTY23  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY23";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY24  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY24";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY25  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY25";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			DAILY_QTY26  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY26";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY27  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY27";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY28  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY28";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			DAILY_QTY29  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY29";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY30  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY30";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			DAILY_QTY31  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_DAILY_QTY31";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			TOTAL_QTY  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_TOTAL_QTY";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    
+    <tr>
+        <td colspan="6" style="padding-top: 20px;">
+            <div style="float: right; margin-right: 20px;">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnCancel";
+                    settings.ControlStyle.CssClass = "button";
+                    settings.Text = "Cancel";
+                    settings.ClientSideEvents.Click = "OnBtnCancelClicked";
+                }).GetHtml()
+            </div>
+            <div style="float: right; margin-right: 5px">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnUpdate";
+                    settings.ControlStyle.CssClass = "button";
+                    settings.Text = "Save";
+                    settings.UseSubmitBehavior = true;
+                    settings.ClientSideEvents.Click = "function(s, e){ OnBtnUpdateClicked(this) }";
+                }).GetHtml()
+            </div>
+            <span id="userStatus" class="action-status"></span>
+        </td>
+    </tr>
+</table>

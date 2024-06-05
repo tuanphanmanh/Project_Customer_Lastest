@@ -1,0 +1,220 @@
+﻿@*
+---Phần Edit form, CssClass Validate
+    --Class (.hide) thẻ cha nếu bỏ qua
+
+TextBox : .val-required (Check Null), .val-integer (Check Integer)
+TimeEdit : .val-time (Check định dạng time)
+*@
+<table class="edit-form CONTENT_LIST">
+	<tr>
+        <td class="label"> 
+			SUPPLIER NAME  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_SUPPLIER_NAME";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			SUPPLIER CODE  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_SUPPLIER_CODE";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			RENBAN NO  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_RENBAN_NO";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			PC ADDRESS  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_PC_ADDRESS";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			DOCK NO  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_DOCK_NO";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			ORDER NO  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_ORDER_NO";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			ORDER DATETIME  
+		</td>
+        <td>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_ORDER_DATETIME";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+				settings.Properties.DisplayFormatString = "dd/MM/yyyy hh:mm"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy hh:mm";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			TRIP NO  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_TRIP_NO";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			PALLET BOX QTY  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_PALLET_BOX_QTY";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			EST PACKING DATETIME  
+		</td>
+        <td>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_EST_PACKING_DATETIME";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy hh:mm"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy hh:mm";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			EST ARRIVAL DATETIME  
+		</td>
+        <td>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_EST_ARRIVAL_DATETIME";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy hh:mm"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy hh:mm";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			IS ACTIVE  
+		</td>
+        <td>
+            @Html.DevExpress().CheckBox(
+            settings =>
+            { 
+                settings.Name = "_IS_ACTIVE";
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" style="padding-top: 20px;">
+            <div style="float: right; margin-right: 20px;">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnCancel";
+                    settings.ControlStyle.CssClass = "button";
+                    settings.Text = "Cancel";
+                    settings.ClientSideEvents.Click = "OnBtnCancelClicked";
+                }).GetHtml()
+            </div>
+            <div style="float: right; margin-right: 5px">
+			 @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				 (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+					@Html.DevExpress().Button(settings =>
+					{
+						settings.Name = "btnUpdate";
+						settings.ControlStyle.CssClass = "button";
+						settings.Text = "Save";
+						settings.UseSubmitBehavior = true;
+						settings.ClientSideEvents.Click = "function(s, e){ OnBtnUpdateClicked(this) }";
+					}).GetHtml()
+				}
+            </div>
+            <span id="userStatus" class="action-status"></span>
+        </td>
+    </tr>
+</table>

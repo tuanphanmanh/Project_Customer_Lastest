@@ -1,0 +1,51 @@
+<div class="master-container">
+    <div class="grid-parent w-100 h-100">
+        <div class="control-section w-100 h-100">
+            <div class="master-title d-flex align-items-center">
+                <p class="h5 title">{{'ConfigLogo' | localize }}</p>
+            </div>
+            <div class="form-filter col-12 d-flex">
+                <div class="input-filter button-filter">
+                    <button ejs-button cssClass="e-outline" (click)="searchDatas()" iconCss="fas fa-search" cssClass="e-outline" [isPrimary]="true">
+                        {{ 'Search' | localize }}
+                    </button>
+                </div>
+            </div>
+            <div class="row pt-1">
+                <div class="col-12 d-flex justify-content-start align-items-center">
+                    <esign-grid
+                        [rowData]="rowData"
+                        [height]="400"
+                        [columnDefs]="columnDef"
+                        [allowPager]="true"
+                        [allowSorting]="true"
+                        (onChangeSelection)="changeSelection($event)"
+                        [selectionSettings]="selectionSettings"
+                        [filterSettings]="filterSettings"
+                        [allowFiltering]="true"
+                        [pagination]="pagination"
+                        (onChangePager)="changePager($event)"
+                        [showIndex]="true"
+                    />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-end align-items-center mt-10">
+                    <div class="button-action mr-2">
+                        <button ejs-button [isPrimary]="true"  cssClass="e-outline" iconCss="fas fa-plus"
+                        (click)="createOrEditLogo.showModalCreateEdit()">{{ 'Create' | localize }}</button>
+                    </div>
+                    <div class="button-action mr-2">
+                        <button ejs-button cssClass="e-info e-outline" [disabled]="!selectionRow.id" iconCss="fas fa-edit"
+                        (click)="createOrEditLogo.showModalCreateEdit(selectionRow)">{{ 'Edit' | localize }}</button>
+                    </div>
+                    <div class="button-action mr-2">
+                        <button ejs-button cssClass="e-danger e-outline" [disabled]="!selectionRow.id" [isPrimary]="true" iconCss="fas fa-trash-alt"
+                        (click)="deleteRow(selectionRow)">{{ 'Delete' | localize }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<create-or-edit-logo-modal #createOrEditLogo (modalSave)="searchDatas()"></create-or-edit-logo-modal>

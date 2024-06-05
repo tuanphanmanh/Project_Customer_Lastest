@@ -1,0 +1,49 @@
+<ejs-dialog [header]='dialogHeader' [isModal]='isModal' #createOrEditColor id="createOrEditColor" [visible]='visible'
+    (close)="onCloseDialog()"
+    [animationSettings]='animationSettings' [showCloseIcon]='dialogCloseIcon' [width]='dialogWidth'>
+    <ng-template #content>
+        <form #mstPurchasePurposeForm="ngForm" *ngIf="createOrEditForm" [formGroup]="createOrEditForm" novalidate
+            autocomplete="off">
+            <div class="create-edit-form">
+                <div class="col-12 d-flex mt-2">
+                    <div class="col-xs-9 col-sm-9 col-lg-9 col-md-9" hasError="code">
+                        <esign-input disabled [text]="l('Code')" [placeholder]="l('Code')"
+                        name="code" isRequired="true" [isValidate]="true"
+                            formControlName="code" [(ngModel)]="rowdata.code"></esign-input>
+                        <div class="error-message" errorMessage>
+                            <div *ifError="'required'">{{'Required' | localize}} *</div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-lg-3 col-md-3 ms-2">
+                        <ejs-input ejs-colorpicker id='color-picker' #colorpicker type='color' [value]="rowdata.code"
+                            mode="Picker" (change)="changeColor($event)"></ejs-input>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-around mt-2">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                        <esign-input [text]="l('Name')" [placeholder]="l('Name')"
+                            formControlName="name"
+                            [(ngModel)]="rowdata.name"></esign-input>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-around mt-2">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12" hasError="order">
+                        <esign-input [type]="'number'" [text]="l('Order')" [placeholder]="l('Order')"
+                            isRequired="true" [isValidate]="true" name="order"
+                            formControlName="order" [(ngModel)]="rowdata.order"></esign-input>
+                        <div class="error-message" errorMessage>
+                            <div *ifError="'required'">{{'Required'| localize}} *</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button-action-form d-flex justify-content-end align-items-center">
+                <div class="button-action mr-2 rounded-pill">
+                    <button ejs-button [isPrimary]="true" (click)="save()" iconCss="fas fa-save"
+                        cssClass="e-outline">{{ 'Save' | localize }}</button>
+                    <button class="ghost" #submitBtn></button>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</ejs-dialog>

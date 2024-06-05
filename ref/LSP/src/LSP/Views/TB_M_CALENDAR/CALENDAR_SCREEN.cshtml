@@ -1,0 +1,135 @@
+﻿@{
+    Layout = "~/Views/Shared/_ScreenLayout.cshtml";
+}
+@using LSP.Models.TB_M_CALENDAR;
+
+<link rel="Stylesheet" href="/Content/Style/App/CALENDAR_SCREEN.css" />
+
+@{
+    
+    //TB_M_CALENDARInfo obj = (TB_M_CALENDARInfo)ViewBag.CALENDAR;
+    IList<TB_M_CALENDARInfo> objdetail = (IList<TB_M_CALENDARInfo>)ViewBag.SUPPLIER;
+}
+<div class="Main">
+    <div class="Content">
+        <div class="calendar">
+            <table>
+                <tr>
+                    <td>Supplier</td>
+                    <td>
+                        <select>
+                            <option>TMV</option>
+                            <option>EKV</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <table class="styleTable">
+                        <tr>
+                            <th rowspan="2">Month/Day<br />2018</th>
+                        </tr>
+                        @*day*@
+                        <tr>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>8</th>
+                            <th>9</th>
+                            <th>10</th>
+                            <th>11</th>
+                            <th>12</th>
+                            <th>13</th>
+                            <th>14</th>
+                            <th>15</th>
+                            <th>16</th>
+                            <th>17</th>
+                            <th>18</th>
+                            <th>19</th>
+                            <th>20</th>
+                            <th>21</th>
+                            <th>22</th>
+                            <th>23</th>
+                            <th>24</th>
+                            <th>25</th>
+                            <th>26</th>
+                            <th>27</th>
+                            <th>28</th>
+                            <th>29</th>
+                            <th>30</th>
+                            <th>31</th>
+                        </tr>
+                        @for (int month = 1; month <= 12; month++)
+                        {
+                            <tr>
+                                <td>@month</td>
+                                @*<td>
+                                    @foreach (TB_M_CALENDARInfo item in objdetail)
+                                    {
+                                        <tr>
+                                            <td>@item.WORKING_STATUS</td>
+                                        </tr>
+                                    }
+                                </td>*@
+                            </tr>
+                        }
+                        @*@foreach (TB_M_CALENDARInfo item in objdetail)
+                        {
+                            <tr>
+                                <td>@item.WORKING_STATUS</td>
+                            </tr>
+                        }*@
+                    </table>
+                </tr>
+            </table>
+        </div>
+        <div class="types">
+            <table>
+                <tr>
+                    <th>Working days :</th>
+                    <td>
+                        <tr>
+                            <td>0 : Holiday</td>
+                        </tr>
+                        <tr>
+                            <td>1 : All day</td>
+                        </tr>
+                        <tr>
+                            <td>2 : 1/2 Working day</td>
+                        </tr>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Order control :</th>
+                    <td>
+                        <tr>
+                            <td>A : Line working,</td>
+                            <td>Office Working</td>
+                        </tr>
+                        <tr>
+                            <td>B : Line working,</td>
+                            <td>Office off day</td>
+                        </tr>
+                        <tr>
+                            <td>C : Line off day,</td>
+                            <td>Office working</td>
+                        </tr>
+                        <tr>
+                            <td>D : Line off day,</td>
+                            <td>Office off day</td>
+                        </tr>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="@Url.Content("~/Content/Scripts/App/CALENDAR_SCREEN.js")" type="text/javascript"></script>
+
+<script type="text/javascript">
+    document.title = "CALENDAR SCREEN";
+</script>

@@ -1,0 +1,200 @@
+﻿<table class="edit-form">
+	<tr>
+        @*<td class="label"> 
+			Model ID
+		</td>
+        <td>
+            @Html.DevExpress().ComboBox(settings => 
+    			{
+                    settings.Name = "_MODEL_ID";
+                    settings.ControlStyle.CssClass = "combobox"; 
+                    settings.Width = 200;
+                    settings.Properties.DataSource = ViewBag.MODEL_ID;
+                    settings.Properties.ValueField = "ID";
+                    settings.Properties.TextField = "ID";
+                    settings.SelectedIndex = 0;
+                    settings.Properties.Columns.Add("ID", "Model_name");
+                   
+                }).BindList(ViewBag.MODEL_ID).GetHtml() 
+           
+			<span class="messageerror"></span>
+        </td>*@
+        <td class="label"> 
+			CFC
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_CFC";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox val-required";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			Project CODE  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_PROJECT_CODE";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox val-required";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			Katashiki
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_KATASHIKI";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox val-required";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			PROD SFX 
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_PROD_SFX";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox val-required";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			MKT SFX
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_MKT_SFX";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox val-required";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			Start LOT  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_START_LOT";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			Start PROD.DATE
+		</td>
+        <td>
+            @Html.DevExpress().DateEdit(settings => 
+			{
+                settings.Name = "_START_PROD_DATE";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+				settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			End LOT  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_END_LOT";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			End PROD.DATE
+		</td>
+        <td>
+            @Html.DevExpress().DateEdit(settings => 
+			{
+                settings.Name = "_END_PROD_DATE";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+				settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			Grade Mark
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_GRADE_MARK";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			IS ACTIVE  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(
+            settings =>
+            {
+                settings.Name = "_IS_ACTIVE_V";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+ 
+    <tr>
+        <td colspan="4" style="padding-top: 20px;">
+            <div style="float: right; margin-right: 20px;">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnCancelV";
+                    settings.ControlStyle.CssClass = "button";
+                    settings.Text = "Cancel";
+                    settings.ClientSideEvents.Click = "OnBtnCancelVClicked";
+                }).GetHtml()
+            </div>
+            <div style="float: right; margin-right: 5px">
+			 @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				 (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+					@Html.DevExpress().Button(settings =>
+					{
+						settings.Name = "btnUpdateV";
+						settings.ControlStyle.CssClass = "button";
+						settings.Text = "Save";
+						settings.UseSubmitBehavior = true;
+						settings.ClientSideEvents.Click = "function(s, e){ OnBtnUpdateVClicked(this) }";
+					}).GetHtml()
+				}
+            </div>
+            <span id="userStatus" class="action-status"></span>
+        </td>
+    </tr>
+</table>
+

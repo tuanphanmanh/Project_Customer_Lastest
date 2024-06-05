@@ -1,0 +1,32 @@
+﻿ 
+    <div class="dxcontent_search">
+        <div class="itembox">
+            <label class="placehoder">WORKING MONTH</label>
+            @Html.DevExpress().DateEdit(settings =>
+                        {
+                            settings.Name = "_txtWORKING_MONTH_ORDER";
+                            settings.ControlStyle.CssClass = "dateedit textdate";
+                            settings.Properties.DisplayFormatString = "MM/yyyy";
+                            settings.Properties.EditFormatString = "MM/yyyy";
+                        }).GetHtml()
+        </div>
+        <div class="itembox">
+            @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                        (Html.Toyota().Page.ControllerName.ToString(), "Search"))
+            {	
+                @Html.DevExpress().Button(settings =>
+                        {
+                            settings.Name = "btnDetailsOrderSearch";
+                            settings.Text = "Search";
+                            settings.ClientSideEvents.Click = "SelectWORKING_MONTH_ORDER";
+                            settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsSearch16x16devav;
+                        }).GetHtml()
+            }
+        </div>
+    </div>
+ 
+ @using (Html.BeginForm()) {
+    @Html.Partial("_TB_M_CALENDAR_DETAILS_ORDER_LIST")
+ }
+
+

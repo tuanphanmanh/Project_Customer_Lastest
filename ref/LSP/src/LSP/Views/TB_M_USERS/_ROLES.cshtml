@@ -1,0 +1,59 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="dxcontent_list">
+	<div class="content-header content-title">
+		<div class="action-area">
+			@Html.DevExpress().Button(settings =>
+			{
+				settings.Name = "btnAdd";
+				settings.Text = "Add New";
+				settings.ClientSideEvents.Click = "Add";
+			}).GetHtml()
+		</div>
+	</div>
+
+	@Html.Partial("_ROLES_USERSList")
+
+	@Html.DevExpress().PopupControl(settings =>
+	{
+		settings.HeaderText = "TB_M_USERS Management";
+		settings.Name = "popTB_M_USERS";
+		settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+		settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+		settings.Modal = true;
+		settings.ShowCloseButton = true;
+		settings.PopupAnimationType = AnimationType.Fade;
+		settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+		settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+		settings.SetContent(() =>
+		{
+			Html.RenderPartial("_TB_M_USERSEdit");
+		});
+		settings.ClientSideEvents.CloseUp = "OnPopTB_M_USERSCloseUp";
+	}).GetHtml()
+
+
+    @Html.DevExpress().PopupControl(settings =>
+	{
+		settings.HeaderText = "TB_M_USER ROLE Management";
+        settings.Name = "popTB_M_USER_ROLES";
+		settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+		settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+		settings.Modal = true;
+		settings.ShowCloseButton = true;
+		settings.PopupAnimationType = AnimationType.Fade;
+		settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+		settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+		settings.SetContent(() =>
+		{
+            Html.RenderPartial("_ROLES_USERSEdit");
+		});
+        settings.ClientSideEvents.CloseUp = "OnPopTB_M_USER_ROLESCloseUp";
+	}).GetHtml()
+
+	@section HeadScript {
+		<script src="@Url.Content("~/Content/Scripts/App/ROLES_USERSList.js")" type="text/javascript"></script>
+	}
+</div>

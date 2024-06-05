@@ -1,0 +1,12 @@
+<ejs-listview id='listviewGroup' #listviewGroup [fields]="{groupBy: 'isSigned', id: 'requestId'}"
+    (scroll)="onScroll($event)" (select)="onChangeSelectionRow($event)"
+    [dataSource]='dataInput' cssClass='e-list-template' [showHeader]='false'>
+    <ng-template #template let-data>
+        <data-view-item [data]="data" id="requestId_{{data.requestId}}" [isActiveTab]="1"
+            [isCanFollowUp]="true"></data-view-item>
+    </ng-template>
+    <ng-template #groupTemplate let-data>
+        <div style="color: red; height: 100%; display: flex; align-items: center;" *ngIf="data.items[0].isSigned !== 'Signed'">{{l('NeedsToSign')}}{{data.isSigned}}</div>
+        <div style="color: green; height: 100%; display: flex; align-items: center;" *ngIf="data.items[0].isSigned === 'Signed'">{{l('Signed')}}</div>
+    </ng-template>
+</ejs-listview>

@@ -1,0 +1,73 @@
+﻿<style type="text/css">
+    .import_form #_IMPORT_SUPPLIER_STK_CONCEPT_AddUploadR,
+    .import_form #_IMPORT_SUPPLIER_STK_CONCEPT_AddUploadR td,
+    .import_form #_IMPORT_SUPPLIER_STK_CONCEPT_AddUploadR td div { display:block; height:4px !important; }
+</style>
+
+@using (Html.BeginForm("IMPORT_SUPPLIER_STK_CONCEPT_CallbacksUpload", "TB_M_SUPPLIER_STK_CONCEPT", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{ 
+
+<table class="edit-form import_form">
+    <caption style="text-align:center; color:black; font-weight:bold;"> IMPORT SUPPLIER STK CONCEPT</caption>
+    <tr>
+        <td class="label">
+			File name
+		</td>
+        <td>
+            @Html.DevExpress().UploadControl(settings =>
+               {
+                   settings.Name = "_IMPORT_SUPPLIER_STK_CONCEPT";
+                   settings.Width = 400;
+                   settings.NullText = "Select file...";
+                   settings.ShowProgressPanel = true;
+                   settings.ShowUploadButton = false;
+                                 
+                   settings.AdvancedModeSettings.EnableDragAndDrop = true;
+                   settings.AdvancedModeSettings.EnableMultiSelect = false;
+
+                   settings.CallbackRouteValues = new { Controller = "TB_M_SUPPLIER_STK_CONCEPT", Action = "IMPORT_SUPPLIER_STK_CONCEPT_CallbacksUpload" };
+                   settings.ClientSideEvents.FileUploadComplete = "function(s,e) { SUPPLIER_STK_CONCEPT_OnFileUploadComplete(s,e)}";
+                   //settings.ClientSideEvents.FilesUploadStart = "function() { SETPARAMETER_IMPORT(); }";
+
+               }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+         <td colspan="2" style="padding-top: 20px; text-align: center; vertical-align: middle">
+            <div style="float:left; margin-left: 150px;">
+                @Html.DevExpress().Button(settings =>
+               {
+                   settings.Name = "btnImportStart";
+                   settings.ControlStyle.CssClass = "button";
+                   settings.Text = "Upload";
+                   settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsUp216x16;  
+                   settings.ClientSideEvents.Click = "function OnClick(s, e) {_IMPORT_SUPPLIER_STK_CONCEPT.Upload();}";
+               }).GetHtml()
+            </div>          
+            <div style="float: left; margin-left: 10px;">
+                @Html.DevExpress().Button(settings =>
+               {
+                   settings.Name = "btnImportCancel";
+                   settings.ControlStyle.CssClass = "button";
+                   settings.Text = "Cancel";
+                   settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsCancel16x16gray;  
+                   settings.ClientSideEvents.Click = "OnBtnImportCancelClicked";
+               }).GetHtml()
+            </div>           
+            <span id="userStatus" class="action-status"></span>
+        </td>
+    </tr>
+</table>    
+}
+
+
+
+    
+    
+    
+    
+    
+    
+    
+        

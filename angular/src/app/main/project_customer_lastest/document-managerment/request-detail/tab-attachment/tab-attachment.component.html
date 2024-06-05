@@ -1,0 +1,143 @@
+<div class="tab-detail">
+    <div class="frame-1171275729">
+        <div>
+            <button *ngIf="isUploadFile" class="frame-1171275594" (click)="uploadFile()">
+                <svg
+                    class="vuesax-linear-add"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    >
+                    <path
+                        d="M3 6H9"
+                        stroke="#3F2BC8"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                    <path
+                        d="M6 9V3"
+                        stroke="#3F2BC8"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                    </svg>
+                <div class="download-all">{{l('RefFile')}}</div>
+            </button>
+        </div>
+        <button class="frame-1171275594" (click)="downloadDocument()">
+            <!-- <img src="assets/common/images/fi-rr-download.svg" /> -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                <g clip-path="url(#clip0_4117_176838)">
+                <path d="M6.5854 12.0813C6.77114 12.2672 6.99167 12.4146 7.23441 12.5152C7.47714 12.6158 7.73732 12.6676 8.00007 12.6676C8.26282 12.6676 8.523 12.6158 8.76573 12.5152C9.00847 12.4146 9.229 12.2672 9.41474 12.0813L11.5554 9.94067C11.6702 9.81373 11.7317 9.64751 11.7273 9.47644C11.723 9.30536 11.6529 9.14253 11.5318 9.02165C11.4107 8.90077 11.2477 8.8311 11.0766 8.82707C10.9055 8.82304 10.7394 8.88496 10.6127 9L8.66207 10.9513L8.66674 0.666667C8.66674 0.489856 8.5965 0.320286 8.47147 0.195262C8.34645 0.0702379 8.17688 0 8.00007 0V0C7.82326 0 7.65369 0.0702379 7.52866 0.195262C7.40364 0.320286 7.3334 0.489856 7.3334 0.666667L7.3274 10.9387L5.3874 9C5.26231 8.87499 5.09268 8.8048 4.91583 8.80487C4.73899 8.80493 4.56941 8.87524 4.4444 9.00033C4.3194 9.12543 4.24921 9.29506 4.24927 9.4719C4.24933 9.64875 4.31964 9.81833 4.44474 9.94333L6.5854 12.0813Z" fill="#3F2BC8"/>
+                <path d="M15.3333 10.667C15.1565 10.667 14.987 10.7372 14.8619 10.8623C14.7369 10.9873 14.6667 11.1568 14.6667 11.3337V14.0003C14.6667 14.1771 14.5964 14.3467 14.4714 14.4717C14.3464 14.5967 14.1768 14.667 14 14.667H2C1.82319 14.667 1.65362 14.5967 1.5286 14.4717C1.40357 14.3467 1.33333 14.1771 1.33333 14.0003V11.3337C1.33333 11.1568 1.2631 10.9873 1.13807 10.8623C1.01305 10.7372 0.843478 10.667 0.666667 10.667V10.667C0.489856 10.667 0.320286 10.7372 0.195262 10.8623C0.0702379 10.9873 0 11.1568 0 11.3337L0 14.0003C0 14.5308 0.210714 15.0395 0.585786 15.4145C0.960859 15.7896 1.46957 16.0003 2 16.0003H14C14.5304 16.0003 15.0391 15.7896 15.4142 15.4145C15.7893 15.0395 16 14.5308 16 14.0003V11.3337C16 11.1568 15.9298 10.9873 15.8047 10.8623C15.6797 10.7372 15.5101 10.667 15.3333 10.667Z" fill="#3F2BC8"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_4117_176838">
+                <rect width="16" height="16" fill="white"/>
+                </clipPath>
+                </defs>
+                </svg>
+            <div class="download-all">{{l('DownloadAll')}}</div>
+        </button>
+    </div>
+
+    <!-- Documents -->
+    <div class="frame-1000006512">
+        <div class="frame-1000006437">
+            <ng-container [ngTemplateOutlet]="listDocument"></ng-container>
+            <ng-template #listDocument>
+                <ng-container *ngFor="let document of documents">
+                    <div class="frame-1000006461" [ngStyle]="document?.isAdditionalFile === true ? {'box-shadow': 'var(--esign-boxshadow-btn-icon-box-shadow, 0px 1.25px 2.15px 0px rgba(250, 0, 0, 0.81), 0px 0px 0.94px 0px rgb(230 0 0 / 60%))'} : {}">
+                        <div class="frame-1000003980">
+                            <div class="frame-1171275238">
+                                <div class="_3">{{document.documentOrder}}</div>
+                            </div>
+                            <div class="frame-1171275239">
+                                <div class="frame-1171275237" (click)="previewSign(document)">
+                                    <div class="frame">
+                                        <div class="artboard">
+                                            <div class="files-icon-pdf">
+                                                <img class="icon-pdf" src="assets/common/images/files-icon-pdf.svg" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="get-app-433-pdf">{{document.documentName}}</div>
+                                </div>
+                                <button class="frame-1171275711" (click)="downloadDocument(document)">
+                                    <div class="frame-1171275254">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="group-1171275253 svg-inactive"
+                                            width="12" height="13" viewBox="0 0 12 13" fill="none">
+                                            <g clip-path="url(#clip0_3631_131442)">
+                                            <path d="M4.93911 9.061C5.07841 9.20039 5.24381 9.31097 5.42587 9.38641C5.60792 9.46185 5.80305 9.50068 6.00011 9.50068C6.19718 9.50068 6.39231 9.46185 6.57436 9.38641C6.75641 9.31097 6.92181 9.20039 7.06111 9.061L8.66661 7.4555C8.75269 7.3603 8.79887 7.23564 8.79557 7.10733C8.79228 6.97902 8.73977 6.8569 8.64891 6.76624C8.55806 6.67558 8.43582 6.62333 8.30751 6.6203C8.1792 6.61728 8.05463 6.66372 7.95961 6.75L6.49661 8.2135L6.50011 0.5C6.50011 0.367392 6.44743 0.240215 6.35367 0.146447C6.2599 0.0526784 6.13272 0 6.00011 0V0C5.8675 0 5.74033 0.0526784 5.64656 0.146447C5.55279 0.240215 5.50011 0.367392 5.50011 0.5L5.49561 8.204L4.04061 6.75C3.94679 6.65625 3.81957 6.6036 3.68694 6.60365C3.5543 6.6037 3.42712 6.65643 3.33336 6.75025C3.23961 6.84407 3.18696 6.97129 3.18701 7.10393C3.18706 7.23656 3.23979 7.36375 3.33361 7.4575L4.93911 9.061Z" fill="#3F2BC8"/>
+                                            <path d="M11.5 8C11.3674 8 11.2402 8.05268 11.1464 8.14645C11.0527 8.24021 11 8.36739 11 8.5V10.5C11 10.6326 10.9473 10.7598 10.8536 10.8535C10.7598 10.9473 10.6326 11 10.5 11H1.5C1.36739 11 1.24021 10.9473 1.14645 10.8535C1.05268 10.7598 1 10.6326 1 10.5V8.5C1 8.36739 0.947322 8.24021 0.853553 8.14645C0.759785 8.05268 0.632608 8 0.5 8V8C0.367392 8 0.240215 8.05268 0.146447 8.14645C0.0526784 8.24021 0 8.36739 0 8.5L0 10.5C0 10.8978 0.158035 11.2793 0.43934 11.5607C0.720644 11.842 1.10218 12 1.5 12H10.5C10.8978 12 11.2794 11.842 11.5607 11.5607C11.842 11.2793 12 10.8978 12 10.5V8.5C12 8.36739 11.9473 8.24021 11.8536 8.14645C11.7598 8.05268 11.6326 8 11.5 8Z" fill="#3F2BC8"/>
+                                            </g>
+                                            <defs>
+                                            <clipPath id="clip0_3631_131442">
+                                                <rect width="12" height="12" fill="white"/>
+                                            </clipPath>
+                                            </defs>
+                                        </svg>
+
+                                        <svg class="group-1171275253 svg-active"
+                                            xmlns="http://www.w3.org/2000/svg" width="12" height="13" viewBox="0 0 12 13" fill="none">
+                                            <g clip-path="url(#clip0_4117_176842)">
+                                            <g filter="url(#filter0_d_4117_176842)">
+                                            <path d="M4.93911 9.061C5.07841 9.20039 5.24381 9.31097 5.42587 9.38641C5.60792 9.46185 5.80305 9.50068 6.00011 9.50068C6.19718 9.50068 6.39231 9.46185 6.57436 9.38641C6.75641 9.31097 6.92181 9.20039 7.06111 9.061L8.66661 7.4555C8.75269 7.3603 8.79887 7.23564 8.79557 7.10733C8.79228 6.97902 8.73977 6.8569 8.64891 6.76624C8.55806 6.67558 8.43582 6.62333 8.30751 6.6203C8.1792 6.61728 8.05463 6.66372 7.95961 6.75L6.49661 8.2135L6.50011 0.5C6.50011 0.367392 6.44743 0.240215 6.35367 0.146447C6.2599 0.0526784 6.13272 0 6.00011 0V0C5.8675 0 5.74033 0.0526784 5.64656 0.146447C5.55279 0.240215 5.50011 0.367392 5.50011 0.5L5.49561 8.204L4.04061 6.75C3.94679 6.65625 3.81957 6.6036 3.68694 6.60365C3.5543 6.6037 3.42712 6.65643 3.33336 6.75025C3.23961 6.84407 3.18696 6.97129 3.18701 7.10393C3.18706 7.23656 3.23979 7.36375 3.33361 7.4575L4.93911 9.061Z" fill="#0374F6"/>
+                                            </g>
+                                            <g filter="url(#filter1_d_4117_176842)">
+                                            <path d="M11.5 8C11.3674 8 11.2402 8.05268 11.1464 8.14645C11.0527 8.24021 11 8.36739 11 8.5V10.5C11 10.6326 10.9473 10.7598 10.8536 10.8535C10.7598 10.9473 10.6326 11 10.5 11H1.5C1.36739 11 1.24021 10.9473 1.14645 10.8535C1.05268 10.7598 1 10.6326 1 10.5V8.5C1 8.36739 0.947322 8.24021 0.853553 8.14645C0.759785 8.05268 0.632608 8 0.5 8V8C0.367392 8 0.240215 8.05268 0.146447 8.14645C0.0526784 8.24021 0 8.36739 0 8.5L0 10.5C0 10.8978 0.158035 11.2793 0.43934 11.5607C0.720644 11.842 1.10218 12 1.5 12H10.5C10.8978 12 11.2794 11.842 11.5607 11.5607C11.842 11.2793 12 10.8978 12 10.5V8.5C12 8.36739 11.9473 8.24021 11.8536 8.14645C11.7598 8.05268 11.6326 8 11.5 8Z" fill="#0374F6"/>
+                                            </g>
+                                            </g>
+                                            <defs>
+                                            <filter id="filter0_d_4117_176842" x="1.18701" y="-1" width="9.60864" height="13.501" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                            <feOffset dy="1"/>
+                                            <feGaussianBlur stdDeviation="1"/>
+                                            <feComposite in2="hardAlpha" operator="out"/>
+                                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/>
+                                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_4117_176842"/>
+                                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_4117_176842" result="shape"/>
+                                            </filter>
+                                            <filter id="filter1_d_4117_176842" x="-2" y="7" width="16" height="8" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                            <feOffset dy="1"/>
+                                            <feGaussianBlur stdDeviation="1"/>
+                                            <feComposite in2="hardAlpha" operator="out"/>
+                                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/>
+                                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_4117_176842"/>
+                                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_4117_176842" result="shape"/>
+                                            </filter>
+                                            <clipPath id="clip0_4117_176842">
+                                            <rect width="12" height="12" fill="white"/>
+                                            </clipPath>
+                                            </defs>
+                                            </svg>
+
+                                        <div class="vuesax-bold-tick-circle" *ngIf="document?.downloaded">
+                                            <svg class="tick-circle1" width="8" height="7"
+                                                viewBox="0 0 8 7" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M4 -0.5C1.79536 -0.5 0 1.29536 0 3.5C0 5.70464 1.79536 7.5 4 7.5C6.20464 7.5 8 5.70464 8 3.5C8 1.29536 6.20464 -0.5 4 -0.5Z"
+                                                    fill="#12D176" stroke="white" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </button>
+                                <!-- <i class="fa-regular fa-eye" (click)="goToReview(document.id)"></i> -->
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-template>
+        </div>
+    </div>
+    <!-- End  Documents -->
+</div>

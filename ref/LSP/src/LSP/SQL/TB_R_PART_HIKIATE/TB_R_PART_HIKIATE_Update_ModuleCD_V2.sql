@@ -1,0 +1,5 @@
+﻿EXEC TB_R_PART_HIKIATE_Update_ModuleCD_V2 @id
+, @MODULE_CD
+, @COLOR
+, @REMARKS
+, @UPDATED_BY

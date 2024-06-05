@@ -1,0 +1,157 @@
+﻿@using System.Text 
+
+@{
+    MenuList menuList = Html.Toyota().Page.AuthorizedMenu;
+}
+
+@functions {
+    MvcHtmlString _DrawMenuIcon(Menu menuItem)
+    {
+        StringBuilder scriptBuilder = new StringBuilder();
+        if (!string.IsNullOrEmpty(menuItem.Glyph))
+        {
+            scriptBuilder.Append(string.Format("<i class=\"menu-icon fa fa-{0} \"></i>", menuItem.Glyph.ToLower()));
+        }
+        else if (!string.IsNullOrEmpty(menuItem.IconUrl))
+        {
+            // TODO: gambar icon di sini
+        }
+        return new MvcHtmlString(scriptBuilder.ToString());
+    }
+
+    string menuId = "";
+    string strNavigateUrl = "";
+    MvcHtmlString _DrawSubmenu(MenuList submenuList, string parentId){
+        StringBuilder menuBuilder = new StringBuilder();
+        
+        foreach (Menu submenuItem in submenuList)
+        {
+
+            //Fix bug of menu build wrong such as : http://192.168.2.45:6688/http://192.168.2.45:6688/http://192.168.2.45:6688/BI_TELEMAIL_PICKING/A1
+            strNavigateUrl = submenuItem.NavigateUrl;
+
+            if (strNavigateUrl.LastIndexOf("http://192.168.") >= 0)
+            {
+                strNavigateUrl = strNavigateUrl.Substring(strNavigateUrl.LastIndexOf("http://192.168."));
+            }
+            
+            menuId = string.Format("{0}-{1}", parentId, submenuItem.Id);
+            menuBuilder.Append(string.Format("<li id=\"{0}\" data-parent=\"{1}\">", menuId, parentId));
+            if (submenuItem.HasChildren())
+            {
+                menuBuilder.Append(string.Format("<a href=\"{0}\" class=\"dropdown-toggle\">{1} {2} <b class=\"arrow fa fa-angle-down\"></b> </a>", strNavigateUrl, _DrawMenuIcon(submenuItem), submenuItem.Text));
+                menuBuilder.Append("<b class=\"arrow\"></b>");
+                menuBuilder.Append("<ul class=\"submenu\">");
+                menuBuilder.Append(_DrawSubmenu(submenuItem.Children, menuId));
+                menuBuilder.Append("</ul>");
+            } 
+            else
+            {
+                menuBuilder.Append(string.Format("<a href=\"{0}\" class=\"sub-menu\" data-parent=\"{1}\">{2} {3}</a>", strNavigateUrl, parentId, _DrawMenuIcon(submenuItem), submenuItem.Text));
+                menuBuilder.Append("<b class=\"arrow\"></b>");
+            }
+            menuBuilder.Append("</li>");
+        }
+        return new MvcHtmlString(menuBuilder.ToString());
+    }
+}
+
+@if (menuList!=null)
+{
+    
+<!-- #section:basics/sidebar -->
+<div id="sidebar" class="sidebar responsive">
+	<script type="text/javascript">
+		try { ace.settings.check('sidebar', 'fixed') } catch (e) { }
+	</script>
+
+	<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+		<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+            <!-- #section:basics/sidebar.layout.shortcuts -->
+			<button href="#" class="btn btn-success" title="Copyright TMV IS @DateTime.Now.Year" id="btnAboutMenu">
+				<i class="ace-icon fa fa-lightbulb-o fa-lg" style="font-size: 1.5em;"></i>
+			 </button>
+
+            <a href="/ChangePassword" class="btn btn-info" title="Change Password" id="btnChangePassword1">
+				<i class="ace-icon fa fa-edit fa-lg"></i>
+			</a>
+           @* <button class="btn btn-info" title="Change Password" id="btnChangePassword">
+				<i class="ace-icon fa fa-edit fa-lg"></i>
+			</button>*@
+
+			<button class="btn btn-warning" title="Application Helpdesk" id="btnContactMenu">
+				<i class="ace-icon fa fa-users fa-lg"></i>
+			</button>
+
+			<a href="@Html.Toyota().Page.LogoutActionUrl" class="btn btn-danger" title="Sign Out">
+				<i class="ace-icon fa fa-sign-out fa-lg"></i>
+			</a>
+			<!-- /section:basics/sidebar.layout.shortcuts -->
+		</div>
+
+		<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+			<span class="btn btn-success"></span>
+
+			<span class="btn btn-info"></span>
+
+			<span class="btn btn-warning"></span>
+
+			<span class="btn btn-danger"></span>
+		</div>
+	</div><!-- /.sidebar-shortcuts -->
+
+
+    <ul class="nav nav-list">
+    @foreach (Menu menuItem in menuList)
+    {
+
+        if (!menuItem.Visible)
+        {
+            continue;
+        }
+            
+        <li id="@menuItem.Id">
+        @if (menuItem.HasChildren())
+        {
+            <a href="@menuItem.NavigateUrl" class="dropdown-toggle">
+				@_DrawMenuIcon(menuItem)
+				<span class="menu-text">
+					@menuItem.Text
+				</span>
+
+				<b class="arrow fa fa-angle-down"></b>
+			</a>
+
+			<b class="arrow"></b>
+
+			<ul class="submenu">
+                @_DrawSubmenu(menuItem.Children, menuItem.Id)
+            </ul>
+        }
+        else
+        {
+            <a href="@menuItem.NavigateUrl">
+				@_DrawMenuIcon(menuItem)
+				<span class="menu-text"> @menuItem.Text </span>
+			</a>
+
+			<b class="arrow"></b>
+        }
+        </li>
+            
+    }
+    </ul> <!-- /nav-list -->
+
+
+	<!-- #section:basics/sidebar.layout.minimize -->
+	<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+		<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+	</div>
+
+	<!-- /section:basics/sidebar.layout.minimize -->
+	<script type="text/javascript">
+	    try { ace.settings.check('sidebar', 'collapsed') } catch (e) { }
+	</script>
+</div>
+    
+}

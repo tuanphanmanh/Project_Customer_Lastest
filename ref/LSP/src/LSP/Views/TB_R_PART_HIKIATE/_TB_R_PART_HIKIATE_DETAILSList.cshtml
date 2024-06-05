@@ -1,0 +1,351 @@
+﻿   
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvListDetails";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = 10;
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50" };
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.CallbackRouteValues = new { Controller = "TB_R_PART_HIKIATE", Action = "GridCallback_Details" };
+           
+    settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Visible;
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 7;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Left;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+
+     //Focus row
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.Styles.FocusedRow.BackColor = System.Drawing.Color.SlateGray;
+    
+    //Export
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+    
+    //Toolbar
+    settings.Toolbars.Add(toolbar =>
+    {
+        toolbar.Enabled = true;
+        toolbar.EnableAdaptivity = true;
+        toolbar.Position = GridToolbarPosition.Top;
+        toolbar.ItemAlign = GridToolbarItemAlign.Left;
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                Html.DevExpress().ButtonEdit(s =>
+                {
+                    s.Name = "searchDetails";
+                    s.Properties.NullText = "Search inline...";
+                    s.Properties.Buttons
+                        .Add()
+                        .Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
+                }).Render();
+            });
+        });
+
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnExportDetailsXls";
+                    s.ClientSideEvents.Click = "function(s, e) {gvListDetails.ExportTo(ASPxClientGridViewExportFormat.Xls);}";
+                    s.Text = "Export to Xls";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxls16x16;
+                }).GetHtml();
+            });
+        });      
+    });
+                
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "No.";
+        c.FieldName = "ROW_NO";
+        c.Width = 60;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+    }
+    );
+
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "CFC";
+            c.FieldName = "CFC";
+            c.Width = 60;
+            c.FixedStyle = GridViewColumnFixedStyle.Left;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PROD. SFX";
+            c.FieldName = "PROD_SFX";
+            c.Width = 60;
+            c.FixedStyle = GridViewColumnFixedStyle.Left;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PART NO";
+            c.FieldName = "PART_NO";
+            c.FixedStyle = GridViewColumnFixedStyle.Left;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "COLOR SFX";
+            c.FieldName = "COLOR_SFX";
+            c.Width = 50;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.FixedStyle = GridViewColumnFixedStyle.Left;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PART NAME";
+            c.FieldName = "PART_NAME";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "QTY / VEHICLE";
+            c.FieldName = "QTY_PER_VEHICLE";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 70;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "BACK NO";
+            c.FieldName = "BACK_NO";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 50;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PARTS MACHING KEY";
+            c.FieldName = "PARTS_MACHING_KEY";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "SUPPLIER CODE";
+            c.FieldName = "SUPPLIER_CODE";
+            c.Width = 70;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "SHOP";
+            c.FieldName = "SHOP";
+            c.Width = 50;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DOCK";
+            c.FieldName = "DOCK";
+            c.Width = 50;
+        }
+    );
+
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DELIVERY PROCESS";
+            c.FieldName = "DELIVERY_PROCESS";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "ORGANISATION";
+            c.FieldName = "ORGANISATION";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "RECEIVING TIME";
+            c.FieldName = "RECEIVING_TIME";
+            c.Width = 70;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PLANT T/C FROM";
+            c.FieldName = "PLANT_TC_FROM";
+            c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+            c.Width = 80;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PLANT T/C TO";
+            c.FieldName = "PLANT_TC_TO";
+            c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+            c.Width = 80;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "START LOT";
+            c.FieldName = "START_LOT";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "END LOT";
+            c.FieldName = "END_LOT";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "PACKAGING TYPE";
+        c.FieldName = "PACKAGING_TYPE";
+        c.Width = 80;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "BOX SIZE";
+            c.FieldName = "BOX_SIZE";
+            c.Width = 70;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PACKING MIX";
+            c.FieldName = "PACKING_MIX";
+            c.Width = 70;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "BOX WEIGHT";
+            c.FieldName = "BOX_WEIGHT";
+            c.Width = 70;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "BOX W";
+            c.FieldName = "BOX_W";
+            c.Width = 60;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "BOX H";
+            c.FieldName = "BOX_H";
+            c.Width = 60;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "BOX L";
+            c.FieldName = "BOX_L";
+            c.Width = 60;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PALLET WEIGHT";
+            c.FieldName = "PALLET_WEIGHT";
+            c.Width = 70;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "QTY BOX / PALLET";
+            c.FieldName = "QTY_BOX_PER_PALLET";
+            c.Width = 70;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PALLET W";
+            c.FieldName = "PALLET_W";
+            c.Width = 60;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PALLET H";
+            c.FieldName = "PALLET_H";
+            c.Width = 60;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PALLET L";
+            c.FieldName = "PALLET_L";
+            c.Width = 60;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "UNIT";
+            c.FieldName = "UNIT";
+            c.Width = 50;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "COST";
+            c.FieldName = "COST";
+            c.Width = 60;
+        }
+    );
+
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "Is Active?";
+            c.FieldName = "IS_ACTIVE";
+            c.SetDataItemTemplateContent(cc =>
+            {
+                Html.DevExpress().CheckBox(checkboxSettings =>
+                {
+                    checkboxSettings.Name = "_IS_ACTIVE_DETAILS_" + Convert.ToString(DataBinder.Eval(cc.DataItem, "ID"));
+                    checkboxSettings.Checked = Convert.ToString(DataBinder.Eval(cc.DataItem, "IS_ACTIVE")) == "Y" ? true : false;
+                    checkboxSettings.Properties.ClientSideEvents.CheckedChanged = "function() { return false; }";
+                }).Render();
+            });
+        });
+    
+}).Bind(LSP.Models.TB_R_PART_HIKIATE.TB_R_PART_HIKIATEProvider.Instance.TB_R_PART_HIKIATE_SearchDetails(Model ?? new LSP.Models.TB_R_PART_HIKIATE.TB_R_PART_HIKIATEInfo())).GetHtml();
+
+   

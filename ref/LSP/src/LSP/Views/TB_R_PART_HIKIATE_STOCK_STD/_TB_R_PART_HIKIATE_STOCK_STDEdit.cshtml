@@ -1,0 +1,186 @@
+﻿@*
+---Phần Edit form, CssClass Validate
+    --Class (.hide) thẻ cha nếu bỏ qua
+
+TextBox : .val-required (Check Null), .val-integer (Check Integer)
+TimeEdit : .val-time (Check định dạng time)
+*@
+<table class="edit-form">
+	<tr>
+        <td class="label"> 
+			PART ID  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_PART_ID";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			MIN STOCK  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_MIN_STOCK";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			MAX STOCK  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_MAX_STOCK";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			TC FROM  
+		</td>
+        <td>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_TC_FROM";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+				settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			TC TO  
+		</td>
+        <td>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_TC_TO";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+				settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			IS ACTIVE  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_IS_ACTIVE";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			CREATED BY  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_CREATED_BY";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			CREATED DATE  
+		</td>
+        <td>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_CREATED_DATE";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+				settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			UPDATED BY  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_UPDATED_BY";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			UPDATED DATE  
+		</td>
+        <td>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_UPDATED_DATE";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+				settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="padding-top: 20px;">
+            <div style="float: right; margin-right: 20px;">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnCancel";
+                    settings.ControlStyle.CssClass = "button";
+                    settings.Text = "Cancel";
+                    settings.ClientSideEvents.Click = "OnBtnCancelClicked";
+                }).GetHtml()
+            </div>
+            <div style="float: right; margin-right: 5px">
+			 @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				 (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+					@Html.DevExpress().Button(settings =>
+					{
+						settings.Name = "btnUpdate";
+						settings.ControlStyle.CssClass = "button";
+						settings.Text = "Save";
+						settings.UseSubmitBehavior = true;
+						settings.ClientSideEvents.Click = "function(s, e){ OnBtnUpdateClicked(this) }";
+					}).GetHtml()
+				}
+            </div>
+            <span id="userStatus" class="action-status"></span>
+        </td>
+    </tr>
+</table>
+

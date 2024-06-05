@@ -1,0 +1,68 @@
+<ejs-dialog [isModal]='true' #modal id="modal" [visible]='visible' [animationSettings]='animationSettings'
+    [showCloseIcon]='false' [width]='dialogWidth'>
+    <ng-template #content>
+        <div class="frame-1171275376">
+            <div class="frame-1171275385">
+                <div class="frame-1171275284">
+                    <div class="vuesax-linear-close-circle" (click)="hide()">
+                        <div class="vuesax-linear-close-circle2">
+                            <svg class="close-circle" width="36" height="36" viewBox="0 0 36 36" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.7549 22.2449L22.2449 13.7549" stroke="#222222" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M22.2449 22.2449L13.7549 13.7549" stroke="#222222" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="frame-1171275283">
+                    <div class="frame">
+                        <div class="vuesax-linear-trash">
+                            <div class="vuesax-linear-trash2">
+                                <svg class="trash" width="75" height="75" viewBox="0 0 75 75" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M65.625 18.6875C55.2188 17.6562 44.75 17.125 34.3125 17.125C28.125 17.125 21.9375 17.4375 15.75 18.0625L9.375 18.6875"
+                                        stroke="#FF4A3F" stroke-width="5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        d="M26.5625 15.5312L27.25 11.4375C27.75 8.46875 28.125 6.25 33.4062 6.25H41.5938C46.875 6.25 47.2812 8.59375 47.75 11.4688L48.4375 15.5312"
+                                        stroke="#FF4A3F" stroke-width="5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        d="M58.9063 28.5625L56.875 60.0312C56.5313 64.9375 56.25 68.75 47.5312 68.75H27.4687C18.75 68.75 18.4688 64.9375 18.125 60.0312L16.0938 28.5625"
+                                        stroke="#FF4A3F" stroke-width="5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M32.2812 51.5625H42.6875" stroke="#FF4A3F" stroke-width="5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M29.6875 39.0625H45.3125" stroke="#FF4A3F" stroke-width="5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="frame-1171275480">
+                        <div class="remove">{{l('Remove')}}</div>
+                        <div class="frame-1171275481">
+                            <div
+                                class="are-you-sure-you-want-to-delete-this-document-this-action-cannot-be-undone-and-also-if-you-have-configured-any-fields-in-this-document-it-will-also-get-removed">
+                                {{messageText}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="frame-1171275387">
+                    <div class="frame-1171275438">
+                        <div class="component-38" (click)="hide()">
+                            <div class="no">No</div>
+                        </div>
+                        <div class="component-37" (click)="submit()">
+                            <div class="yes">Yes</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</ejs-dialog>

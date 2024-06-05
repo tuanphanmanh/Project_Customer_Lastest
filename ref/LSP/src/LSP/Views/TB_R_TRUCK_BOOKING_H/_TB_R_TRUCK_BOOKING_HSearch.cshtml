@@ -1,0 +1,53 @@
+﻿<div class="dxcontent_search">     
+    <div class="itembox">
+        <label class="placehoder">TRUCK</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+                settings.Name = "_txtTRUCK";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml() 
+    </div>
+     <div class="itembox">
+        <label class="placehoder">SUPPLIERS</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+                settings.Name = "_txtSUPPLIERS";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml() 
+    </div>
+    <div class="itembox">
+		<label class="placehoder">TRANSPORTER ABBR.</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+                settings.Name = "_txtTRANSPORTER_ABBR";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>   
+    <div class="itembox">		
+        @Html.DevExpress().RadioButtonList(settings =>
+         {
+             settings.Name = "_txtIS_ACTIVE";
+             settings.Properties.Items.Add("All", "-");            
+             settings.Properties.Items.Add("Active", "Y");
+             settings.Properties.Items.Add("InActive", "N");                         
+             settings.Properties.RepeatDirection = System.Web.UI.WebControls.RepeatDirection.Horizontal;             
+             settings.SelectedIndex = 1;
+         }).GetHtml()		       
+    </div>   
+    <div class="itembox">    
+		@if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+			(Html.Toyota().Page.ControllerName.ToString(), "Search"))
+		{	
+			@Html.DevExpress().Button(settings =>
+			{
+				settings.Name = "btnSearch";
+				settings.Text = "Search";
+                settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsSearch16x16devav; 
+				settings.ClientSideEvents.Click = "DoSearch";
+			}).GetHtml()
+		}
+    </div>
+</div>
+
+
+

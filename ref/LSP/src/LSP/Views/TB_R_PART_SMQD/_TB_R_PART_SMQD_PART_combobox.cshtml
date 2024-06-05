@@ -1,0 +1,28 @@
+﻿@Html.DevExpress().ComboBox(settings =>
+{
+    settings.Name = "_PART_ID"; 
+    settings.Width = 450;    
+    settings.ControlStyle.CssClass = "textbox val-required";    
+    settings.Properties.ValueField = "ID";
+    settings.Properties.ValueType = typeof(string);
+    settings.Properties.Columns.Add("ROW_NO", "NO.", 50);
+    settings.Properties.Columns.Add("SUPPLIER_CODE", "SUPPLIER", 70);
+    settings.Properties.Columns.Add("PART_NO", "PART NO", 100);
+    settings.Properties.Columns.Add("COLOR_SFX", "COLOR SFX", 70);      
+    settings.Properties.Columns.Add("BACK_NO", "BACK NO", 70);   
+    settings.Properties.Columns.Add("PART_NAME", "PART NAME", 140);
+    settings.Properties.Columns.Add("CFC", "CFC", 80);
+    settings.Properties.Columns.Add("PROD_SFX", "PROD SFX", 120);                             
+    settings.Properties.TextFormatString = "{0} - {1} - {2} - {3} - {4} - {5}";
+
+    settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+    settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
+    settings.Properties.ValidationSettings.RequiredField.ErrorText = "PART is required";
+    settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+    //settings.SelectedIndex = 0;
+    //settings.Properties.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['SUPPLIER_CODE'] = _SUPPLIER_CODE.GetValue(); }";
+    //settings.CallbackRouteValues = new { Controller = "TB_R_PART_SMQD", Action = "GridCallback_PART_HIKIATE_BY_SUPPLIER" };
+
+//}).BindList(((IList<LSP.Models.TB_R_PART_HIKIATE.TB_R_PART_HIKIATEInfo>)Model) ?? null ).GetHtml()
+}).BindList(LSP.Models.TB_R_PART_HIKIATE.TB_R_PART_HIKIATEProvider.Instance.TB_R_PART_HIKIATE_GetbySupplier("")).GetHtml()
+           

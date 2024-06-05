@@ -1,0 +1,401 @@
+﻿@*
+---Phần Edit form, CssClass Validate
+    --Class (.hide) thẻ cha nếu bỏ qua
+
+TextBox : .val-required (Check Null), .val-integer (Check Integer)
+TimeEdit : .val-time (Check định dạng time)
+*@
+<table class="edit-form">
+	<tr>
+        <td class="label"> 
+			DOCK  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_DOCK";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox val-required";
+                settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                settings.Properties.ValidationSettings.RequiredField.ErrorText = "required";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td> 
+        <td class="label"> 
+			TRUCK
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_TRUCK";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox val-required";
+                settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                settings.Properties.ValidationSettings.RequiredField.ErrorText = "required";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			SUPPLIERS (RECEIVE) 
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_SUPPLIERS";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox val-required";
+                settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                settings.Properties.ValidationSettings.RequiredField.ErrorText = "required";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td> 
+        <td class="label"> 
+			SUPPLIERS (RETURN)
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_SUPPLIERS_RETURN";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";                    
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td> 
+    </tr>
+    <tr>       
+        <td class="label"> 
+			SEQUENCE NO  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_SEQUENCE_NO";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox val-required";
+                settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                settings.Properties.ValidationSettings.RequiredField.ErrorText = "required";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+
+	<tr>
+        <td class="label"> 
+			WORKING DATE  
+		</td>
+        <td>
+            @Html.DevExpress().DateEdit(settings =>
+            {
+                settings.Name = "_WORKING_DATE";
+                settings.Width = 200;
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+                settings.ControlStyle.CssClass = "textbox val-required";
+                settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                settings.Properties.ValidationSettings.RequiredField.ErrorText = "required";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td> 
+        <td class="label"> 
+			SHIFT  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_SHIFT";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr> 
+	<tr>
+        <td class="label"> 
+			PLAN START U/L DATETIME  
+		</td>
+        <td>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_PLAN_START_UP_DATETIME";
+                settings.ControlStyle.CssClass = "dateedit val-required";
+				settings.Width = 200;
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy HH:mm:ss"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy HH:mm:ss";
+                settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                settings.Properties.ValidationSettings.RequiredField.ErrorText = "required";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td> 
+        <td class="label"> 
+			PLAN FINISH U/L DATETIME  
+		</td>
+        <td>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_PLAN_FINISH_UP_DATETIME";
+                settings.ControlStyle.CssClass = "dateedit val-required";
+				settings.Width = 200;
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy HH:mm:ss"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy HH:mm:ss";
+                settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                settings.Properties.ValidationSettings.RequiredField.ErrorText = "required";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			ACTUAL START U/L DATETIME  
+		</td>
+        <td>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_ACTUAL_START_UP_DATETIME";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy HH:mm:ss"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy HH:mm:ss";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td> 
+        <td class="label"> 
+			ACTUAL FINISH U/L DATETIME  
+		</td>
+        <td>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_ACTUAL_FINISH_UP_DATETIME";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy HH:mm:ss"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy HH:mm:ss";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			REVISED PLAN START U/L DATETIME  
+		</td>
+        <td>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_REVISED_PLAN_START_UP_DATETIME";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy HH:mm:ss"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy HH:mm:ss";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td> 
+        <td class="label"> 
+			REVISED PLAN FINISH U/L DATETIME  
+		</td>
+        <td>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_REVISED_PLAN_FINISH_UP_DATETIME";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy HH:mm:ss"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy HH:mm:ss";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			ACTUAL START U/L DELAY  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_ACTUAL_START_UP_DELAY";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td> 
+        <td class="label"> 
+			ACTUAL FINISH U/L DELAY  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_ACTUAL_FINISH_UP_DELAY";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			STATUS  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_STATUS";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td> 
+        <td class="label"> 
+			ISSUES  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_ISSUES";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			CAUSE  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_CAUSE";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td> 
+        <td class="label"> 
+			COUTERMEASURE  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_COUTERMEASURE";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			PIC RECORDER  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_PIC_RECORDER";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td> 
+        <td class="label"> 
+			PIC ACTION  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_PIC_ACTION";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			ACTION DUEDATE  
+		</td>
+        <td>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_ACTION_DUEDATE";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+				settings.Properties.DisplayFormatString = "dd/MM/yyyy HH:mm:ss"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy HH:mm:ss";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td> 
+        <td class="label"> 
+			RESULT  
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_RESULT";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label" > 
+			IS ACTIVE  
+		</td>
+        <td colspan="3">
+            @Html.DevExpress().CheckBox(
+            settings =>
+            {
+                settings.Name = "_IS_ACTIVE";
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="4" style="padding-top: 20px;">
+            <div style="float: right; margin-right: 400px;">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnCancel";
+                    settings.ControlStyle.CssClass = "button";
+                    settings.Text = "Cancel";
+                    settings.ClientSideEvents.Click = "OnBtnCancelClicked";
+                    settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsCancel16x16office2013;
+                }).GetHtml()
+            </div>
+            <div style="float: right; margin-right: 5px">
+			 @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				 (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+					@Html.DevExpress().Button(settings =>
+					{
+						settings.Name = "btnUpdate";
+						settings.ControlStyle.CssClass = "button";
+						settings.Text = "Save";
+						settings.UseSubmitBehavior = true;
+						settings.ClientSideEvents.Click = "function(s, e){ OnBtnUpdateClicked(this) }";
+                        settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.SaveSave16x16office2013;
+					}).GetHtml()
+				}
+            </div>
+            <span id="userStatus" class="action-status"></span>
+        </td>
+    </tr>
+</table>

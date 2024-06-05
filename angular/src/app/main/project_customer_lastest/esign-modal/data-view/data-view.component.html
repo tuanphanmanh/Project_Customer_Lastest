@@ -1,0 +1,33 @@
+<!-- <ejs-grid  [dataSource]='dataInput' #listviewInstance id="listRequestFilter" [allowGrouping]="allowGrouping"
+    [groupSettings]="groupSettings"
+    (rowSelected)="onChangeSelectionRow($event)" [selectionSettings]="selectionOptions" [allowSelection]='true'
+    [enableInfiniteScrolling]='true'
+    [filterSettings]="{ showFilterBarStatus: false }"
+    [enableVirtualMaskRow]="false"
+    [allowKeyboard]="false"
+    [currentViewData]="true"
+    [editSettings]="{ allowEditOnDblClick:false, showConfirmDialog:false }"
+    height="100%" (actionBegin)="onScroll($event)" >
+    <e-columns>
+        <e-column field="requestId" [isPrimaryKey]="true" >
+            <ng-template #template let-data>
+                <data-view-item [data]="data" id="requestId_{{data.requestId}}" (onFollowUp)="changeFollowUp($event)" [isCanFollowUp]="true"></data-view-item>
+            </ng-template>
+        </e-column>
+        <e-column field="isSigned" *ngIf="allowGrouping">
+        </e-column>
+    </e-columns>
+    <ng-template #groupSettingsCaptionTemplate let-data>
+        <div style="color: red" *ngIf="data.key !== 'Signed'">{{l('NeedsToSign')}}</div>
+        <div style="color: green" *ngIf="data.key === 'Signed'">{{l('Signed')}}</div>
+    </ng-template>
+</ejs-grid> -->
+<ejs-listview id='listRequestFilter' #listviewInstance #grid [fields]="{id: 'requestId'}"
+    (scroll)="onScroll($event)" (select)="onChangeSelectionRow($event)"
+    [dataSource]='dataInput' cssClass='e-list-template' [showHeader]='false'>
+    <ng-template #template let-data>
+        <data-view-item [data]="data" id="requestId_{{data.requestId}}" (onFollowUp)="changeFollowUp($event)"
+            [isCanFollowUp]="true"  [isActiveTab]="2"></data-view-item>
+    </ng-template>
+</ejs-listview>
+

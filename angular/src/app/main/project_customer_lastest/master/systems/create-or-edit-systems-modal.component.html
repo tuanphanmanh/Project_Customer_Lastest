@@ -1,0 +1,79 @@
+<ejs-dialog [header]='dialogHeader' [isModal]='isModal' #createOrEditSystems id="createOrEditSystems" [visible]='visible'
+    (close)="onCloseDialog()"
+    [animationSettings]='animationSettings' [showCloseIcon]='dialogCloseIcon' [width]='dialogWidth'>
+    <ng-template #content>
+        <form #mstPurchasePurposeForm="ngForm" *ngIf="createOrEditForm" [formGroup]="createOrEditForm" novalidate
+            autocomplete="off">
+            <div class="create-edit-form">
+                <div class="col-12 d-flex justify-content-around mt-2" hasError="code">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                        <esign-input [text]="l('Code')" [placeholder]="l('Code')" isRequired="true" [isValidate]="true"
+                            name="code" formControlName="code" [(ngModel)]="rowdata.code"></esign-input>
+                        <div class="error-message" errorMessage>
+                            <div *ifError="'required'">{{'Required'| localize}} *</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-around mt-2">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                        <esign-input [text]="l('LocalName')" [placeholder]="l('LocalName')" formControlName="localName" [(ngModel)]="rowdata.localName" name="localName"
+                        ></esign-input>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-around mt-2">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                        <esign-input [text]="l('InternationalName')" [placeholder]="l('InternationalName')"
+                            formControlName="internationalName" name="internationalName" [(ngModel)]="rowdata.internationalName"
+                        ></esign-input>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-around mt-2">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                        <esign-textarea [text]="l('LocalDescription')" [placeholder]="l('LocalDescription')"
+                            formControlName="localDescription" name="localDescription" [(ngModel)]="rowdata.localDescription"
+                        ></esign-textarea>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-around mt-2">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                        <esign-textarea [text]="l('InternationalDescription')"
+                            [placeholder]="l('InternationalDescription')" formControlName="internationalDescription"
+                            name="internationalDescription" [(ngModel)]="rowdata.internationalDescription"
+                        ></esign-textarea>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-around mt-2">
+                    <div id='dropArea' style='height: auto; width: 100%;'>
+                        <span id='dropimage'> Drop image (JPG, PNG) files here</span>
+                        <ejs-uploader #previewupload id='previewfileupload' [multiple]="false"
+                            [dropArea]='dropElement' [allowedExtensions]='allowExtensions' (selected)='onSelect($event)'
+                            (progress)='onFileUpload($event)' (removing)='onFileRemove($event)'>
+                        </ejs-uploader>
+                        <img *ngIf="!fileDetails?.rawFile" style="border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; height: 100px;" [src]="rowdata.imgUrl" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="button-action-form d-flex justify-content-end align-items-center">
+                <div class="button-action mr-2">
+                    <button ejs-button [isPrimary]="true" (click)="save()" iconCss="fas fa-save"
+                        cssClass="e-outline">{{ 'Save' | localize }}</button>
+                    <button class="ghost" #submitBtn></button>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</ejs-dialog>
+<style>
+    .e-upload .e-upload-files {
+        width: 100%;
+        height: 150px;
+    }
+    .upload-image {
+        height: 50%;
+        display: flex;
+        padding: 0 10px;
+    }
+    .file-name, .file-size {
+        padding: 10px 10px 0px 10px;
+    }
+</style>

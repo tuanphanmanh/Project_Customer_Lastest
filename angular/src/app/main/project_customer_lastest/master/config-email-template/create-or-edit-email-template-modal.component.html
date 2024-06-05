@@ -1,0 +1,48 @@
+<ejs-dialog [header]='dialogHeader' [isModal]='isModal' #createOrEditDepartment id="createOrEditDepartment"
+    (close)="onCloseDialog()"
+    [visible]='visible' [animationSettings]='animationSettings' [showCloseIcon]='dialogCloseIcon' [width]='dialogWidth'>
+    <ng-template #content>
+        <form #mstPurchasePurposeForm="ngForm" *ngIf="createOrEditForm" [formGroup]="createOrEditForm" novalidate
+            autocomplete="off">
+            <div class="create-edit-form">
+                <div class="col-12 d-flex justify-content-around mt-2" hasError="templateCode">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                        <esign-input [text]="l('Code')" [placeholder]="l('Code')" isRequired="true" [isValidate]="true"
+                            name="templateCode" formControlName="templateCode" [(ngModel)]="rowdata.templateCode"></esign-input>
+                        <div class="error-message" errorMessage>
+                            <div *ifError="'required'">{{'Required'| localize}} *</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-around mt-2">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12" hasError="title">
+                        <esign-input [text]="l('EmailTitle')" [placeholder]="l('Title')" formControlName="title"
+                            isRequired="true" [isValidate]="true" [(ngModel)]="rowdata.title"></esign-input>
+                        <div class="error-message" errorMessage>
+                            <div *ifError="'required'">{{'Required'| localize}} *</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-around mt-2">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12" hasError="message">
+                        {{l('Message')}}
+                        <ejs-richtexteditor id='iframeRTE' formControlName="message" name="message" [(ngModel)]="rowdata.message" [value]="rowdata.message" [toolbarSettings]='tools' [iframeSettings]='iframe' [height]='height'>
+                        </ejs-richtexteditor>
+                        <!-- <p-editor formControlName="message" name="message"
+                            [(ngModel)]="rowdata.message" [style]="{ height: '320px' }"></p-editor> -->
+                        <div class="error-message" errorMessage>
+                            <div *ifError="'required'">{{'Required'| localize}} *</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button-action-form d-flex justify-content-end align-items-center">
+                <div class="button-action mr-2">
+                    <button ejs-button [isPrimary]="true" (click)="save()" iconCss="fas fa-save"
+                        cssClass="e-outline">{{ 'Save' | localize }}</button>
+                    <button class="ghost" #submitBtn></button>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</ejs-dialog>

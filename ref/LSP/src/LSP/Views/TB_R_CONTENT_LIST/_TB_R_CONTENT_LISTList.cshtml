@@ -1,0 +1,350 @@
+﻿@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvContentList" + Model.ORDER_ID;
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = 10;
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50" };
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+
+    settings.CallbackRouteValues = new { Controller = "TB_R_CONTENT_LIST", Action = "CONTENT_LIST_GridCallback", ORDER_ID = Model.ORDER_ID };
+
+    settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Visible;
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 7;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+
+    settings.SettingsResizing.ColumnResizeMode = ColumnResizeMode.Control;
+    settings.SettingsResizing.Visualization = ResizingMode.Live;
+    settings.SettingsBehavior.AllowEllipsisInText = true;
+    //Export
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+    settings.SettingsExport.BeforeExport = (sender, e) =>
+    {
+        MVCxGridView gridView = sender as MVCxGridView;
+        if (sender == null)
+            return;
+        gridView.Columns["Op."].Visible = false;
+    };
+
+    //Toolbar
+    settings.Toolbars.Add(toolbar =>
+    {
+        toolbar.Enabled = true;
+        toolbar.EnableAdaptivity = true;
+        toolbar.Position = GridToolbarPosition.Top;
+        toolbar.ItemAlign = GridToolbarItemAlign.Left;
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                Html.DevExpress().ButtonEdit(s =>
+                {
+                    s.Name = "searchContent";
+                    s.Properties.NullText = "Search inline...";
+                    s.Properties.Buttons
+                        .Add()
+                        .Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
+                }).Render();
+            });
+        });
+
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnContentExportXls";
+                    s.ClientSideEvents.Click = "function(s, e) {gvContentList" + Model.ORDER_ID + ".ExportTo(ASPxClientGridViewExportFormat.Xls);}";
+                    s.Text = "Export to Xls";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxlsx16x16office2013;
+                }).GetHtml();
+            });
+        });                
+               
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnContentPDF"; //ContentList_OpenPdf         //ContentList_SaveViewAsPDF
+                    s.ClientSideEvents.Click = "function(s, e) {ContentList_SaveViewAsPDF(gvContentList" + Model.ORDER_ID + ".GetRowKey(gvContentList" + Model.ORDER_ID + ".GetFocusedRowIndex()));}";
+                    s.Text = "Content List (PDF)";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttopdf16x16;
+                }).GetHtml();
+            });
+        });
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnKanbanPDF"; //Kanban_OpenPdf //Kanban_SaveViewAsPDF
+                    s.ClientSideEvents.Click = "function(s, e) {Kanban_SaveViewAsPDF(gvContentList" + Model.ORDER_ID + ".GetRowKey(gvContentList" + Model.ORDER_ID + ".GetFocusedRowIndex()));}";
+                    s.Text = "Kanban (PDF)";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttopdf16x16;
+                }).GetHtml();
+            });
+        });
+
+        /*          
+        toolbar.Items.Add(GridViewToolbarCommand.ShowFilterEditor);
+        toolbar.Items.Add(GridViewToolbarCommand.ClearFilter);
+        toolbar.Items.Add(GridViewToolbarCommand.ShowGroupPanel);
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "Help";
+                    s.ClientSideEvents.Init = "function(s, e) { }";
+                    s.ClientSideEvents.Click = "function(s, e) { }";
+                    s.Text = "Help";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.HelpIndex16x16gray;
+                }).GetHtml();
+            });
+        });*/
+
+
+    });
+    //For Search panel
+    settings.SettingsSearchPanel.CustomEditorName = "search";
+    settings.Styles.FocusedRow.BackColor = System.Drawing.Color.LightGray;
+    settings.Styles.Row.ForeColor = System.Drawing.Color.Black;
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "Op.";
+        c.Width = System.Web.UI.WebControls.Unit.Pixel(70);
+        c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        c.SetDataItemTemplateContent(
+            content =>
+            {
+                System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+                    strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Edit(this)' title='Edit'><i class='fa fa-pencil'></i></a>"));
+                }
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Delete"))
+                {
+                    strBuilder.Append(string.Concat(" <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Delete(this)'  title='Delete'><i class='fa fa-trash-o'></i></a>"));
+                }
+                Html.ViewContext.Writer.Write(strBuilder.ToString());
+            });
+    });
+
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "No.";
+            c.FieldName = "ROW_NO";
+            c.Width = 60;
+        }
+    );
+    /*
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "WORKING DATE";
+            c.FieldName = "WORKING_DATE";
+            c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+            c.Width = 80;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "SHIFT";
+            c.FieldName = "SHIFT";
+            c.Width = 80;
+
+        }
+    );
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "SUPPLIER CODE";
+        c.FieldName = "SUPPLIER_CODE";
+        c.Width = 70;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    }
+    );
+    
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "SUPPLIER NAME";
+            c.FieldName = "SUPPLIER_NAME";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    */
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "ORDER NO";
+        c.FieldName = "ORDER_NO";
+        c.Width = 120;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    }
+    );
+    
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "RENBAN NO";
+            c.FieldName = "RENBAN_NO";
+            c.Width = 80;
+        }
+    );
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "TRIP NO";
+        c.FieldName = "TRIP_NO";
+        c.Width = 70;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "DOCK NO";
+        c.FieldName = "DOCK_NO";
+        c.Width = 70;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    }
+    );
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "PALLET/BOX QTY";
+        c.FieldName = "PALLET_BOX_QTY";
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "PC ADDRESS";
+        c.FieldName = "PC_ADDRESS";
+        c.Width = 90;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+   
+    
+     /*  
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "ORDER DATETIME";
+            c.FieldName = "ORDER_DATETIME";
+            c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy hh:mm";
+            c.Width = 80;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+   
+   
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "EST PACKING DATETIME";
+            c.FieldName = "EST_PACKING_DATETIME";
+            c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy hh:mm";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "EST ARRIVAL DATETIME";
+            c.FieldName = "EST_ARRIVAL_DATETIME";
+            c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy HH:mm";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    */
+     settings.Columns.Add(c =>
+    {
+        c.Caption = "PACKAGING";
+        c.FieldName = "PACKAGING_TYPE";       
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    }
+    );
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "PALLET SIZE";
+        c.FieldName = "PALLET_SIZE";       
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 80;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "MODULE NO";
+        c.FieldName = "MODULE_NO";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 100;
+    });
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "IS PALLET ONLY?";
+        c.FieldName = "IS_PALLET_ONLY";        
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 80;
+    });
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "IS ACTIVE?";
+        c.FieldName = "IS_ACTIVE";
+        c.SetDataItemTemplateContent(cc =>
+        {
+            Html.DevExpress().CheckBox(checkboxSettings =>
+            {
+                checkboxSettings.Name = "_IS_ACTIVE_C_" + Convert.ToString(DataBinder.Eval(cc.DataItem, "ID"));
+                checkboxSettings.Checked = Convert.ToString(DataBinder.Eval(cc.DataItem, "IS_ACTIVE")) == "Y" ? true : false;
+                checkboxSettings.Properties.ClientSideEvents.CheckedChanged = "function() { return false; }";
+                //checkboxSettings.ClientEnabled = false;
+            }).Render();
+        });
+    });
+
+
+    //Master
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+    settings.SettingsDetail.ShowDetailRow = true;
+    settings.SetDetailRowTemplateContent(c =>
+    {
+        ViewContext.Writer.Write(
+            "<b>Kanban:</b> "
+            /*+ string.Concat("<a class='btnCollectionNew AssignKanban' href='#edit' data-id='", DataBinder.Eval(c.DataItem, "ID"),
+                                "' onclick='return KanbanNew(this)' title='New Kanban' >Assign Kanban</a>",
+
+                                "<div class='clear'></div>")*/
+                                );
+        
+        Html.RenderAction("KANBAN_GridCallback",
+                new LSP.Models.TB_R_KANBAN.TB_R_KANBANInfo() { CONTENT_LIST_ID = DataBinder.Eval(c.DataItem, "ID").ToString() });
+    });
+    settings.PreRender = (sender, e) =>
+    {
+        ((MVCxGridView)sender).DetailRows.ExpandRow(-1);
+    };
+
+}).Bind(LSP.Models.TB_R_CONTENT_LIST.TB_R_CONTENT_LISTProvider.Instance.TB_R_CONTENT_LIST_GetsByOrder(Model ?? new LSP.Models.TB_R_CONTENT_LIST.TB_R_CONTENT_LISTInfo())).GetHtml()
+

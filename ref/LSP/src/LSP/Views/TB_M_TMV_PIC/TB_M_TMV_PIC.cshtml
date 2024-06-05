@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="dxcontent_list">
+    <div class="content-header content-title">
+            @Html.Partial("_TB_M_TMV_PICSearch")                                         
+    </div>                
+    @using (Html.BeginForm()) {
+        @Html.Partial("_TB_M_TMV_PICList")
+    }   
+ 
+</div>
+@section HeadScript {
+    <script src="@Url.Content("~/Content/Scripts/App/TB_M_TMV_PIC.js")" type="text/javascript"></script>
+}
+        

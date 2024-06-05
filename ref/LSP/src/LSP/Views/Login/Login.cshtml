@@ -1,0 +1,540 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+
+		<title>@Html.Toyota().Application.Alias - Login</title>
+
+		<meta name="description" content="User login page" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<!-- bootstrap & fontawesome -->
+		<link rel="stylesheet" href="@Url.Content("~/Content/Bootstrap/css/bootstrap.css")" />
+		<link rel="stylesheet" href="@Url.Content("~/Content/Bootstrap/css/font-awesome.css")" />
+
+		<!-- text fonts -->
+		<link rel="stylesheet" href="@Url.Content("~/Content/Bootstrap/css/ace-fonts.css")" />
+
+		<!-- ace styles -->
+		<link rel="stylesheet" href="@Url.Content("~/Content/Bootstrap/css/ace.css")" />
+        <!--<link href="@Url.Content("~/Content/Bootstrap/css/anim.css")" rel="stylesheet"/> -->
+
+		<!--[if lte IE 9]-->
+		<link rel="stylesheet" href="@Url.Content("~/Content/Bootstrap/css/ace-part2.css")" />
+		<!--[endif]-->
+		<link rel="stylesheet" href="@Url.Content("~/Content/Bootstrap/css/ace-rtl.css")" />
+
+		<!--[if lte IE 9]-->
+		<link rel="stylesheet" href="@Url.Content("~/Content/Bootstrap/css/ace-ie.css")" />
+		<!--[endif]-->
+
+        <link rel="stylesheet" href="@Url.Content("~/Content/Style/Core/jquery-confirm.min.css")" />  
+
+        <style>
+            .login-container
+            {
+                width: auto;
+                max-width: 900px;
+            }
+            #carousel-login
+            {
+                max-width: 470px;
+                margin: 0 auto;
+            }
+            #forgot-box, #signup-box
+            {
+                max-width: 375px;
+                margin: 0 auto;
+            }
+            .login-main
+            {
+                padding-bottom: 36px !important;
+                padding-top: 36px !important;
+            }
+            .logo-title
+            {
+                width: 32px;
+            }
+            .login-app
+            {
+                font-family: LeagueSpartan;
+            }
+            
+            #company-name
+            {
+                font-size: 12px;
+                 margin-top: 20px;
+            }
+            
+            /* footer login box */
+            .login-box .toolbar
+            {
+               background: #f7f7f7 !important;
+               border-top: 2px solid #bcbcbc;
+            }
+            
+            /* no border on the login box */
+            .light-login .widget-box
+            {
+                box-shadow: none !important;
+                background-color: inherit !important;
+                border-bottom: none;
+            }
+            .light-login .widget-box.login-box
+            {
+                background-color: inherit !important;
+            }
+        </style>
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+		<!--[if lt IE 9]-->
+        <script type="text/javascript" src="@Url.Content("~/Content/Bootstrap/js/html5shiv.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Content/Bootstrap/js/respond.js")"></script>
+		<!--[endif]-->
+        <script type="text/javascript" src="@Url.Content("~/Content/UI/jquery.min.js")"></script>
+        <!--<script type="text/javascript" src="@Url.Content("~/Content/UI/message.js")"></script> -->
+
+        <!-- <script type="text/javascript" src="@Url.Content("~/Content/UI/jquery.bootstrap-growl.js")"></script> -->
+        <script type="text/javascript" src="@Url.Content("~/Content/UI/jquery.cookie.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Content/Scripts/Core/jquery-confirm.min.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Content/Scripts/Core/message.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Content/Scripts/Core/jquery.bootstrap-growl.js")"></script>
+	</head>
+
+	<body class="login-layout light-login">
+		<div class="main-container">
+			<div class="main-content">
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1">
+						<div class="login-container">
+							<div class="center">
+								<h1>
+                                    <img src="@Url.Content("~/Content/Bootstrap/img/app-logo.png")" class="logo-title" alt="ISTD Logo" />
+									<span class="login-app red">@Html.Toyota().Application.Name</span>
+								</h1>
+                                <span id="company-name"> <font color="white">2021 &copy; @Html.Toyota().Application.OwnerName</font> </span>
+							</div>
+
+							<div class="space-6"></div>
+
+							<div class="position-relative">
+								<div id="login-box" class="login-box visible widget-box no-border">
+									<div class="widget-body">
+										<div class="widget-main login-main">
+
+                                        <div class="row">
+                                            <div class="col-sm-5">
+											    <h4 class="header blue lighter bigger">
+												    <i class="ace-icon fa fa-coffee green"></i>
+												    Please Enter Your Information
+											    </h4>
+
+											    <div class="space-6"></div>
+
+											    <form>
+												    <fieldset>
+													    <label class="block clearfix">
+														    <span class="block input-icon input-icon-right">
+															    <input type="text" class="form-control" id="txtusername" placeholder="Username" onkeypress="onEnter(event)" />
+															    <i class="ace-icon fa fa-user"></i>
+														    </span>
+													    </label>
+
+													    <label class="block clearfix">
+														    <span class="block input-icon input-icon-right">
+															    <input type="password" class="form-control" placeholder="Password" id="txtpassword" onkeypress="onEnter(event)" />
+															    <i class="ace-icon fa fa-lock"></i>
+														    </span>
+													    </label>
+
+													    <div>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input id="rememberme" name="remember" type="checkbox" value="Remember Me">Remember Me
+                                                                </label>
+                                                            </div>
+                                                        </div>
+
+													    <div class="clearfix">
+														    <button id="btnlogin"  type="button" data-loading-text="<i class='glyphicon-refresh-animate glyphicon glyphicon-refresh'></i> login" class="width-35 pull-right btn btn-sm btn-primary">
+															    <i class="ace-icon fa fa-key"></i>
+															    <span class="bigger-110">Login</span>
+														    </button>
+                                                            <span class="btn btn-lg btn-success btn-block text-center" id="lblmsg" style="visibility:hidden; color:White; position:absolute;">
+                                                                Please wait !!
+                                                            </span>
+
+                                                            @*<button id="btnlogin" type="button" class="btn btn-lg btn-success btn-block" data-loading-text="<i class='glyphicon-refresh-animate glyphicon glyphicon-refresh'></i> login" style="visibility:; position:relative;">&nbsp Login</button>
+                                                            <span class="btn btn-lg btn-success btn-block text-center" id="lblmsg" style="visibility:hidden; color:White; position:absolute;">
+                                                                Please wait !!
+                                                            </span>*@
+
+													    </div>
+
+													    <div class="space-4"></div>
+												    </fieldset>
+											    </form>
+                                            </div><!-- /.col -->
+
+                                            <div class="col-sm-7 hidden-xs">
+                                                @Html.Partial("_Carousel")
+                                            </div><!-- /.col -->
+                                        </div><!-- /.row -->
+
+										</div><!-- /.widget-main -->
+                                        
+										@*<div class="toolbar clearfix">
+											<div>
+												<a href="#" data-target="#forgot-box" class="forgot-password-link red">
+													<i class="ace-icon fa fa-arrow-left"></i>
+													I forgot my password
+												</a>
+											</div>
+
+											<div>
+												<a href="#" data-target="#signup-box" class="user-signup-link green">
+													I want to register
+													<i class="ace-icon fa fa-arrow-right"></i>
+												</a>
+											</div>
+										</div>*@
+									</div><!-- /.widget-body -->
+								</div><!-- /.login-box -->
+
+								<div id="forgot-box" class="forgot-box widget-box no-border">
+									<div class="widget-body">
+										<div class="widget-main">
+											<h4 class="header red lighter bigger">
+												<i class="ace-icon fa fa-key"></i>
+												Retrieve Password
+											</h4>
+
+											<div class="space-6"></div>
+											<p>
+												Enter your email and to receive instructions
+											</p>
+
+											<form>
+												<fieldset>
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="email" class="form-control" placeholder="Email" />
+															<i class="ace-icon fa fa-envelope"></i>
+														</span>
+													</label>
+
+													<div class="clearfix">
+														<button type="button" class="width-35 pull-right btn btn-sm btn-danger">
+															<i class="ace-icon fa fa-lightbulb-o"></i>
+															<span class="bigger-110">Send Me!</span>
+														</button>
+													</div>
+												</fieldset>
+											</form>
+										</div><!-- /.widget-main -->
+
+										<div class="toolbar center">
+											<a href="#" data-target="#login-box" class="back-to-login-link">
+												Back to login
+												<i class="ace-icon fa fa-arrow-right"></i>
+											</a>
+										</div>
+									</div><!-- /.widget-body -->
+								</div><!-- /.forgot-box -->
+
+								<div id="signup-box" class="signup-box widget-box no-border">
+									<div class="widget-body">
+										<div class="widget-main">
+											<h4 class="header green lighter bigger">
+												<i class="ace-icon fa fa-users blue"></i>
+												New User Registration
+											</h4>
+
+											<div class="space-6"></div>
+											<p> Enter your details to begin: </p>
+
+											<form>
+												<fieldset>
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="email" class="form-control" placeholder="Email" />
+															<i class="ace-icon fa fa-envelope"></i>
+														</span>
+													</label>
+
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="text" class="form-control" placeholder="Username" />
+															<i class="ace-icon fa fa-user"></i>
+														</span>
+													</label>
+
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="password" class="form-control" placeholder="Password" />
+															<i class="ace-icon fa fa-lock"></i>
+														</span>
+													</label>
+
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="password" class="form-control" placeholder="Repeat password" />
+															<i class="ace-icon fa fa-retweet"></i>
+														</span>
+													</label>
+
+													<label class="block">
+														<input type="checkbox" class="ace" />
+														<span class="lbl">
+															I accept the
+															<a href="#" id="link-agreement">User Agreement</a>
+														</span>
+													</label>
+
+													<div class="space-24"></div>
+
+													<div class="clearfix">
+														<button type="reset" class="width-30 pull-left btn btn-sm">
+															<i class="ace-icon fa fa-refresh"></i>
+															<span class="bigger-110">Reset</span>
+														</button>
+
+														<button type="button" class="width-65 pull-right btn btn-sm btn-success">
+															<span class="bigger-110">Register</span>
+
+															<i class="ace-icon fa fa-arrow-right icon-on-right"></i>
+														</button>
+													</div>
+												</fieldset>
+											</form>
+										</div>
+
+										<div class="toolbar center">
+											<a href="#" data-target="#login-box" class="back-to-login-link">
+												<i class="ace-icon fa fa-arrow-left"></i>
+												Back to login
+											</a>
+										</div>
+									</div><!-- /.widget-body -->
+								</div><!-- /.signup-box -->
+							</div><!-- /.position-relative -->
+                            
+						</div>
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div><!-- /.main-content -->
+		</div><!-- /.main-container -->
+
+        @Html.Partial("_Agreement")
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<script type="text/javascript">
+		    window.jQuery || document.write("<script src='/content/Bootstrap/js/jquery.js'>" + "<" + "/script>");
+		    if ('ontouchstart' in document.documentElement) document.write("<script src='/content/Bootstrap/js/jquery.mobile.custom.js'>" + "<" + "/script>");
+		</script>
+        <script type="text/javascript" src="@Url.Content("~/Content/Bootstrap/js/bootstrap.js")"></script>
+
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+		    jQuery(function ($) {
+		        $(document).on('click', '.toolbar a[data-target]', function (e) {
+		            e.preventDefault();
+		            var target = $(this).data('target');
+		            $('.widget-box.visible').removeClass('visible'); //hide others
+		            $(target).addClass('visible'); //show target
+		        });
+		    });
+
+
+		    //you don't need this, just used for changing background
+		    jQuery(function ($) {
+		        $('#btn-login-dark').on('click', function (e) {
+		            setCookie('login_skin', 'login-layout');
+		            $('body').attr('class', 'login-layout');
+		            $('#id-text2').attr('class', 'white');
+		            $('#id-company-text').attr('class', 'blue');
+
+		            e.preventDefault();
+		        });
+
+		        $('#btn-login-light').on('click', function (e) {
+		            setCookie('login_skin', 'light-login');
+		            $('body').attr('class', 'login-layout light-login');
+		            $('#id-text2').attr('class', 'grey');
+		            $('#id-company-text').attr('class', 'blue');
+
+		            e.preventDefault();
+		        });
+
+		        $('#btn-login-blur').on('click', function (e) {
+		            setCookie('login_skin', 'blur-login');
+		            $('body').attr('class', 'login-layout blur-login');
+		            $('#id-text2').attr('class', 'white');
+		            $('#id-company-text').attr('class', 'light-blue');
+
+		            e.preventDefault();
+		        });
+
+		    });
+
+		    $("#link-agreement").click(function () {
+		        $("#agreement-popup").modal();
+		    });
+
+		    /** Skin layout **/
+		    function setCookie(cname, cvalue) {
+		        document.cookie = cname + '=' + cvalue;
+		    }
+
+		    function getCookie(cname) {
+		        var name = cname + "=";
+		        var ca = document.cookie.split(';');
+		        for (var i = 0; i < ca.length; i++) {
+		            var c = ca[i];
+		            while (c.charAt(0) == ' ') c = c.substring(1);
+		            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+		        }
+		        return "";
+		    }
+
+		    //---=== Cookie reader
+		    var bodySkin = getCookie("login_skin");
+
+		    switch (bodySkin) {
+		        case 'login-layout': $('body').attr('class', 'login-layout');
+		            $('#id-text2').attr('class', 'white');
+		            $('#id-company-text').attr('class', 'blue');
+		            break;
+		        case 'light-login': $('body').attr('class', 'login-layout light-login');
+		            $('#id-text2').attr('class', 'grey');
+		            $('#id-company-text').attr('class', 'blue');
+		            break;
+		        case 'blur-login': $('body').attr('class', 'login-layout blur-login');
+		            $('#id-text2').attr('class', 'white');
+		            $('#id-company-text').attr('class', 'light-blue');
+		            break;
+		        default:
+		            $('body').attr('class', 'login-layout');
+		            $('#id-text2').attr('class', 'white');
+		            $('#id-company-text').attr('class', 'blue');
+		            break;
+		    }
+		    //---=== End cookie reader
+
+
+		    //add by septareosagita@gmail.com
+		    //==================================
+		    $("#btnlogin").click(function () {
+		        Callajaxlogin();
+		    });
+
+
+
+		    $("#txtusername").val($.cookie("username"))
+		    $("#txtpassword").val($.cookie("password"))
+		    $("#rememberme").prop("checked", $.cookie("checked"));
+
+
+		    function onEnter(e) {
+		        var key = e.keyCode || e.which;
+		        if (key == 13) {
+		            Callajaxlogin();
+		        }
+		    }
+
+		    function Callajaxlogin() {
+		        if ($("#rememberme").is(":checked")) {
+		            $.cookie("username", $("#txtusername").val());
+		            $.cookie("password", $("#txtpassword").val());
+		            $.cookie("checked", true);
+		        }
+		        $.ajax({
+		            method: "post",
+		            url: "@Html.Toyota().Page.AjaxLoginActionUrl",
+		            data: {
+		                username: $("#txtusername").val(),
+		                password: $("#txtpassword").val()
+		            },
+		            beforeSend:
+                    function () {
+                        $('#btnlogin').button('loading');
+                    },
+		            success: function (data) {
+		                if (data == 'false') {
+		                    getLoginMessage(false);
+		                } else {
+		                    $('#lblmsg').attr('style', 'visibility:;position:relative;');
+		                    $('#btnlogin').attr('style', 'visibility:hidden;position:absolute;');
+		                    window.location.href = "@Html.Toyota().Page.HomeUrl";
+                        }
+		            },
+		            complete:
+                    function () {
+                        $('#btnlogin').button('reset');
+                    }
+		        });
+            }
+
+            function getResetMessage(st) {
+                $.ajax({
+                    type: "POST",
+                    url: "@Html.Toyota().Page.GetActionUrl("getResetMessage")",
+		            data: {
+		                Status: st
+		            },
+		            beforeSend: function () { $('#btnsend').button('loading'); },
+		            success: function (result) {
+		                if (result.ResultCode) {
+		                    msgOk(result.ResultDesc);
+		                }
+		                else {
+		                    msgError(result.ResultDesc);
+		                }
+		            },
+		            complete: function () { $('#btnsend').button('reset'); }
+		        });
+            }
+
+            function getLoginMessage() {
+                $.ajax({
+                    type: "POST",
+                    url: "@Html.Toyota().Page.GetActionUrl("getLoginMessage")",
+                    beforeSend: function () { $('#btnlogin').button('loading'); },
+                    success: function (result) {
+                        msgError(result);
+                    },
+                    complete: function () { $('#btnlogin').button('reset'); }
+                });
+            }
+
+            function getUserMessage() {
+                $.ajax({
+                    type: "POST",
+                    url: "@Html.Toyota().Page.GetActionUrl("getUserNotFound")",
+		            beforeSend: function () { $('#btnsend').button('loading'); },
+		            success: function (result) {
+		                msgError(result);
+		            },
+		            complete: function () { $('#btnsend').button('reset'); }
+		        });
+            }
+
+            function getEmailMessage() {
+                $.ajax({
+                    type: "POST",
+                    url: "@Html.Toyota().Page.GetActionUrl("getEmailNotFound")",
+                    beforeSend: function () { $('#btnsend').button('loading'); },
+                    success: function (result) {
+                        msgError(result);
+                    },
+                    complete: function () { $('#btnsend').button('reset'); }
+                });
+            }
+            //==================================
+		</script>
+	</body>
+</html>

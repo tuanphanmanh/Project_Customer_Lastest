@@ -1,0 +1,130 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        try {
+
+            $(".UI_Tab .titleframe").click(function () {
+                var _href = $(this).attr("href");
+                document.location.href = _href;
+                /*
+                $(".UI_Tab .tabtitle .titleframe, .UI_Tab .tabcont .contframe").removeClass("active");
+                $(this).addClass("active");
+                var val = $(this).attr("val");
+                $(".UI_Tab .tabcont div[val='" + val + "'].contframe").addClass("active");
+                */
+            });
+
+        } catch (ex) {
+            console.error(ex.message, null);
+        }
+    });
+
+</script>
+<div class="UI_Tab">
+    <div class="tabtitle">
+        <div class="titleframe T1 " val="T1" href="/TB_R_CONTENT_LIST"><span>Daily Order</span></div>
+        <div class="titleframe T2 " val="T2" href="/TB_R_PART_RUNDOWN"><span>Part Rundown</span></div>
+        <div class="titleframe T3 " val="T3" href="/TB_R_PART_RUNDOWN_V2"><span>Part Rundown V2</span></div>
+        <div class="titleframe T4 active" val="T4" href="#"><span>Stock Concept</span></div>
+        <div class="titleframe T5 " val="T5" href="/TB_R_PRODUCTION_PLAN_D"><span>Production Plan A</span></div>
+        <div class="titleframe T6 " val="T6" href="/TB_R_PRODUCTION_PLAN_D_W"><span>Production Plan W</span></div>
+        <div class="titleframe T7 " val="T7" href="/TB_R_PART_STOCK"><span>Part Stock</span></div>
+    </div>
+    <div class="clear"></div>
+    <div class="tabcont">
+        <div class="contframe T1 active" val="T1">
+
+
+
+                    <div class="dxcontent_list">
+	                    <div class="content-header content-title">
+                              @Html.Partial("_TB_M_SUPPLIER_STK_CONCEPTSearch")
+		                    <div class="action-area">
+			                    @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				                    (Html.Toyota().Page.ControllerName.ToString(), "New"))
+                                  {
+				                    @Html.DevExpress().Button(settings =>
+				                    {
+					                    settings.Name = "btnAdd";
+					                    settings.Text = "Add New";
+                                        settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsAdd16x16;
+					                    settings.ClientSideEvents.Click = "Add";
+				                    }).GetHtml()
+			                    }
+		                    </div>
+	                    </div>
+	                    @using (Html.BeginForm()) {
+			                    @Html.Partial("_TB_M_SUPPLIER_STK_CONCEPTList")
+	                    }
+	                            <div class="content-header content-title register">    
+                                    <div class="action-area" style="float: right;margin-right:2px;margin-top:0px">
+                                        @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                                            (Html.Toyota().Page.ControllerName.ToString(), "New"))
+                                            {
+				                                <button class="btn btn-primary btn-xs" type="button" onclick="GENERATE_PART_STKCONCEPT_DETAILS(); return false;">
+                                            <i class="fa fa-tasks"></i> Re-Generate STK Concept Parts</button>
+			                                }  
+                                    </div> 
+            
+                                    <div class="action-area" style="float: right;margin-right:2px;margin-top:0px">
+                                        @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				                            (Html.Toyota().Page.ControllerName.ToString(), "Upload"))
+                                            {
+				                                <button class="btn btn-primary btn-xs" type="button" onclick="IMPORT_SUPPLIER_STK_CONCEPT(); return false;">
+                                            <i class="fa fa-upload"></i> Upload</button>
+			                                }  
+                                    </div> 
+                                </div>
+
+                            @Html.DevExpress().PopupControl(settings =>
+                            {
+                                    settings.HeaderText = "IMPORT SUPPLIER STK CONCEPT";
+                                    settings.Name = "popIMPORT_SUPPLIER_STK_CONCEPT";
+                                    settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+                                    settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+                                    settings.Modal = true;
+                                    //settings.ShowCloseButton = true;
+                                    settings.CloseAction = CloseAction.CloseButton;
+                                    settings.PopupAnimationType = AnimationType.Fade;
+                                    settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+                                    settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+                                    settings.SetContent(() =>
+                                    {
+                                        Html.RenderPartial("_TB_M_SUPPLIER_STK_CONCEPTImport");
+                                    });
+                                    settings.ClientSideEvents.CloseUp = "OnPopSUPPLIER_STK_CONCEPTCloseUp";
+                                }).GetHtml()
+	
+	                    @Html.DevExpress().PopupControl(settings =>
+	                    {
+		                    settings.HeaderText = "TB_M_SUPPLIER_STK_CONCEPT Management";
+		                    settings.Name = "popTB_M_SUPPLIER_STK_CONCEPT";
+		                    settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+		                    settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+		                    settings.Modal = true;
+		                    settings.ShowCloseButton = true;
+		                    settings.PopupAnimationType = AnimationType.Fade;
+		                    settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+		                    settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+		                    settings.SetContent(() =>
+		                    {
+			                    Html.RenderPartial("_TB_M_SUPPLIER_STK_CONCEPTEdit");
+		                    });
+		                    settings.ClientSideEvents.CloseUp = "OnPopTB_M_SUPPLIER_STK_CONCEPTCloseUp";
+	                    }).GetHtml()
+
+	                    @section HeadScript {
+		                    <script src="@Url.Content("~/Content/Scripts/App/TB_M_SUPPLIER_STK_CONCEPT.js")" type="text/javascript"></script>
+	                    }
+                    </div>
+            </div>
+        <div class="contframe T2" val="T2"></div>
+        <div class="contframe T3" val="T3"></div>
+        <div class="contframe T4" val="T4"></div>
+        <div class="contframe T5" val="T5"></div>
+    </div>
+</div>

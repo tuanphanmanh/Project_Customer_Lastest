@@ -1,0 +1,60 @@
+﻿@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = 10;
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.CallbackRouteValues = new { Controller = "TB_M_USER_ROLES", Action = "GridCallback" };
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "";
+        c.Width = System.Web.UI.WebControls.Unit.Pixel(70);
+        c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        c.SetDataItemTemplateContent(content =>
+        {
+            System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+            strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Edit(this)' title='Edit'><i class='fa fa-pencil'></i></a>"));
+            strBuilder.Append(string.Concat(" <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Delete(this)' title='Delete'><i class='fa fa-trash-o'></i></a>"));
+            Html.ViewContext.Writer.Write(strBuilder.ToString());
+        }
+        );
+    }
+    );
+	settings.Columns.Add(c =>
+        {
+            c.Caption = "";
+            c.FieldName = "USER_CC";
+        }
+    );
+	settings.Columns.Add(c =>
+        {
+            c.Caption = "";
+            c.FieldName = "TEAM_ID";
+        }
+    );
+	settings.Columns.Add(c =>
+        {
+            c.Caption = "Ca : 1-Đỏ, 2-Vàng";
+            c.FieldName = "SHIFT";
+        }
+    );
+	settings.Columns.Add(c =>
+        {
+            c.Caption = "";
+            c.FieldName = "CREATE_DATE";
+        }
+    );
+	settings.Columns.Add(c =>
+        {
+            c.Caption = "";
+            c.FieldName = "UPDATE_DATE";
+        }
+    );
+    
+}).Bind(LSP.Models.TB_M_USER_ROLES.TB_M_USER_ROLESProvider.Instance.TB_M_USER_ROLES_Search(Model ?? new LSP.Models.TB_M_USER_ROLES.TB_M_USER_ROLESInfo())).GetHtml()
+

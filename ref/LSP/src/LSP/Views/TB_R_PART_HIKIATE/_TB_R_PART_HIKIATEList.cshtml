@@ -1,0 +1,576 @@
+﻿@using LSP.Models
+@{
+
+    try{
+        Html.DevExpress().GridView(settings =>
+        {
+            settings.Name = "gvList";
+            settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+            settings.KeyFieldName = "ID";
+            settings.SettingsPager.PageSize = LSP.Models.Common.PageSize_M(); //10
+            settings.SettingsPager.NumericButtonCount = 10;
+            settings.SettingsPager.AllButton.Visible = true;
+            settings.SettingsPager.AlwaysShowPager = true;
+            settings.SettingsPager.PageSizeItemSettings.Visible = true;
+            settings.SettingsPager.PageSizeItemSettings.Items = Common.PageSizeItemSettings(); //new string[] { "10", "20", "50" };
+            settings.Settings.ShowFilterRow = true;
+            settings.Settings.ShowFilterRowMenu = true;
+
+            settings.CallbackRouteValues = new { Controller = "TB_R_PART_HIKIATE", Action = "GridCallback" };
+
+            settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Visible;
+            settings.Styles.Header.Font.Bold = true;
+            settings.Styles.Header.Font.Size = 7;
+            settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+            settings.Styles.Header.Paddings.Padding = 3;
+            settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Left;
+            settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+            settings.Styles.Cell.Font.Size = 8;
+
+            //Focus row
+            settings.SettingsBehavior.AllowFocusedRow = true;
+            settings.Styles.FocusedRow.BackColor = System.Drawing.Color.SlateGray;
+
+            //Export
+            settings.SettingsExport.EnableClientSideExportAPI = true;
+            settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+            settings.SettingsExport.BeforeExport = (sender, e) =>
+            {
+                MVCxGridView gridView = sender as MVCxGridView;
+                if (sender == null)
+                    return;
+                gridView.Columns["Op."].Visible = false;
+            };
+
+            //Toolbar
+            settings.Toolbars.Add(toolbar =>
+            {
+                toolbar.Enabled = true;
+                toolbar.EnableAdaptivity = true;
+                toolbar.Position = GridToolbarPosition.Top;
+                toolbar.ItemAlign = GridToolbarItemAlign.Left;
+
+                toolbar.Items.Add(i =>
+                {
+                    i.BeginGroup = true;
+                    i.SetTemplateContent(c =>
+                    {
+                        Html.DevExpress().ButtonEdit(s =>
+                        {
+                            s.Name = "search";
+                            s.Properties.NullText = "Search inline...";
+                            s.Properties.Buttons
+                                .Add()
+                                .Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
+                        }).Render();
+                    });
+                });
+
+
+                toolbar.Items.Add(i =>
+                {
+                    i.BeginGroup = true;
+                    i.SetTemplateContent(c =>
+                    {
+                        @Html.DevExpress().Button(s =>
+                        {
+                            s.Name = "btnExportXls";
+                            s.ClientSideEvents.Click = "function(s, e) {gvList.ExportTo(ASPxClientGridViewExportFormat.Xls);}";
+                            s.Text = "Export to Xls";
+                            s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxls16x16;
+                        }).GetHtml();
+                    });
+                });
+
+                toolbar.Items.Add(i =>
+                {
+                    i.BeginGroup = true;
+                    i.SetTemplateContent(c =>
+                    {
+                        @Html.DevExpress().Button(s =>
+                        {
+                            s.Name = "btnDetails";
+                            s.ClientSideEvents.Click = "showdetail";
+                            s.Text = "Details";
+                            s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.EditCustomization16x16gray;
+                        }).GetHtml();
+                    });
+                });
+
+                //toolbar.Items.Add(GridViewToolbarCommand.ExportToXlsx);                
+                toolbar.Items.Add(i =>
+                {
+                    i.BeginGroup = true;
+                    i.SetTemplateContent(c =>
+                    {
+                        @Html.DevExpress().Button(s =>
+                        {
+                            s.Name = "Help";
+                            s.ClientSideEvents.Init = "function(s, e) { }";
+                            s.ClientSideEvents.Click = "function(s, e) { }";
+                            s.Text = "Help";
+                            s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.HelpIndex16x16gray;
+                        }).GetHtml();
+                    });
+                });
+
+                toolbar.Items.Add(GridViewToolbarCommand.ShowGroupPanel, true);
+            });
+            //For Search panel
+            settings.SettingsSearchPanel.CustomEditorName = "search";
+
+            /* For batch edit setting: BEGIN*/
+            if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature(Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+            {
+                //Action for batch update
+                settings.SettingsEditing.BatchUpdateRouteValues = new { Controller = "TB_R_PART_HIKIATE", Action = "BatchEditingUpdateModel" };
+
+                settings.SettingsEditing.Mode = GridViewEditingMode.Batch;
+                settings.SettingsEditing.BatchEditSettings.EditMode = GridViewBatchEditMode.Row;
+
+                settings.SettingsEditing.BatchEditSettings.StartEditAction = GridViewBatchStartEditAction.DblClick;
+                //settings.SettingsEditing.BatchEditSettings.KeepChangesOnCallbacks = DefaultBoolean.True;
+
+                settings.CommandColumn.Visible = false;
+                settings.CommandColumn.ShowDeleteButton = false;
+                settings.CommandColumn.ShowRecoverButton = false;
+                /* For batch edit setting: END*/
+            }
+
+
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "Op.";
+                c.Width = System.Web.UI.WebControls.Unit.Pixel(60);
+                c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+                c.SetDataItemTemplateContent(
+                    content =>
+                    {
+                        System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+                        if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                           (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                        {
+                            strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Edit(this)' title='Edit'><i class='fa fa-pencil'></i></a>"));
+                        }
+                        if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                           (Html.Toyota().Page.ControllerName.ToString(), "Delete"))
+                        {
+                            strBuilder.Append(string.Concat(" <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Delete(this)'  title='Delete'><i class='fa fa-trash-o'></i></a>"));
+                        }
+                        Html.ViewContext.Writer.Write(strBuilder.ToString());
+                    });
+                c.FixedStyle = GridViewColumnFixedStyle.Left;
+            });
+
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "No.";
+                c.FieldName = "ROW_NO";
+                c.Width = 50;
+                c.FixedStyle = GridViewColumnFixedStyle.Left;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "CFC";
+                c.FieldName = "CFC";
+                c.Width = 80;
+                c.FixedStyle = GridViewColumnFixedStyle.Left;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "PROD. SFX";
+                c.FieldName = "PROD_SFX";
+                c.Width = 170;
+                c.CellStyle.Font.Size = 7;
+                c.CellStyle.Wrap = DefaultBoolean.True;
+                c.FixedStyle = GridViewColumnFixedStyle.Left;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "PART NO";
+                c.FieldName = "PART_NO";
+                c.Width = 80;
+                c.FixedStyle = GridViewColumnFixedStyle.Left;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "COLOR SFX";
+                c.FieldName = "COLOR_SFX";
+                c.Width = 50;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.FixedStyle = GridViewColumnFixedStyle.Left;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "PART NAME";
+                c.FieldName = "PART_NAME";
+                c.CellStyle.Font.Size = 6;
+                c.Width = 200;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "QTY / VEHICLE";
+                c.FieldName = "QTY_PER_VEHICLE";
+                c.Width = 60;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "BACK NO";
+                c.FieldName = "BACK_NO";
+                c.Width = 60;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "PARTS MACHING KEY";
+                c.FieldName = "PARTS_MACHING_KEY";
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = 60;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "SUPPLIER CODE";
+                c.FieldName = "SUPPLIER_CODE";
+                c.Width = 70;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "SHOP";
+                c.FieldName = "SHOP";
+                c.Width = 50;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "DOCK";
+                c.FieldName = "DOCK";
+                c.Width = 50;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "DELIVERY PROCESS";
+                c.FieldName = "DELIVERY_PROCESS";
+                c.Width = 70;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "ORGANISATION";
+                c.FieldName = "ORGANISATION";
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "RECEIVING TIME";
+                c.FieldName = "RECEIVING_TIME";
+                c.Width = 70;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "PLANT T/C FROM";
+                c.FieldName = "PLANT_TC_FROM";
+                c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+                c.Width = 80;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "PLANT T/C TO";
+                c.FieldName = "PLANT_TC_TO";
+                c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+                c.Width = 80;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "START LOT";
+                c.FieldName = "START_LOT";
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = 170;
+                c.CellStyle.Font.Size = 7;
+                c.CellStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "END LOT";
+                c.FieldName = "END_LOT";
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = 170;
+                c.CellStyle.Font.Size = 7;
+                c.CellStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "PACKAGING TYPE";
+                c.FieldName = "PACKAGING_TYPE";
+                c.Width = 90;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "BOX SIZE";
+                c.FieldName = "BOX_SIZE";
+                c.Width = 50;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "PACKING MIX";
+                c.FieldName = "PACKING_MIX";
+                c.Width = 60;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "BOX WEIGHT";
+                c.FieldName = "BOX_WEIGHT";
+                c.Width = 60;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "BOX W";
+                c.FieldName = "BOX_W";
+                c.Width = 50;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "BOX H";
+                c.FieldName = "BOX_H";
+                c.Width = 50;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "BOX L";
+                c.FieldName = "BOX_L";
+                c.Width = 50;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "PALLET WEIGHT"; //PALLET WEIGHT -> MAX BOX of PK / PALLET
+                c.FieldName = "PALLET_WEIGHT";
+                c.Width = 70;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "MAX BOX of PK / PALLET";
+                c.FieldName = "QTY_BOX_PER_PALLET";
+                c.Width = 70;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "PALLET W";
+                c.FieldName = "PALLET_W";
+                c.Width = 60;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "PALLET H";
+                c.FieldName = "PALLET_H";
+                c.Width = 60;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "PALLET L";
+                c.FieldName = "PALLET_L";
+                c.Width = 60;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            }
+            );
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "UNIT";
+                c.FieldName = "UNIT";
+                c.Width = 60;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            });
+
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "COST";
+                c.FieldName = "COST";
+                c.Width = 60;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            });
+
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "MODULE CD";
+                c.FieldName = "MODULE_CD";
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = 70;
+            });
+
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "COLOR";
+                c.FieldName = "COLOR";
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = 90;
+                c.EditorProperties().ColorEdit(p =>
+                {
+                    p.EnableCustomColors = true;
+                    p.ColumnCount = 8;
+                });
+            });
+
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "REMARKS";
+                c.FieldName = "REMARKS";
+                c.Width = 70;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditorProperties().Memo(p =>
+                {
+                    p.MaxLength = 20;
+                    p.Rows = 1;
+                    p.Height = System.Web.UI.WebControls.Unit.Pixel(60);
+                });
+            });
+
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "Is Active? (Y/N)";
+                c.FieldName = "IS_ACTIVE";
+                c.Width = 70;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+                c.SetDataItemTemplateContent(cc =>
+                {
+                    Html.DevExpress().CheckBox(checkboxSettings =>
+                    {
+                        checkboxSettings.Name = "_IS_ACTIVE_" + Convert.ToString(DataBinder.Eval(cc.DataItem, "ID"));
+                        checkboxSettings.Checked = Convert.ToString(DataBinder.Eval(cc.DataItem, "IS_ACTIVE")) == "Y" ? true : false;
+                        checkboxSettings.Properties.ClientSideEvents.CheckedChanged = "function() { return false; }";
+                    }).Render();
+                });
+            });
+
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "UPDATED DATE";
+                c.FieldName = "UPDATED_DATE";
+                c.PropertiesEdit.DisplayFormatString = "dd/MM/yy HH:mm";
+                c.Width = 90;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            });
+
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "UPDATED BY";
+                c.FieldName = "UPDATED_BY";
+                c.Width = 70;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            });
+
+            //for full width of cell editor in columns    
+            settings.CellEditorInitialize = (s, e) =>
+            {
+                ASPxEdit editor = (ASPxEdit)e.Editor;
+                editor.ValidationSettings.Display = Display.Dynamic;
+            };
+
+            //Master
+            settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+            settings.SettingsDetail.ShowDetailRow = true;
+            settings.SetDetailRowTemplateContent(c =>
+            {
+                ViewContext.Writer.Write(
+                    "<b>HIKIATE STOCK STD:</b> " +
+                    string.Concat("<a class='btnCollectionNew Assign' href='#edit' data-id='", DataBinder.Eval(c.DataItem, "ID"),
+                                        "' onclick='return AssignNew(this)' title='New HIKIATE STOCK STD' >Assign HIKIATE STOCK STD</a>",
+                                        "<div class='clear'></div>"));
+                //string.Format(@"<a href="""" class=""dxbButton right"" id='btnAssignDolly' style=""margin-right:5px;"" onclick=""return AssignDolly('{0}')"">"+
+                //                           @"<div class=""dxb"">Add New Printer Dolly</div></a>", DataBinder.Eval(c.DataItem, "ID")));
+                Html.RenderAction("PART_HIKIATE_STOCK_STD_GridCallback",
+                        new LSP.Models.TB_R_PART_HIKIATE_STOCK_STD.TB_R_PART_HIKIATE_STOCK_STDInfo() { PART_ID = DataBinder.Eval(c.DataItem, "ID").ToString() });
+            });
+            settings.PreRender = (sender, e) =>
+            {
+                ((MVCxGridView)sender).DetailRows.ExpandRow(-1);
+            };
+
+
+        }).Bind(LSP.Models.TB_R_PART_HIKIATE.TB_R_PART_HIKIATEProvider.Instance.TB_R_PART_HIKIATE_Search(Model ?? new LSP.Models.TB_R_PART_HIKIATE.TB_R_PART_HIKIATEInfo())).GetHtml();
+
+
+    } catch(Exception ex) {
+        <script type="text/javascript">
+                alert("@ex.Message");
+        </script>
+    }
+}

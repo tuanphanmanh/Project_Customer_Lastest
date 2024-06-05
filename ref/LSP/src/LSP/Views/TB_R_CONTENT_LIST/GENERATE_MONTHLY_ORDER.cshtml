@@ -1,0 +1,102 @@
+﻿@*
+---Phần Edit form, CssClass Validate
+    --Class (.hide) thẻ cha nếu bỏ qua
+
+TextBox : .val-required (Check Null), .val-integer (Check Integer)
+TimeEdit : .val-time (Check định dạng time)
+*@
+@{    
+    string _user = Request.Cookies[LSP.Models.CookieFields.COOKIE_NAME][LSP.Models.CookieFields.USERNAME];
+}
+<table class="edit-form MONTHLY_ORDER" id="tb_GENERATE_MONTHLY_ORDER">
+	<tr>
+        <td class="label"> 
+			Order From Date:
+		</td>
+        <td>
+            @Html.DevExpress().DateEdit(settings =>
+            {
+                settings.Name = "_ORDER_FROM_DATE";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "dateedit val-required";
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+                settings.Date = DateTime.Now;
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>              
+    </tr>     
+    <tr> <td> <br /></td></tr>
+	<tr>
+        <td class="label"> 
+			Suppliers:
+		</td>
+        <td>
+			@Html.DevExpress().ListBox(settings => {
+                settings.Name = "_SUPPLIER_TO_ORDER";                
+                settings.Width = 300;
+                settings.Height = 300;        
+                settings.Properties.EnableClientSideAPI = true;
+                settings.Properties.SelectionMode = ListEditSelectionMode.CheckColumn;
+                settings.Properties.EnableSelectAll = false;
+                settings.Properties.FilteringSettings.ShowSearchUI = true;                           
+                settings.Properties.ValueField = "SUPPLIER_NAME";
+                settings.Properties.ValueType = typeof(string);                
+                settings.Properties.Columns.Add("SUPPLIER_CODE", "CODE");
+                settings.Properties.Columns.Add("SUPPLIER_NAME", "NAME");
+                settings.Properties.Columns.Add("SUPPLIER_PLANT_CODE", "PLANT",60);    
+                settings.Properties.Columns.Add("ORDER_TYPE", "ORDER TYPE");    
+         
+                settings.Properties.ClientSideEvents.SelectedIndexChanged = "SUPPLIER_ORDERSelectionChanged";                                                
+            }).BindList(LSP.Models.TB_M_SUPPLIER_INFO.TB_M_SUPPLIER_INFOProvider.Instance.TB_M_SUPPLIER_INFO_GetsAllNameByUser(_user)).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr> <td> <br /></td></tr>
+    <tr>
+        <td class="label"> 	
+            Reflect Prod. Plan Out?:		
+		</td>       
+        <td>
+           @Html.DevExpress().CheckBox(settings =>
+            {
+                settings.Name = "_IS_PP_OUT_CAL";
+                settings.Width = 80;
+                settings.Height = 30;
+                settings.Checked = false;                                                                     
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()			
+			<span class="messageerror"></span>
+        </td>
+    </tr>  
+    <tr>
+        <td colspan="2" style="padding-top: 20px;">
+            <div style="float: right; margin-right: 150px;">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnORDERCancel";
+                    settings.ControlStyle.CssClass = "button";
+                    settings.Text = "Cancel";
+                    settings.ClientSideEvents.Click = "OnPopGENERATE_MONTHLY_ORDERCloseUp";
+                    settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsCancel16x16gray;
+                }).GetHtml()
+            </div>
+            <div style="float: right; margin-right: 5px">
+			 @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				 (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+					@Html.DevExpress().Button(settings =>
+					{
+                        settings.Name = "BtnMONTHLY_ORDER";
+						settings.ControlStyle.CssClass = "button";
+						settings.Text = "Generate Order";
+						settings.UseSubmitBehavior = true;
+                        settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsTask16x16devav;
+                        settings.ClientSideEvents.Click = "function(s, e){ OnBtnMONTHLY_ORDERUpdateClicked(this) }";
+					}).GetHtml()
+				}
+            </div>
+            <span id="userStatus" class="action-status"></span>
+        </td>
+    </tr>
+</table>

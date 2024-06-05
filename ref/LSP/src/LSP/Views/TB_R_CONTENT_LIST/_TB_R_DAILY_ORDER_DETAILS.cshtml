@@ -1,0 +1,55 @@
+﻿ 
+    <div class="dxcontent_search">
+        <div class="itembox">            
+            @Html.DevExpress().DateEdit(settings =>
+            {
+                settings.Name = "_txtWORKING_MONTH";
+                settings.ControlStyle.CssClass = "dateedit textdate";
+                settings.Properties.Caption = "WORKING MONTH";                           
+                settings.Properties.DisplayFormatString = "MM/yyyy";
+                settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                settings.Properties.ValidationSettings.RequiredField.ErrorText = "WORKING MONTH is mandatory";
+                settings.Properties.ValidationSettings.SetFocusOnError = true; 
+                settings.Properties.EditFormatString = "MM/yyyy";
+            }).GetHtml()
+        </div>
+
+        <div class="itembox">		
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtSUPPLIER_DETAILS";
+                settings.Properties.Caption = "SUPPLIER";     
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+        </div>
+
+         <div class="itembox">  
+           @Html.DevExpress().CheckBox(settings =>
+            {
+                settings.Name = "_cbPIVOT_DETAILS";                
+                settings.Checked = false;
+                settings.Text = "Show Order Trip?";                                               
+            }).GetHtml() 
+            
+		 </div>
+
+        <div class="itembox">
+            @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                        (Html.Toyota().Page.ControllerName.ToString(), "Search"))
+            {	
+                @Html.DevExpress().Button(settings =>
+                        {
+                            settings.Name = "btnDetailsSearch";
+                            settings.Text = "Search";
+                            settings.ClientSideEvents.Click = "SelectORDER_MONTH";
+                            settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsSearch16x16devav;
+                        }).GetHtml()
+            }
+        </div>
+    </div>
+ 
+ @using (Html.BeginForm()) {
+    @Html.Partial("_TB_R_DAILY_ORDER_DETAILS_LIST")
+ }
+
+

@@ -1,0 +1,99 @@
+﻿<table class="edit-form">
+	<tr>
+        <td class="label"> 
+			USER_CC  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_USER_CC";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			TEAM_ID  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_TEAM_ID";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			Ca : 1-Đỏ, 2-Vàng  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_SHIFT";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			CREATE_DATE  
+		</td>
+        <td>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_CREATE_DATE";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+				settings.Properties.DisplayFormatString = "dd-MM-yyyy";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			UPDATE_DATE  
+		</td>
+        <td>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_UPDATE_DATE";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+				settings.Properties.DisplayFormatString = "dd-MM-yyyy";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="padding-top: 20px;">
+            <div style="float: right; margin-right: 20px;">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnCancel";
+                    settings.ControlStyle.CssClass = "button";
+                    settings.Text = "Cancel";
+                    settings.ClientSideEvents.Click = "OnBtnCancelClicked";
+                }).GetHtml()
+            </div>
+            <div style="float: right; margin-right: 5px">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnUpdate";
+                    settings.ControlStyle.CssClass = "button";
+                    settings.Text = "Save";
+                    settings.UseSubmitBehavior = true;
+                    settings.ClientSideEvents.Click = "function(s, e){ OnBtnUpdateClicked(this) }";
+                }).GetHtml()
+            </div>
+            <span id="userStatus" class="action-status"></span>
+        </td>
+    </tr>
+</table>
+

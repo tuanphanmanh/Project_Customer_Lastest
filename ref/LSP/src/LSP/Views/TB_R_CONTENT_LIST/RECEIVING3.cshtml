@@ -1,0 +1,65 @@
+﻿@{
+    Layout = "~/Views/Shared/_ScreenLayout.cshtml";
+}
+
+<div class="UNLOADING_DETAILS" >
+    <div class="controlMessage">
+        <span class="message1"></span>
+        <span class="message2"></span>
+        <span class="message3"></span>
+    </div>
+ 
+    <div class="clear"></div>
+    <div class="UNLOADING" >
+         <div class="WARP">
+            <div class="ST_TOP"  >              
+                <div class="TOP_ITEM TOTAL_QTY">
+                    <div class="alt">Số lượng hàng cần nhận</div>
+                    <div class="clear"></div>
+                    <div class="TOP_ITEM_SUB title">Total Quantity (By Shift)</div>
+                    <div class="TOP_ITEM_SUB val"></div>
+                </div> 
+            </div>
+            <div class="clear"></div>
+            <div class="ST_MAIN"  > 
+                    <div class="alt">Danh mục hàng</div>
+                    <div class="clear"></div>
+                    <div class="MAIN_LEFT">
+                        <div class="ST_HEADER"> 
+                            <div class="WARP">
+                                <div class="ST_LINE HEADER"> 
+                                    <div class="ST_COL STT1"><span>No</span></div>
+                                    <div class="ST_COL STT2"><span>Dock</span></div>
+                                    <div class="ST_COL STT3"><span>Invoice No</span></div>
+                                    <div class="ST_COL STT4"><span>ETA</span></div> 
+                                    <div class="ST_COL STT5"><span>Plan pallet</span></div>
+                                    <div class="ST_COL STT6"><span>Actual pallet</span></div>                                                                                        
+                                    <div class="ST_COL STT7"><span>Remark</span></div>  
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="ST_CONTENT">
+                            <div class="WARP">           
+                            </div>
+                        </div>
+                    </div>                                        
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="ST_BOTTOM"></div>
+        <div class="clear"></div>
+           
+    </div>        
+    <div class="clear"></div>
+    <span class="soundAttribute" soundstart="false" soundtype="" src="" caseno=""></span>
+</div>
+
+
+<link rel="Stylesheet" href="@Url.Content("~/Content/Style/App/RECEIVING3.css")" />
+<script src="@Url.Content("~/Content/Scripts/App/RECEIVING3.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    document.title = "RECEIVING";
+</script>
+
+
+ 

@@ -1,0 +1,54 @@
+﻿body{ margin:0;padding:0; font-family: 'Open Sans' , Arial;/*, 'NobelVnu' , Arial;*/ font-size: 12px ; font-weight: 600;
+       /*background:url("/Content/Images/App/grain.png") #f2f2f2;*/ 
+      transition: display 0.2s ease-in-out 0s;  }
+.clear{ clear:both; }
+.hide{ display:none; }
+
+.MAIN { width:100%; margin-top:5px;}
+.CONTENT {margin:auto; width:900px; text-align: center; }
+.CONTENT .WARP { width:120%; }
+
+.CONTENT .c1 { font-size: 30px; }
+.CONTENT .c2 { font-size: 14px; }
+.CONTENT .c3 { margin-top:5px; text-align:left; }
+.CONTENT .c3 i { font-weight:normal; font-size: 11px; }
+.CONTENT .c4 { height:20px; border-bottom: 1px solid black; }
+.CONTENT .c5 { padding: 2px 0; text-align:left; font-size: 10px; background-color:#D7F2F1; } 
+
+.CONTENT .tb1 { padding:0; margin-top:10px; border-bottom: 1px solid black; border-right: 1px solid black; width:900px;  }
+.CONTENT .tb1 td { border-left: 1px solid black; border-top: 1px solid black; height:20px; }
+.CONTENT .tb1 .t1, .CONTENT .tb1 .t3 { text-align:left; width: 200px; }
+.CONTENT .tb1 .t2, .CONTENT .tb1 .t4 { text-align:center; width: 150px; }
+.CONTENT .tb1 .t5 { text-align:center; width: 150px; }
+.CONTENT .tb1 .supt1 {  font-weight:normal; font-size: 11px; }
+.CONTENT .tb1 .Order_No { font-weight:900; }
+.CONTENT .tb1 .Delivery_date, .CONTENT .tb1 .Delivery_time, .CONTENT .tb1 .Trip_No {  font-weight:600;  }
+
+
+.CONTENT .tb2 { padding:0; margin-top:4px; border-bottom: 1px solid black; border-right: 1px solid black; width:900px; }
+.CONTENT .tb2 td { border-left: 1px solid black; border-top: 1px solid black; height:10px; font-size:9px;  }
+.CONTENT .tb2 td.Total_boxes_val,
+.CONTENT .tb2 td.Total_pallets_val,
+.CONTENT .tb2 td.total_none { border-left: none;  }
+.CONTENT .tb2 td.Total_boxes_val,
+.CONTENT .tb2 td.Total_pallets_val { text-align: right; color:#BD0000; }
+.CONTENT .tb2 td.Part_qty { background-color:yellow; }
+.CONTENT .tb2 td.Part_name { font-size: 8px; }
+.CONTENT .tb2 td.Part_No { font-size: 10px; width:12%;}
+.CONTENT .tb2 tr.data td { font-weight:normal; }
+
+.CONTENT .tb3 { padding:0; margin-top:15px; border-bottom: 1px solid black; border-right: 1px solid black; width:900px; border-spacing:0px; }
+.CONTENT .tb3 td { border-left: 1px solid black; border-top: 1px solid black; height:15px; }
+.CONTENT .tb3 .supt1 {  font-size:12px; font-weight:normal;  }
+.CONTENT .tb3 .t1 { font-size:12px; font-weight:normal;  border-spacing:0px;  }
+.CONTENT .tb3 .t2 { height:40px; width:20%; }
+
+
+.CONTENT .tb4 { padding:0; margin-top:5px; border-bottom: 1px solid black; border-right: 1px solid black; width:900px; }
+.CONTENT .tb4 td { border-left: 1px solid black; border-top: 1px solid black; height:10px; font-size:10px; }
+.CONTENT .tb4 td.Packazing_type { width:18%; }
+.CONTENT .tb4 td.Unit { width:28%; }
+.CONTENT .tb4 td.receiving_box { width:18%; }
+.CONTENT .tb4 td.Dummy_box { width:12%; }
+.CONTENT .tb4 td.return_box { width:13%; }
+.CONTENT .tb4 td.Remark { width:12%; }

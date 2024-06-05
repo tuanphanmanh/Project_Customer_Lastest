@@ -1,0 +1,183 @@
+﻿@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = 10;
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50" };
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.CallbackRouteValues = new { Controller = "TB_R_UP_PLAN_D", Action = "GridCallback" };
+
+    settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Visible;
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 7;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Left;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "";
+        c.Width = System.Web.UI.WebControls.Unit.Pixel(70);
+        c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        c.SetDataItemTemplateContent(
+            content =>
+            {
+                System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+                    strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Edit(this)' title='Edit'><i class='fa fa-pencil'></i></a>"));
+                }
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Delete"))
+                {
+                    strBuilder.Append(string.Concat(" <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Delete(this)'  title='Delete'><i class='fa fa-trash-o'></i></a>"));
+                }
+                Html.ViewContext.Writer.Write(strBuilder.ToString());
+            });
+    });
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "ID";
+            c.FieldName = "ID";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "UP PLAN H ID";
+            c.FieldName = "UP_PLAN_H_ID";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LINE";
+            c.FieldName = "LINE";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "NO";
+            c.FieldName = "NO";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "BACK NO";
+            c.FieldName = "BACK_NO";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "CASE NO";
+            c.FieldName = "CASE_NO";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "SUPPLIER NO";
+            c.FieldName = "SUPPLIER_NO";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "MODEL";
+            c.FieldName = "MODEL";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PART NO";
+            c.FieldName = "PART_NO";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PART NAME";
+            c.FieldName = "PART_NAME";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PC ADDRESS";
+            c.FieldName = "PC_ADDRESS";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "QTY";
+            c.FieldName = "QTY";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "BOX SIZE";
+            c.FieldName = "BOX_SIZE";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "QTY BOX";
+            c.FieldName = "QTY_BOX";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "QTY ACT";
+            c.FieldName = "QTY_ACT";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PXP LOCATION";
+            c.FieldName = "PXP_LOCATION";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "WORKING DATE";
+            c.FieldName = "WORKING_DATE";
+            c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "SHIFT";
+            c.FieldName = "SHIFT";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "UP STATUS";
+            c.FieldName = "UP_STATUS";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "INCOMP REASON";
+            c.FieldName = "INCOMP_REASON";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "IS ACTIVE";
+            c.FieldName = "IS_ACTIVE";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "IS OVER";
+            c.FieldName = "IS_OVER";
+        }
+    );
+
+}).Bind(LSP.Models.TB_R_UP_PLAN_D.TB_R_UP_PLAN_DProvider.Instance.TB_R_UP_PLAN_D_Search(Model ?? new LSP.Models.TB_R_UP_PLAN_D.TB_R_UP_PLAN_DInfo())).GetHtml()
+

@@ -1,0 +1,93 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        try {
+
+            $(".UI_Tab .titleframe").click(function () {
+                var _href = $(this).attr("href");
+                document.location.href = _href;
+                /*
+                $(".UI_Tab .tabtitle .titleframe, .UI_Tab .tabcont .contframe").removeClass("active");
+                $(this).addClass("active");
+                var val = $(this).attr("val");
+                $(".UI_Tab .tabcont div[val='" + val + "'].contframe").addClass("active");
+                */
+            });
+
+        } catch (ex) {
+            console.error(ex.message, null);
+        }
+    });
+
+</script>
+<div class="UI_Tab">
+    <div class="tabtitle">
+        <div class="titleframe T1 " val="T1" href="/TB_R_CONTENT_LIST"><span>Daily Order</span></div>
+        <div class="titleframe T2 " val="T2" href="/TB_R_PART_RUNDOWN"><span>Part Rundown</span></div>
+        <div class="titleframe T3 " val="T3" href="/TB_R_PART_RUNDOWN_V2"><span>Part Rundown V2</span></div>
+        <div class="titleframe T4 " val="T4" href="/TB_M_SUPPLIER_STK_CONCEPT"><span>Stock Concept</span></div>
+        <div class="titleframe T5 " val="T5" href="/TB_R_PRODUCTION_PLAN_D"><span>Production Plan A</span></div>
+        <div class="titleframe T6 active" val="T6" href="#"><span>Production Plan W</span></div>
+        <div class="titleframe T7 " val="T7" href="/TB_R_PART_STOCK"><span>Part Stock</span></div>
+    </div>
+    <div class="clear"></div>
+    <div class="tabcont">
+        <div class="contframe T1 active" val="T1">
+
+            <div class="dxcontent_list">
+                <div class="content-header content-title">
+                    @Html.Partial("_TB_R_PRODUCTION_PLAN_D_WSearch")
+                    <div class="action-area">
+                        @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                            (Html.Toyota().Page.ControllerName.ToString(), "New"))
+                        {
+                            @Html.DevExpress().Button(settings =>
+                            {
+                                settings.Name = "btnAdd";
+                                settings.Text = "Add New";
+                                settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsAdd16x16;
+                                settings.ClientSideEvents.Click = "Add";
+                            }).GetHtml()
+                        }
+                    </div>
+                </div>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.Partial("_TB_R_PRODUCTION_PLAN_D_WList")
+                }
+
+                @Html.DevExpress().PopupControl(settings =>
+                {
+                    settings.HeaderText = "TB_R_PRODUCTION_PLAN_D_W Management";
+                    settings.Name = "popTB_R_PRODUCTION_PLAN_D_W";
+                    settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+                    settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+                    settings.Modal = true;
+                    settings.ShowCloseButton = true;
+                    settings.PopupAnimationType = AnimationType.Fade;
+                    settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+                    settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+                    settings.SetContent(() =>
+                    {
+                        Html.RenderPartial("_TB_R_PRODUCTION_PLAN_D_WEdit");
+                    });
+                    settings.ClientSideEvents.CloseUp = "OnPopTB_R_PRODUCTION_PLAN_D_WCloseUp";
+                }).GetHtml()
+
+                @section HeadScript {
+                    <script src="@Url.Content("~/Content/Scripts/App/TB_R_PRODUCTION_PLAN_D_W.js")" type="text/javascript"></script>
+                }
+            </div>
+
+        </div>
+        <div class="contframe T2" val="T2"></div>
+        <div class="contframe T3" val="T3"></div>
+        <div class="contframe T4" val="T4"></div>
+        <div class="contframe T5" val="T5"></div>
+        <div class="contframe T6" val="T6"></div>
+        <div class="contframe T7" val="T7"></div>
+    </div>
+</div>

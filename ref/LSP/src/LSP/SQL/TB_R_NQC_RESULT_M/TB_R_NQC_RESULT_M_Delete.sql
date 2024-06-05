@@ -1,0 +1,2 @@
+EXEC TB_R_NQC_RESULT_M_Delete
+	@id 

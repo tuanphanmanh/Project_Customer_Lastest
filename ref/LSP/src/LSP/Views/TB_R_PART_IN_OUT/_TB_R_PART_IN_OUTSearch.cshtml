@@ -1,0 +1,32 @@
+﻿<div class="dxcontent_search"> 
+    <div class="itembox">
+		<label class="placehoder">PART_ID</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+                settings.Name = "_txtPART_ID";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml() 
+    </div>
+    <div class="itembox">
+        <label class="placehoder">STOCK_QTY</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+                settings.Name = "_txtSTOCK_QTY";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml() 
+    </div>
+
+    <div class="itembox">    
+		@if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+			(Html.Toyota().Page.ControllerName.ToString(), "Search"))
+		{	
+			@Html.DevExpress().Button(settings =>
+			{
+				settings.Name = "btnSearch";
+				settings.Text = "Search";
+                settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsSearch16x16devav; 
+				settings.ClientSideEvents.Click = "DoSearch";
+			}).GetHtml()
+		}
+    </div>
+</div>

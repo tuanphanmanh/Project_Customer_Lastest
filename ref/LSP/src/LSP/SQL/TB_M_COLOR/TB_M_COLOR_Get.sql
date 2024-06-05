@@ -1,0 +1,1 @@
+﻿EXEC TB_M_COLOR_Get @id

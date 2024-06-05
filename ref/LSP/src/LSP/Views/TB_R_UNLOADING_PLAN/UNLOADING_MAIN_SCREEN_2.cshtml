@@ -1,0 +1,241 @@
+﻿@{
+    Layout = "~/Views/Shared/_ScreenLayout.cshtml";
+}
+@using LSP.Models.TB_R_UNLOADING_PLAN;
+
+<link rel="Stylesheet" href="/Content/Style/App/UNLOADING_MAIN_SCREEN2.css" />
+@{
+    List<string> ListDock = (List<string>)ViewBag.ListDock;
+    IList<TB_R_UNLOADING_PLANInfo> obj = (IList<TB_R_UNLOADING_PLANInfo>)ViewBag.DATA;
+
+    string _shift = (obj.Count > 0) ? obj[0].SHIFT_NOW : "SHIFT1";
+    
+    
+    
+    string _break_time = "";
+    if (_shift == "SHIFT1"){
+    _break_time = _break_time + 
+                                /* 2020-07-01: Bo ko dung
+                                "<div class='worktime'>" +
+                                "        <div class='shift'> " +
+                                "            <div class='itemworktime b10p B b_gtime' start='2' finish='0.16' ></div> " +        //9h - 9h10
+                                "            <div class='itemworktime b50h B b_gtime' start='4.5' finish='0.83' ></div> " +      //11h30 - 12h20
+                                "            <div class='itemworktime b10p B b_gtime' start='6.83' finish='0.16' ></div> " +    //13h50 - 14h
+                                "            <div class='itemworktime b15p B b_gtime' start='8.58' finish='0.25' ></div> " +     //15h35 - 15h50
+                                "        </div>" +
+                                "</div>" +
+                                */
+                                "<div class='img_tamgiac'> <img src='/Content/Images/tamgiac.png' /> </div>" +
+                                "<div class='time_line_now'></div>";
+    }else{
+     _break_time = _break_time + 
+                                /* 2020-07-01: Bo ko dung
+                                "<div class='worktime'>" +
+                                "        <div class='shift'> " +
+                                "            <div class='itemworktime b15p B b_gtime' start='2.25' finish='0.25'></div> " +     //20h15 - 20h30
+                                "            <div class='itemworktime b50h B b_gtime' start='4.75' finish='0.83'></div> " +     //22h45 - 23h35
+                                "            <div class='itemworktime b15p B b_gtime' start='7' finish='0.25'></div> " +         //1h00 - 1h15
+                                "            <div class='itemworktime b20p B b_gtime' start='9.25' finish='0.33'></div> " +     //3h15 - 3h35
+                                "        </div>" +
+                                "</div>" +
+                                 */ 
+                                "<div class='img_tamgiac'> <img src='/Content/Images/tamgiac.png' /> </div>" +
+                                "<div class='time_line_now'></div>";
+    }
+    /*
+    _break_time = "<div class='worktime'>" +
+                        "        <div class='shift'> " +
+                        "            <div class='itemworktime b10p B b_gtime' start='2' finish='0.16' ></div> " +        //9h - 9h10
+                        "            <div class='itemworktime b50h B b_gtime' start='4.5' finish='0.83' ></div> " +      //11h30 - 12h20
+                        "            <div class='itemworktime b10p B b_gtime' start='6.83' finish='0.16' ></div> " +    //13h50 - 14h
+                        "            <div class='itemworktime b15p B b_gtime' start='8.58' finish='0.25' ></div> " +     //15h35 - 15h50
+                        
+                        "            <div class='itemworktime b15p B b_gtime' start='13.25' finish='0.25'></div> " +     //20h15 - 20h30
+                        "            <div class='itemworktime b50h B b_gtime' start='15.75' finish='0.83'></div> " +     //22h45 - 23h35
+                        "            <div class='itemworktime b15p B b_gtime' start='18' finish='0.25'></div> " +         //1h00 - 1h15
+                        "            <div class='itemworktime b20p B b_gtime' start='20.25' finish='0.33'></div> " +     //3h15 - 3h35
+                        "        </div>" +
+                        "</div>" +
+                        "<div class='img_tamgiac'> <img src='/Content/Images/tamgiac.png' /> </div>" +
+                        "<div class='time_line_now'></div>";
+    */                   
+                                    
+    string _title_hour = "";
+    string _content_hour = "";
+    
+    if (_shift == "SHIFT1"){
+        for (int i = 7; i <= 18; i++)
+        {
+            _title_hour = _title_hour + "<div class='TIME_ITEM'> " + 
+                                                "       <div class='minute'></div>" +
+                                                "       <div class='minute'></div>" +
+                                                "       <div class='minute'></div>" +
+                                                "       <div class='minute'></div>" +
+                                                "       <div class='minute'></div>" +
+                                                "       <div class='minute'></div>" +
+                                                "       <div class='TIM_ITEM_HOUR'>" + i.ToString() + "</div>" +
+                                                "    </div>";
+        }
+        for (int i = 7; i <= 18; i++)
+        {
+            _content_hour = _content_hour + "<div class='TIME_ITEM'>"+ 
+                                                            "</div>";
+        }
+    }
+    else{
+        for (int i = 18; i <= 23; i++)
+        {
+            _title_hour = _title_hour + "<div class='TIME_ITEM'> " + 
+                                                "       <div class='minute'></div>" +
+                                                "       <div class='minute'></div>" +
+                                                "       <div class='minute'></div>" +
+                                                "       <div class='minute'></div>" +
+                                                "       <div class='minute'></div>" +
+                                                "       <div class='minute'></div>" +
+                                                "       <div class='TIM_ITEM_HOUR'>" + i.ToString() + "</div>" +
+                                                "    </div>";
+        }
+        for (int i = 0; i <= 6; i++)
+        {
+            _title_hour = _title_hour + "<div class='TIME_ITEM'> " + 
+                                                "       <div class='minute'></div>" +
+                                                "       <div class='minute'></div>" +
+                                                "       <div class='minute'></div>" +
+                                                "       <div class='minute'></div>" +
+                                                "       <div class='minute'></div>" +
+                                                "       <div class='minute'></div>" +
+                                                "       <div class='TIM_ITEM_HOUR'>" + i.ToString() + "</div>" +
+                                                "    </div>";
+        }
+        for (int i = 18; i <= 23; i++)
+        {
+            _content_hour = _content_hour + "<div class='TIME_ITEM'>" + 
+                                                            "</div>";
+        }
+        for (int i = 0; i <= 6; i++)
+        {
+            _content_hour = _content_hour + "<div class='TIME_ITEM'>" + 
+                                                            "</div>";
+        }
+    }
+    
+   
+  
+
+}
+
+<div class="MAIN">
+        <div class="controlMessage">
+                <span class="message1"></span>  
+                <span class="message2"></span> 
+                <span class="message3"></span>
+        </div> 
+        <div class="clear"></div>
+         
+        <div class="UNLOAD">
+            <div class="WARP">
+                  
+                <div class="HEADER"> 
+                    <div class="WARP">
+                                <div class="REMARK">
+                                    <table class="tbremark" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td><div class="box_remark plan"></div> PLAN</td>
+                                            <td><div class="box_remark early"></div> EARLY≥5'</td>
+                                            <td><div class="box_remark going"></div> ON GOING</td>
+                                            <td><div class="box_remark delay"></div> DELAY≥5'</td>
+                                            <td><div class="box_remark update_plan"></div> UPDATE PLAN</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="HEADER_TITLE">
+                         
+                                        <div class="H_TITLE TXT">
+                                            <div class="WARP">
+                                                <div class="H_TITLE_SUB DOCK"><span>DOCK</span></div>
+                                                <div class="H_TITLE_SUB TRUCK"><span>TRUCK</span></div>
+                                                <div class="H_TITLE_SUB SUPPLIER"><span>SUPPLIER</span></div>
+                                            </div>
+                                        </div> 
+                                        <div class="H_TITLE HOUR">
+                                            <div class="WARP">                                                 
+                                                @Html.Raw(_break_time)                                                 
+                                                @Html.Raw(_title_hour)
+                                            </div>
+                                        </div> 
+
+                                </div>
+                    </div>
+                </div>
+                <div class="clear"></div> 
+                <div class="CONTENT">
+                    @{ 
+                        string _htm = "";
+                        for (int d = 0; d < ListDock.Count; d++)
+                        {
+
+                            List<TB_R_UNLOADING_PLANInfo> objDock = obj.Where(x => x.DOCK == ListDock[d]).ToList();
+                            string _dockcss = ListDock[d].Replace(" ", "").Replace(".", "_");
+                            _htm = _htm + "<div class='DATA DOCK " + _dockcss + "'>";
+                            for (int i = 0; i < objDock.Count; i++)
+                            {
+                                TB_R_UNLOADING_PLANInfo _truck = objDock[i];
+                                string txtDock = (i == 0) ? _truck.DOCK : "&nbsp;";
+                                string cssfirstitem = (i == 0) ? "FIRST_DOCK_ITEM" : "&nbsp;";
+                                string csslastitem = (objDock.Count == (i + 1)) ? "LAST_DOCK_ITEM" : "";
+                                string _keyTruck = _truck.TRUCK.Replace(".", "_") +
+                                                           _truck.SUPPLIERS.Replace("/", "").Replace(",", "").Replace(" ", "").Replace("(", "").Replace(")", "") +
+                                                           _truck.ROW_NO;
+
+                                _htm = _htm + "<div class='DATA_TRUCK " + _keyTruck + "'>" +
+                                                            "<div class='WARP'>" +
+                                                                    "<div class='D_DATA TITLE'>" +
+                                                                        "<div class='D_DATA_SUB DOCK " + cssfirstitem + " " + csslastitem + " '><span>" + txtDock + "</span></div>" +
+                                                                        "<div class='D_DATA_SUB TRUCK'><span>" + _truck.TRUCK + "</span></div>" +
+                                                                        "<div class='D_DATA_SUB SUPPLIER'><span>" + _truck.SUPPLIERS + "</span></div>" +
+                                                                    "</div>" +
+                                                                    "<div class='D_DATA VALUE'>" +
+                                                                        "<div class='WARP'>" +
+                                                                            _content_hour +
+                                                                        "</div> " +
+                                                                    "</div> " +
+                                                             "</div>" +
+                                                        "</div>" +
+                                                        "<div class='clear'></div>";  //end truck
+
+                            }
+                            if ((d + 1) != ListDock.Count)
+                            {
+                                _htm = _htm + "<div class='break_dock'></div>"; //end dock
+                            }
+                            _htm = _htm + "</div>"; //end dock
+                        }
+                       }
+                    
+                         @Html.Raw(_htm)
+                                         
+
+                             
+
+                </div>
+
+            </div>
+        </div>
+      
+    <div class="clear"></div> 
+    <div class="PAUSE_TIME myoverlay">  
+            <div class=" mypopup PAUSE_TIME_POP">
+                    <div class="content">PAUSE</div>
+            </div>
+    </div>
+    <div class="clear"></div> 
+    <span class="soundAttribute" soundstart="false" soundtype="" src="" caseno=""></span> 
+</div>
+
+
+ 
+<script src="@Url.Content("~/Content/Scripts/App/UNLOADING_MAIN_SCREEN2.js")" type="text/javascript"></script>
+
+<script type="text/javascript">
+    document.title = "UNLOADING MAIN SCREEN";
+</script>

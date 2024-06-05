@@ -1,0 +1,504 @@
+﻿<div class="d-flex align-items-center " data-toggle="dropdown" aria-expanded="true" container="body">
+    <div [class]="customStyle" #notificationIcon id="notificationIcon"
+        (click)="opNotification.toggle($event,notificationIcon)">
+        <!-- <i [class]="iconStyle" *ngIf="unreadNotificationCount"></i>
+        <span
+            class="position-absolute top-0 start-100 translate-middle badge badge-circle badge-warning"
+            *ngIf="unreadNotificationCount"
+        >
+            {{ unreadNotificationCount }}
+        </span> -->
+        <div class="vuesax">
+            <div class="vuesax-bold-notification">
+                <div class="notification">
+                    <svg class="vector-1" width="16" height="17" viewBox="0 0 16 17" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M15.3399 12.49L14.3399 10.83C14.1299 10.46 13.9399 9.76 13.9399 9.35V6.82C13.9399 4.47 12.5599 2.44 10.5699 1.49C10.0499 0.57 9.08994 0 7.98994 0C6.89994 0 5.91994 0.59 5.39994 1.52C3.44994 2.49 2.09994 4.5 2.09994 6.82V9.35C2.09994 9.76 1.90994 10.46 1.69994 10.82L0.689943 12.49C0.289943 13.16 0.199943 13.9 0.449943 14.58C0.689943 15.25 1.25994 15.77 1.99994 16.02C3.93994 16.68 5.97994 17 8.01994 17C10.0599 17 12.0999 16.68 14.0399 16.03C14.7399 15.8 15.2799 15.27 15.5399 14.58C15.7999 13.89 15.7299 13.13 15.3399 12.49Z"
+                            fill="white" />
+                    </svg>
+                    <svg class="vector2" width="6" height="2" viewBox="0 0 6 2" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M5.82993 0.0100002C5.40993 1.17 4.29993 2 2.99993 2C2.20993 2 1.42993 1.68 0.879931 1.11C0.559931 0.810001 0.319932 0.41 0.179932 0C0.309932 0.02 0.439931 0.0299992 0.579931 0.0499992C0.809931 0.0799992 1.04993 0.109999 1.28993 0.129999C1.85993 0.179999 2.43993 0.209999 3.01993 0.209999C3.58993 0.209999 4.15993 0.179999 4.71993 0.129999C4.92993 0.109999 5.13993 0.0999997 5.33993 0.0699997C5.49993 0.0499997 5.65993 0.0300002 5.82993 0.0100002Z"
+                            fill="white" />
+                    </svg>
+                    <p-badge id="totalUnreadAll" *ngIf="unreadNotificationCount > 0"
+                        [value]="unreadNotificationCount < 100 ? unreadNotificationCount : '99+'" severity="danger"></p-badge>
+                    <!-- <div class="ellipse-56" *ngIf="unreadNotificationCount > 0"></div>
+                    <div *ngIf="unreadNotificationCount < 100 && unreadNotificationCount > 0" class="_6">
+                        {{unreadNotificationCount}}</div>
+                    <div *ngIf="unreadNotificationCount >= 100" class="_6">99+</div> -->
+                </div>
+            </div>
+        </div>
+        <!-- <i class="fa-solid fa-bell" *ngIf="!unreadNotificationCount"></i> -->
+    </div>
+    <p-overlayPanel #opNotification id="opNotification">
+        <ng-template pTemplate="content">
+            <div class="frame-1000006348 searchedNoti">
+                <div class="state-read e-btn e-outline e-primary" (click)="changeTypeRead()">
+                    <svg *ngIf="typeRead == 0" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                        viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="m17.35 19.288l-2.813-2.838l.688-.688l2.125 2.125l4.25-4.25l.688.713zM3 20.077V4.615q0-.69.463-1.152Q3.925 3 4.615 3h14.77q.69 0 1.152.463q.463.462.463 1.152V11.5h-1V4.615q0-.23-.192-.423Q19.615 4 19.385 4H4.615q-.23 0-.423.192Q4 4.385 4 4.615v13.03L5.65 16h6.85v1H6.077zM4 16v1.385V4z" />
+                    </svg>
+                    <svg *ngIf="typeRead == 1" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                        viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="m6.077 17l-1.704 1.704q-.379.379-.876.174Q3 18.673 3 18.133V4.615q0-.69.463-1.152Q3.925 3 4.615 3H14.6q-.062.25-.071.49q-.01.24-.006.51H4.615q-.23 0-.423.192Q4 4.385 4 4.615v13.03L5.65 16h13.735q.23 0 .423-.192q.192-.193.192-.423V8.342q.287-.067.527-.155q.24-.087.473-.225v7.423q0 .69-.462 1.153q-.463.462-1.153.462zM19 6.462q-1.038 0-1.77-.731Q16.5 5 16.5 3.96q0-1.038.73-1.769q.732-.73 1.77-.73t1.77.73q.73.731.73 1.77q0 1.038-.73 1.769q-.732.73-1.77.73M4 4.616v12.77V4z" />
+                    </svg>
+                    <svg *ngIf="typeRead == 2" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                        viewBox="0 0 24 24">
+                        <path fill="none" stroke="currentColor" stroke-width="1.5"
+                            d="M3 20.29V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7.961a2 2 0 0 0-1.561.75l-2.331 2.914A.6.6 0 0 1 3 20.29Z" />
+                    </svg>
+                    <div class="read-type">
+                        {{textState}}
+                    </div>
+                </div>
+                <div class="tag">
+                    <div class="frame-45445">
+                        <ejs-tab [selectedItem]="activeType" id="user" heightAdjustMode='Content' height="100%"
+                            (selected)="onChangeType($event)">
+                            <e-tabitems>
+                                <e-tabitem [headerTemplate]="All">
+                                    <ng-template #All>
+                                        <div class="frame-45416">
+                                            <div class="all">{{l('All')}}</div>
+                                        </div>
+                                    </ng-template>
+                                </e-tabitem>
+                                <e-tabitem [headerTemplate]="Division">
+                                    <ng-template #Division>
+                                        <div class="frame-45418">
+                                            <div class="my-division">{{l('WaitingForOthers')}}</div>
+                                        </div>
+                                    </ng-template>
+                                </e-tabitem>
+                                <e-tabitem [headerTemplate]="File">
+                                    <ng-template #File>
+                                        <div class="frame-45417">
+                                            <div class="all">{{l('ActionRequired')}}</div>
+                                        </div>
+                                    </ng-template>
+                                </e-tabitem>
+                            </e-tabitems>
+                        </ejs-tab>
+                        <p-badge id="unreadNotificationCount" *ngIf="unreadNotificationCount > 0"
+                            [value]="unreadNotificationCount < 100 ? unreadNotificationCount : '99+'"
+                            severity="danger"></p-badge>
+                        <p-badge id="totalUnreadW" *ngIf="totalUnreadW > 0"
+                            [value]="totalUnreadW < 100 ? totalUnreadW : '99+'" severity="danger"></p-badge>
+                        <p-badge id="totalUnreadA" *ngIf="totalUnreadA > 0"
+                            [value]="totalUnreadA < 100 ? totalUnreadA : '99+'" severity="danger"></p-badge>
+                    </div>
+                </div>
+                <p-listbox id="listViewNotification" [options]="notifications" optionLabel="fullName" dataKey="id"
+                    [showToggleAll]="false" (scroll)="onScroll()" [checkbox]="false"
+                    (onClick)="readNotification($event)">
+                    <ng-template let-data pTemplate="item">
+                        <div class="comment">
+                            <div class="frame-1171275680">
+                                <div *ngIf="!data.isRead" class="ellipse-2074"></div>
+                            </div>
+                            <div class="frame-3">
+                                <div class="frame-1171275535">
+                                    <div class="frame-2">
+                                        <div class="frame-1171275624">
+                                            <div class="menu-item-noti">
+                                                <div class="icon-draw">
+                                                    <div class="vuesax-bold-tick-circle">
+                                                        <svg *ngIf="data?.notificationType === 'Rejected' || data?.notificationType === 'SignError'"
+                                                            width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                                                                stroke="#EB0A1E" stroke-width="1.5"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                            <path d="M9.17188 14.8299L14.8319 9.16992" stroke="#EB0A1E"
+                                                                stroke-width="1.5" stroke-linecap="round"
+                                                                stroke-linejoin="round" />
+                                                            <path d="M14.8319 14.8299L9.17188 9.16992" stroke="#EB0A1E"
+                                                                stroke-width="1.5" stroke-linecap="round"
+                                                                stroke-linejoin="round" />
+                                                        </svg>
+                                                        <svg *ngIf="data?.notificationType === 'Signed'" width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M14 21C13.8 21 13.625 20.925 13.475 20.775C13.325 20.625 13.25 20.45 13.25 20.25C13.25 20.0333 13.325 19.8542 13.475 19.7125C13.625 19.5708 13.8 19.5 14 19.5C14.9833 19.5 15.8125 19.3 16.4875 18.9C17.1625 18.5 17.5 18.0333 17.5 17.5C17.5 17.1167 17.2542 16.7417 16.7625 16.375C16.2708 16.0083 15.6083 15.725 14.775 15.525L15.95 14.35C17 14.6667 17.7708 15.1042 18.2625 15.6625C18.7542 16.2208 19 16.8333 19 17.5C19 18.6167 18.4917 19.4792 17.475 20.0875C16.4583 20.6958 15.3 21 14 21ZM6 13.65C4.93333 13.4167 4.16667 13.05 3.7 12.55C3.23333 12.05 3 11.5333 3 11C3 10.4167 3.21667 9.89167 3.65 9.425C4.08333 8.95833 5.08333 8.44167 6.65 7.875C7.75 7.475 8.45833 7.15 8.775 6.9C9.09167 6.65 9.25 6.35833 9.25 6.025C9.25 5.60833 9.06667 5.25 8.7 4.95C8.33333 4.65 7.76667 4.5 7 4.5C6.55 4.5 6.16667 4.55833 5.85 4.675C5.53333 4.79167 5.25 4.975 5 5.225C4.86667 5.35833 4.69583 5.4375 4.4875 5.4625C4.27917 5.4875 4.09167 5.43333 3.925 5.3C3.74167 5.16667 3.64583 5 3.6375 4.8C3.62917 4.6 3.69167 4.425 3.825 4.275C4.10833 3.90833 4.53333 3.60417 5.1 3.3625C5.66667 3.12083 6.3 3 7 3C8.13333 3 9.04167 3.27083 9.725 3.8125C10.4083 4.35417 10.75 5.09167 10.75 6.025C10.75 6.70833 10.5125 7.2875 10.0375 7.7625C9.5625 8.2375 8.63333 8.73333 7.25 9.25C6.13333 9.66667 5.39583 9.99583 5.0375 10.2375C4.67917 10.4792 4.5 10.7333 4.5 11C4.5 11.2667 4.725 11.5208 5.175 11.7625C5.625 12.0042 6.3 12.2333 7.2 12.45L6 13.65ZM18.4 9.8L15.2 6.6L16.325 5.475C16.625 5.175 16.9583 5.025 17.325 5.025C17.6917 5.025 18.025 5.175 18.325 5.475L19.525 6.675C19.825 6.975 19.975 7.30833 19.975 7.675C19.975 8.04167 19.825 8.375 19.525 8.675L18.4 9.8ZM5.5 19.5H6.55L15.175 10.875L14.125 9.825L5.5 18.45V19.5ZM4.375 21C4.275 21 4.1875 20.9625 4.1125 20.8875C4.0375 20.8125 4 20.725 4 20.625V17.95C4 17.9167 4.03333 17.8333 4.1 17.7L14.125 7.675L17.325 10.875L7.3 20.9C7.26667 20.9333 7.18333 20.9667 7.05 21H4.375Z"
+                                                                fill="#EB0A1E" />
+                                                            <path
+                                                                d="M18.5 13.5C21.2614 13.5 23.5 15.7386 23.5 18.5C23.5 21.2614 21.2614 23.5 18.5 23.5C15.7386 23.5 13.5 21.2614 13.5 18.5C13.5 15.7386 15.7386 13.5 18.5 13.5Z"
+                                                                fill="white" stroke="white" />
+                                                            <path
+                                                                d="M18.4875 13.7344C15.8685 13.7344 13.7344 15.8685 13.7344 18.4875C13.7344 21.1064 15.8685 23.2405 18.4875 23.2405C21.1064 23.2405 23.2405 21.1064 23.2405 18.4875C23.2405 15.8685 21.1064 13.7344 18.4875 13.7344ZM20.7594 17.3943L18.0644 20.0893C17.9979 20.1558 17.9076 20.1938 17.8125 20.1938C17.7175 20.1938 17.6272 20.1558 17.5606 20.0893L16.2155 18.7441C16.0776 18.6063 16.0776 18.3781 16.2155 18.2403C16.3533 18.1025 16.5815 18.1025 16.7193 18.2403L17.8125 19.3335L20.2556 16.8904C20.3934 16.7526 20.6216 16.7526 20.7594 16.8904C20.8973 17.0283 20.8973 17.2517 20.7594 17.3943Z"
+                                                                fill="#12D176" />
+                                                        </svg>
+                                                        <svg *ngIf="data?.notificationType === 'SignatureRequest'"
+                                                            width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M12.0186 3.91016C8.70862 3.91016 6.01862 6.60016 6.01862 9.91016V12.8002C6.01862 13.4102 5.75862 14.3402 5.44862 14.8602L4.29862 16.7702C3.58862 17.9502 4.07862 19.2602 5.37862 19.7002C9.68862 21.1402 14.3386 21.1402 18.6486 19.7002C19.8586 19.3002 20.3886 17.8702 19.7286 16.7702L18.5786 14.8602C18.2786 14.3402 18.0186 13.4102 18.0186 12.8002V9.91016C18.0186 6.61016 15.3186 3.91016 12.0186 3.91016Z"
+                                                                stroke="#EB0A1E" stroke-width="1.5"
+                                                                stroke-miterlimit="10" stroke-linecap="round" />
+                                                            <path
+                                                                d="M13.868 4.19945C13.558 4.10945 13.238 4.03945 12.908 3.99945C11.948 3.87945 11.028 3.94945 10.168 4.19945C10.458 3.45945 11.178 2.93945 12.018 2.93945C12.858 2.93945 13.578 3.45945 13.868 4.19945Z"
+                                                                stroke="#EB0A1E" stroke-width="1.5"
+                                                                stroke-miterlimit="10" stroke-linecap="round"
+                                                                stroke-linejoin="round" />
+                                                            <path
+                                                                d="M15.0195 20.0605C15.0195 21.7105 13.6695 23.0605 12.0195 23.0605C11.1995 23.0605 10.4395 22.7205 9.89953 22.1805C9.35953 21.6405 9.01953 20.8805 9.01953 20.0605"
+                                                                stroke="#EB0A1E" stroke-width="1.5"
+                                                                stroke-miterlimit="10" />
+                                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                d="M22.6741 10.3142C22.6501 10.7281 22.2688 11.0161 21.8579 10.9604C21.4471 10.9046 21.1628 10.5261 21.181 10.1119C21.2426 8.70584 20.9435 7.30282 20.3064 6.03855C19.6693 4.77428 18.7196 3.69915 17.5527 2.91216C17.209 2.68031 17.0739 2.22665 17.2736 1.86325C17.4732 1.49985 17.9315 1.36471 18.2785 1.59172C19.7098 2.52818 20.8736 3.82752 21.6473 5.36284C22.421 6.89816 22.773 8.60659 22.6741 10.3142ZM5.65323 1.64126C6.00569 1.4088 6.47291 1.54467 6.67758 1.91396C6.88225 2.28325 6.74643 2.74573 6.39727 2.98311C5.23459 3.77359 4.28534 4.84589 3.6415 6.10489C2.99767 7.36389 2.68399 8.76122 2.72374 10.1666C2.73567 10.5886 2.44023 10.9695 2.02102 11.0197C1.60181 11.07 1.21813 10.7707 1.20028 10.3489C1.12801 8.64091 1.49793 6.93845 2.28021 5.40874C3.06248 3.87903 4.22619 2.5825 5.65323 1.64126Z"
+                                                                fill="#EB0A1E" />
+                                                        </svg>
+
+                                                        <svg *ngIf="data?.notificationType === 'Viewed'" width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M23.2047 11.745C22.3226 9.46324 20.7912 7.48996 18.7998 6.06906C16.8084 4.64817 14.4443 3.84193 11.9997 3.75C9.55507 3.84193 7.19097 4.64817 5.19958 6.06906C3.20819 7.48996 1.6768 9.46324 0.794681 11.745C0.735106 11.9098 0.735106 12.0902 0.794681 12.255C1.6768 14.5368 3.20819 16.51 5.19958 17.9309C7.19097 19.3518 9.55507 20.1581 11.9997 20.25C14.4443 20.1581 16.8084 19.3518 18.7998 17.9309C20.7912 16.51 22.3226 14.5368 23.2047 12.255C23.2643 12.0902 23.2643 11.9098 23.2047 11.745ZM11.9997 18.75C8.02468 18.75 3.82468 15.8025 2.30218 12C3.82468 8.1975 8.02468 5.25 11.9997 5.25C15.9747 5.25 20.1747 8.1975 21.6972 12C20.1747 15.8025 15.9747 18.75 11.9997 18.75Z"
+                                                                fill="#EB0A1E" />
+                                                            <path
+                                                                d="M12 7.5C11.11 7.5 10.24 7.76392 9.49994 8.25839C8.75991 8.75285 8.18314 9.45566 7.84254 10.2779C7.50195 11.1002 7.41283 12.005 7.58647 12.8779C7.7601 13.7508 8.18869 14.5526 8.81802 15.182C9.44736 15.8113 10.2492 16.2399 11.1221 16.4135C11.995 16.5872 12.8998 16.4981 13.7221 16.1575C14.5443 15.8169 15.2471 15.2401 15.7416 14.5001C16.2361 13.76 16.5 12.89 16.5 12C16.5 10.8065 16.0259 9.66193 15.182 8.81802C14.3381 7.97411 13.1935 7.5 12 7.5ZM12 15C11.4067 15 10.8266 14.8241 10.3333 14.4944C9.83994 14.1648 9.45543 13.6962 9.22836 13.148C9.0013 12.5999 8.94189 11.9967 9.05765 11.4147C9.1734 10.8328 9.45912 10.2982 9.87868 9.87868C10.2982 9.45912 10.8328 9.1734 11.4147 9.05764C11.9967 8.94189 12.5999 9.0013 13.1481 9.22836C13.6962 9.45542 14.1648 9.83994 14.4944 10.3333C14.8241 10.8266 15 11.4067 15 12C15 12.7956 14.6839 13.5587 14.1213 14.1213C13.5587 14.6839 12.7957 15 12 15Z"
+                                                                fill="#EB0A1E" />
+                                                        </svg>
+
+                                                        <svg *ngIf="data?.notificationType === 'Shared'" width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M12.3338 5.18467L17.3108 9.60867C18.2408 10.4357 18.7068 10.8497 18.8788 11.3387C19.0293 11.7675 19.0293 12.2348 18.8788 12.6637C18.7068 13.1517 18.2418 13.5657 17.3108 14.3927L12.3328 18.8177C11.9108 19.1927 11.6998 19.3807 11.5208 19.3877C11.4438 19.3906 11.3672 19.3757 11.297 19.3441C11.2267 19.3125 11.1647 19.2651 11.1158 19.2057C11.0018 19.0667 11.0018 18.7847 11.0018 18.2197V15.4297C8.57379 15.4297 6.00879 16.2097 4.13679 17.5937C3.16179 18.3137 2.67379 18.6737 2.48879 18.6607C2.40828 18.6591 2.32965 18.6361 2.26107 18.5939C2.19248 18.5516 2.13645 18.4918 2.09879 18.4207C2.00279 18.2607 2.08779 17.7627 2.25779 16.7677C3.36279 10.3007 7.81279 8.57067 11.0018 8.57067V5.78067C11.0018 5.21567 11.0018 4.93367 11.1158 4.79467C11.1648 4.73537 11.2269 4.68819 11.2971 4.6568C11.3674 4.6254 11.4439 4.61064 11.5208 4.61367C11.7008 4.61967 11.9108 4.80867 12.3338 5.18467Z"
+                                                                fill="#2E1EF8" />
+                                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                d="M14.9902 3.99009C15.0571 3.91786 15.1377 3.85952 15.2272 3.81842C15.3167 3.77732 15.4134 3.75425 15.5119 3.75053C15.6103 3.74682 15.7085 3.76253 15.8009 3.79677C15.8932 3.83101 15.9779 3.88311 16.0502 3.95009L21.2662 8.79409C21.747 9.24056 22.1278 9.78378 22.3835 10.388C22.6393 10.9922 22.7642 11.6438 22.75 12.2998C22.7359 12.9557 22.583 13.6013 22.3013 14.1939C22.0197 14.7865 21.6158 15.3128 21.1162 15.7381L16.0262 20.0711C15.9512 20.135 15.8643 20.1835 15.7706 20.2138C15.6769 20.2441 15.5781 20.2557 15.4799 20.2479C15.3817 20.24 15.286 20.2129 15.1983 20.1681C15.1106 20.1232 15.0325 20.0616 14.9687 19.9866C14.9048 19.9116 14.8563 19.8248 14.8259 19.731C14.7956 19.6373 14.784 19.5385 14.7919 19.4403C14.7997 19.3421 14.8268 19.2465 14.8717 19.1587C14.9165 19.071 14.9782 18.993 15.0532 18.9291L20.1432 14.5961C20.4816 14.3081 20.7553 13.9517 20.9461 13.5504C21.1368 13.149 21.2405 12.7118 21.2501 12.2675C21.2597 11.8232 21.1752 11.3819 21.002 10.9727C20.8287 10.5634 20.5708 10.1955 20.2452 9.89309L15.0292 5.05009C14.9569 4.98313 14.8986 4.90258 14.8575 4.81307C14.8164 4.72355 14.7933 4.62681 14.7896 4.52838C14.7859 4.42995 14.8016 4.33175 14.8358 4.23939C14.8701 4.14703 14.9222 4.06232 14.9892 3.99009H14.9902Z"
+                                                                fill="#2E1EF8" />
+                                                        </svg>
+
+                                                        <svg *ngIf="data?.notificationType === 'Reassigned'" width="24"
+                                                            height="25" viewBox="0 0 24 25" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M14 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22"
+                                                                stroke="#EB0A1E" stroke-width="1.5"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                            <path d="M22 10V13" stroke="#EB0A1E" stroke-width="1.5"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                            <path d="M22 10H18C15 10 14 9 14 6V2L22 10Z"
+                                                                stroke="#EB0A1E" stroke-width="1.5"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                            <path
+                                                                d="M16.8191 16.9C16.7791 16.9 16.7191 16.9 16.6691 16.9C15.6191 16.86 14.7891 16.01 14.7891 14.95C14.7891 13.87 15.6591 13 16.7391 13C17.8191 13 18.6891 13.88 18.6891 14.95C18.6991 16.01 17.8691 16.87 16.8191 16.9Z"
+                                                                stroke="#EB0A1E" stroke-width="1.5"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                            <path
+                                                                d="M13.9975 19.9121C12.6675 20.8021 12.6675 22.2521 13.9975 23.1421C15.5075 24.1521 17.9875 24.1521 19.4975 23.1421C20.8275 22.2521 20.8275 20.8021 19.4975 19.9121C17.9875 18.9121 15.5175 18.9121 13.9975 19.9121Z"
+                                                                stroke="#EB0A1E" stroke-width="1.5"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                        </svg>
+
+                                                        <svg *ngIf="data?.notificationType === 'Cc'" width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M14.7606 21.5529C13.4817 22.0218 11.9603 22.2858 10.2863 22.2858C5.32342 22.2858 1.71484 20.0855 1.71484 16.8987V16.2858C1.71484 15.6038 1.98576 14.9498 2.468 14.4675C2.95023 13.9853 3.60429 13.7144 4.28627 13.7144H11.1426V15.0001H4.28627C3.96694 15.0003 3.65911 15.1193 3.42272 15.334C3.18633 15.5487 3.03828 15.8437 3.00742 16.1615L3.00056 16.2858V16.8987C3.00056 19.1907 5.90456 21.0001 10.2863 21.0001C11.5728 21.0001 12.7411 20.8321 13.7457 20.5372L14.7614 21.5529H14.7606ZM12.9348 11.2664C12.6799 11.3471 12.4393 11.4674 12.2217 11.6229C10.9904 12.1242 9.61274 12.1292 8.37782 11.6368C7.1429 11.1444 6.14664 10.1929 5.59803 8.98189C5.04942 7.7709 4.99108 6.39451 5.43525 5.14143C5.87942 3.88836 6.79159 2.85598 7.98042 2.26086C9.16924 1.66573 10.5423 1.5541 11.8117 1.94938C13.081 2.34466 14.148 3.21614 14.7887 4.38101C15.4295 5.54588 15.5942 6.91363 15.2484 8.19733C14.9026 9.48104 14.0732 10.581 12.934 11.2664H12.9348ZM6.42913 6.85722C6.42913 7.8802 6.83551 8.86128 7.55886 9.58463C8.28222 10.308 9.26329 10.7144 10.2863 10.7144C11.3092 10.7144 12.2903 10.308 13.0137 9.58463C13.737 8.86128 14.1434 7.8802 14.1434 6.85722C14.1434 5.83425 13.737 4.85317 13.0137 4.12981C12.2903 3.40646 11.3092 3.00008 10.2863 3.00008C9.26329 3.00008 8.28222 3.40646 7.55886 4.12981C6.83551 4.85317 6.42913 5.83425 6.42913 6.85722ZM11.9997 13.7169L12.0006 16.8687C12.0006 17.3229 12.1814 17.7584 12.5028 18.0798L17.0663 22.6415C17.3877 22.9629 17.8237 23.1434 18.2783 23.1434C18.7328 23.1434 19.1688 22.9629 19.4903 22.6415L22.6411 19.4907C22.8003 19.3316 22.9266 19.1427 23.0128 18.9348C23.099 18.727 23.1433 18.5041 23.1433 18.2791C23.1433 18.054 23.099 17.8312 23.0128 17.6233C22.9266 17.4154 22.8003 17.2266 22.6411 17.0675L18.0786 12.5058C17.757 12.1846 17.3211 12.0042 16.8666 12.0044L13.7148 12.0035C13.2602 12.0035 12.8242 12.1841 12.5027 12.5056C12.1812 12.8271 12.0006 13.2631 12.0006 13.7178L11.9997 13.7169ZM14.5711 15.4269C14.3438 15.4269 14.1258 15.3366 13.965 15.1759C13.8043 15.0151 13.714 14.7971 13.714 14.5698C13.714 14.3425 13.8043 14.1244 13.965 13.9637C14.1258 13.803 14.3438 13.7127 14.5711 13.7127C14.7985 13.7127 15.0165 13.803 15.1772 13.9637C15.338 14.1244 15.4283 14.3425 15.4283 14.5698C15.4283 14.7971 15.338 15.0151 15.1772 15.1759C15.0165 15.3366 14.7985 15.4269 14.5711 15.4269Z"
+                                                                fill="#2E1EF8" />
+                                                        </svg>
+
+                                                        <svg *ngIf="data?.notificationType === 'Transferred'" width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                            <rect x="2" y="2" width="20" height="20"
+                                                                fill="url(#pattern000)" />
+                                                            <defs>
+                                                                <pattern id="pattern000"
+                                                                    patternContentUnits="objectBoundingBox" width="1"
+                                                                    height="1">
+                                                                    <use xlink:href="#image0_5636_215591111"
+                                                                        transform="scale(0.00195312)" />
+                                                                </pattern>
+                                                                <image id="image0_5636_215591111" width="512"
+                                                                    height="512"
+                                                                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAFyGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLWMwMDIgNzkuMTY0NDYwLCAyMDIwLzA1LzEyLTE2OjA0OjE3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIzLTEwLTEwVDE5OjE2OjM5KzA3OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMy0xMC0xMFQxOTozMDowMSswNzowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMy0xMC0xMFQxOTozMDowMSswNzowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6YjNjZTYwYmQtZDZkMC1hNDQ3LTliMGItM2JlODhkODUyNGY3IiB4bXBNTTpEb2N1bWVudElEPSJh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" />
+                                                            </defs>
+                                                        </svg>
+
+                                                        <svg *ngIf="data?.notificationType === 'Revoked'" width="20"
+                                                            height="20" viewBox="0 0 20 20" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_5689_207573)">
+                                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                    d="M11.1196 1.5C11.2307 1.5 11.3393 1.52239 11.4388 1.56467C11.5399 1.60695 11.6294 1.66664 11.7057 1.74291L16.6801 6.71724C16.7563 6.79267 16.816 6.88305 16.8583 6.98418C16.9006 7.08366 16.9229 7.19226 16.9229 7.30337V8.96147C16.9229 9.41937 16.5518 9.79054 16.0939 9.79054C15.636 9.79054 15.2648 9.41937 15.2648 8.96147V8.13245H11.1196C10.6611 8.13245 10.2905 7.76182 10.2905 7.30337V3.15811H4.48716C4.02952 3.15811 3.65811 3.52952 3.65811 3.98716V15.5939C3.65811 16.0515 4.02952 16.4229 4.48716 16.4229H10.2905C10.7484 16.4229 11.1196 16.7941 11.1196 17.252C11.1196 17.7099 10.7484 18.0811 10.2905 18.0811H4.48716C3.1159 18.0811 2 16.9652 2 15.5939V3.98716C2 2.6159 3.1159 1.5 4.48716 1.5H11.1196ZM11.9486 4.33039V6.47429H14.0926L11.9486 4.33039Z"
+                                                                    fill="#3F2BC8" />
+                                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                    d="M16.5312 18.7356L16.6485 19.4483C16.4383 19.4824 16.2257 19.4998 16.0129 19.5005L15.8533 19.4979L15.8798 18.7761C16.0977 18.784 16.316 18.7705 16.5312 18.7356ZM14.6077 18.4709C14.7656 18.5445 14.9291 18.6052 15.0965 18.6528L15.2227 18.6859L15.0509 19.3877C14.8439 19.3377 14.6412 19.2714 14.4448 19.1892L14.2987 19.1246L14.6077 18.4709ZM14.9723 10.9399C15.1141 11.0803 15.1141 11.3089 14.9723 11.4501L14.6102 11.8086C16.0462 11.2806 17.7025 11.6078 18.8282 12.7251C20.3904 14.2749 20.3904 16.788 18.8282 18.3382C18.6213 18.5433 18.3951 18.7236 18.1532 18.877C18.1418 18.8845 18.1302 18.8918 18.1185 18.899C18.1146 18.9012 18.1106 18.9036 18.1067 18.906L18.1007 18.9099C17.933 19.0128 17.7583 19.1029 17.578 19.1797L17.4417 19.2347L17.1801 18.5609C17.3829 18.4832 17.5776 18.3855 17.7616 18.2686L17.7355 18.2839L17.8493 18.2108C18.0143 18.0985 18.1699 17.9703 18.3143 17.8272C19.5921 16.5592 19.5921 14.5037 18.3142 13.236C17.3247 12.2539 15.8335 12.0179 14.6042 12.5938C14.5992 12.5962 14.5943 12.5985 14.5894 12.6009L14.9723 12.9805C15.1141 13.1217 15.1141 13.3496 14.9723 13.4907C14.8301 13.6316 14.5999 13.6319 14.4577 13.4907L13.4294 12.4703C13.2875 12.3294 13.2875 12.1008 13.4294 11.96L14.4577 10.9399C14.5999 10.7987 14.8301 10.7987 14.9723 10.9399ZM13.5704 17.7068C13.6083 17.7484 13.6468 17.7884 13.6913 17.8326C13.7782 17.9184 13.8692 17.9989 13.964 18.0738L14.06 18.1469L13.6284 18.7281C13.4701 18.6122 13.3197 18.4842 13.178 18.3441C13.1422 18.3087 13.1095 18.2752 13.0779 18.2418L13.0312 18.1915L13.5704 17.7068ZM12.908 16.598C12.965 16.7611 13.0352 16.9195 13.118 17.0718L13.1824 17.1848L12.5569 17.5533C12.4478 17.3707 12.3541 17.1802 12.2763 16.9834L12.2209 16.8348L12.908 16.598ZM12.0088 15.2673L12.7345 15.3152C12.7229 15.488 12.7252 15.6615 12.7414 15.8338L12.7561 15.9628L12.0352 16.0583C12 15.7962 11.9912 15.5312 12.0088 15.2673ZM12.7723 13.8242C12.9582 13.8999 13.047 14.1108 12.9708 14.2953C12.9528 14.339 12.9354 14.384 12.9181 14.4321C12.9138 14.4439 12.9089 14.4555 12.9035 14.4667L12.907 14.4682C12.8834 14.5357 12.8619 14.6047 12.8427 14.6749L12.8154 14.781L12.1079 14.614C12.1286 14.5272 12.1522 14.4414 12.1784 14.357L12.2199 14.2314C12.224 14.2172 12.2283 14.2025 12.2336 14.1879C12.2545 14.1301 12.2757 14.0752 12.2979 14.0213C12.3741 13.8368 12.5865 13.7486 12.7723 13.8242Z"
+                                                                    fill="#3F2BC8" stroke="#3F2BC8"
+                                                                    stroke-width="0.3" />
+                                                            </g>
+                                                            <defs>
+                                                                <clipPath id="clip0_5689_207573">
+                                                                    <rect width="20" height="20" fill="white" />
+                                                                </clipPath>
+                                                            </defs>
+                                                        </svg>
+
+                                                        <svg *ngIf="data?.notificationType === 'Commented'" width="20"
+                                                            height="20" viewBox="0 0 20 20" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_5689_207578)">
+                                                                <path
+                                                                    d="M20.0009 9.37297C19.8804 7.42299 19.1919 5.5509 18.0203 3.98749C16.8486 2.42409 15.2451 1.23771 13.4074 0.574632C11.5696 -0.0884492 9.57802 -0.199252 7.67807 0.255883C5.77812 0.711018 4.05289 1.71219 2.71507 3.13599C1.37724 4.55978 0.485308 6.34394 0.149226 8.26852C-0.186857 10.1931 0.0476043 12.174 0.823704 13.9669C1.5998 15.7598 2.88361 17.2865 4.51686 18.3586C6.15011 19.4307 8.0614 20.0015 10.0151 20.0005H15.8343C16.939 19.9994 17.9982 19.56 18.7793 18.7789C19.5605 17.9977 19.9998 16.9385 20.0009 15.8338V9.37297ZM18.3343 15.8338C18.3343 16.4968 18.0709 17.1327 17.602 17.6016C17.1332 18.0704 16.4973 18.3338 15.8343 18.3338H10.0151C8.83922 18.3333 7.67664 18.0849 6.60319 17.6049C5.52973 17.1249 4.5695 16.424 3.78511 15.548C2.99692 14.6724 2.40505 13.6384 2.04919 12.5153C1.69332 11.3922 1.58169 10.206 1.72177 9.0363C1.94297 7.19125 2.77193 5.47229 4.07797 4.15041C5.38402 2.82852 7.09286 1.97889 8.93511 1.73547C9.29447 1.69043 9.65627 1.66761 10.0184 1.66714C11.9605 1.66184 13.8424 2.34039 15.3343 3.5838C16.2055 4.30792 16.9207 5.20143 17.4364 6.21016C17.9521 7.21889 18.2575 8.32184 18.3343 9.45214V15.8338Z"
+                                                                    fill="#3F2BC8" stroke="white" stroke-width="0.2" />
+                                                                <path
+                                                                    d="M6.66536 7.50065H9.9987C10.2197 7.50065 10.4317 7.41285 10.588 7.25657C10.7442 7.10029 10.832 6.88833 10.832 6.66732C10.832 6.4463 10.7442 6.23434 10.588 6.07806C10.4317 5.92178 10.2197 5.83398 9.9987 5.83398H6.66536C6.44435 5.83398 6.23239 5.92178 6.07611 6.07806C5.91983 6.23434 5.83203 6.4463 5.83203 6.66732C5.83203 6.88833 5.91983 7.10029 6.07611 7.25657C6.23239 7.41285 6.44435 7.50065 6.66536 7.50065Z"
+                                                                    fill="#3F2BC8" stroke="white" stroke-width="0.2" />
+                                                                <path
+                                                                    d="M13.332 9.16602H6.66536C6.44435 9.16602 6.23239 9.25381 6.07611 9.41009C5.91983 9.56638 5.83203 9.77834 5.83203 9.99935C5.83203 10.2204 5.91983 10.4323 6.07611 10.5886C6.23239 10.7449 6.44435 10.8327 6.66536 10.8327H13.332C13.553 10.8327 13.765 10.7449 13.9213 10.5886C14.0776 10.4323 14.1654 10.2204 14.1654 9.99935C14.1654 9.77834 14.0776 9.56638 13.9213 9.41009C13.765 9.25381 13.553 9.16602 13.332 9.16602Z"
+                                                                    fill="#3F2BC8" stroke="white" stroke-width="0.2" />
+                                                                <path
+                                                                    d="M13.332 12.5H6.66536C6.44435 12.5 6.23239 12.5878 6.07611 12.7441C5.91983 12.9004 5.83203 13.1123 5.83203 13.3333C5.83203 13.5544 5.91983 13.7663 6.07611 13.9226C6.23239 14.0789 6.44435 14.1667 6.66536 14.1667H13.332C13.553 14.1667 13.765 14.0789 13.9213 13.9226C14.0776 13.7663 14.1654 13.5544 14.1654 13.3333C14.1654 13.1123 14.0776 12.9004 13.9213 12.7441C13.765 12.5878 13.553 12.5 13.332 12.5Z"
+                                                                    fill="#3F2BC8" stroke="white" stroke-width="0.2" />
+                                                            </g>
+                                                            <defs>
+                                                                <clipPath id="clip0_5689_207578">
+                                                                    <rect width="20" height="20" fill="white" />
+                                                                </clipPath>
+                                                            </defs>
+                                                        </svg>
+
+                                                        <svg *ngIf="data?.notificationType === 'Reminded' " width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M12 10.5195C11.59 10.5195 11.25 10.1795 11.25 9.76945V6.43945C11.25 6.02945 11.59 5.68945 12 5.68945C12.41 5.68945 12.75 6.02945 12.75 6.43945V9.76945C12.75 10.1895 12.41 10.5195 12 10.5195Z"
+                                                                fill="#FF9C28" />
+                                                            <path
+                                                                d="M12.0208 20.3502C9.44084 20.3502 6.87084 19.9402 4.42084 19.1202C3.51084 18.8202 2.82084 18.1702 2.52084 17.3502C2.22084 16.5302 2.32084 15.5902 2.81084 14.7702L4.08084 12.6502C4.36084 12.1802 4.61084 11.3002 4.61084 10.7502V8.65023C4.61084 4.56023 7.93084 1.24023 12.0208 1.24023C16.1108 1.24023 19.4308 4.56023 19.4308 8.65023V10.7502C19.4308 11.2902 19.6808 12.1802 19.9608 12.6502L21.2308 14.7702C21.7008 15.5502 21.7808 16.4802 21.4708 17.3302C21.1608 18.1802 20.4808 18.8302 19.6208 19.1202C17.1708 19.9502 14.6008 20.3502 12.0208 20.3502ZM12.0208 2.75023C8.76084 2.75023 6.11084 5.40023 6.11084 8.66023V10.7602C6.11084 11.5702 5.79084 12.7402 5.37084 13.4302L4.10084 15.5602C3.84084 15.9902 3.78084 16.4502 3.93084 16.8502C4.08084 17.2502 4.42084 17.5502 4.90084 17.7102C9.50084 19.2402 14.5608 19.2402 19.1608 17.7102C19.5908 17.5702 19.9208 17.2502 20.0708 16.8302C20.2308 16.4102 20.1808 15.9502 19.9508 15.5602L18.6808 13.4402C18.2608 12.7502 17.9408 11.5802 17.9408 10.7702V8.67023C17.9308 5.40023 15.2808 2.75023 12.0208 2.75023Z"
+                                                                fill="#FF9C28" />
+                                                            <path
+                                                                d="M12.0019 22.9003C10.9319 22.9003 9.88187 22.4603 9.12187 21.7003C8.36187 20.9403 7.92188 19.8903 7.92188 18.8203H9.42188C9.42188 19.5003 9.70188 20.1603 10.1819 20.6403C10.6619 21.1203 11.3219 21.4003 12.0019 21.4003C13.4219 21.4003 14.5819 20.2403 14.5819 18.8203H16.0819C16.0819 21.0703 14.2519 22.9003 12.0019 22.9003Z"
+                                                                fill="#FF9C28" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="frame-1171275625">
+                                            <div class="frame-1171275807">
+                                                <div class="frame-1171275626">
+                                                    <div class="signed">{{l(data?.notificationType)}}</div>
+                                                    <div class="_25-min">{{formatDate(data?.creationTime)}}</div>
+                                                </div>
+                                                <div class="frame-1">
+                                                    <div class="hoan-bui-ta-has-approved-the-document">
+                                                        {{data?.title}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="empty">
+                        <div class="no-data-found">
+                            <svg width="90" height="91" viewBox="0 0 90 91" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_1169_111417)">
+                                    <path
+                                        d="M45 90.5C69.8528 90.5 90 70.3528 90 45.5C90 20.6472 69.8528 0.5 45 0.5C20.1472 0.5 0 20.6472 0 45.5C0 70.3528 20.1472 90.5 45 90.5Z"
+                                        fill="#F7F9FA" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M8.73047 55.2257L19.6167 41.7607H70.5111L81.3052 55.2257V75.5982H8.73047V55.2257Z"
+                                        fill="#BDC5D1" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M61.3019 8.82568H19.3596C18.9359 8.82568 18.5859 9.17566 18.5859 9.59932V65.0434C18.5859 65.4671 18.9359 65.8171 19.3596 65.8171H70.6776C71.1013 65.8171 71.4513 65.4671 71.4513 65.0434V18.9567L61.3019 8.82568Z"
+                                        fill="white" />
+                                    <path
+                                        d="M71.4334 18.9567L61.3025 8.82568H61.2656L62.8313 19.0672C63.0524 20.5224 64.4154 21.517 65.8522 21.296L71.4334 20.4487V18.9567Z"
+                                        fill="#E7EAF3" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M60.7489 36.0134H29.5823C28.9376 36.0134 28.4219 35.4976 28.4219 34.8529V19.1775C28.4219 18.5328 28.9376 18.0171 29.5823 18.0171H60.7489C61.3936 18.0171 61.9094 18.5328 61.9094 19.1775V34.8529C61.9094 35.4792 61.3936 36.0134 60.7489 36.0134Z"
+                                        fill="#E7EAF3" />
+                                    <path opacity="0.05" fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M60.7489 36.0134H29.5823C28.9376 36.0134 28.4219 35.4976 28.4219 34.8529V19.1775C28.4219 18.5328 28.9376 18.0171 29.5823 18.0171H60.7489C61.3936 18.0171 61.9094 18.5328 61.9094 19.1775V34.8529C61.9094 35.4792 61.3936 36.0134 60.7489 36.0134Z"
+                                        fill="black" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M60.1782 43.2528H29.8405C29.6011 43.2528 29.3984 43.0502 29.3984 42.8107C29.3984 42.5713 29.6011 42.3687 29.8405 42.3687H60.1966C60.4361 42.3687 60.6387 42.5713 60.6387 42.8107C60.6387 43.0502 60.4361 43.2528 60.1782 43.2528Z"
+                                        fill="#E7EAF3" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M60.1782 46.6049H29.8405C29.6011 46.6049 29.3984 46.4022 29.3984 46.1628C29.3984 45.9233 29.6011 45.7207 29.8405 45.7207H60.1966C60.4361 45.7207 60.6387 45.9233 60.6387 46.1628C60.6387 46.4022 60.4361 46.6049 60.1782 46.6049Z"
+                                        fill="#E7EAF3" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M51.5761 49.976H29.8405C29.6011 49.976 29.3984 49.7733 29.3984 49.5339C29.3984 49.2944 29.6011 49.0918 29.8405 49.0918H51.5945C51.834 49.0918 52.0366 49.2944 52.0366 49.5339C52.0366 49.7733 51.834 49.976 51.5761 49.976Z"
+                                        fill="#E7EAF3" />
+                                    <path
+                                        d="M36.3066 30.5611C36.5093 29.9717 36.7487 29.3822 37.025 28.8296C37.4855 27.8902 38.0934 26.8771 39.0144 26.3061C40.1748 25.5877 41.2616 26.2509 42.0721 27.1719C42.7168 27.9087 43.3247 28.7191 44.2272 29.1428C44.9272 29.4743 45.7008 29.5296 46.4376 29.327C47.6165 29.0138 48.6112 28.1665 49.3848 27.264C49.4769 27.1534 49.569 27.0429 49.6611 26.914C50.2321 26.1035 50.6374 24.9615 49.919 24.1141C49.7901 23.9668 49.6427 23.8378 49.4585 23.7273C49.0533 23.4879 48.5375 23.3958 48.0954 23.5247C47.6165 23.6536 47.3034 24.0589 47.2297 24.5378C47.2113 24.6115 47.2113 24.7036 47.2113 24.7773C47.1928 25.5877 47.6902 26.343 48.2612 26.8956C49.348 27.9271 50.8953 28.3323 52.3504 28.406C52.9215 28.4428 53.4741 28.406 54.0451 28.3507"
+                                        stroke="white" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" />
+                                    <path
+                                        d="M19.4481 6.64007C19.0147 6.85633 18.5813 6.64007 18.3646 6.20755L16.5225 1.66613C16.3058 1.23361 16.5225 0.801097 16.9559 0.584839C17.3894 0.368581 17.8228 0.584839 18.0395 1.01736L19.8816 5.55878C20.0983 6.09942 19.8816 6.53194 19.4481 6.64007Z"
+                                        fill="#EB0A1E" />
+                                    <path
+                                        d="M16.089 10.9655C15.8723 11.1818 15.6555 11.2899 15.3305 11.1818L10.6711 10.3167C10.2377 10.2086 9.91264 9.77608 10.021 9.34356C10.1294 8.91104 10.5628 8.58666 10.9962 8.69479L15.6555 9.55982C16.089 9.66795 16.414 10.1005 16.3057 10.533C16.1973 10.7492 16.1973 10.8574 16.089 10.9655Z"
+                                        fill="#EB0A1E" />
+                                    <path
+                                        d="M25.6248 6.09944C25.5164 6.09944 25.4081 5.99131 25.1913 5.99131C24.8663 5.66692 24.7579 5.23441 25.083 4.80189L28.0086 1.01737C28.3337 0.692984 28.7671 0.584855 29.2005 0.909243C29.5256 1.23363 29.634 1.66615 29.3089 2.09866L26.3833 5.88318C26.1666 5.99131 25.8415 6.09944 25.6248 6.09944Z"
+                                        fill="#EB0A1E" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M63.6416 55.2256C61.6338 55.2256 59.9944 56.8465 59.9944 58.8543C59.9944 60.8621 58.3734 62.4831 56.3657 62.4831H45.0005H33.6354C31.6276 62.4831 30.0067 60.8621 30.0067 58.8543C30.0067 56.8465 28.3857 55.2256 26.3595 55.2256H8.62109V77.3296C8.62109 80.2215 10.9789 82.5792 13.8708 82.5792H45.0005H76.1303C79.0222 82.5792 81.38 80.2215 81.38 77.3296V55.2256H63.6416Z"
+                                        fill="#E7EAF3" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_1169_111417">
+                                        <rect width="90" height="90" fill="white" transform="translate(0 0.5)" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            {{l('NoData')}}
+                        </div>
+                    </ng-template>
+                </p-listbox>
+                <div class="noti-footer e-btn e-outline e-primary" (click)="readAllNotification()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="currentColor" fill-rule="evenodd"
+                            d="M15.493 6.935a.75.75 0 0 1 .072 1.058l-7.857 9a.75.75 0 0 1-1.13 0l-3.143-3.6a.75.75 0 0 1 1.13-.986l2.578 2.953l7.292-8.353a.75.75 0 0 1 1.058-.072m5.025.085c.3.285.311.76.025 1.06l-8.571 9a.75.75 0 0 1-1.14-.063l-.429-.563a.75.75 0 0 1 1.076-1.032l7.978-8.377a.75.75 0 0 1 1.06-.026"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <div class="read-all">{{l('ReadAll')}}</div>
+                </div>
+            </div>
+        </ng-template>
+    </p-overlayPanel>
+    <!-- <ng-container *ngIf="isRight">
+        <div *dropdownMenu
+            class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-lg">
+            <ng-container *ngTemplateOutlet="dropdownMenuContent"></ng-container>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="!isRight">
+        <div *dropdownMenu
+            class="dropdown-menu p-0 m-0 dropdown-menu-left dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-lg">
+            <ng-container *ngTemplateOutlet="dropdownMenuContent"></ng-container>
+        </div>
+    </ng-container> -->
+</div>
+
+<ng-template #dropdownMenuContent>
+    <!-- <perfect-scrollbar>
+        <div
+            class="d-flex flex-column pt-5 bgi-size-cover bgi-no-repeat rounded-top bg-primary"
+            style="min-height: 70px"
+        >
+            <h4 class="d-flex flex-center" style="align-items: center; justify-content: space-between">
+                <span class="ms-5">
+                    <span class="text-white">{{ 'Notifications' | localize }}</span>
+                    <span class="btn btn-text btn-white btn-sm fw-bold btn-font-md ms-2">
+                        {{ unreadNotificationCount }} {{ 'New' | localize }}
+                    </span>
+                </span>
+                <a
+                    id="openNotificationSettingsModalLink"
+                    class="btn btn-md btn-icon btn-secondary me-5"
+                    href="javascript:;"
+                    (click)="openNotificationSettingsModal()"
+                >
+                    <i class="flaticon2-gear"></i>
+                </a>
+            </h4>
+        </div>
+        <div class="px-4">
+            <div
+                class="scroll pt-5"
+                data-scroll="true"
+                data-height="300"
+                data-mobile-height="200"
+                style="height: 300px; overflow: hidden"
+            >
+                <div
+                    *ngFor="let notification of notifications"
+                    class="
+                        d-flex
+                        align-items-sm-center
+                        mb-7
+                        user-notification-item-clickable user-notification-item-unread
+                    "
+                    (click)="gotoUrl(notification.url)"
+                    [ngClass]="{
+                        'user-notification-item-clickable': notification.url,
+                        'user-notification-item-unread': notification.isUnread
+                    }"
+                >
+                    <div class="symbol symbol-50px me-5">
+                        <span class="symbol-label">
+                            <i class="{{ notification.icon }} {{ notification.iconFontClass }} icon-lg"></i>
+                        </span>
+                    </div>
+                    <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                        <div class="flex-grow-1 me-2">
+                            <a
+                                class="text-hover-primary fs-6 fw-bolder"
+                                [ngClass]="{ 'text-muted': !notification.isUnread }"
+                            >
+                                {{ notification.text }}
+                            </a>
+                        </div>
+                        <span class="text-muted fw-bold d-block fs-7">
+                            {{ notification.creationTime | luxonFromNow }}
+                        </span>
+                        <span
+                            *ngIf="notification.isUnread"
+                            class="
+                                btn btn-link-success
+                                text-success
+                                set-notification-as-read
+                                fs-7
+                                py-0
+                                my-0
+                                set-notification-as-read
+                            "
+                            (click)="
+                                setNotificationAsRead(notification); $event.preventDefault(); $event.stopPropagation()
+                            "
+                        >
+                            {{ 'SetAsRead' | localize }}
+                        </span>
+                    </div>
+                </div>
+
+                <span *ngIf="!notifications.length" class="notification-empty-text text-center p-5">
+                    {{ 'ThereAreNoNotifications' | localize }}
+                </span>
+            </div>
+            <hr *ngIf="notifications.length" />
+            <div
+                class="m-1 mb-4 d-flex"
+                style="align-items: center; justify-content: space-between"
+                *ngIf="notifications.length"
+            >
+                <a
+                    href="javascript:;"
+                    class="btn btn-secondary col-md-6 col-xs-12"
+                    (click)="setAllNotificationsAsRead(); $event.preventDefault(); $event.stopPropagation()"
+                    id="setAllNotificationsAsReadLink"
+                    *ngIf="unreadNotificationCount"
+                >
+                    {{ 'SetAllAsRead' | localize }}
+                </a>
+
+                <a
+                    routerLink="notifications"
+                    [class.col-md-6]="unreadNotificationCount"
+                    [class.col-md-12]="!unreadNotificationCount"
+                    class="btn btn-primary col-xs-12"
+                >
+                    {{ 'SeeAllNotifications' | localize }}
+                </a>
+            </div>
+        </div>
+    </perfect-scrollbar> -->
+</ng-template>

@@ -1,0 +1,96 @@
+﻿@using TDKUtility;
+@{
+    Paging _page = (Paging)ViewData["Paging"]; 
+}
+
+@if ((_page != null)&&_page.CountData>0)
+{
+    <input id="txtmaxpg" type="text" class="hidden"/>
+    
+    <script type="text/javascript" language="javascript">
+        $("#txtmaxpg").val(@_page.CountPage);
+    </script>
+    <ul class="pagination pagination-sm hidden-xs" style="margin-top: 0;">
+        <li><span class="_pagination-label">Showing @_page.PositionPage to @_page.CountPage of @_page.CountData row(s)</span></li>
+        @if (_page.PositionPage != 1)
+        {
+            <li><a href="javascript: onCallback(@_page.First)">First</a></li>
+            <li><a href="javascript: onCallback(@_page.Prev)">Prev</a></li>
+        }
+        @for (int p = 1; p <= @_page.CountPage; p++)
+        {
+            if ((p >= @_page.MinPage) && (p <= @_page.MaxPage))
+            {
+                if (@p == _page.PositionPage){
+                    <li class="active"><a href="javascript: onCallback(@p)">@p</a></li> 
+                }
+                else{
+                    <li><a href="javascript: onCallback(@p)">@p</a></li>  
+                }
+            }
+        }  
+        @if (_page.PositionPage != _page.MaxPage)
+        {
+            <li><a href="javascript: onCallback(@_page.Next)">Next</a></li>
+            <li><a href="javascript: onCallback(@_page.Last)">Last</a></li>
+        }
+        <li><span class="_pagination-empty"></span></li>
+        <li>
+            <span class="_pagination-goto">
+                <input type="text" class="_number-only" maxlength="4" id="txtgo"/>
+            </span>
+        </li>
+        <li>
+            <span class="_pagination-goto">
+                <button id="btngo"  type="button" class="_btn-go" id="btngo" onclick="javascript: onCallback($('#txtgo').val());">Go</button>
+            </span>
+        </li>
+    </ul>
+    
+    <div class="visible-xs text-center">
+        <div class="col-xs-12">
+            <span>Showing @_page.PositionPage to @_page.EndData of @_page.CountData row(s)</span>
+        </div>
+        <div class="col-xs-12">
+            <ul class="pagination pagination-sm">
+                <li><a href="javascript: onCallback(@_page.First)">First</a></li>
+                <li><a href="javascript: onCallback(@_page.Prev)">Prev</a></li>
+
+                @for (int p = 1; p <= @_page.CountPage; p++)
+                {
+                    if ((p >= @_page.MinPage) && (p <= @_page.MaxPage))
+                    {
+                        if (@p == _page.PositionPage)
+                        {
+                        <li class="active">
+                            <a href="javascript: onCallback(@p)">@p</a>
+                        </li> 
+                        }
+                        else
+                        {
+                        <li>
+                            <a href="javascript: onCallback(@p)">@p</a>
+                        </li>  
+                        }
+                    }
+                } 
+
+                <li><a href="javascript: onCallback(@_page.Next)">Next</a></li>
+                <li><a href="javascript: onCallback(@_page.Last)">Last</a></li>
+            </ul>
+        </div>
+        <div class="col-xs-4 col-xs-offset-4">
+            <div class="input-group">
+                <input id="txtgo" type="text" class="form-control _number-only" maxlength="4"/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-warning" id="btngo" onclick="javascript: onCallback($('#txtgo').val());">Go</button>
+                </span>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script language="javascript" type="text/javascript">
+        $("#txtgo").attr('class', '_number-only'); 
+    </script>
+}

@@ -1,0 +1,29 @@
+<div class="pop-up popup-confirm ">
+    <div class="modal-backdrop"> </div>
+    <div class="frame-45305 modal">
+        <div class="frame-45310">
+            <div class="frame-1171275538">
+                <div class="message message-title">{{Title}}</div>
+                <div class="frame-1171275827">
+                    <div class="component-3">
+                        <img id="messageImg" src="assets/common/images/Icon/info.svg">
+                    </div>
+                    <div class="are-you-sure-you-want-to-delete-file-expense-report-pdf-from-your-storage-list message-content">
+                        {{Content}}
+                    </div>
+                </div>
+            </div>
+            <div class="frame-1171275438">
+                <div class="component-38" id="btnNo" style="display: none;" (click)="hide()">
+                    <div class="no"> {{l('No')}}</div>
+                </div>
+                <div class="component-37" id="btnYes" style="display: none;" (click)="hide()">
+                    <div class="yes">{{l('Yes')}}</div>
+                </div>
+                <div class="component-36" id="btnOk"(click)="hide()">
+                    <div class="yes">{{l('Ok')}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

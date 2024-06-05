@@ -1,0 +1,47 @@
+﻿@*
+---Phần Search trên form
+TextBox : .textbox, .autobind (cho ô find gia tri tu dong)
+DateEdit : .textdate
+ComboBox : .textcombobox
+*@
+<div class="dxcontent_search"> 
+    <div class="itembox">
+		<label class="placehoder">NAME</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtNAME";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">WEIGHT</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtWEIGHT";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">COST</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtCOST";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    
+    <div class="itembox">    
+		@if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+			(Html.Toyota().Page.ControllerName.ToString(), "Search"))
+		{	
+			@Html.DevExpress().Button(settings =>
+			{
+				settings.Name = "btnSearch";
+				settings.Text = "Search";
+                settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsSearch16x16devav; 
+				settings.ClientSideEvents.Click = "DoSearch";
+			}).GetHtml()
+		}
+    </div>
+</div>
+

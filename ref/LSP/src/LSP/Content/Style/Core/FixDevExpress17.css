@@ -1,0 +1,32 @@
+﻿.dxFirefox .dxpLite_MetropolisBlue .dxp-comboBox input { padding-left: 4px;padding-top: 6px; }
+.dxeRadioButtonList_MetropolisBlue td.dxe, .dxeCheckBoxList_MetropolisBlue td.dxe{ padding: 4px 5px 3px 11px; }
+
+
+
+
+
+
+/**GridView**/
+.dxbButton_MetropolisBlue.deleteButton,
+.dxbButton_MetropolisBlue.editButton { overflow:hidden; border:none !important;  width:22px !important; }
+.dxbButtonHover_MetropolisBlue.deleteButton,
+.dxbButtonHover_MetropolisBlue.editButton { background-color:transparent !important; }
+.dxbButton_MetropolisBlue.deleteButton div.dxb,
+.dxbButton_MetropolisBlue.editButton div.dxb { padding:0px !important; display: block; overflow:hidden; width:22px; }
+.dxbButton_MetropolisBlue.deleteButton div.dxb img,
+.dxbButton_MetropolisBlue.editButton div.dxb img { width:22px; }
+
+.dxgvControl_MetropolisBlue .dxpLite_MetropolisBlue .dxp-comboBox input { height:23px; }
+
+
+.cancelButton, .registerButton, .addButton { padding:0px; }
+.cancelButton, .registerButton, .addButton {
+    background-color: #428bca !important; border: 4px solid #428bca; border-radius: 0;
+    box-shadow: none !important; color: #fff !important; cursor: pointer; display: inline-block; margin: 0;
+    position: relative; text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    transition: background-color 0.15s ease 0s, border-color 0.15s ease 0s, opacity 0.15s ease 0s;
+    vertical-align: middle;
+}
+
+.cancelButton:hover, .registerButton:hover, .addButton:hover { background-color: #1b6aaa !important; border-color: #428bca; }
+.cancelButton:active, .registerButton:active, .addButton:active { box-shadow: none; }

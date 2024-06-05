@@ -1,0 +1,71 @@
+<ejs-dialog [header]='dialogHeader' [isModal]='isModal' #createOrEditAffiliate id="createOrEditAffiliate" [visible]='visible'
+    (close)="onCloseDialog()"
+    [animationSettings]='animationSettings' [showCloseIcon]='dialogCloseIcon' [width]='dialogWidth'>
+    <ng-template #content>
+        <form #mstPurchasePurposeForm="ngForm" *ngIf="createOrEditForm" [formGroup]="createOrEditForm" novalidate
+            autocomplete="off">
+            <div class="create-edit-form">
+                <div class="col-12 d-flex justify-content-around mt-2 p-1" style="gap: 5px">
+                    <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6" hasError="code">
+                        <esign-input [text]="l('Code')" [placeholder]="l('Code')" isRequired="true" [isValidate]="true"
+                            name="code" formControlName="code" [(ngModel)]="rowdata.code"></esign-input>
+                        <div class="error-message" errorMessage>
+                            <div *ifError="'required'">{{'Required'| localize}} *</div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6" hasError="name">
+                        <esign-input [text]="l('Name')" [placeholder]="l('Name')" isRequired="true" [isValidate]="true"
+                            name="name" formControlName="name" [(ngModel)]="rowdata.name"></esign-input>
+                        <div class="error-message" errorMessage>
+                            <div *ifError="'required'">{{'Required'| localize}} *</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-around mt-2">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                        <esign-textarea [text]="l('Description')" [placeholder]="l('Description')"
+                            formControlName="description" name="description" [(ngModel)]="rowdata.description"
+                        ></esign-textarea>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-around mt-2">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12" hasError="apiUrl">
+                        <esign-textarea [text]="l('ApiUrl')" [placeholder]="l('ApiUrl')"  isRequired="true" [isValidate]="true"
+                            formControlName="apiUrl" name="apiUrl" [(ngModel)]="rowdata.apiUrl"
+                        ></esign-textarea>
+                        <div class="error-message" errorMessage>
+                            <div *ifError="'required'">{{'Required'| localize}} *</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-around mt-2">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12" hasError="apiUsername">
+                        <esign-input [text]="l('ApiUsername')" [placeholder]="l('ApiUsername')" isRequired="true" [isValidate]="true"
+                            formControlName="apiUsername" name="apiUsername" [(ngModel)]="rowdata.apiUsername"
+                        ></esign-input>
+                        <div class="error-message" errorMessage>
+                            <div *ifError="'required'">{{'Required'| localize}} *</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-around mt-2">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12" hasError="apiPassword">
+                        <esign-input [text]="l('ApiPassword')" [placeholder]="l('ApiPassword')" isRequired="true" [isValidate]="true"
+                            formControlName="apiPassword" name="apiPassword" [(ngModel)]="rowdata.apiPassword"
+                        ></esign-input>
+                        <div class="error-message" errorMessage>
+                            <div *ifError="'required'">{{'Required'| localize}} *</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button-action-form d-flex justify-content-end align-items-center">
+                <div class="button-action mr-2">
+                    <button ejs-button [isPrimary]="true" (click)="save()" iconCss="fas fa-save"
+                        cssClass="e-outline">{{ 'Save' | localize }}</button>
+                    <button class="ghost" #submitBtn></button>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</ejs-dialog>

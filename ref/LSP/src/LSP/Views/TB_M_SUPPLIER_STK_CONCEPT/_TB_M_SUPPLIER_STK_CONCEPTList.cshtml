@@ -1,0 +1,583 @@
+﻿@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = LSP.Models.Common.PageSize_M(); //10
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = LSP.Models.Common.PageSizeItemSettings(); //new string[] { "10", "20", "50" };
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+
+    settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Visible;
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 7;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+	
+    settings.CallbackRouteValues = new { Controller = "TB_M_SUPPLIER_STK_CONCEPT", Action = "GridCallback" };
+	 
+	//Export
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+    settings.SettingsExport.BeforeExport = (sender, e) =>
+    {
+        MVCxGridView gridView = sender as MVCxGridView;
+        if (sender == null)
+            return;
+        gridView.Columns["Op."].Visible = false;
+    };
+	//Toolbar
+    settings.Toolbars.Add(toolbar =>
+    {
+                toolbar.Enabled = true;
+                toolbar.EnableAdaptivity = true;
+                toolbar.Position = GridToolbarPosition.Top;
+                toolbar.ItemAlign = GridToolbarItemAlign.Left;
+
+                toolbar.Items.Add(i =>
+                {
+                    i.BeginGroup = true;
+                    i.SetTemplateContent(c =>
+                    {
+                        Html.DevExpress().ButtonEdit(s =>
+                        {
+                            s.Name = "search";
+                            s.Properties.NullText = "Search inline...";
+                            s.Properties.Buttons
+                                .Add()
+                                .Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
+                        }).Render();
+                    });
+                }); 
+                toolbar.Items.Add(i =>
+                {
+                    i.BeginGroup = true;
+                    i.SetTemplateContent(c =>
+                    {
+                        @Html.DevExpress().Button(s =>
+                        {
+                            s.Name = "btnExportXls";
+                            s.ClientSideEvents.Click = "function(s, e) {gvList.ExportTo(ASPxClientGridViewExportFormat.Xls);}";
+                            s.Text = "Export to Xls";
+                            s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxls16x16;
+                        }).GetHtml();
+                    });
+                });
+        
+                toolbar.Items.Add(i =>
+                {
+                    i.BeginGroup = true;
+                    i.SetTemplateContent(c =>
+                    {
+                        @Html.DevExpress().Button(s =>
+                        {
+                            s.Name = "btnCopy";                            
+                            s.ClientSideEvents.Click = "function(s, e) {GENERATE_BYCOPY_NEW_MONTH();}";
+                            s.Text = "Copy all to new Month";
+                            s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.DataCopymodeldifferences16x16;
+                        }).GetHtml();
+                    });
+                });                              
+    });
+	//For Search panel
+    settings.SettingsSearchPanel.CustomEditorName = "search";
+		
+	
+	settings.Columns.Add(c =>
+	{
+		c.Caption = "Op.";
+		c.Width = System.Web.UI.WebControls.Unit.Pixel(70);
+		c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+		c.SetDataItemTemplateContent(
+			content =>
+			{
+				System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+				if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				   (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+				{
+					strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Edit(this)' title='Edit'><i class='fa fa-edit'></i></a>"));
+				}
+				if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				   (Html.Toyota().Page.ControllerName.ToString(), "Delete"))
+				{
+					strBuilder.Append(string.Concat(" <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Delete(this)'  title='Delete'><i class='fa fa-trash-o'></i></a>"));
+				}
+				Html.ViewContext.Writer.Write(strBuilder.ToString());
+			});
+		c.FixedStyle = GridViewColumnFixedStyle.Left;
+        c.Width = 70;
+	});
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "No.";
+                c.FieldName = "ROW_NO";                
+                c.Width = 60;
+                c.FixedStyle = GridViewColumnFixedStyle.Left;
+            }
+           );
+    
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "SUPPLIER CODE";
+					c.FieldName = "SUPPLIER_CODE";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.Width = 70;
+                    c.FixedStyle = GridViewColumnFixedStyle.Left;
+				}
+			);
+			settings.Columns.Add(c =>
+				{
+                    c.Caption = "STK MONTH";
+					c.FieldName = "MONTH_STK";
+					c.PropertiesEdit.DisplayFormatString = "MM/yyyy";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.Width = 60;
+                    c.FixedStyle = GridViewColumnFixedStyle.Left;
+				}
+			);
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "STK TYPE (D: Daily, O:Others)";
+                    c.FieldName = "STK_CONCEPT";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.Width = 70;				
+				}
+			);
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "FREQUENCY";
+                c.FieldName = "STK_CONCEPT_FRQ";
+                c.Width = 70;
+            }
+            );
+    
+           settings.Columns.Add(c =>
+				{
+                    c.Caption = "STK FREQUENCY (1)";
+                    c.FieldName = "STK_CONCEPT_FRQ_VALUE";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;   
+                    c.Width = 70;
+				}
+			);
+        
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "MIN STK 1";
+					c.FieldName = "MIN_STK_1";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.MediumTurquoise;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MIN_STK_1";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MIN_STK_1] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.LightBlue;
+            });
+    
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "MIN STK 2";
+					c.FieldName = "MIN_STK_2";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.MediumTurquoise;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MIN_STK_2";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MIN_STK_2] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.LightBlue;
+            });
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "MIN STK 3";
+					c.FieldName = "MIN_STK_3";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.MediumTurquoise;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MIN_STK_3";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MIN_STK_3] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.LightBlue;
+            });
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "MIN STK 4";
+					c.FieldName = "MIN_STK_4";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.MediumTurquoise;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MIN_STK_4";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MIN_STK_4] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.LightBlue;
+            });
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "MIN STK 5";
+					c.FieldName = "MIN_STK_5";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.MediumTurquoise;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MIN_STK_5";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MIN_STK_5] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.LightBlue;
+            });
+            
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "MIN STK 6";
+					c.FieldName = "MIN_STK_6";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.MediumTurquoise;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MIN_STK_6";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MIN_STK_6] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.LightBlue;
+            });
+    
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "MIN STK 7";
+					c.FieldName = "MIN_STK_7";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.MediumTurquoise;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MIN_STK_7";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MIN_STK_7] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.LightBlue;
+            });
+            
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "MIN STK 8";
+					c.FieldName = "MIN_STK_8";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.MediumTurquoise;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MIN_STK_8";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MIN_STK_8] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.LightBlue;
+            });
+            
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "MIN STK 9";
+					c.FieldName = "MIN_STK_9";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.MediumTurquoise;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MIN_STK_9";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MIN_STK_9] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.LightBlue;
+            });
+    
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "MIN STK 10";
+					c.FieldName = "MIN_STK_10";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.MediumTurquoise;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MIN_STK_10";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MIN_STK_10] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.LightBlue;
+            });
+    
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "MIN STK 11";
+					c.FieldName = "MIN_STK_11";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.MediumTurquoise;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MIN_STK_11";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MIN_STK_11] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.LightBlue;
+            });
+    
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "MIN STK 12";
+					c.FieldName = "MIN_STK_12";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.MediumTurquoise;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MIN_STK_12";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MIN_STK_12] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.LightBlue;
+            });
+    
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "MIN STK 13";
+					c.FieldName = "MIN_STK_13";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.MediumTurquoise;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MIN_STK_13";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MIN_STK_13] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.LightBlue;
+            });
+    
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "MIN STK 14";
+					c.FieldName = "MIN_STK_14";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.MediumTurquoise;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MIN_STK_14";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MIN_STK_14] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.LightBlue;
+            });
+    
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "MIN STK 15";
+					c.FieldName = "MIN_STK_15";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.MediumTurquoise;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MIN_STK_15";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MIN_STK_15] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.LightBlue;
+            });
+    
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "MAX STK 1";
+					c.FieldName = "MAX_STK_1";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.Salmon;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MAX_STK_1";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MAX_STK_1] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.LightBlue;
+            });
+    
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "MAX STK 2";
+					c.FieldName = "MAX_STK_2";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.Salmon;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MAX_STK_2";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MAX_STK_2] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.LightBlue;
+            });
+    
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "MAX STK 3";
+					c.FieldName = "MAX_STK_3";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.Salmon;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MAX_STK_3";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MAX_STK_3] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.LightBlue;
+            });
+    
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "MAX STK 4";
+					c.FieldName = "MAX_STK_4";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.Salmon;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MAX_STK_4";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MAX_STK_4] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.LightBlue;
+            });
+    
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "MAX STK 5";
+					c.FieldName = "MAX_STK_5";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.Salmon;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MAX_STK_5";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MAX_STK_5] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.LightBlue;
+            });
+    
+            settings.Columns.Add(c =>
+				{
+                    c.Caption = "MIN STK CONCEPT (2)";
+					c.FieldName = "MIN_STK_CONCEPT";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.MediumTurquoise;
+                    c.Width = 60;
+				}
+			);            
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MIN_STK_CONCEPT";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MIN_STK_CONCEPT] > 0";                             
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.Font.Bold = true;
+                h.CellStyle.BackColor = System.Drawing.Color.LightSlateGray;
+            });
+                    
+            settings.Columns.Add(c =>
+				{
+                    c.Caption = "MAX STK CONCEPT (=(1) + (2) + All-MAX)";
+					c.FieldName = "MAX_STK_CONCEPT";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.BackColor = System.Drawing.Color.Salmon;
+                    c.Width = 60;
+				}
+			);
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "MAX_STK_CONCEPT";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[MAX_STK_CONCEPT] > 0";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.Font.Bold = true;
+                h.CellStyle.BackColor = System.Drawing.Color.Gold;
+            });
+    
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "IS ACTIVE?";
+                c.FieldName = "IS_ACTIVE";
+                c.SetDataItemTemplateContent(cc =>
+                {
+                    Html.DevExpress().CheckBox(checkboxSettings =>
+                    {
+                        checkboxSettings.Name = "IS_ACTIVE_" + cc.KeyValue.ToString();
+                        checkboxSettings.Checked = Convert.ToString(DataBinder.Eval(cc.DataItem, "IS_ACTIVE")) == "Y" ? true : false;
+                        checkboxSettings.Properties.ClientSideEvents.CheckedChanged = "function() { return false; }";
+                        //checkboxSettings.ClientEnabled = false;
+                    }).Render();
+                });
+            });
+    
+}).Bind(LSP.Models.TB_M_SUPPLIER_STK_CONCEPT.TB_M_SUPPLIER_STK_CONCEPTProvider.Instance.TB_M_SUPPLIER_STK_CONCEPT_Search(Model ?? new LSP.Models.TB_M_SUPPLIER_STK_CONCEPT.TB_M_SUPPLIER_STK_CONCEPTInfo())).GetHtml()
+

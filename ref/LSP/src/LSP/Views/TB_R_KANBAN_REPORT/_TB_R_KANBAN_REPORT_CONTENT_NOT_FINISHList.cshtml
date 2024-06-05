@@ -1,0 +1,122 @@
+﻿@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvCListReport";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = LSP.Models.Common.PageSize_M();
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = LSP.Models.Common.PageSizeItemSettings();//new string[] { "10", "20", "50" };
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+
+    settings.CallbackRouteValues = new { Controller = "TB_R_KANBAN_REPORT", Action = "CONTENT_NOT_FINISHGridCallback" };
+
+    settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Auto;
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 7;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Left;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+
+    settings.SettingsResizing.ColumnResizeMode = ColumnResizeMode.Control;
+    settings.SettingsResizing.Visualization = ResizingMode.Live;
+    settings.SettingsBehavior.AllowEllipsisInText = true;
+   
+    //Toolbar
+    settings.Toolbars.Add(toolbar =>
+    {
+        toolbar.Enabled = true;
+        toolbar.EnableAdaptivity = true;
+        toolbar.Position = GridToolbarPosition.Top;
+        toolbar.ItemAlign = GridToolbarItemAlign.Left;
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                Html.DevExpress().ButtonEdit(s =>
+                {
+                    s.Name = "searchContentNotFinish";
+                    s.Properties.NullText = "Search inline...";
+                    s.Properties.Buttons
+                        .Add()
+                        .Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
+                }).Render();
+            });
+        });        
+    });
+    
+    //For Search panel
+    settings.SettingsSearchPanel.CustomEditorName = "searchContentNotFinish";
+    settings.Styles.FocusedRow.BackColor = System.Drawing.Color.LightGray;
+    settings.Styles.Row.ForeColor = System.Drawing.Color.Black;
+        
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "No.";
+            c.FieldName = "ROW_NO";
+            c.Width = 40;            
+        }
+    );
+    
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "WORKING DATE";
+            c.FieldName = "WORKING_DATE";
+            c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+            c.Width = 80;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;            
+        }
+    );
+   
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "SHIFT";
+            c.FieldName = "SHIFT";
+            c.Width = 60;            
+        }
+    );
+     
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "SUPPLIER";
+        c.FieldName = "SUPPLIER_CODE";
+        c.Width = 70;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;          
+    }
+    );        
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "ORDER NO";
+        c.FieldName = "ORDER_NO";
+        c.Width = 120;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;        
+    }
+    );    
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "CONTENT NO";
+            c.FieldName = "CONTENT_NO";
+            c.Width = 160;            
+        }
+    );
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "EST ARRIVAL DATETIME";
+        c.FieldName = "EST_ARRIVAL_DATETIME";
+        c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy HH:mm";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    }
+    );     
+       
+}).Bind(LSP.Models.TB_R_CONTENT_LIST.TB_R_CONTENT_LISTProvider.Instance.TB_R_CONTENT_LIST_UP_NOT_FINISH()).GetHtml()
+

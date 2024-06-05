@@ -1,0 +1,1 @@
+﻿EXEC TB_R_PART_HIKIATE_GetbySupplier @SUPPLIER_CODE

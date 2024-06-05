@@ -1,0 +1,113 @@
+﻿<table class="edit-form">
+	<tr>
+        <td class="label">DOMAIN CODE</td>
+        <td>
+            @Html.DevExpress().TextBox(
+            settings =>
+            {
+                settings.Name = "_DOMAIN_CODE"; //val-required , val-integer,  val-time
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox val-required";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label">ITEM CODE</td>
+        <td>
+            @Html.DevExpress().TextBox(
+            settings =>
+            {
+                settings.Name = "_ITEM_CODE";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox val-required";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label">ITEM VALUE</td>
+        <td>
+            @Html.DevExpress().TextBox(
+            settings =>
+            {
+                settings.Name = "_ITEM_VALUE";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox val-required";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label">DESCRIPTION</td>
+        <td>
+            @Html.DevExpress().Memo(
+            settings =>
+            {
+                settings.Name = "_DESCRIPTION";
+                settings.Width = 200;
+                settings.Properties.Rows = 3;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label">IS USE</td>
+        <td>
+            @Html.DevExpress().CheckBox(
+            settings =>
+            {
+                settings.Name = "_IS_USE";
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label">IS RESTRICT</td>
+        <td>
+            @Html.DevExpress().CheckBox(
+            settings =>
+            {
+                settings.Name = "_IS_RESTRICT";
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="padding-top: 20px;">
+            <div style="float: right; margin-right: 20px;">
+                @Html.DevExpress().Button(
+                settings =>
+                {
+                    settings.Name = "btnCancel";
+                    settings.ControlStyle.CssClass = "button";
+                    settings.Text = "Cancel";
+                    settings.ClientSideEvents.Click = "OnBtnCancelClicked";
+                }).GetHtml()
+            </div>  
+            <div style="float: right; margin-right: 5px">
+
+                @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                    (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+                        Html.DevExpress().Button(
+                        settings =>
+                        {
+                            settings.Name = "btnUpdate";
+                            settings.ControlStyle.CssClass = "button";
+                            settings.Text = "Save";
+                            settings.UseSubmitBehavior = true;
+                            settings.ClientSideEvents.Click = "function(s, e){ OnBtnUpdateClicked(this) }";
+                        }).GetHtml();
+                } 
+
+            </div>
+
+
+            <span id="userStatus" class="action-status"></span>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,115 @@
+﻿@*
+---Phần Edit form, CssClass Validate
+    --Class (.hide) thẻ cha nếu bỏ qua
+
+TextBox : .val-required (Check Null), .val-integer (Check Integer)
+TimeEdit : .val-time (Check định dạng time)
+*@
+<table class="edit-form">
+	<tr>
+        <td class="label"> 
+			CODE  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_CODE";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox val-required";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			NAME_EN  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_NAME_EN";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox val-required";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			NAME_VN  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_NAME_VN";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			TYPE  
+		</td>
+        <td>
+            @Html.DevExpress().ComboBox(settings =>
+            {
+                settings.Name = "_TYPE";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+
+                settings.Properties.Items.Add("INT", "INT");
+                settings.Properties.Items.Add("EXT", "EXT"); 
+                settings.SelectedIndex = 0;
+                
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr> 
+	<tr>
+        <td class="label"> 
+			IS_ACTIVE  
+		</td>
+        <td>
+            @Html.DevExpress().CheckBox(
+            settings =>
+            {
+                settings.Name = "_IS_ACTIVE";
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="padding-top: 20px;">
+            <div style="float: right; margin-right: 20px;">
+                @Html.DevExpress().Button(
+                settings =>
+                {
+                    settings.Name = "btnCancel";
+                    settings.ControlStyle.CssClass = "button";
+                    settings.Text = "Cancel";
+                    settings.ClientSideEvents.Click = "OnBtnCancelClicked";
+                }).GetHtml()
+              
+            </div>
+            <div style="float: right; margin-right: 5px">
+			 
+				    @Html.DevExpress().Button(
+                        settings =>
+                        {
+                            settings.Name = "btnUpdate";
+                            settings.ControlStyle.CssClass = "button";
+                            settings.Text = "Save";
+                            settings.UseSubmitBehavior = true;
+                            settings.ClientSideEvents.Click = "function(s, e){ OnBtnUpdateClicked(this) }";
+                        }).GetHtml()
+                
+				
+            </div>
+            <span id="userStatus" class="action-status"></span>
+        </td>
+    </tr>
+</table>
+

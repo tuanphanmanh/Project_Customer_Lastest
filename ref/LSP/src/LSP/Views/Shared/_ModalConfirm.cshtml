@@ -1,0 +1,31 @@
+﻿<style type="text/css">
+    .close 
+    {
+        opacity: 1;    
+    }
+</style>
+<div id="delete-confirm" class="modal fade"> 
+    <div class="modal-dialog modal-md" style="width: 400px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="close" style="opacity: 1 !important; margin-top: -7px;">
+                    <span aria-hidden="true"><img src="@Url.Content("~/Content/Bootstrap/img/question.png")" class="modal-icon" /></span>
+                    <span class="sr-only">Close</span>
+                </div>
+                <h4 class="modal-title" id="popup-title">Confirmation</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-body">
+                    <div id="mdlQuestion" class="row" style="padding-left: 10px;">
+                    </div>
+                    <input type="hidden" name="mdlValue" id="mdlValue" value=""/>
+                    <div class="row" style="text-align: right;padding-right: 10px; margin-top: 10px;">
+                        <button type="button" class="btn btn-primary btn-xs" data-dismiss="modal" style="width: 60px;" onclick="javascript:cfmModalYes()">Yes</button>
+                        <button class="btn btn-danger btn-xs" data-dismiss="modal" style="width: 60px;">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

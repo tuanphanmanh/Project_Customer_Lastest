@@ -1,0 +1,2 @@
+EXEC TB_R_TRUCK_BOOKING_D_Delete
+	@id 

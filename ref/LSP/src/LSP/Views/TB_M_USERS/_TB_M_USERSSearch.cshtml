@@ -1,0 +1,52 @@
+﻿<div class="dxcontent_search"> 
+    <div class="itembox">
+		<label class="placehoder">USER_CC</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtUSER_CC";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">USER_NAME</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtUSER_NAME";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">ACTIVE</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtACTIVE";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">CREATE_DATE</label>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_txtCREATE_DATE";
+				settings.ControlStyle.CssClass = "dateedit textdate";
+				settings.Properties.DisplayFormatString = "dd-MM-yyyy";
+			}).GetHtml() 
+    </div>
+    <div class="itembox">
+		<label class="placehoder">UPDATE_DATE</label>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_txtUPDATE_DATE";
+				settings.ControlStyle.CssClass = "dateedit textdate";
+				settings.Properties.DisplayFormatString = "dd-MM-yyyy";
+			}).GetHtml() 
+    </div>
+    <div class="itembox">     
+		@Html.DevExpress().Button(settings =>
+		{
+			settings.Name = "btnSearch";
+			settings.Text = "Search";
+			settings.ClientSideEvents.Click = "DoSearch";
+		}).GetHtml()
+    </div>
+</div>

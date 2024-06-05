@@ -1,0 +1,94 @@
+﻿<div class="login-form login-customer" [@routerTransition]>
+    <div class="login-header pt-lg-0 pt-5">
+        <img class="login-customer-top-img" src="/assets/common/images/Icon/eclip.png" alt="">
+        <!-- <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg title">
+            <span>{{ 'WelcomePage_Title' | localize }}</span>
+        </h3> -->
+        <img class="login-customer-logo-img" src="/assets/common/images/logo-default.jpg" alt="">
+    </div>
+    <!-- <div *ngIf="showTenantChange()" class="tenant-change-box mb-5 tenant-change-box py-8" style=" z-index: 2;">
+        <tenant-change></tenant-change>
+    </div> -->
+    <!--begin::Form-->
+
+
+    <!--end::Form-->
+
+    <!--begin::Options-->
+    <!-- <div class="mt-10 mb-2" *ngIf="(multiTenancySideIsTeanant || !isMultiTenancyEnabled) && loginService.externalLoginProviders.length > 0">
+        <div class="divider">
+            <span></span>
+            <span>{{"LoginWith" | localize}}</span>
+            <span></span>
+        </div>
+    </div> -->
+
+    <!-- <div class="pb-lg-0 pb-5"
+        *ngIf="(multiTenancySideIsTeanant || !isMultiTenancyEnabled) && loginService.externalLoginProviders.length > 0">
+        <a *ngFor="let provider of loginService.externalLoginProviders" class="btn btn-sm btn-light-primary font-weight-bolder py-2"
+            (click)="externalLogin(provider)" title="{{provider.name}}">
+            <i class="fab fa-{{provider.icon}}"></i>
+            {{provider.name}}
+        </a>
+    </div> -->
+    <!--end::Options-->
+    <div class="mt-4 mb-4 login-tmv">
+        <div id="Microsoft" class="external-login authentication-buttons" (click)="login365()">
+            <!-- <svg
+                class="logos-microsoft-icon"
+                width="22"
+                height="22"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                >
+                <g clip-path="url(#clip0_2332_206274)">
+                    <path d="M7.60412 7.60412H0V0H7.60412V7.60412Z" fill="#F1511B" />
+                    <path d="M15.9996 7.60412H8.39551V0H15.9996V7.60412Z" fill="#80CC28" />
+                    <path d="M7.60394 16.0001H0V8.396H7.60394V16.0001Z" fill="#00ADEF" />
+                    <path d="M15.9996 16.0001H8.39551V8.396H15.9996V16.0001Z" fill="#FBBC09" />
+                </g>
+                <defs>
+                    <clipPath id="clip0_2332_206274">
+                    <rect width="16" height="16" fill="white" />
+                    </clipPath>
+                </defs>
+            </svg> -->
+            <img style="height: 25px; border-radius: 5px;" src="/assets/common/images/ToyotaSymbol_White_RGB.png">
+
+            <span class="external-signin">{{l('LoginWithTMVAccount', appSession.tenancyName)}}</span>
+        </div>
+    </div>
+    <div class="mt-4 mb-4 login-tmv">
+        <div id="Microsoft" class="external-login authentication-buttons" routerLink="/account/login-guest">
+            <!-- <img style="height: 22px; border-radius: 5px;" src="/assets/common/images/picture-1-10.png"> -->
+            <img style="height: 25px; border-radius: 5px;" src="/assets/common/images/default-profile-picture.png">
+
+            <span class="external-signin">{{l('LoginAsGuest')}}</span>
+        </div>
+    </div>
+    <div class="mt-5">
+        <div class="not-yet-member">
+            <span>
+                {{l('NotAMember?')}}
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="mt-5"> -->
+    <!-- <div>
+        <span>
+            {{"DontYouHaveAnAccount" | localize}}
+        </span>
+    </div> -->
+    <!-- <span> -->
+        <!-- <a routerLink="/account/register">{{"CreateAnAccount" | localize}}</a> -->
+        <!-- <span> | </span> -->
+    <!-- </span> -->
+    <!-- <span *ngIf="!multiTenancySideIsTeanant && isTenantSelfRegistrationAllowed">
+        <a routerLink="/account/select-edition">{{"NewTenant" | localize}}</a>
+        <span> | </span>
+    </span> -->
+    <!-- <a routerLink="/account/email-activation" id="email-activation-btn">{{"EmailActivation" | localize}}</a> -->
+<!-- </div> -->

@@ -1,0 +1,367 @@
+<div [@routerTransition]>
+    <div [class]="containerClass">
+        <div class="mac-book-air-18">
+            <div class="frame-1000006431">
+                <div class="frame-1000006430">
+                    <div class="frame-1000006426">
+                        <div class="frame-1000006455">
+
+                            <button [routerLink]="['/app/main/add-signature']" class="frame-1000006295">
+                                <div class="vuesax-linear-arrow-left">
+                                    <div class="vuesax-linear-arrow-left2">
+                                        <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M14.9998 19.9201L8.47984 13.4001C7.70984 12.6301 7.70984 11.3701 8.47984 10.6001L14.9998 4.08008"
+                                                stroke="#ff0000" stroke-width="1.5" stroke-miterlimit="10"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </button>
+                            <div class="overview">{{ 'Preview' | localize }}</div>
+                        </div>
+                        <div class="frame-1000003978">
+                            <div class="component-119"[routerLink]="['/app/main/add-signature']">
+                                <div class="vuesax-linear-search-status">
+                                <div class="vuesax-linear-search-status2">
+                                    <img src="assets/common/images/search-status.svg" />
+                                </div>
+                                </div>
+                                <div class="preview">{{l('ExitPreview')}}</div>
+                            </div>
+                            <div class="component-119"  (click)="confilmRequest.show()">
+                                <div class="vuesax-bold-send-2">
+                                    <img src="assets/common/images/next-action.svg" />
+                                </div>
+                                <div class="approval">{{l('SignAndSubmit')}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="frame-1000003979">
+                        <div class="frame-10000039792">
+                            <div class="group-1171275203">
+                                <div class="frame-10000064302">
+                                    <ejs-pdfviewer #pdfviewer id="pdfViewer" [enableRtl]="true"
+                                        (documentLoad)="pdfDoneLoading($event)"
+                                        [serviceUrl]="'https://esign-standby.toyotavn.com.vn:5001/api/PdfViewer'"
+                                        [documentPath]='document' [enableNavigation]="false"
+                                        [enableNavigationToolbar]="false" [enableToolbar]="false" zoomValue="100%"
+                                        style="display:block;width:100%;height:80vh;">
+                                    </ejs-pdfviewer>
+                                </div>
+                            </div>
+                            <div class="group-1171275209">
+                                <div style="padding: 16px 12px 16px 12px; height: 82vh; overflow-y: auto;">
+                                    <div class="frame-10000064312">
+                                        <div class="frame-1171275269">
+                                            <div class="frame-1000006509">
+                                                <div class="document">Document</div>
+                                            </div>
+                                            <div class="frame-1171275307"></div>
+                                        </div>
+                                        <div class="frame-1171275271">
+                                            <div class="frame-1000006437">
+                                                <div class="frame-1000006314">
+                                                    <div class="input-value">{{l('Title')}}</div>
+                                                    <div class="input-value2">
+                                                        {{data.title}}
+                                                    </div>
+                                                </div>
+                                                <div class="frame-10000063142">
+                                                    <div class="input-value">Message</div>
+                                                    <div class="input-value3">
+                                                        {{data.message}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="frame-1171275272">
+                                            <div class="frame-1171275309">
+                                                <div class="frame-1000006315">
+                                                    <div class="label">
+                                                        <div class="label2">
+                                                            <div class="label-value">Summary</div>
+                                                            <div class="vuesax-linear-info-circle">
+                                                                <div class="vuesax-linear-info-circle2">
+                                                                    <svg class="info-circle" width="16" height="16"
+                                                                        viewBox="0 0 16 16" fill="none"
+                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                        <path
+                                                                            d="M7.99984 1.33366C4.33317 1.33366 1.33317 4.33366 1.33317 8.00033C1.33317 11.667 4.33317 14.667 7.99984 14.667C11.6665 14.667 14.6665 11.667 14.6665 8.00033C14.6665 4.33366 11.6665 1.33366 7.99984 1.33366Z"
+                                                                            stroke="#97A7B7" stroke-width="1.5"
+                                                                            stroke-linecap="round"
+                                                                            stroke-linejoin="round" />
+                                                                        <path d="M8 10.667V7.33366" stroke="#97A7B7"
+                                                                            stroke-width="1.5" stroke-linecap="round"
+                                                                            stroke-linejoin="round" />
+                                                                        <path d="M8.00391 5.33301H7.99792"
+                                                                            stroke="#97A7B7" stroke-width="2"
+                                                                            stroke-linecap="round"
+                                                                            stroke-linejoin="round" />
+                                                                    </svg>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="frame-1171275307"></div>
+                                                </div>
+                                                <div class="frame-1171275320">
+                                                    <div class="frame-10000063152">
+                                                        <div class="input-value">{{l('Category')}}</div>
+                                                        <div class="input-value4">{{data.category}}</div>
+                                                    </div>
+                                                    <div class="frame-1171275230">
+                                                        <div class="input-value">{{l('TotalCost')}} (USD)</div>
+                                                        <div class="input-value5">{{data.totalCost}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="frame-1171275321">
+                                                    <div class="frame-1171275232">
+                                                        <div class="input-value">{{l('ProjectSchedule')}}</div>
+                                                        <div class="input-value3">{{data.projectScheduleFrom + ' - ' +
+                                                            data.projectScheduleTo}}</div>
+                                                    </div>
+                                                    <div class="frame-1171275231">
+                                                        <div class="input-value">ROI (years)</div>
+                                                        <div class="input-value3">{{data.roi}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="frame-1171275233">
+                                                    <div class="input-value">Content</div>
+                                                    <div class="input-value2">
+                                                        {{data.content}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="group-1171275212">
+                                            <div class="frame-1000006479">
+                                                <ejs-accordion>
+                                                    <e-accordionitems>
+                                                        <e-accordionitem [expanded]='true'>
+                                                            <ng-template #header>
+                                                                <div class="frame-1171275308">
+                                                                    <div class="document-list">Document list</div>
+                                                                </div>
+                                                            </ng-template>
+                                                            <ng-template #content>
+                                                                <div class="frame-10000064372 row">
+                                                                    <ng-container [ngTemplateOutlet]="listDocument"></ng-container>
+                                                                    <ng-template #listDocument>
+                                                                        <ng-container
+                                                                            *ngFor="let document of documentData.itemList,let i = index">
+                                                                            <div class="frame-1000006450">
+                                                                                <div class="frame-1000003980">
+                                                                                    <div class="frame-1171275238">
+                                                                                        <div class="_1">
+                                                                                            {{i+1}}</div>
+                                                                                    </div>
+                                                                                    <div class="frame-1000006438">
+                                                                                        <div class="frame-1000006523">
+                                                                                            <div
+                                                                                                class="frame-1171275237">
+                                                                                                <div class="frame">
+                                                                                                    <div
+                                                                                                        class="artboard">
+                                                                                                        <div
+                                                                                                            class="files-icon-pdf">
+                                                                                                            <svg class="combined-shape"
+                                                                                                                width="14"
+                                                                                                                height="16"
+                                                                                                                viewBox="0 0 14 16"
+                                                                                                                fill="none"
+                                                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                                                <path
+                                                                                                                    fill-rule="evenodd"
+                                                                                                                    clip-rule="evenodd"
+                                                                                                                    d="M8.5 0L13.8333 5.33333V14.1333C13.8333 15.1643 12.9976 16 11.9667 16H2.36667C1.33574 16 0.5 15.1643 0.5 14.1333V1.86667C0.5 0.835735 1.33574 0 2.36667 0H8.5Z"
+                                                                                                                    fill="#E94848" />
+                                                                                                            </svg>
+
+                                                                                                            <svg class="acrobat-shape"
+                                                                                                                width="6"
+                                                                                                                height="7"
+                                                                                                                viewBox="0 0 6 7"
+                                                                                                                fill="none"
+                                                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                                                <path
+                                                                                                                    d="M2.71784 0.866211C2.36828 0.866211 2.08081 1.15369 2.08081 1.50325C2.08081 1.9378 2.32225 2.47729 2.5765 2.98436C2.37776 3.60648 2.15224 4.27317 1.86382 4.83575C1.27347 5.06738 0.747006 5.23955 0.430482 5.49468C0.425546 5.49973 0.420894 5.50505 0.416547 5.51061C0.300881 5.62889 0.233398 5.78994 0.233398 5.96251C0.233398 6.31207 0.520873 6.59955 0.870435 6.59955C1.0409 6.59955 1.20543 6.53593 1.32432 6.41441C1.32844 6.41125 1.33242 6.40793 1.33627 6.40445C1.56926 6.12624 1.84399 5.62155 2.08877 5.16024C2.65291 4.93832 3.24419 4.71251 3.81474 4.57695C4.23125 4.91262 4.83382 5.13436 5.32969 5.13436C5.67926 5.13436 5.96673 4.84688 5.96673 4.49732C5.96673 4.14776 5.67926 3.86029 5.32969 3.86029C4.93203 3.86029 4.35414 4.00224 3.91229 4.15093C3.55414 3.81471 3.22509 3.39479 2.98858 2.94853C3.15756 2.42797 3.35488 1.90711 3.35488 1.50325C3.35488 1.15369 3.0674 0.866211 2.71784 0.866211ZM2.71784 1.24843C2.86084 1.24843 2.97266 1.36025 2.97266 1.50325C2.97266 1.69445 2.87027 2.04648 2.75169 2.42496C2.59323 2.05677 2.46303 1.70352 2.46303 1.50325C2.46303 1.36025 2.57485 1.24843 2.71784 1.24843ZM2.82733 3.42829C3.01893 3.73306 3.24333 4.01666 3.48826 4.26839C3.11048 4.37169 2.74153 4.50405 2.37743 4.64265C2.55328 4.24573 2.69406 3.83387 2.82733 3.42829ZM5.32969 4.24251C5.47269 4.24251 5.58451 4.35433 5.58451 4.49732C5.58451 4.64032 5.47269 4.75214 5.32969 4.75214C5.04262 4.75214 4.63461 4.62255 4.30844 4.44158C4.68283 4.33572 5.09136 4.24251 5.32969 4.24251ZM1.52738 5.3832C1.34824 5.70297 1.17017 6.00143 1.04562 6.15163C1.00307 6.19231 0.946477 6.21732 0.870435 6.21732C0.727442 6.21732 0.615621 6.1055 0.615621 5.96251C0.615621 5.89522 0.64422 5.82838 0.683306 5.78533C0.832746 5.66968 1.15786 5.5311 1.52738 5.3832Z"
+                                                                                                                    fill="white" />
+                                                                                                            </svg>
+
+                                                                                                            <svg class="path"
+                                                                                                                width="6"
+                                                                                                                height="6"
+                                                                                                                viewBox="0 0 6 6"
+                                                                                                                fill="none"
+                                                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                                                <g
+                                                                                                                    filter="url(#filter0_d_250_5378)">
+                                                                                                                    <path
+                                                                                                                        d="M5.8335 5.33301H2.46111C1.43018 5.33301 0.500164 4.40299 0.500164 3.37206V-0.000326157L5.8335 5.33301Z"
+                                                                                                                        fill="black" />
+                                                                                                                </g>
+                                                                                                                <path
+                                                                                                                    d="M5.8335 5.33301H2.46111C1.43018 5.33301 0.500164 4.40299 0.500164 3.37206V-0.000326157L5.8335 5.33301Z"
+                                                                                                                    fill="#FF9A8F" />
+                                                                                                                <defs>
+                                                                                                                    <filter
+                                                                                                                        id="filter0_d_250_5378"
+                                                                                                                        x="-1.5"
+                                                                                                                        y="-4"
+                                                                                                                        width="9.3335"
+                                                                                                                        height="9.33301"
+                                                                                                                        filterUnits="userSpaceOnUse"
+                                                                                                                        color-interpolation-filters="sRGB">
+                                                                                                                        <feFlood
+                                                                                                                            flood-opacity="0"
+                                                                                                                            result="BackgroundImageFix" />
+                                                                                                                        <feColorMatrix
+                                                                                                                            in="SourceAlpha"
+                                                                                                                            type="matrix"
+                                                                                                                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                                                                                                            result="hardAlpha" />
+                                                                                                                        <feOffset
+                                                                                                                            dy="-2" />
+                                                                                                                        <feGaussianBlur
+                                                                                                                            stdDeviation="1" />
+                                                                                                                        <feComposite
+                                                                                                                            in2="hardAlpha"
+                                                                                                                            operator="out" />
+                                                                                                                        <feColorMatrix
+                                                                                                                            type="matrix"
+                                                                                                                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.0909637 0" />
+                                                                                                                        <feBlend
+                                                                                                                            mode="normal"
+                                                                                                                            in2="BackgroundImageFix"
+                                                                                                                            result="effect1_dropShadow_250_5378" />
+                                                                                                                        <feBlend
+                                                                                                                            mode="normal"
+                                                                                                                            in="SourceGraphic"
+                                                                                                                            in2="effect1_dropShadow_250_5378"
+                                                                                                                            result="shape" />
+                                                                                                                    </filter>
+                                                                                                                </defs>
+                                                                                                            </svg>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="get-app-1233-pdf">
+                                                                                                    {{document.name}}
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="frame-1171275207">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="frame-1000006435">
+                                                                                            <div
+                                                                                                class="frame-1000006446">
+                                                                                                <svg class="vector41"
+                                                                                                    width="5" height="4"
+                                                                                                    viewBox="0 0 5 4"
+                                                                                                    fill="none"
+                                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <path
+                                                                                                        d="M2.5 0C1.4 0 0.5 0.9 0.5 2C0.5 3.1 1.4 4 2.5 4C3.6 4 4.5 3.1 4.5 2C4.5 0.9 3.6 0 2.5 0Z"
+                                                                                                        fill="#97A7B7" />
+                                                                                                </svg>
+
+                                                                                                <div
+                                                                                                    class="_8-page-s-6-signatures">
+                                                                                                    {{document?.page}}
+                                                                                                    page(s),
+                                                                                                    {{document?.signers?.length}}
+                                                                                                    Signatures
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="frame-1000006525">
+                                                                                            <div
+                                                                                                class="frame-1171275267">
+                                                                                                <ng-container
+                                                                                                    *ngFor="let signer of document.signers">
+                                                                                                    <img class="ellipse-2068"
+                                                                                                        [src]="signer.imageUrl" />
+                                                                                                </ng-container>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </ng-container>
+                                                                    </ng-template>
+                                                                </div>
+                                                            </ng-template>
+                                                        </e-accordionitem>
+                                                    </e-accordionitems>
+                                                </ejs-accordion>
+                                                <div class="frame-10000065092">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="frame-1000006482">
+                                            <div class="frame-1171275189">
+                                                <ng-container [ngTemplateOutlet]="listSignOff"></ng-container>
+                                                <ng-template #listSignOff>
+                                                    <ng-container *ngFor="let signGroup of documentData.stepList">
+                                                        <div class="frame-1000006411">
+                                                            <div class="frame-1000006368">
+                                                                <div class="search">
+                                                                    <div class="frame-1000006404">
+                                                                        <div class="frame-1000006405">
+                                                                            <div class="_1">{{signGroup.rank}}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="frame-1171275206">
+                                                                    <ng-container
+                                                                        *ngFor="let signer of signGroup.signers">
+                                                                        <div class="frame-1171275205"
+                                                                            [ngStyle]="{'background-color': signer.backgroundColor}">
+                                                                            <div class="frame-10000064292">
+                                                                                <div class="frame-1000006526">
+                                                                                    <img class="ellipse-20682"
+                                                                                        [src]="signer.imgUrl" />
+                                                                                    <div class="frame-1000006366">
+                                                                                        <div class="pham-thi-xuan">
+                                                                                            {{signer.name}}
+                                                                                            <div
+                                                                                                class="frame-1171275263">
+                                                                                                <div class="_12">
+                                                                                                    {{signer.numOfSign}}
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="financial-manager">
+                                                                                            {{signer.email}}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="ellipse-2082"
+                                                                                    [ngStyle]="{'background-color': signer.color}">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ng-container>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </ng-container>
+                                                </ng-template>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<confirm-send-request #confilmRequest ></confirm-send-request>

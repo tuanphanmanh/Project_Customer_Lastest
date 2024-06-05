@@ -1,0 +1,74 @@
+﻿@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvRolesUsersList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = 20;
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.CallbackRouteValues = new { Controller = "TB_M_USERS", Action = "Users_GridCallback" };
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "";
+        c.Width = System.Web.UI.WebControls.Unit.Pixel(70);
+        c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        c.SetDataItemTemplateContent(content =>
+        {
+            System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+            strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Edit(this)' title='Edit'><i class='fa fa-pencil'></i></a>"));
+            strBuilder.Append(string.Concat(" <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Delete(this)' title='Delete'><i class='fa fa-trash-o'></i></a>"));
+            Html.ViewContext.Writer.Write(strBuilder.ToString());
+        });
+    });
+    
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "USER NAME";
+            c.FieldName = "USER_NAME";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "USER NAME";
+            c.FieldName = "USER_NAME";
+        }
+    );
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "ACTIVE";
+        c.FieldName = "ACTIVE";
+        c.SetDataItemTemplateContent(cc =>
+        {
+            Html.DevExpress().CheckBox(checkboxSettings =>
+            {
+                checkboxSettings.Name = "ACTIVE_" + cc.KeyValue.ToString();
+                checkboxSettings.Checked = Convert.ToString(DataBinder.Eval(cc.DataItem, "ACTIVE")) == "True" ? true : false;
+                checkboxSettings.ClientEnabled = false;
+            }).Render();
+        });
+    }
+    );
+
+    //Master
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = false;
+    settings.SettingsDetail.ShowDetailRow = true;
+    settings.SetDetailRowTemplateContent(c =>
+    {
+        ViewContext.Writer.Write(
+            "<b>Cost Center:</b> " +
+            string.Format(@"<a href="""" class=""dxbButton right"" id='btnAssignCC' style=""margin-right:5px;"" onclick=""return AssignCC('{0}','{1}');""><div class=""dxb""><i class='fa fa-vcard'></i>New Cost Center</div></a>", DataBinder.Eval(c.DataItem, "ID"), DataBinder.Eval(c.DataItem, "USER_NAME")) +
+            "<div class='clear'></div>"
+            
+        );
+        Html.RenderAction("Roles_GridCallback", new { USER_NAME = LSP.Models.Common._ToString(DataBinder.Eval(c.DataItem, "USER_NAME")) });
+    });
+    settings.PreRender = (sender, e) =>
+    {
+        ((MVCxGridView)sender).DetailRows.ExpandRow(-1);
+    };
+    
+}).Bind(LSP.Models.TB_M_USERS.TB_M_USERSProvider.Instance.TB_M_USERS_Search(Model ?? new LSP.Models.TB_M_USERS.TB_M_USERSInfo())).GetHtml()
+

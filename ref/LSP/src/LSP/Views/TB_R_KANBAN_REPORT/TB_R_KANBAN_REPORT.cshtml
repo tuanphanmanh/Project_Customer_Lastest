@@ -1,0 +1,63 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="dxcontent_list">	                
+    <div class="content-header content-title">  
+            @Html.Partial("_TB_R_KANBAN_REPORTSearch") 
+	</div>
+
+        @using (Html.BeginForm()) {
+	    @Html.Partial("_TB_R_KANBAN_REPORTList")
+    }
+	                                    
+	@Html.DevExpress().PopupControl(settings =>
+	{
+        settings.HeaderText = "TB_R_KANBAN_REPORT Management";
+        settings.Name = "popTB_R_KANBAN_REPORT";
+		settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+		settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+		settings.Modal = true;
+		settings.ShowCloseButton = true;
+		settings.PopupAnimationType = AnimationType.Fade;
+		settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+		settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+		settings.SetContent(() =>
+		{
+            Html.RenderPartial("_TB_R_KANBAN_REPORTEdit");
+		});
+        settings.ClientSideEvents.CloseUp = "OnPopTB_R_KANBAN_REPORTCloseUp";
+	}).GetHtml()
+          
+    @Html.DevExpress().PopupControl(settings =>
+	{
+        settings.HeaderText = "U/P CONTENT NOT FINISH";
+        settings.Name = "popCONTENT_NOT_FINISH";
+        settings.CallbackRouteValues = new { Controller = "TB_R_KANBAN_REPORT", Action = "CONTENT_NOT_FINISHGridCallback" };
+        settings.LoadContentViaCallback = LoadContentViaCallback.OnFirstShow;
+		settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+		settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+		settings.Modal = true;
+		settings.ShowCloseButton = true;
+		settings.PopupAnimationType = AnimationType.Fade;
+		settings.Width = System.Web.UI.WebControls.Unit.Pixel(700);
+		settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+		settings.SetContent(() =>
+		{
+            Html.RenderPartial("_TB_R_KANBAN_REPORT_CONTENT_NOT_FINISH");
+		});        
+	}).GetHtml()
+
+    @Html.DevExpress().LoadingPanel(
+        settings => {
+        settings.Name = "LoadingPanel";
+        settings.Modal = true;
+        settings.Text = "Processing...";
+        settings.Width = 160;
+        settings.ContainerElementID = "";
+    }
+    ).GetHtml()
+                    
+	@section HeadScript {
+		<script src="@Url.Content("~/Content/Scripts/App/TB_R_KANBAN_REPORT.js")" type="text/javascript"></script>
+	}
+</div>

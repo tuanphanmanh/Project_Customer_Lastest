@@ -1,0 +1,246 @@
+﻿@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvKanban" + Model.CONTENT_LIST_ID;
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = LSP.Models.Common.PageSize_M(); //10
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = LSP.Models.Common.PageSizeItemSettings(); //new string[] { "10", "20", "50" };
+    
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.CallbackRouteValues = new { Controller = "TB_R_CONTENT_LIST", Action = "KANBAN_GridCallback", CONTENT_LIST_ID = Model.CONTENT_LIST_ID };
+
+    //settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Visible;
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 7;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.Black;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+    settings.Styles.Header.BackColor = System.Drawing.Color.PowderBlue;
+    settings.Styles.Cell.Font.Size = 8;
+
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.Styles.FocusedRow.BackColor = System.Drawing.Color.LightGray;
+    settings.Styles.Row.ForeColor = System.Drawing.Color.Black;
+    
+     //Export
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+    settings.SettingsExport.BeforeExport = (sender, e) =>
+    {
+        MVCxGridView gridView = sender as MVCxGridView;
+        if (sender == null)
+            return;
+        gridView.Columns["Op."].Visible = false;
+    };
+
+    //Toolbar
+    settings.Toolbars.Add(toolbar =>
+    {
+        toolbar.Enabled = true;
+        toolbar.EnableAdaptivity = true;
+        toolbar.Position = GridToolbarPosition.Top;
+        toolbar.ItemAlign = GridToolbarItemAlign.Left;
+       
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnExportXls2";
+                    s.ClientSideEvents.Click = "function(s, e) {gvKanban" + Model.CONTENT_LIST_ID + ".ExportTo(ASPxClientGridViewExportFormat.Xls);}";
+                    s.Text = "Export to Xls";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxls16x16;
+                }).GetHtml();
+            });
+        });        
+    });
+    //For Search panel
+    settings.SettingsSearchPanel.CustomEditorName = "search";
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "Op.";
+        c.Width = System.Web.UI.WebControls.Unit.Pixel(100);
+        c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        c.SetDataItemTemplateContent(
+            content =>
+            {
+                System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Edit") && Convert.ToString(DataBinder.Eval(content.DataItem, "IS_ENABLE_EDIT")) == "Y")
+                {
+                    strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return KanbanEdit(this)' title='Edit'><i class='fa fa-pencil'></i></a>"));
+                }
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Delete") && Convert.ToString(DataBinder.Eval(content.DataItem, "IS_ENABLE_EDIT")) == "Y")
+                {
+                    strBuilder.Append(string.Concat(" <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return KanbanDelete(this)'  title='Delete'><i class='fa fa-trash-o'></i></a>"));
+                }
+                Html.ViewContext.Writer.Write(strBuilder.ToString());
+            });
+    });
+
+   /*settings.Columns.Add(c =>
+        {
+            c.Caption = "CONTENT LIST";
+            c.FieldName = "CONTENT_LIST_ID";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 70;
+        }
+    );*/
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "No.";
+        c.FieldName = "ROW_NO";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 40;
+    });
+    
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "BACK NO";
+            c.FieldName = "BACK_NO";
+            c.Width = 60;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PART NO";
+            c.FieldName = "PART_NO";
+            c.Width = 100;
+        }
+    );
+    /*
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "COLOR SFX";
+            c.FieldName = "COLOR_SFX";
+            c.Width = 70;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );*/
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PART NAME";
+            c.FieldName = "PART_NAME";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.CellStyle.Font.Size = 6;
+            c.Width = 150;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "BOX SIZE";
+            c.FieldName = "BOX_SIZE";
+            c.Width = 60;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "BOX QTY";
+            c.FieldName = "BOX_QTY";
+            c.Width = 60;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PACKAGING TYPE";
+            c.FieldName = "PACKAGING_TYPE";
+            c.Width = 80;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            
+        }
+    );    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "ACTUAL BOX QTY";
+        c.FieldName = "ACTUAL_BOX_QTY";
+        c.Width = 70;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+
+    }
+    );
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "ACTUAL BOX SIZE";
+        c.FieldName = "ACTUAL_BOX_SIZE";
+        c.Width = 70;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+
+    }
+    );
+    
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PC ADDRESS";
+            c.FieldName = "PC_ADDRESS";
+            c.Width = 100;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "SPS ADDRESS";
+            c.FieldName = "WH_SPS_PICKING";
+            c.Width = 100;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;            
+        }
+    );
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "UPDATED BY";
+        c.FieldName = "UPDATED_BY";
+        c.Width = 70;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "UPDATED DATE";
+        c.FieldName = "UPDATED_DATE";
+        c.PropertiesEdit.DisplayFormatString = "dd/MM/yy HH:mm";
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "CREATED DATE";
+        c.FieldName = "CREATED_DATE";
+        c.PropertiesEdit.DisplayFormatString = "dd/MM/yy HH:mm";
+    });
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "IS ACTIVE?";
+        c.FieldName = "IS_ACTIVE";
+        c.Width = 60;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.SetDataItemTemplateContent(cc =>
+        {
+            Html.DevExpress().CheckBox(checkboxSettings =>
+            {
+                checkboxSettings.Name = "IS_ACTIVE_K_" + cc.KeyValue.ToString();
+                checkboxSettings.Checked = Convert.ToString(DataBinder.Eval(cc.DataItem, "IS_ACTIVE")) == "Y" ? true : false;
+                checkboxSettings.Properties.ClientSideEvents.CheckedChanged = "function() { return false; }";
+                //checkboxSettings.ClientEnabled = false;
+            }).Render();
+        });
+    });
+   
+}).Bind(LSP.Models.TB_R_KANBAN.TB_R_KANBANProvider.Instance.TB_R_KANBAN_SearchByContentId(Model.CONTENT_LIST_ID ?? "")).GetHtml()
+

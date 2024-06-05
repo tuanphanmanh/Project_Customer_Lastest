@@ -1,0 +1,58 @@
+<div>
+    <ejs-grid class="sortingenabled" [dataSource]='history' allowTextWrap='true'
+        allowSorting='true' height='210'>
+        <e-columns>
+            <e-column field='activityTime' [headerText]='"DateTime" | localize' width='90'
+                textAlign='Center'>
+                <ng-template #template let-data>
+                    {{formatDate(data.activityTime)}}
+                </ng-template>
+            </e-column>
+            <e-column field='signerName' [headerText]='"UserActivity" | localize' width='195'
+                textAlign='Left'>
+                <ng-template #template let-data>
+                    <div class="frame-1171275495">
+                        <div *ngIf="data.activityCode ==='Viewed'" class="viewed-the-document">{{l('ActivityView',data.signerName)}}</div>
+                        <div *ngIf="data.activityCode ==='Signed'" class="viewed-the-document">{{l('ActivitySign',data.signerName)}}</div>
+                        <div *ngIf="data.activityCode ==='AdditionalFile'" class="viewed-the-document">{{l('ActivityAddFile',data.signerName,data?.description)}}</div>
+                        <div *ngIf="data.activityCode ==='Created'" class="viewed-the-document">{{l('ActivityCreate',data.signerName)}}</div>
+                        <div *ngIf="data.activityCode ==='Reminded'" class="viewed-the-document">{{l('ActivityRemind',data.signerName)}}</div>
+                        <div *ngIf="data.activityCode ==='Cloned'" class="viewed-the-document">{{l('ActivityCloned',data.signerName)}}</div>
+                        <div *ngIf="data.activityCode ==='Revoked'" class="viewed-the-document">{{l('ActivityRevoked',data.signerName)}}</div>
+                        <div *ngIf="data.activityCode ==='AdditionalRefDoc'" class="viewed-the-document">{{l('ActivityAddDoc',data.signerName,data?.description)}}</div>
+                        <div *ngIf="data.activityCode ==='Shared'" class="viewed-the-document">{{l('ActivityShared',data.signerName)}}</div>
+                        <div *ngIf="data.activityCode ==='Rejected'" class="viewed-the-document">{{l('ActivityRejected',data.signerName)}}</div>
+                        <div *ngIf="data.activityCode ==='Reassigned'" class="viewed-the-document">{{data?.description.replace('has reassigned to', l('ActivityReassign'))}}</div>
+                        <div *ngIf="data.activityCode ==='Transferred'" class="viewed-the-document">{{data?.description.replace('has transferred to', l('ActivityTransfer'))}}</div>
+                    </div>
+                </ng-template>
+            </e-column>
+            <e-column field='activityCode' [headerText]='"Action" | localize' width='80' textAlign='Center'>
+                <ng-template #template let-data>
+                    <div class="ellipse-parent">
+                        <div class="action"
+                            [ngStyle]="{'background-color': data['activityCode'] ==='Signed' ? '#E4FEF2' : data['activityCode'] ==='Rejected' ? '#fee1e8' : '#EEE',
+                                        'color': data['activityCode'] ==='Signed' ? '#00C265' : data['activityCode'] ==='Rejected' ? 'red' : 'black'}">
+                            <div class="action-text">
+                                <!-- {{data['activityCode'] === 'AdditionalFile' ? 'Added File' : data['activityCode'] === 'AdditionalRefDoc' ? 'Added Ref Doc' : data['activityCode']}} -->
+                                {{l(data['activityCode'].replace('AdditionalRefDoc','AdditionalRefDocCode'))}}
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </e-column>
+        </e-columns>
+        <e-column field='deviceIP' [headerText]='"Device IP" | localize' width='90'
+            textAlign='Center'>
+            <!-- <ng-template #template let-data>
+                {{formatDate(data.activityTime)}}
+            </ng-template> -->
+        </e-column>
+        <e-column field='internetIP' [headerText]='"Internet IP" | localize' width='90'
+            textAlign='Center'>
+            <!-- <ng-template #template let-data>
+                {{formatDate(data.activityTime)}}
+            </ng-template> -->
+        </e-column>
+    </ejs-grid>
+</div>

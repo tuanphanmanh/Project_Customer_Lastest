@@ -1,0 +1,218 @@
+﻿@using LSP.Models
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = LSP.Models.Common.PageSize_L(); //10
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = Common.PageSizeItemSettings(); //new string[] { "10", "20", "50" };
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 7;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+
+    //Export
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+    
+    settings.CallbackRouteValues = new { Controller = "TB_R_PRODUCTION_PLAN_M_V2", Action = "GridCallback" };
+
+     //Focus Row 
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.Styles.FocusedRow.BackColor = System.Drawing.Color.LightGray;
+    settings.Styles.Row.ForeColor = System.Drawing.Color.Black;
+    
+    //Toolbar
+    settings.Toolbars.Add(toolbar =>
+    {
+        toolbar.Enabled = true;
+        toolbar.EnableAdaptivity = true;
+        toolbar.Position = GridToolbarPosition.Top;
+        toolbar.ItemAlign = GridToolbarItemAlign.Left;
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                Html.DevExpress().ButtonEdit(s =>
+                {
+                    s.Name = "searchOrder";
+                    s.Properties.NullText = "Search inline...";
+                    s.Width = 120;
+                    s.Properties.Buttons
+                        .Add()
+                        .Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
+                }).Render();
+            });
+        });
+
+        
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnOrderExportXls";
+                    s.ClientSideEvents.Click = "function(s, e) {gvList.ExportTo(ASPxClientGridViewExportFormat.Xls);}";
+                    s.Text = "Export to Xls";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxls16x16;
+                }).GetHtml();
+            });
+        });
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "BtnCollapse";
+                    s.Text = "Collapse Rows";
+                    s.UseSubmitBehavior = false;
+                    s.ClientSideEvents.Click = "function() { gvList.CollapseAll() }";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.SpreadsheetCollapsefieldpivottable16x16;
+                }).GetHtml();
+            });
+        });
+
+        toolbar.Items.Add(i =>
+        {
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "BtnExpand";
+                    s.Text = "Expand Rows";
+                    s.UseSubmitBehavior = false;
+                    s.ClientSideEvents.Click = "function() { gvList.ExpandAll() }";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsExpandcollapse16x16devav;
+                }).GetHtml();
+            });
+        });
+       
+        toolbar.Items.Add(GridViewToolbarCommand.ShowGroupPanel);
+    });
+    //For Search panel
+    settings.SettingsSearchPanel.CustomEditorName = "search";
+    
+    //Show group columns as default
+    settings.Settings.ShowGroupedColumns = true;
+    
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "No.";
+            c.FieldName = "Row_No";
+            c.Width = 60;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "CFC";
+            c.FieldName = "CFC";
+             c.Width = 80;
+        });
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PROD SFX";
+            c.FieldName = "PROD_SFX";
+             c.Width = 80;
+        });  
+    
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO VOLUME";
+            c.FieldName = "LO_VOLUME";
+            c.Width = 80;
+        });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "PRODUCTION MONTH";
+        c.FieldName = "PRODUCTION_MONTH";
+        c.Width = 120;
+        c.PropertiesEdit.DisplayFormatString = "MM/yyyy";
+        c.GroupIndex = 1;
+        c.SortOrder = DevExpress.Data.ColumnSortOrder.Descending;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "CREATED BY";
+        c.FieldName = "CREATED_BY";
+        c.Width = 70;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.EditFormSettings.Visible = DefaultBoolean.False;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "CREATED DATE";
+        c.FieldName = "CREATED_DATE";
+        c.Width = 100;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.EditFormSettings.Visible = DefaultBoolean.False;
+        c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy HH:mm";
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "UPDATED BY";
+        c.FieldName = "UPDATED_BY";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.EditFormSettings.Visible = DefaultBoolean.False;
+        c.Width = 70;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "UPDATED DATE";
+        c.FieldName = "UPDATED_DATE";
+        c.Width = 100;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.EditFormSettings.Visible = DefaultBoolean.False;
+        c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy HH:mm";
+    });
+
+    settings.SettingsBehavior.AutoExpandAllGroups = true;
+    settings.HtmlRowPrepared = (s, e) =>
+    {
+        MVCxGridView gridView = s as MVCxGridView;
+        if (e.RowType == GridViewRowType.Group)
+        {
+            if (gridView.GetRowLevel(e.VisibleIndex) == 0)
+            {
+                e.Row.BackColor = System.Drawing.Color.CadetBlue;
+            }
+            else if (gridView.GetRowLevel(e.VisibleIndex) == 1)
+            {
+                e.Row.BackColor = System.Drawing.Color.Cornsilk;
+            }
+            else
+            {
+                e.Row.BackColor = System.Drawing.Color.Silver;
+            }
+
+            e.Row.Font.Bold = true;
+            e.Row.Font.Size = 8;
+        }
+
+        if (e.RowType != GridViewRowType.Data) return;
+    };    
+    
+}).Bind(LSP.Models.TB_R_PRODUCTION_PLAN_M.TB_R_PRODUCTION_PLAN_MProvider.Instance.TB_R_PRODUCTION_PLAN_M_V2_Search(Model ?? new LSP.Models.TB_R_PRODUCTION_PLAN_M.TB_R_PRODUCTION_PLAN_MInfo())).GetHtml()
+

@@ -1,0 +1,9 @@
+EXEC TB_M_SCANNING_USR_Update
+	@id ,
+	@USER_ID , 
+	@USER_NAME , 
+	@IS_ACTIVE , 
+	@CREATED_BY , 
+	@CREATED_DATE , 
+	@UPDATED_BY , 
+	@UPDATED_DATE 

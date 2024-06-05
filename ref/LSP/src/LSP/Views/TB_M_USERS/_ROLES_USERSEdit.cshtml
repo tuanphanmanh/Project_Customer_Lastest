@@ -1,0 +1,83 @@
+﻿<table class="edit-form user_role">
+	<tr>
+        <td class="label"> 
+			USER NAME  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_R_USER_NAME";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox val-required";    //val-integer 
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	@*<tr>
+        <td class="label"> 
+			TEAM_ID  
+		</td>
+        <td>
+            @Html.DevExpress().ComboBox(settings =>
+            {
+                settings.Name = "_TEAM_ID";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox val-required"; 
+                settings.Properties.ValueField = "ID";
+
+                settings.Properties.TextFormatString = "{0} {1}";
+                
+                settings.Properties.Columns.Add("TMV_CC", "TMV CC");
+                settings.Properties.Columns.Add("TEAM", "TEAM");
+                settings.Properties.Columns.Add("PROD_LINE", "LINE");
+                
+            }).BindList(LSP.Models.TB_M_CC.TB_M_CCProvider.Instance.TB_M_CC_Gets("")).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>*@
+	<tr>
+        <td class="label"> 
+			Ca làm việc
+		</td>
+        <td>
+            @Html.DevExpress().ComboBox(settings =>
+            {
+                settings.Name = "_SHIFT";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox val-required";
+                settings.Properties.Items.Add("Đỏ", "R"); 
+                settings.Properties.Items.Add("Vàng", "Y");
+                settings.Properties.Items.Add("Hành Chính", "H");
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr> 
+    <tr>
+        <td colspan="2" style="padding-top: 20px;">
+            <div style="float: right; margin-right: 20px;">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnCancelUserRole";
+                    settings.ControlStyle.CssClass = "button";
+                    settings.Text = "Cancel";
+                    settings.ClientSideEvents.Click = "OnBtnCancelUserRoleClicked";
+                }).GetHtml()
+            </div>
+            <div style="float: right; margin-right: 5px">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnUpdateUserRole";
+                    settings.ControlStyle.CssClass = "button";
+                    settings.Text = "Save";
+                    settings.UseSubmitBehavior = true;
+                    settings.ClientSideEvents.Click = "function(s, e){ OnBtnUpdateUserRoleClicked(this) }";
+                }).GetHtml()
+            </div>
+            <span id="userStatus" class="action-status"></span>
+        </td>
+    </tr>
+</table>
+<style type="text/css">
+
+    #_R_USER_NAME input { pointer-events: none; }
+</style>

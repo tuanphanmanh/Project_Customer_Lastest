@@ -1,0 +1,88 @@
+﻿@*
+---Phần Edit form, CssClass Validate
+    --Class (.hide) thẻ cha nếu bỏ qua
+
+TextBox : .val-required (Check Null), .val-integer (Check Integer)
+TimeEdit : .val-time (Check định dạng time)
+*@
+@{    
+    string _user_Down_ORDER = Request.Cookies[LSP.Models.CookieFields.COOKIE_NAME][LSP.Models.CookieFields.USERNAME];
+}
+<table class="edit-form" id="tb_DOWNLOAD_MONTHLY_ORDER">
+	<tr>
+        <td class="label"> 
+			Order Month
+		</td>
+        <td>
+            @Html.DevExpress().DateEdit(settings =>
+            {
+                settings.Name = "_txtMONTH_ORDER";
+                settings.ControlStyle.CssClass = "dateedit textdate val-required";                                
+                settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                settings.Properties.ValidationSettings.RequiredField.ErrorText = "Order Month is mandatory";
+                settings.Properties.ValidationSettings.SetFocusOnError = true;
+                settings.Properties.EditFormatString = "MM/yyyy";
+                settings.Width = 200;
+                settings.Date = DateTime.Now;                                
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr> 
+	<tr>
+        <td class="label"> 
+			Supplier
+		</td>
+        <td>
+			@Html.DevExpress().ComboBox(settings =>
+            {
+                settings.Name = "_txtSUPPLIER_ID";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox val-required";
+                settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                settings.Properties.ValidationSettings.RequiredField.ErrorText = "Supplier is mandatory";
+                settings.Properties.ValidationSettings.SetFocusOnError = true;
+                settings.Properties.ValueField = "ID";
+                settings.Properties.ValueType = typeof(string);                
+                settings.Properties.Columns.Add("SUPPLIER_CODE", "CODE");
+                settings.Properties.Columns.Add("SUPPLIER_NAME", "NAME");
+                settings.Properties.Columns.Add("ID", "ID");
+                settings.Properties.TextFormatString = "{0} - {1} - {2}";
+                settings.SelectedIndex = 0;
+                
+            }).BindList(LSP.Models.TB_M_SUPPLIER_INFO.TB_M_SUPPLIER_INFOProvider.Instance.TB_M_SUPPLIER_INFO_GetsAllNameByUser(_user_Down_ORDER)).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr> 
+    <tr>
+        <td colspan="2" style="padding-top: 20px;">
+            <div style="float: left; margin-left: 120px">
+			 @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				 (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+					@Html.DevExpress().Button(settings =>
+					{
+                        settings.Name = "BtnDownloadORDER";
+						settings.ControlStyle.CssClass = "button";
+						settings.Text = "Download Order";
+						settings.UseSubmitBehavior = true;
+                        settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsDownload16x16office2013;
+                        settings.ClientSideEvents.Click = "function(s, e){ OnBtnDownloadORDERClicked(this) }";
+					}).GetHtml()
+				}
+            </div>
+
+            <div style="float: left; margin-left: 10px;">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnDownloadCancel";
+                    settings.ControlStyle.CssClass = "button";
+                    settings.Text = "Cancel";
+                    settings.ClientSideEvents.Click = "OnPopDOWNLOAD_MONTHLY_ORDERCloseUp";
+                    settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsCancel16x16gray;
+                }).GetHtml()
+            </div>
+            
+            <span id="userStatus" class="action-status"></span>
+        </td>
+    </tr>
+</table>

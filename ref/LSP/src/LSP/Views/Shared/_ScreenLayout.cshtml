@@ -1,0 +1,15 @@
+﻿<!DOCTYPE HTML>
+@using Toyota.Common.Web.Platform
+<html>
+<head>
+    <link rel="shortcut icon" href="/Content/Images/App/icon.ico" type="image/x-icon" />
+    <title>@Html.Toyota().Page.Title</title>
+    <script src="@Url.Content("~/Content/Scripts/Core/jquery-1.11.1.min.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        baseUrl = "@Html.Toyota().Page.BaseUrl" /***!IMPORTANT***/ 
+    </script>
+</head>
+<body> 
+        @RenderBody() 
+</body>
+</html>

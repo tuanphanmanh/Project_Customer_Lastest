@@ -1,0 +1,825 @@
+﻿@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ROW_NO";
+    settings.SettingsPager.PageSize = LSP.Models.Common.PageSize_M1(); //18
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = LSP.Models.Common.PageSizeItemSettings(); //new string[] { "10", "20", "50" };
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+
+    settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollableHeight = 490;
+    settings.Settings.VerticalScrollBarMode = DevExpress.Web.ScrollBarMode.Auto;
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 7;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+	
+    settings.CallbackRouteValues = new { Controller = "TB_R_PART_RUNDOWN_V2", Action = "GridCallback" };
+	 
+	//Export
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+
+    //Focus Row 
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.Styles.FocusedRow.BackColor = System.Drawing.Color.LightGray;
+    settings.Styles.Row.ForeColor = System.Drawing.Color.Black;
+    
+	//Toolbar
+    settings.Toolbars.Add(toolbar =>
+    {
+        toolbar.Enabled = true;
+        toolbar.EnableAdaptivity = true;
+        toolbar.Position = GridToolbarPosition.Top;
+        toolbar.ItemAlign = GridToolbarItemAlign.Left;
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                Html.DevExpress().ButtonEdit(s =>
+                {
+                    s.Name = "search";
+                    s.Properties.NullText = "Search inline...";
+                    s.Properties.Buttons
+                        .Add()
+                        .Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
+                }).Render();
+            });
+        }); 
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnExportXls";
+                    s.ClientSideEvents.Click = "function(s, e) {gvList.ExportTo(ASPxClientGridViewExportFormat.Xls);}";
+                    s.Text = "Export to Xls";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxls16x16;
+                }).GetHtml();
+            });
+        }); 
+                        
+        toolbar.Items.Add(GridViewToolbarCommand.ShowGroupPanel);
+      
+    });
+	//For Search panel
+    settings.SettingsSearchPanel.CustomEditorName = "search";
+			
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "NO.";
+        c.FieldName = "ROW_NO";
+        c.Width = 40;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+    });                
+                
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "MONTH";
+        c.FieldName = "STOCK_MONTH";
+        c.PropertiesEdit.DisplayFormatString = "yyyy-MM";
+        c.Width = 50;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "PART NO";
+        c.FieldName = "PART_NO";
+        c.Width = 100;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+    });
+    /*
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "COL. SFX";
+        c.FieldName = "COLOR_SFX";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 40;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+    });*/
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "PART NAME";    
+        c.FieldName = "PART_NAME";
+        c.CellStyle.Font.Size = 5;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "SUPPLIER";
+        c.FieldName = "SUPPLIER_CODE";
+        c.Width = 60;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "PLANT";
+        c.FieldName = "SHOP";
+        c.Width = 50;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "BOX SIZE";
+        c.FieldName = "BOX_SIZE";        
+        c.HeaderStyle.Wrap = DefaultBoolean.True; 
+        c.Width = 40;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+    });
+    settings.Columns.AddBand(cBand =>
+    {
+        cBand.Caption = "ORDER CONCEPT";
+        cBand.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        cBand.HeaderStyle.Wrap = DefaultBoolean.True; 
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "MIN";
+            c.FieldName = "STD_MIN_STOCK";
+            c.Width = 50;                                     
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "MAX";
+            c.FieldName = "STD_MAX_STOCK";                    
+            c.Width = 50;             
+        });
+        cBand.FixedStyle = GridViewColumnFixedStyle.Left;
+    });
+
+    settings.Columns.AddBand(cBand =>
+    {
+        cBand.Caption = "DAILY STOCK";                
+        cBand.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "1";
+            c.ExportWidth = 60;
+            c.FieldName = "DAY_1";            
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "2";
+            c.FieldName = "DAY_2";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "3";
+            c.FieldName = "DAY_3";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "4";
+            c.FieldName = "DAY_4";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "5";
+            c.FieldName = "DAY_5";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "6";
+            c.FieldName = "DAY_6";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "7";
+            c.FieldName = "DAY_7";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "8";
+            c.FieldName = "DAY_8";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "9";
+            c.FieldName = "DAY_9";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "10";
+            c.FieldName = "DAY_10";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "11";
+            c.FieldName = "DAY_11";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "12";
+            c.FieldName = "DAY_12";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "13";
+            c.FieldName = "DAY_13";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "14";
+            c.FieldName = "DAY_14";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "15";
+            c.FieldName = "DAY_15";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "16";
+            c.FieldName = "DAY_16";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "17";
+            c.FieldName = "DAY_17";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "18";
+            c.FieldName = "DAY_18";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "19";
+            c.FieldName = "DAY_19";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "20";
+            c.FieldName = "DAY_20";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "21";
+            c.FieldName = "DAY_21";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "22";
+            c.FieldName = "DAY_22";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "23";
+            c.FieldName = "DAY_23";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "24";
+            c.FieldName = "DAY_24";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "25";
+            c.FieldName = "DAY_25";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "26";
+            c.FieldName = "DAY_26";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "27";
+            c.FieldName = "DAY_27";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "28";
+            c.FieldName = "DAY_28";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "29";
+            c.FieldName = "DAY_29";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "30";
+            c.FieldName = "DAY_30";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+        cBand.Columns.Add(c =>
+        {
+            c.Caption = "31";
+            c.FieldName = "DAY_31";
+            c.Width = 50;
+            c.ExportWidth = 60;
+        });
+    });
+            
+    settings.FormatConditions.AddHighlight(h =>
+    {   h.FieldName = "DAY_1"; h.Format = GridConditionHighlightFormat.Custom;
+    h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_1] >= [STD_MAX_STOCK]";                                     
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_1"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_1] <= [STD_MIN_STOCK]";                
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_2"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_2] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_2"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_2] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_3"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_3] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_3"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_3] <= [STD_MIN_STOCK]";
+    });
+
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_4"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_4] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_4"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_4] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_5"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_5] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_5"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_5] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_6"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_6] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_6"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_6] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_7"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_7] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_7"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_7] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_8"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_8] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_8"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_8] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_9"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_9] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_9"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_9] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_10"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_10] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_10"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_10] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_11"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_11] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_11"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_11] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_12"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_12] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_12"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_12] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_13"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_13] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_13"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_13] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_14"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_14] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_14"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_14] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_15"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_15] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_15"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_15] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_16"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_16] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_16"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_16] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_17"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_17] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_17"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_17] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_18"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_18] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_18"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_18] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_19"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_19] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_19"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_19] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_20"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_20] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_20"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_20] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_21"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_21] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_21"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_21] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_22"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_22] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_22"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_22] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_23"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_23] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_23"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_23] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_24"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_24] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_24"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_24] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_25"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_25] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_25"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_25] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_26"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_26] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_26"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_26] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_27"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_27] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_27"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_27] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_28"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_28] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_28"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_28] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_29"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_29] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_29"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_29] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_30"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_30] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_30"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_30] <= [STD_MIN_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_31"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.DeepSkyBlue; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_31] >= [STD_MAX_STOCK]";
+    });
+
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "DAY_31"; h.Format = GridConditionHighlightFormat.Custom;
+        h.CellStyle.ForeColor = System.Drawing.Color.White; h.CellStyle.BackColor = System.Drawing.Color.Red; h.CellStyle.Font.Size = 8;
+        h.Expression = "[DAY_31] <= [STD_MIN_STOCK]";
+    });
+    
+}).Bind(LSP.Models.TB_R_PART_RUNDOWN_V2.TB_R_PART_RUNDOWN_V2Provider.Instance.TB_R_PART_RUNDOWN_V2_Search(Model ?? new LSP.Models.TB_R_PART_RUNDOWN_V2.TB_R_PART_RUNDOWN_V2Info())).GetHtml()
+

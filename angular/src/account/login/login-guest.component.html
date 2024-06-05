@@ -1,0 +1,62 @@
+<div class="login-form login-customer" [@routerTransition]>
+    <div class="login-header pt-lg-0" style="text-align: center !important;">
+        <img class="login-customer-top-img" src="/assets/common/images/Icon/eclip.png" alt="">
+        <h3 class="font-weight-bolder text-danger font-size-h4 font-size-h1-lg title">
+            <span>{{ 'Xin chào' | localize }}</span>
+        </h3>
+        <!-- <img class="login-customer-logo-img" src="/assets/common/images/logo-default.jpg" alt=""> -->
+    </div>
+    <div style="height: 2px; background-color: darkred; margin-bottom: 20px;" ></div>
+    <form #loginForm="ngForm" class="login-form form" method="post" method="post" (ngSubmit)="login()">
+        <div class="form-group ">
+            <label for="" class="title"><img src="/assets/common/images/Icon/user.png" alt="">{{'UserName' |
+                localize}}</label>
+        </div>
+        <div class="form-group form-group-login pb-8">
+            <input #userNameOrEmailAddressInput="ngModel" [(ngModel)]="loginService.authenticateModel.userName"
+                autoFocus
+                class="input-login form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 disabled_{{loginForm.form.valid}}"
+                type="text" autocomplete="new-password" placeholder="{{'UserNameOrEmail' | localize}} *"
+                name="userNameOrEmailAddress" required />
+            <validation-messages [formCtrl]="userNameOrEmailAddressInput" *ngIf="!userNameOrEmailAddressInput.touched">
+            </validation-messages>
+        </div>
+        <div class="form-group">
+            <label for="" class="title"><img src="/assets/common/images/Icon/pass.png" alt="">{{'Password' |
+                localize}}</label>
+        </div>
+        <div class="form-group password-lable pb-8">
+
+            <input #passwordInput="ngModel" [(ngModel)]="loginService.authenticateModel.password"
+                class="input-login form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 disabled_{{loginForm.form.valid}}"
+                type="password" autocomplete="new-password" placeholder="{{'Password' | localize}} *" name="password"
+                required maxlength="32" />
+            <img class="password-eye password-eye-off disabled_{{loginForm.form.valid}}" (click)="password_eye_click(1)"
+                src="/assets/common/images/Icon/eye-off.png" alt="">
+            <img class="password-eye password-eye-open disabled_{{loginForm.form.valid}}"
+                (click)="password_eye_click(2)" src="/assets/common/images/Icon/eye-open.png" alt="">
+
+            <validation-messages [formCtrl]="passwordInput" *ngIf="!passwordInput.touched"></validation-messages>
+        </div>
+
+        <div class="remember-user form-group d-flex justify-content-between pt-8">
+            <a routerLink="/account/forgot-password" id="forget-password" style="display: flex; align-items: center;"
+                class="text-danger font-size-h6 font-weight-bolder text-hover-danger">{{"ForgotPassword" |
+                localize}}</a>
+        </div>
+        
+        <div class="row">
+            <div class="form-group pb-lg-0 pb-5 col-md-5">
+                <button [disabled]="submitting" routerLink="/account/login" type="button" class="rounded-pill button-login btn btn-block btn-light-primary font-weight-bolder 
+                font-size-h6 px-8 py-4 my-3 mr-3 disabled{{loginForm.form.valid}}">
+                <i class="fa fa-arrow-left"></i> {{ 'Back' | localize }}</button>
+            </div>
+            <div class="form-group pb-lg-0 pb-5 col-md-7">
+                <button type="submit" class="rounded-pill button-login btn btn-block btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3
+                disabled{{loginForm.form.valid}} " [disabled]="!loginForm.form.valid">{{'LogIn' | localize }} <i class="fa-solid fa-right-to-bracket"></i> </button>
+            </div>
+            
+        
+        </div>
+    </form>
+</div>

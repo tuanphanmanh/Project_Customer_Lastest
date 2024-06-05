@@ -1,0 +1,85 @@
+﻿<div
+    appBsModal
+    #changeProfilePictureModal="bs-modal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myLargeModalLabel"
+    aria-hidden="true"
+    [config]="{ backdrop: '' }"
+>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #changeProfilePictureModalForm="ngForm" (ngSubmit)="save()">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <span>{{ 'ChangeProfilePicture' | localize }}</span>
+                    </h5>
+                    <button type="button" class="btn-close" [attr.aria-label]="l('Close')" (click)="close()">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-5">
+                        <div class="input-group">
+                            <div class="custom-file e-btn e-outline e-primary">
+                                <input
+                                    type="file"
+                                    class="e-btn e-outline e-primary"
+                                    id="uploadProfilePicture"
+                                    hidden
+                                    (change)="fileChangeEvent($event)"
+                                />
+                                <label
+                                    class="custom-file-label"
+                                    #uploadProfilePictureInputLabel
+                                    for="uploadProfilePicture"
+                                >
+                                    {{ 'ChooseAFile' | localize }}
+                                </label>
+                            </div>
+                            <span class="form-text text-muted col-lg-12">
+                                {{ 'ProfilePicture_Change_Info' | localize: maxProfilPictureBytesUserFriendlyValue }}
+                            </span>
+                        </div>
+                    </div>
+                    <image-cropper
+                        [imageChangedEvent]="imageChangedEvent"
+                        [maintainAspectRatio]="true"
+                        [aspectRatio]="4 / 4"
+                        [resizeToWidth]="128"
+                        format="png"
+                        (imageCropped)="imageCroppedFile($event)"
+                    ></image-cropper>
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-light-primary fw-bold"
+                        (click)="close()"
+                        [disabled]="saving"
+                    >
+                        {{ 'Cancel' | localize }}
+                    </button>
+                    <button
+                        type="submit"
+                        class="btn btn-primary fw-bold"
+                        [disabled]="!changeProfilePictureModalForm.form.valid || saving"
+                    >
+                        <i class="fa fa-save"></i>
+                        <span>{{ 'Save' | localize }}</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<style>
+    .modal-content {
+        box-shadow: 1px 5px 40px 8px rgb(29 29 30 / 41%);
+    }
+    .custom-file {
+        border-radius: 10px;
+        border-top-right-radius: 10px !important;
+        border-bottom-right-radius: 10px !important;
+    }
+</style>

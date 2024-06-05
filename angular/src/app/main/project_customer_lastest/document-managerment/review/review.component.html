@@ -1,0 +1,92 @@
+<ejs-dialog [header]="documentName" [isModal]='true' #modal id="modal" [visible]='visible' [animationSettings]='animationSettings'
+    [showCloseIcon]='false' [width]="'60%'" [height]="'90vh'">
+    <ng-template #content>
+        <div class="frame-1000006430">
+            <div class="frame-1000003979">
+                <!-- <div class="frame-1000006429">
+                    <div class="frame-1000006477">
+                        <ejs-dropdownlist id='ddlelement' placeholder = 'All files' cssClass="input-field" style="width: 100%;"
+                            [(ngModel)]="selectDocumentId" (ngModelChange)="changeFileDocument($event)"
+                            [fields]='listDocumentsfields'
+                            [dataSource]='listDocuments' >
+                        <div style=" display: flex; flex-direction: column; flex: 1; width: 100%; position: relative;">
+                            <ng-template #headerTemplate style="display: flex; flex: 1; width: 100%; position: relative;">
+                                <div class="data1_dll" style="display: flex; padding: 0px 16px; flex-direction: row;  align-items: center; flex: 1; width: 100%; position: relative; font-size: 14px;">
+                                    <span class="Order" style="width: 50px; text-align: center;">{{l('Order')}}</span>
+                                    <span class="ename" style="width: 100%; text-align: left;">{{l('Name')}}</span>
+                                    <span class="job" style="width: 80px; text-align: center;">{{l('Signature')}}</span>
+                                </div>
+                            </ng-template>
+                            <ng-template #itemTemplate let-listDocuments style="display: flex; flex: 1; width: 100%; position: relative;">
+                                <div class="data1_dll" style="display: flex; flex-direction: row;  align-items: center; flex: 1; width: 100%; position: relative;">
+                                    <span class="Order" style="width: 50px; text-align: center;">{{listDocuments.documentOrder}}</span>
+                                    <span class="ename" style="width: 100%; text-align: left; padding-left: 0px; margin-left: 0px">{{listDocuments.documentName}}</span>
+                                    <span class="job" style="width: 80px; text-align: center;">{{listDocuments.signatureCount}}</span>
+                                </div>
+                            </ng-template>
+                        </div>
+                            <ng-template #valueTemplate let-listDocuments>
+                                <div class="data1_dll" style="display: flex; flex-direction: row;  align-items: center; flex: 1; width: 100%">
+                                    <span class="Order">{{listDocuments.documentOrder}}</span>
+                                    <span class="ename" >{{listDocuments.documentName}}</span>
+                                    <span class="job" >{{listDocuments.signatureCount}}</span>
+                                </div>
+                            </ng-template>
+                        </ejs-dropdownlist>
+                    </div>
+                </div> -->
+                <div class="frame-10000039792">
+                    <div class="frame">
+                        <ejs-pdfviewer #pdfviewer id="pdfViewer"
+                            [serviceUrl]="pdfServiceUrl"
+                            [enableRtl]="true"
+                            [documentPath]='documentUrl'
+                            
+                            [enableToolbar]="false"
+                            [isSignatureEditable]="false"
+                            [toolbarSettings]="toolbarSettings"
+         
+                            [enableBookmark]="true"  
+                            [enableThumbnail]="true"
+
+                            [isBookmarkPanelOpen]="true"
+                            [isThumbnailViewOpen]="true"
+                        
+
+                            [interactionMode]="1"
+                            zoomValue="100%" style="display:block;width:100%;height: 100%;">
+                        </ejs-pdfviewer>
+                    </div>
+                </div>
+            </div> <div class="frame-1000006327">
+                <div class="frame-1171275332">
+                    <!-- <div class="frame-1000006325d" (click)="downloadDocument()">
+                        <svg
+                            class="basil-download-outline"
+                            width="21"
+                            height="20"
+                            viewBox="0 0 17 16"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            >
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M7.49199 2.16667C6.97599 2.16667 6.54599 2.56067 6.50065 3.07467C6.40654 4.14864 6.38271 5.2276 6.42932 6.30467L6.26065 6.31667L5.26732 6.38867C5.12225 6.39927 4.98242 6.44736 4.86152 6.52823C4.74061 6.60909 4.64278 6.71997 4.5776 6.85C4.51241 6.98004 4.48211 7.12477 4.48966 7.27003C4.4972 7.41529 4.54234 7.5561 4.62065 7.67867C5.3516 8.82249 6.29345 9.81683 7.39599 10.6087L7.79332 10.8947C7.95067 11.0077 8.13955 11.0686 8.33332 11.0686C8.52709 11.0686 8.71597 11.0077 8.87332 10.8947L9.27065 10.6087C10.373 9.81678 11.3146 8.82244 12.0453 7.67867C12.1236 7.5561 12.1688 7.41529 12.1763 7.27003C12.1839 7.12477 12.1536 6.98004 12.0884 6.85C12.0232 6.71997 11.9254 6.60909 11.8045 6.52823C11.6836 6.44736 11.5437 6.39927 11.3987 6.38867L10.4053 6.31667C10.3493 6.31251 10.2933 6.30851 10.2373 6.30467C10.284 5.228 10.26 4.14867 10.166 3.07467C10.1443 2.82674 10.0305 2.59595 9.84693 2.42785C9.66341 2.25975 9.42353 2.16656 9.17465 2.16667H7.49199ZM7.45465 6.74334C7.37872 5.55176 7.39276 4.35614 7.49665 3.16667H9.16999C9.27413 4.35612 9.28839 5.55174 9.21265 6.74334C9.20851 6.8094 9.21752 6.87562 9.23917 6.93817C9.26082 7.00072 9.29468 7.05835 9.33877 7.10771C9.38286 7.15708 9.43632 7.1972 9.49604 7.22574C9.55575 7.25429 9.62054 7.27069 9.68665 7.27401C9.90265 7.28467 10.118 7.29801 10.3333 7.314L11.054 7.36667C10.4139 8.30935 9.61276 9.13191 8.68732 9.79667L8.33399 10.0507L7.97932 9.79667C7.05381 9.13172 6.25267 8.30893 5.61265 7.366L6.33332 7.31467C6.54865 7.29867 6.76465 7.28534 6.97999 7.27467C7.04615 7.27144 7.11101 7.2551 7.17081 7.22659C7.2306 7.19809 7.28414 7.15798 7.3283 7.10861C7.37246 7.05924 7.40637 7.00158 7.42807 6.93899C7.44976 6.8764 7.45879 6.81012 7.45465 6.74401V6.74334Z"
+                                fill="#0374f6"
+                            />
+                            <path
+                                d="M4.16666 11.3333C4.16666 11.2007 4.11398 11.0735 4.02021 10.9798C3.92644 10.886 3.79926 10.8333 3.66666 10.8333C3.53405 10.8333 3.40687 10.886 3.3131 10.9798C3.21933 11.0735 3.16666 11.2007 3.16666 11.3333V12.6667C3.16666 13.3107 3.68932 13.8333 4.33332 13.8333H12.3333C12.6427 13.8333 12.9395 13.7104 13.1583 13.4916C13.3771 13.2728 13.5 12.9761 13.5 12.6667V11.3333C13.5 11.2007 13.4473 11.0735 13.3535 10.9798C13.2598 10.886 13.1326 10.8333 13 10.8333C12.8674 10.8333 12.7402 10.886 12.6464 10.9798C12.5527 11.0735 12.5 11.2007 12.5 11.3333V12.6667C12.5 12.7109 12.4824 12.7533 12.4512 12.7845C12.4199 12.8158 12.3775 12.8333 12.3333 12.8333H4.33332C4.28912 12.8333 4.24673 12.8158 4.21547 12.7845C4.18422 12.7533 4.16666 12.7109 4.16666 12.6667V11.3333Z"
+                                fill="#0374f6"
+                            />
+                        </svg>
+                        <div class="not-nowd">Download</div>
+                    </div> -->
+                    <div class="frame-1000006325" (click)="hide()">
+                        <div class="not-now">Close</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</ejs-dialog>

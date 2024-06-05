@@ -1,0 +1,96 @@
+2021-08-18 17:18:12,554 ERROR System.String ShowError - System.NotSupportedException: StringConverter cannot convert from System.Double.
+   at System.ComponentModel.TypeConverter.GetConvertFromException(Object value)
+   at System.ComponentModel.TypeConverter.ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, Object value)
+   at RCA.Activities.Excel.ExcelReadCell.SetResult(AsyncCodeActivityContext context, Object result)
+   at RCA.Activities.Excel.ExcelInteropActivity`1.EndExecute(AsyncCodeActivityContext context, IAsyncResult result)
+   at System.Activities.AsyncCodeActivity.CompleteAsyncCodeActivityData.CompleteAsyncCodeActivityWorkItem.Execute(ActivityExecutor executor, BookmarkManager bookmarkManager)
+System.NotSupportedException: StringConverter cannot convert from System.Double.
+   at System.ComponentModel.TypeConverter.GetConvertFromException(Object value)
+   at System.ComponentModel.TypeConverter.ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, Object value)
+   at RCA.Activities.Excel.ExcelReadCell.SetResult(AsyncCodeActivityContext context, Object result)
+   at RCA.Activities.Excel.ExcelInteropActivity`1.EndExecute(AsyncCodeActivityContext context, IAsyncResult result)
+   at System.Activities.AsyncCodeActivity.CompleteAsyncCodeActivityData.CompleteAsyncCodeActivityWorkItem.Execute(ActivityExecutor executor, BookmarkManager bookmarkManager)
+2021-08-18 17:18:42,718 ERROR System.String ShowError - System.NotSupportedException: StringConverter cannot convert from System.Double.
+   at System.ComponentModel.TypeConverter.GetConvertFromException(Object value)
+   at System.ComponentModel.TypeConverter.ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, Object value)
+   at RCA.Activities.Excel.ExcelReadCell.SetResult(AsyncCodeActivityContext context, Object result)
+   at RCA.Activities.Excel.ExcelInteropActivity`1.EndExecute(AsyncCodeActivityContext context, IAsyncResult result)
+   at System.Activities.AsyncCodeActivity.CompleteAsyncCodeActivityData.CompleteAsyncCodeActivityWorkItem.Execute(ActivityExecutor executor, BookmarkManager bookmarkManager)
+System.NotSupportedException: StringConverter cannot convert from System.Double.
+   at System.ComponentModel.TypeConverter.GetConvertFromException(Object value)
+   at System.ComponentModel.TypeConverter.ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, Object value)
+   at RCA.Activities.Excel.ExcelReadCell.SetResult(AsyncCodeActivityContext context, Object result)
+   at RCA.Activities.Excel.ExcelInteropActivity`1.EndExecute(AsyncCodeActivityContext context, IAsyncResult result)
+   at System.Activities.AsyncCodeActivity.CompleteAsyncCodeActivityData.CompleteAsyncCodeActivityWorkItem.Execute(ActivityExecutor executor, BookmarkManager bookmarkManager)
+2021-08-18 17:41:08,764 ERROR System.String ShowError - System.NullReferenceException: Object reference not set to an instance of an object.
+   at RCA.Activities.Mail.SendMailActivity.EndExecute(AsyncCodeActivityContext context, IAsyncResult result)
+   at System.Activities.AsyncCodeActivity.CompleteAsyncCodeActivityData.CompleteAsyncCodeActivityWorkItem.Execute(ActivityExecutor executor, BookmarkManager bookmarkManager)
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at RCA.Activities.Mail.SendMailActivity.EndExecute(AsyncCodeActivityContext context, IAsyncResult result)
+   at System.Activities.AsyncCodeActivity.CompleteAsyncCodeActivityData.CompleteAsyncCodeActivityWorkItem.Execute(ActivityExecutor executor, BookmarkManager bookmarkManager)
+2021-08-18 18:14:56,687 ERROR System.String ShowError - System.NullReferenceException: Object reference not set to an instance of an object.
+   at lambda_method(Closure , ActivityContext )
+   at Microsoft.VisualBasic.Activities.VisualBasicValue`1.Execute(CodeActivityContext context)
+   at System.Activities.Runtime.ActivityExecutor.ExecuteInResolutionContext[T](ActivityInstance parentInstance, Activity`1 expressionActivity)
+   at System.Activities.Variable`1.PopulateDefault(ActivityExecutor executor, ActivityInstance parentInstance, Location location)
+   at System.Activities.ActivityInstance.ResolveVariable(Variable variable, ActivityExecutor executor)
+   at System.Activities.ActivityInstance.ResolveVariables(ActivityExecutor executor)
+   at System.Activities.Runtime.ActivityExecutor.ExecuteActivityWorkItem.ExecuteBody(ActivityExecutor executor, BookmarkManager bookmarkManager, Location resultLocation)
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at lambda_method(Closure , ActivityContext )
+   at Microsoft.VisualBasic.Activities.VisualBasicValue`1.Execute(CodeActivityContext context)
+   at System.Activities.Runtime.ActivityExecutor.ExecuteInResolutionContext[T](ActivityInstance parentInstance, Activity`1 expressionActivity)
+   at System.Activities.Variable`1.PopulateDefault(ActivityExecutor executor, ActivityInstance parentInstance, Location location)
+   at System.Activities.ActivityInstance.ResolveVariable(Variable variable, ActivityExecutor executor)
+   at System.Activities.ActivityInstance.ResolveVariables(ActivityExecutor executor)
+   at System.Activities.Runtime.ActivityExecutor.ExecuteActivityWorkItem.ExecuteBody(ActivityExecutor executor, BookmarkManager bookmarkManager, Location resultLocation)
+2021-08-18 23:10:27,024 ERROR System.String ShowError - System.ArgumentException: The specified folder does not exist
+   at RCA.Activities.Mail.GetMailActivity.EndExecute(AsyncCodeActivityContext context, IAsyncResult result)
+   at System.Activities.AsyncCodeActivity.CompleteAsyncCodeActivityData.CompleteAsyncCodeActivityWorkItem.Execute(ActivityExecutor executor, BookmarkManager bookmarkManager)
+System.ArgumentException: The specified folder does not exist
+   at RCA.Activities.Mail.GetMailActivity.EndExecute(AsyncCodeActivityContext context, IAsyncResult result)
+   at System.Activities.AsyncCodeActivity.CompleteAsyncCodeActivityData.CompleteAsyncCodeActivityWorkItem.Execute(ActivityExecutor executor, BookmarkManager bookmarkManager)
+2021-09-08 00:24:47,567 ERROR System.String ShowError - System.IO.FileNotFoundException: Cannot find this file. Verify the path and file name are correct.
+   at RCA.Activities.Mail.SendMailActivity.EndExecute(AsyncCodeActivityContext context, IAsyncResult result)
+   at System.Activities.AsyncCodeActivity.CompleteAsyncCodeActivityData.CompleteAsyncCodeActivityWorkItem.Execute(ActivityExecutor executor, BookmarkManager bookmarkManager)
+System.IO.FileNotFoundException: Cannot find this file. Verify the path and file name are correct.
+   at RCA.Activities.Mail.SendMailActivity.EndExecute(AsyncCodeActivityContext context, IAsyncResult result)
+   at System.Activities.AsyncCodeActivity.CompleteAsyncCodeActivityData.CompleteAsyncCodeActivityWorkItem.Execute(ActivityExecutor executor, BookmarkManager bookmarkManager)
+2021-09-08 00:26:03,128 ERROR System.String ShowError - System.IO.FileNotFoundException: Cannot find this file. Verify the path and file name are correct.
+   at RCA.Activities.Mail.SendMailActivity.EndExecute(AsyncCodeActivityContext context, IAsyncResult result)
+   at System.Activities.AsyncCodeActivity.CompleteAsyncCodeActivityData.CompleteAsyncCodeActivityWorkItem.Execute(ActivityExecutor executor, BookmarkManager bookmarkManager)
+System.IO.FileNotFoundException: Cannot find this file. Verify the path and file name are correct.
+   at RCA.Activities.Mail.SendMailActivity.EndExecute(AsyncCodeActivityContext context, IAsyncResult result)
+   at System.Activities.AsyncCodeActivity.CompleteAsyncCodeActivityData.CompleteAsyncCodeActivityWorkItem.Execute(ActivityExecutor executor, BookmarkManager bookmarkManager)
+2021-09-08 00:27:00,511 ERROR System.String ShowError - System.IO.FileNotFoundException: Cannot find this file. Verify the path and file name are correct.
+   at RCA.Activities.Mail.SendMailActivity.EndExecute(AsyncCodeActivityContext context, IAsyncResult result)
+   at System.Activities.AsyncCodeActivity.CompleteAsyncCodeActivityData.CompleteAsyncCodeActivityWorkItem.Execute(ActivityExecutor executor, BookmarkManager bookmarkManager)
+System.IO.FileNotFoundException: Cannot find this file. Verify the path and file name are correct.
+   at RCA.Activities.Mail.SendMailActivity.EndExecute(AsyncCodeActivityContext context, IAsyncResult result)
+   at System.Activities.AsyncCodeActivity.CompleteAsyncCodeActivityData.CompleteAsyncCodeActivityWorkItem.Execute(ActivityExecutor executor, BookmarkManager bookmarkManager)
+2021-09-08 00:48:34,706 ERROR System.String ShowError - System.NullReferenceException: No Element was found.
+   at RCA.Activities.Windows.ControlActivity.ExecuteAsync(AsyncCodeActivityContext context, CancellationToken cancellationToken)
+   at AkaBot.Shared.Activities.TaskAsyncCodeActivity.ExecuteAsyncWithResult(AsyncCodeActivityContext context, CancellationToken cancellationToken)
+   at AkaBot.Shared.Activities.TaskAsyncCodeActivity`1.BeginExecute(AsyncCodeActivityContext context, AsyncCallback callback, Object state)
+   at System.Activities.AsyncCodeActivity.InternalExecute(ActivityInstance instance, ActivityExecutor executor, BookmarkManager bookmarkManager)
+   at System.Activities.Runtime.ActivityExecutor.ExecuteActivityWorkItem.ExecuteBody(ActivityExecutor executor, BookmarkManager bookmarkManager, Location resultLocation)
+System.NullReferenceException: No Element was found.
+   at RCA.Activities.Windows.ControlActivity.ExecuteAsync(AsyncCodeActivityContext context, CancellationToken cancellationToken)
+   at AkaBot.Shared.Activities.TaskAsyncCodeActivity.ExecuteAsyncWithResult(AsyncCodeActivityContext context, CancellationToken cancellationToken)
+   at AkaBot.Shared.Activities.TaskAsyncCodeActivity`1.BeginExecute(AsyncCodeActivityContext context, AsyncCallback callback, Object state)
+   at System.Activities.AsyncCodeActivity.InternalExecute(ActivityInstance instance, ActivityExecutor executor, BookmarkManager bookmarkManager)
+   at System.Activities.Runtime.ActivityExecutor.ExecuteActivityWorkItem.ExecuteBody(ActivityExecutor executor, BookmarkManager bookmarkManager, Location resultLocation)
+2021-09-08 01:10:04,378 ERROR System.String ShowError - System.ArgumentNullException: Value cannot be null.
+Parameter name: process
+   at RCA.Activities.Windows.OpenWindow.ExecuteAsync(NativeActivityContext context)
+   at RCA.Activities.Windows.ScopeActivity.BeginExecute(NativeActivityContext context, AsyncCallback callback, Object state)
+   at RCA.Activities.Windows.AsyncNativeActivity.Execute(NativeActivityContext context)
+   at System.Activities.NativeActivity.InternalExecute(ActivityInstance instance, ActivityExecutor executor, BookmarkManager bookmarkManager)
+   at System.Activities.Runtime.ActivityExecutor.ExecuteActivityWorkItem.ExecuteBody(ActivityExecutor executor, BookmarkManager bookmarkManager, Location resultLocation)
+System.ArgumentNullException: Value cannot be null.
+Parameter name: process
+   at RCA.Activities.Windows.OpenWindow.ExecuteAsync(NativeActivityContext context)
+   at RCA.Activities.Windows.ScopeActivity.BeginExecute(NativeActivityContext context, AsyncCallback callback, Object state)
+   at RCA.Activities.Windows.AsyncNativeActivity.Execute(NativeActivityContext context)
+   at System.Activities.NativeActivity.InternalExecute(ActivityInstance instance, ActivityExecutor executor, BookmarkManager bookmarkManager)
+   at System.Activities.Runtime.ActivityExecutor.ExecuteActivityWorkItem.ExecuteBody(ActivityExecutor executor, BookmarkManager bookmarkManager, Location resultLocation)

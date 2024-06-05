@@ -1,0 +1,67 @@
+﻿
+@using (Html.BeginForm("IMPORT_PRODUCTION_PLAN_V2_CallbacksUpload", "TB_R_PRODUCTION_PLAN_M_V2", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{ 
+
+<table class="edit-form import_form">
+    <caption style="text-align:center; color:black; font-weight:bold;"> IMPORT PRODUCTION PLAN </caption>
+    <tr>
+        <td class="label">
+			File name
+		</td>
+        <td>
+            @Html.DevExpress().UploadControl(settings =>
+               {
+                   settings.Name = "_IMPORT_PRODUCTION_PLAN_V2";
+                   settings.Width = 400;
+                   settings.NullText = "Select file...";
+                   settings.ShowProgressPanel = true;
+                   settings.ShowUploadButton = false;
+                                 
+                   settings.AdvancedModeSettings.EnableDragAndDrop = true;
+                   settings.AdvancedModeSettings.EnableMultiSelect = false;
+
+                   settings.CallbackRouteValues = new { Controller = "TB_R_PRODUCTION_PLAN_M_V2", Action = "IMPORT_PRODUCTION_PLAN_M_V2_CallbacksUpload" };
+                   settings.ClientSideEvents.FileUploadComplete = "function(s,e) { PRODUCTION_PLAN_V2_OnFileUploadComplete(s,e)}";                   
+
+               }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+         <td colspan="2" style="padding-top: 20px; text-align: center; vertical-align: middle">
+            <div style="float:left; margin-left: 150px;">
+                @Html.DevExpress().Button(settings =>
+               {
+                   settings.Name = "btnImportStart";
+                   settings.ControlStyle.CssClass = "button";
+                   settings.Text = "Upload";
+                   settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsUp216x16;
+                   settings.ClientSideEvents.Click = "function OnClick(s, e) {PRODUCTION_PLAN_V2_UPLOAD(s,e);}";
+               }).GetHtml()
+            </div>          
+            <div style="float: left; margin-left: 10px;">
+                @Html.DevExpress().Button(settings =>
+               {
+                   settings.Name = "btnImportCancel";
+                   settings.ControlStyle.CssClass = "button";
+                   settings.Text = "Cancel";
+                   settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsCancel16x16gray;  
+                   settings.ClientSideEvents.Click = "OnBtnImportCancelClicked";
+               }).GetHtml()
+            </div>           
+            <span id="userStatus" class="action-status"></span>
+        </td>
+    </tr>
+</table>    
+}
+
+
+
+    
+    
+    
+    
+    
+    
+    
+        

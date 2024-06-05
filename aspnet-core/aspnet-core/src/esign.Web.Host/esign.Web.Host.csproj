@@ -1,0 +1,118 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <Import Project="..\..\common.props"></Import>
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
+        <AssemblyName>esign.Web.Host</AssemblyName>
+        <OutputType>Exe</OutputType>
+        <PackageId>esign.Web.Host</PackageId>
+        <UserSecretsId>MyCompanyName-prod-894FDFC1-6482-4A56-926A-3C46C9FE0329</UserSecretsId>
+        <RootNamespace>esign.Web</RootNamespace>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+        <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(RunConfiguration)' == 'Mobile' " />
+    <PropertyGroup Condition=" '$(RunConfiguration)' == 'esign.Web.Host' " />
+    <ItemGroup>
+        <Compile Remove="App_Data\**" />
+        <Content Remove="App_Data\**" />
+        <EmbeddedResource Remove="App_Data\**" />
+        <None Remove="App_Data\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Remove="wwwroot\swagger\ui\index.html" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="app.config" />
+        <None Include="wwwroot\Plugins\.gitkeep" />
+        <None Update="Dockerfile">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="log4net.config">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </None>
+        <None Update="wwwroot\**\*">
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Abp.Castle.Log4Net" Version="8.0.0" />
+        <PackageReference Include="FirebaseAdmin" Version="2.4.0" />
+        <PackageReference Include="iTextSharp" Version="5.5.13.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.1">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Quartz" Version="3.8.0" />
+        <PackageReference Include="Quartz.Extensions.DependencyInjection" Version="3.8.0" />
+        <PackageReference Include="Quartz.Extensions.Hosting" Version="3.8.0" />
+        <PackageReference Include="Radius" Version="2.0.0.2" />
+        <PackageReference Include="Syncfusion.EJ2.PdfViewer.AspNet.Core" Version="23.1.40" />
+        <PackageReference Include="Z.Dapper.Plus" Version="5.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="wwwroot\swagger\ui\index.html" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Controllers\" />
+        <Folder Include="wwwroot\Attachments\" />
+        <Folder Include="wwwroot\Download\" />
+        <Folder Include="wwwroot\Images\Notification\" />
+        <Folder Include="wwwroot\Plugins\" />
+        <Folder Include="wwwroot\Signatures\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\esign.Web.Core\esign.Web.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="EFY_SIGN">
+        <HintPath>..\..\lib\EFY_SIGN.dll</HintPath>
+      </Reference>
+      <Reference Include="ICSharpCode.SharpZipLib">
+        <HintPath>..\..\lib\ICSharpCode.SharpZipLib.dll</HintPath>
+      </Reference>
+      <Reference Include="lib.rssp.connector">
+        <HintPath>..\..\lib\lib.rssp.connector.dll</HintPath>
+      </Reference>
+      <Reference Include="lib.rssp.exsig">
+        <HintPath>..\..\lib\lib.rssp.exsig.dll</HintPath>
+      </Reference>
+      <Reference Include="lib.rssp.office">
+        <HintPath>..\..\lib\lib.rssp.office.dll</HintPath>
+      </Reference>
+      <Reference Include="lib.rssp.pdf">
+        <HintPath>..\..\lib\lib.rssp.pdf.dll</HintPath>
+      </Reference>
+      <Reference Include="lib.rssp.xml">
+        <HintPath>..\..\lib\lib.rssp.xml.dll</HintPath>
+      </Reference>
+      <Reference Include="LogicPie.Security">
+        <HintPath>..\..\lib\LogicPie.Security.dll</HintPath>
+      </Reference>
+      <Reference Include="MetroFramework">
+        <HintPath>..\..\lib\metroframework.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.Office.DocumentFormat.OpenXml">
+        <HintPath>..\..\lib\Microsoft.Office.DocumentFormat.OpenXml.dll</HintPath>
+      </Reference>
+      <Reference Include="Newtonsoft.Json">
+        <HintPath>..\..\lib\Newtonsoft.Json.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>

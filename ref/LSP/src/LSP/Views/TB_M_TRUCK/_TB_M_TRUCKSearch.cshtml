@@ -1,0 +1,46 @@
+﻿@*
+---Phần Search trên form
+TextBox : .textbox, .autobind (cho ô find gia tri tu dong)
+DateEdit : .textdate
+ComboBox : .textcombobox
+*@
+<div class="dxcontent_search"> 
+    <div class="itembox">
+		<label class="placehoder">NAME</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtNAME";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+        @Html.DevExpress().ComboBox(settings => 
+    		{
+                settings.Name = "_txtTRUCK_TYPE";
+                settings.ControlStyle.CssClass = "combobox"; 
+                settings.Width = 200;
+                settings.Properties.DataSource = ViewBag.TRUCK_TYPE;
+                settings.Properties.ValueField = "ID";
+                settings.Properties.TextField = "TRUCKTYPE_NAME";
+                settings.SelectedIndex = -1;
+                settings.Properties.Columns.Add("TRUCKTYPE_NAME", "TRUCK_TYPE");
+                settings.Properties.NullText = "TRUCK_TYPE";
+            }).BindList(ViewBag.TRUCK_TYPE).GetHtml() 
+    </div>
+
+    <div class="itembox">    
+		@if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+			(Html.Toyota().Page.ControllerName.ToString(), "Search"))
+		{	
+			@Html.DevExpress().Button(settings =>
+			{
+				settings.Name = "btnSearch";
+				settings.Text = "Search";
+                settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsSearch16x16devav; 
+				settings.ClientSideEvents.Click = "DoSearch";
+			}).GetHtml()
+		}
+    </div>
+</div>
+
+

@@ -1,0 +1,37 @@
+﻿<div class="dxcontent_search"> 
+    <div class="itembox">
+		<label class="placehoder">CFC</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtCFC";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">PROD_SFX</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtPROD_SFX";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">PRODUCTION_MONTH</label>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+                settings.Name = "_txtPRODUCTION_MONTH";
+				settings.ControlStyle.CssClass = "dateedit textdate";
+                settings.Properties.EditFormatString = "MM/yyyy";
+			}).GetHtml()
+    </div>
+   
+     <div class="itembox">     
+		@Html.DevExpress().Button(settings =>
+		{
+			settings.Name = "btnSearch";
+			settings.Text = "Search";
+            settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsSearch16x16devav;
+			settings.ClientSideEvents.Click = "DoSearch";
+		}).GetHtml()
+    </div>
+</div>

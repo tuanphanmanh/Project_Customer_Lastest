@@ -1,0 +1,45 @@
+﻿ 
+    <div class="dxcontent_search">
+        <div class="itembox">            
+            @Html.DevExpress().DateEdit(settings =>
+            {
+                settings.Name = "_txtSTOCK_MONTH";
+                settings.ControlStyle.CssClass = "dateedit textdate val-required";
+                settings.Properties.Caption = "STOCK MONTH";                           
+                settings.Properties.DisplayFormatString = "MM/yyyy";
+                settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                settings.Properties.ValidationSettings.RequiredField.ErrorText = "STOCK MONTH is mandatory";
+                settings.Properties.ValidationSettings.SetFocusOnError = true; 
+                settings.Properties.EditFormatString = "MM/yyyy";
+            }).GetHtml()
+        </div>
+
+        <div class="itembox">		
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtSUPPLIER_DETAILS";
+                settings.Properties.Caption = "SUPPLIER";     
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+        </div>
+      
+        <div class="itembox">
+            @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                        (Html.Toyota().Page.ControllerName.ToString(), "Search"))
+            {	
+                @Html.DevExpress().Button(settings =>
+                        {
+                            settings.Name = "btnDetailsSearch";
+                            settings.Text = "Search";
+                            settings.ClientSideEvents.Click = "SelectSTOCK_MONTH";
+                            settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsSearch16x16devav;
+                        }).GetHtml()
+            }
+        </div>
+    </div>
+ 
+ @using (Html.BeginForm()) {
+    @Html.Partial("_TB_R_PART_STOCK_DETAILS_LIST")
+ }
+
+

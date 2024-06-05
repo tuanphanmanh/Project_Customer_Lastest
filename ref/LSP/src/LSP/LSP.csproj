@@ -1,0 +1,2189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2DC5FC0C-9911-47D7-883B-8744230B4D6C}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LSP</RootNamespace>
+    <AssemblyName>LSP</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile />
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Tdk-Lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Office.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v17.2.Export, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.SpellChecker.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxGauges.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxHtmlEditor.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxPivotGrid.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxScheduler.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxSpellChecker.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxThemes.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxTreeList.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.Mvc.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v17.2.Web, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v17.2.Presets, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.CodeParser.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.Resources.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v17.2.Web, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v17.2.Reporting.Extensions, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpressWebUIExtension">
+      <HintPath>Tdk-Lib\DevExpressWebUIExtension.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Tdk-Lib\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Tdk-Lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=1.12.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Tdk-Lib\MailKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MimeKit, Version=1.12.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Tdk-Lib\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>Tdk-Lib\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>Tdk-Lib\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>Tdk-Lib\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>Tdk-Lib\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz, Version=3.0.5.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <HintPath>packages\Quartz.3.0.5\lib\net452\Quartz.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>Tdk-Lib\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Tdk-Lib\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=3.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Microsoft.AspNet.Mvc.3.0.50813.1\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Razor.1.0.20105.408\lib\net40\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="TDKUtility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Tdk-Lib\TDKUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Toyota.Common">
+      <HintPath>Tdk-Lib\Toyota.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Toyota.Common.Configuration, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Tdk-Lib\Toyota.Common.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Toyota.Common.Credential, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Tdk-Lib\Toyota.Common.Credential.dll</HintPath>
+    </Reference>
+    <Reference Include="Toyota.Common.Credential.Provider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Tdk-Lib\Toyota.Common.Credential.Provider.dll</HintPath>
+    </Reference>
+    <Reference Include="Toyota.Common.Database, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Tdk-Lib\Toyota.Common.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Toyota.Common.Database.Petapoco, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Tdk-Lib\Toyota.Common.Database.Petapoco.dll</HintPath>
+    </Reference>
+    <Reference Include="Toyota.Common.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Tdk-Lib\Toyota.Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Toyota.Common.SSO.Lib">
+      <HintPath>Tdk-Lib\Toyota.Common.SSO.Lib.dll</HintPath>
+    </Reference>
+    <Reference Include="Toyota.Common.SSO.Service">
+      <HintPath>Tdk-Lib\Toyota.Common.SSO.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="Toyota.Common.Task, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Tdk-Lib\Toyota.Common.Task.dll</HintPath>
+    </Reference>
+    <Reference Include="Toyota.Common.Web.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Tdk-Lib\Toyota.Common.Web.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Toyota.Common.Web.Service, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Tdk-Lib\Toyota.Common.Web.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="Toyota.Common.Web.UI.Layout, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Tdk-Lib\Toyota.Common.Web.UI.Layout.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\ChangePasswordController.cs" />
+    <Compile Include="Controllers\TB_R_PRODUCTION_PLAN_D_WController.cs" />
+    <Compile Include="Controllers\TB_R_PRODUCTION_PLAN_M_V2_FCController.cs" />
+    <Compile Include="Controllers\TB_R_PRODUCTION_PLAN_M_V2Controller.cs" />
+    <Compile Include="Controllers\TB_R_PART_RUNDOWN_V2Controller.cs" />
+    <Compile Include="Controllers\TB_M_SCREEN_SETTINGController.cs" />
+    <Compile Include="Controllers\TB_M_TMV_PICController.cs" />
+    <Compile Include="Controllers\TB_R_KANBAN_REPORTController.cs" />
+    <Compile Include="Controllers\TB_R_CONTENT_LIST_REPORTController.cs" />
+    <Compile Include="Controllers\TB_M_SUPPLIER_OR_TIMEController.cs" />
+    <Compile Include="Controllers\TB_M_SUPPLIER_STK_CONCEPTController.cs" />
+    <Compile Include="Controllers\TB_R_DAILY_ORDER_REPORTController.cs" />
+    <Compile Include="Controllers\TB_M_CALENDARController.cs" />
+    <Compile Include="Controllers\TB_R_ASSEMBLY_DATAController.cs" />
+    <Compile Include="Controllers\TB_R_DAILY_ORDERController.cs" />
+    <Compile Include="Controllers\TB_R_PART_HIKIATE_STOCK_STDController.cs" />
+    <Compile Include="Controllers\TB_R_PART_IN_OUTController.cs" />
+    <Compile Include="Controllers\TB_R_PART_RUNDOWNController.cs" />
+    <Compile Include="Controllers\TB_R_PART_SMQDController.cs" />
+    <Compile Include="Controllers\TB_R_PART_STOCKController.cs" />
+    <Compile Include="Controllers\TB_R_PRODUCTION_PLAN_DController.cs" />
+    <Compile Include="Controllers\TB_R_TRUCK_BOOKING_DController.cs" />
+    <Compile Include="Controllers\TB_M_MODELController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\NotAuthorizeController.cs" />
+    <Compile Include="Controllers\TB_M_COLORController.cs" />
+    <Compile Include="Controllers\TB_M_LOOKUPController.cs" />
+    <Compile Include="Controllers\TB_M_ROUTINGController.cs" />
+    <Compile Include="Controllers\TB_M_SCANNING_USRController.cs" />
+    <Compile Include="Controllers\TB_M_SUPPLIER_DL_TIMEController.cs" />
+    <Compile Include="Controllers\TB_M_SUPPLIER_INFOController.cs" />
+    <Compile Include="Controllers\TB_M_SUPPLIER_PICController.cs" />
+    <Compile Include="Controllers\TB_M_TRANSPORTERController.cs" />
+    <Compile Include="Controllers\TB_M_TRUCKController.cs" />
+    <Compile Include="Controllers\TB_M_TRUCK_SUPPLIERController.cs" />
+    <Compile Include="Controllers\TB_M_TRUCK_TYPEController.cs" />
+    <Compile Include="Controllers\TB_M_USERSController.cs" />
+    <Compile Include="Controllers\TB_M_USER_ROLESController.cs" />
+    <Compile Include="Controllers\TB_M_VEHICLE_MASTERController.cs" />
+    <Compile Include="Controllers\TB_R_CONTENT_LISTController.cs" />
+    <Compile Include="Controllers\TB_R_KANBANController.cs" />
+    <Compile Include="Controllers\TB_R_NQC_RESULT_MController.cs" />
+    <Compile Include="Controllers\TB_R_PART_HIKIATEController.cs" />
+    <Compile Include="Controllers\TB_R_PRODUCTION_PLAN_MController.cs" />
+    <Compile Include="Controllers\TB_R_TRUCK_BOOKING_HController.cs" />
+    <Compile Include="Controllers\TB_R_UNLOADING_PLANController.cs" />
+    <Compile Include="Controllers\TB_R_UNLOADING_PLAN_HController.cs" />
+    <Compile Include="Controllers\TB_R_UP_PLAN_DController.cs" />
+    <Compile Include="Controllers\TB_R_UP_PLAN_HController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\App.cs" />
+    <Compile Include="Models\AppRepository.cs" />
+    <Compile Include="Models\BaseRepository.cs" />
+    <Compile Include="Models\TB_R_PART_RUNDOWN_V2\ITB_R_PART_RUNDOWN_V2.cs" />
+    <Compile Include="Models\TB_R_PART_RUNDOWN_V2\TB_R_PART_RUNDOWN_V2Info.cs" />
+    <Compile Include="Models\TB_R_PART_RUNDOWN_V2\TB_R_PART_RUNDOWN_V2Provider.cs" />
+    <Compile Include="Models\TB_R_PART_RUNDOWN_V2\TB_R_PART_RUNDOWN_V2Reposity.cs" />
+    <Compile Include="Models\TB_M_SCREEN_SETTING\ITB_M_SCREEN_SETTING.cs" />
+    <Compile Include="Models\TB_M_SCREEN_SETTING\TB_M_SCREEN_SETTINGInfo.cs" />
+    <Compile Include="Models\TB_M_SCREEN_SETTING\TB_M_SCREEN_SETTINGProvider.cs" />
+    <Compile Include="Models\TB_M_SCREEN_SETTING\TB_M_SCREEN_SETTINGReposity.cs" />
+    <Compile Include="Models\TB_M_TMV_PIC\ITB_M_TMV_PIC.cs" />
+    <Compile Include="Models\TB_M_TMV_PIC\TB_M_TMV_PICInfo.cs" />
+    <Compile Include="Models\TB_M_TMV_PIC\TB_M_TMV_PICProvider.cs" />
+    <Compile Include="Models\TB_M_TMV_PIC\TB_M_TMV_PICReposity.cs" />
+    <Compile Include="Models\TB_M_CALENDAR\SchedulerStorageProvider.cs" />
+    <Compile Include="Models\TB_M_CALENDAR\SCHEDULER_DATAInfo.cs" />
+    <Compile Include="Models\TB_M_CALENDAR\TB_R_RESOURCESInfo.cs" />
+    <Compile Include="Models\TB_M_CALENDAR\TB_R_APPOINTMENTSInfo.cs" />
+    <Compile Include="Models\TB_R_KANBAN_REPORT\TB_R_KANBAN_REPORTInfo.cs" />
+    <Compile Include="Models\TB_R_KANBAN_REPORT\ITB_R_KANBAN_REPORT.cs" />
+    <Compile Include="Models\TB_R_KANBAN_REPORT\TB_R_KANBAN_REPORTProvider.cs" />
+    <Compile Include="Models\TB_R_KANBAN_REPORT\TB_R_KANBAN_REPORTReposity.cs" />
+    <Compile Include="Models\TB_R_CONTENT_LIST_REPORT\ITB_R_CONTENT_LIST_REPORT.cs" />
+    <Compile Include="Models\TB_R_CONTENT_LIST_REPORT\TB_R_CONTENT_LIST_REPORTProvider.cs" />
+    <Compile Include="Models\TB_R_CONTENT_LIST_REPORT\TB_R_CONTENT_LIST_REPORTReposity.cs" />
+    <Compile Include="Models\TB_M_CALENDAR\TB_M_CALENDAR_PIVOTInfo.cs" />
+    <Compile Include="Models\TB_M_SUPPLIER_OR_TIME\ITB_M_SUPPLIER_OR_TIME.cs" />
+    <Compile Include="Models\TB_M_SUPPLIER_OR_TIME\TB_M_SUPPLIER_OR_TIMEInfo.cs" />
+    <Compile Include="Models\TB_M_SUPPLIER_OR_TIME\TB_M_SUPPLIER_OR_TIMEProvider.cs" />
+    <Compile Include="Models\TB_M_SUPPLIER_OR_TIME\TB_M_SUPPLIER_OR_TIMEReposity.cs" />
+    <Compile Include="Models\TB_M_SUPPLIER_STK_CONCEPT\ITB_M_SUPPLIER_STK_CONCEPT.cs" />
+    <Compile Include="Models\TB_M_SUPPLIER_STK_CONCEPT\TB_M_SUPPLIER_STK_CONCEPTInfo.cs" />
+    <Compile Include="Models\TB_M_SUPPLIER_STK_CONCEPT\TB_M_SUPPLIER_STK_CONCEPTProvider.cs" />
+    <Compile Include="Models\TB_M_SUPPLIER_STK_CONCEPT\TB_M_SUPPLIER_STK_CONCEPTReposity.cs" />
+    <Compile Include="Models\TB_R_DAILY_ORDER\TB_R_DAILY_ORDER_PIVOTInfo.cs" />
+    <Compile Include="Models\TB_R_DAILY_ORDER_REPORT\ITB_R_DAILY_ORDER_REPORT.cs" />
+    <Compile Include="Models\TB_R_DAILY_ORDER_REPORT\TB_R_DAILY_ORDER_REPORTInfo.cs" />
+    <Compile Include="Models\TB_R_DAILY_ORDER_REPORT\TB_R_DAILY_ORDER_REPORTProvider.cs" />
+    <Compile Include="Models\TB_R_DAILY_ORDER_REPORT\TB_R_DAILY_ORDER_REPORTReposity.cs" />
+    <Compile Include="Models\JobScheduler.cs" />
+    <Compile Include="Models\EmailJob.cs" />
+    <Compile Include="Models\PropertyDescriptorReplica.cs" />
+    <Compile Include="Models\Common.cs" />
+    <Compile Include="Models\Contants.cs" />
+    <Compile Include="Models\ExcelExportHelper.cs" />
+    <Compile Include="Models\TB_M_CALENDAR\ITB_M_CALENDAR.cs" />
+    <Compile Include="Models\TB_M_CALENDAR\TB_M_CALENDARInfo.cs" />
+    <Compile Include="Models\TB_M_CALENDAR\TB_M_CALENDARProvider.cs" />
+    <Compile Include="Models\TB_M_CALENDAR\TB_M_CALENDARReposity.cs" />
+    <Compile Include="Models\TB_M_MODEL\ITB_M_MODEL.cs" />
+    <Compile Include="Models\TB_M_MODEL\TB_M_MODELInfo.cs" />
+    <Compile Include="Models\TB_M_MODEL\TB_M_MODELProvider.cs" />
+    <Compile Include="Models\TB_M_MODEL\TB_M_MODELReposity.cs" />
+    <Compile Include="Models\Logging.cs" />
+    <Compile Include="Models\MessageCustom.cs" />
+    <Compile Include="Models\MultithreadedSingleton.cs" />
+    <Compile Include="Models\TB_M_COLOR\ITB_M_COLOR.cs" />
+    <Compile Include="Models\TB_M_COLOR\TB_M_COLORInfo.cs" />
+    <Compile Include="Models\TB_M_COLOR\TB_M_COLORProvider.cs" />
+    <Compile Include="Models\TB_M_COLOR\TB_M_COLORReposity.cs" />
+    <Compile Include="Models\TB_M_LOOKUP\ITB_M_LOOKUP.cs" />
+    <Compile Include="Models\TB_M_LOOKUP\TB_M_LOOKUPInfo.cs" />
+    <Compile Include="Models\TB_M_LOOKUP\TB_M_LOOKUPProvider.cs" />
+    <Compile Include="Models\TB_M_LOOKUP\TB_M_LOOKUPReposity.cs" />
+    <Compile Include="Models\TB_M_ROUTING\ITB_M_ROUTING.cs" />
+    <Compile Include="Models\TB_M_ROUTING\TB_M_ROUTINGInfo.cs" />
+    <Compile Include="Models\TB_M_ROUTING\TB_M_ROUTINGProvider.cs" />
+    <Compile Include="Models\TB_M_ROUTING\TB_M_ROUTINGReposity.cs" />
+    <Compile Include="Models\TB_M_SCANNING_USR\ITB_M_SCANNING_USR.cs" />
+    <Compile Include="Models\TB_M_SCANNING_USR\TB_M_SCANNING_USRInfo.cs" />
+    <Compile Include="Models\TB_M_SCANNING_USR\TB_M_SCANNING_USRProvider.cs" />
+    <Compile Include="Models\TB_M_SCANNING_USR\TB_M_SCANNING_USRReposity.cs" />
+    <Compile Include="Models\TB_M_SUPPLIER_DL_TIME\ITB_M_SUPPLIER_DL_TIME.cs" />
+    <Compile Include="Models\TB_M_SUPPLIER_DL_TIME\TB_M_SUPPLIER_DL_TIMEInfo.cs" />
+    <Compile Include="Models\TB_M_SUPPLIER_DL_TIME\TB_M_SUPPLIER_DL_TIMEProvider.cs" />
+    <Compile Include="Models\TB_M_SUPPLIER_DL_TIME\TB_M_SUPPLIER_DL_TIMEReposity.cs" />
+    <Compile Include="Models\TB_M_SUPPLIER_INFO\ITB_M_SUPPLIER_INFO.cs" />
+    <Compile Include="Models\TB_M_SUPPLIER_INFO\TB_M_SUPPLIER_INFOInfo.cs" />
+    <Compile Include="Models\TB_M_SUPPLIER_INFO\TB_M_SUPPLIER_INFOProvider.cs" />
+    <Compile Include="Models\TB_M_SUPPLIER_INFO\TB_M_SUPPLIER_INFOReposity.cs" />
+    <Compile Include="Models\TB_M_SUPPLIER_PIC\ITB_M_SUPPLIER_PIC.cs" />
+    <Compile Include="Models\TB_M_SUPPLIER_PIC\TB_M_SUPPLIER_PICInfo.cs" />
+    <Compile Include="Models\TB_M_SUPPLIER_PIC\TB_M_SUPPLIER_PICProvider.cs" />
+    <Compile Include="Models\TB_M_SUPPLIER_PIC\TB_M_SUPPLIER_PICReposity.cs" />
+    <Compile Include="Models\TB_M_TRANSPORTER\ITB_M_TRANSPORTER.cs" />
+    <Compile Include="Models\TB_M_TRANSPORTER\TB_M_TRANSPORTERInfo.cs" />
+    <Compile Include="Models\TB_M_TRANSPORTER\TB_M_TRANSPORTERProvider.cs" />
+    <Compile Include="Models\TB_M_TRANSPORTER\TB_M_TRANSPORTERReposity.cs" />
+    <Compile Include="Models\TB_M_TRUCK\ITB_M_TRUCK.cs" />
+    <Compile Include="Models\TB_M_TRUCK\TB_M_TRUCKInfo.cs" />
+    <Compile Include="Models\TB_M_TRUCK\TB_M_TRUCKProvider.cs" />
+    <Compile Include="Models\TB_M_TRUCK\TB_M_TRUCKReposity.cs" />
+    <Compile Include="Models\TB_M_TRUCK_SUPPLIER\ITB_M_TRUCK_SUPPLIER.cs" />
+    <Compile Include="Models\TB_M_TRUCK_SUPPLIER\TB_M_TRUCK_SUPPLIERInfo.cs" />
+    <Compile Include="Models\TB_M_TRUCK_SUPPLIER\TB_M_TRUCK_SUPPLIERProvider.cs" />
+    <Compile Include="Models\TB_M_TRUCK_SUPPLIER\TB_M_TRUCK_SUPPLIERReposity.cs" />
+    <Compile Include="Models\TB_M_TRUCK_TYPE\ITB_M_TRUCK_TYPE.cs" />
+    <Compile Include="Models\TB_M_TRUCK_TYPE\TB_M_TRUCK_TYPEInfo.cs" />
+    <Compile Include="Models\TB_M_TRUCK_TYPE\TB_M_TRUCK_TYPEProvider.cs" />
+    <Compile Include="Models\TB_M_TRUCK_TYPE\TB_M_TRUCK_TYPEReposity.cs" />
+    <Compile Include="Models\TB_M_USERS\ButtonInfo.cs" />
+    <Compile Include="Models\TB_M_USERS\ITB_M_USERS.cs" />
+    <Compile Include="Models\TB_M_USERS\TB_M_USERSInfo.cs" />
+    <Compile Include="Models\TB_M_USERS\TB_M_USERSProvider.cs" />
+    <Compile Include="Models\TB_M_USERS\TB_M_USERSReposity.cs" />
+    <Compile Include="Models\TB_M_USER_ROLES\ITB_M_USER_ROLES.cs" />
+    <Compile Include="Models\TB_M_USER_ROLES\TB_M_USER_ROLESInfo.cs" />
+    <Compile Include="Models\TB_M_USER_ROLES\TB_M_USER_ROLESProvider.cs" />
+    <Compile Include="Models\TB_M_USER_ROLES\TB_M_USER_ROLESReposity.cs" />
+    <Compile Include="Models\TB_M_VEHICLE_MASTER\ITB_M_VEHICLE_MASTER.cs" />
+    <Compile Include="Models\TB_M_VEHICLE_MASTER\TB_M_VEHICLE_MASTERInfo.cs" />
+    <Compile Include="Models\TB_M_VEHICLE_MASTER\TB_M_VEHICLE_MASTERProvider.cs" />
+    <Compile Include="Models\TB_M_VEHICLE_MASTER\TB_M_VEHICLE_MASTERReposity.cs" />
+    <Compile Include="Models\TB_R_ASSEMBLY_DATA\ITB_R_ASSEMBLY_DATA.cs" />
+    <Compile Include="Models\TB_R_ASSEMBLY_DATA\TB_R_ASSEMBLY_DATAInfo.cs" />
+    <Compile Include="Models\TB_R_ASSEMBLY_DATA\TB_R_ASSEMBLY_DATAProvider.cs" />
+    <Compile Include="Models\TB_R_ASSEMBLY_DATA\TB_R_ASSEMBLY_DATAReposity.cs" />
+    <Compile Include="Models\TB_R_CONTENT_LIST\ITB_R_CONTENT_LIST.cs" />
+    <Compile Include="Models\TB_R_CONTENT_LIST\TB_R_CONTENT_LISTInfo.cs" />
+    <Compile Include="Models\TB_R_CONTENT_LIST\TB_R_CONTENT_LISTProvider.cs" />
+    <Compile Include="Models\TB_R_CONTENT_LIST\TB_R_CONTENT_LISTReposity.cs" />
+    <Compile Include="Models\TB_R_DAILY_ORDER\ITB_R_DAILY_ORDER.cs" />
+    <Compile Include="Models\TB_R_DAILY_ORDER\TB_R_DAILY_ORDERInfo.cs" />
+    <Compile Include="Models\TB_R_DAILY_ORDER\TB_R_DAILY_ORDERProvider.cs" />
+    <Compile Include="Models\TB_R_DAILY_ORDER\TB_R_DAILY_ORDERReposity.cs" />
+    <Compile Include="Models\TB_R_KANBAN\ITB_R_KANBAN.cs" />
+    <Compile Include="Models\TB_R_KANBAN\TB_R_KANBANInfo.cs" />
+    <Compile Include="Models\TB_R_KANBAN\TB_R_KANBANProvider.cs" />
+    <Compile Include="Models\TB_R_KANBAN\TB_R_KANBANReposity.cs" />
+    <Compile Include="Models\TB_R_NQC_RESULT_M\ITB_R_NQC_RESULT_M.cs" />
+    <Compile Include="Models\TB_R_NQC_RESULT_M\TB_R_NQC_RESULT_MInfo.cs" />
+    <Compile Include="Models\TB_R_NQC_RESULT_M\TB_R_NQC_RESULT_MProvider.cs" />
+    <Compile Include="Models\TB_R_NQC_RESULT_M\TB_R_NQC_RESULT_MReposity.cs" />
+    <Compile Include="Models\TB_R_PART_HIKIATE\ITB_R_PART_HIKIATE.cs" />
+    <Compile Include="Models\TB_R_PART_HIKIATE\TB_R_PART_HIKIATEInfo.cs" />
+    <Compile Include="Models\TB_R_PART_HIKIATE\TB_R_PART_HIKIATEProvider.cs" />
+    <Compile Include="Models\TB_R_PART_HIKIATE\TB_R_PART_HIKIATEReposity.cs" />
+    <Compile Include="Models\TB_R_PART_HIKIATE_STOCK_STD\ITB_R_PART_HIKIATE_STOCK_STD.cs" />
+    <Compile Include="Models\TB_R_PART_HIKIATE_STOCK_STD\TB_R_PART_HIKIATE_STOCK_STDInfo.cs" />
+    <Compile Include="Models\TB_R_PART_HIKIATE_STOCK_STD\TB_R_PART_HIKIATE_STOCK_STDProvider.cs" />
+    <Compile Include="Models\TB_R_PART_HIKIATE_STOCK_STD\TB_R_PART_HIKIATE_STOCK_STDReposity.cs" />
+    <Compile Include="Models\TB_R_PART_IN_OUT\ITB_R_PART_IN_OUT.cs" />
+    <Compile Include="Models\TB_R_PART_IN_OUT\TB_R_PART_IN_OUTInfo.cs" />
+    <Compile Include="Models\TB_R_PART_IN_OUT\TB_R_PART_IN_OUTProvider.cs" />
+    <Compile Include="Models\TB_R_PART_IN_OUT\TB_R_PART_IN_OUTReposity.cs" />
+    <Compile Include="Models\TB_R_PART_RUNDOWN\ITB_R_PART_RUNDOWN.cs" />
+    <Compile Include="Models\TB_R_PART_RUNDOWN\TB_R_PART_RUNDOWNInfo.cs" />
+    <Compile Include="Models\TB_R_PART_RUNDOWN\TB_R_PART_RUNDOWNProvider.cs" />
+    <Compile Include="Models\TB_R_PART_RUNDOWN\TB_R_PART_RUNDOWNReposity.cs" />
+    <Compile Include="Models\TB_R_PART_SMQD\ITB_R_PART_SMQD.cs" />
+    <Compile Include="Models\TB_R_PART_SMQD\TB_R_PART_SMQDInfo.cs" />
+    <Compile Include="Models\TB_R_PART_SMQD\TB_R_PART_SMQDProvider.cs" />
+    <Compile Include="Models\TB_R_PART_SMQD\TB_R_PART_SMQDReposity.cs" />
+    <Compile Include="Models\TB_R_PART_STOCK\ITB_R_PART_STOCK.cs" />
+    <Compile Include="Models\TB_R_PART_STOCK\TB_R_PART_STOCK_PIVOTInfo.cs" />
+    <Compile Include="Models\TB_R_PART_STOCK\TB_R_PART_STOCKInfo.cs" />
+    <Compile Include="Models\TB_R_PART_STOCK\TB_R_PART_STOCKProvider.cs" />
+    <Compile Include="Models\TB_R_PART_STOCK\TB_R_PART_STOCKReposity.cs" />
+    <Compile Include="Models\TB_R_PRODUCTION_PLAN_D_W\ITB_R_PRODUCTION_PLAN_D_W.cs" />
+    <Compile Include="Models\TB_R_PRODUCTION_PLAN_D_W\TB_R_PRODUCTION_PLAN_D_WInfo.cs" />
+    <Compile Include="Models\TB_R_PRODUCTION_PLAN_D_W\TB_R_PRODUCTION_PLAN_D_WProvider.cs" />
+    <Compile Include="Models\TB_R_PRODUCTION_PLAN_D_W\TB_R_PRODUCTION_PLAN_D_WReposity.cs" />
+    <Compile Include="Models\TB_R_PRODUCTION_PLAN_D\ITB_R_PRODUCTION_PLAN_D.cs" />
+    <Compile Include="Models\TB_R_PRODUCTION_PLAN_D\TB_R_PRODUCTION_PLAN_DInfo.cs" />
+    <Compile Include="Models\TB_R_PRODUCTION_PLAN_D\TB_R_PRODUCTION_PLAN_DProvider.cs" />
+    <Compile Include="Models\TB_R_PRODUCTION_PLAN_D\TB_R_PRODUCTION_PLAN_DReposity.cs" />
+    <Compile Include="Models\TB_R_PRODUCTION_PLAN_M\ITB_R_PRODUCTION_PLAN_M.cs" />
+    <Compile Include="Models\TB_R_PRODUCTION_PLAN_M\TB_R_PRODUCTION_PLAN_MInfo.cs" />
+    <Compile Include="Models\TB_R_PRODUCTION_PLAN_M\TB_R_PRODUCTION_PLAN_MProvider.cs" />
+    <Compile Include="Models\TB_R_PRODUCTION_PLAN_M\TB_R_PRODUCTION_PLAN_MReposity.cs" />
+    <Compile Include="Models\TB_R_TRUCK_BOOKING_D\ITB_R_TRUCK_BOOKING_D.cs" />
+    <Compile Include="Models\TB_R_TRUCK_BOOKING_D\TB_R_TRUCK_BOOKING_DInfo.cs" />
+    <Compile Include="Models\TB_R_TRUCK_BOOKING_D\TB_R_TRUCK_BOOKING_DProvider.cs" />
+    <Compile Include="Models\TB_R_TRUCK_BOOKING_D\TB_R_TRUCK_BOOKING_DReposity.cs" />
+    <Compile Include="Models\TB_R_TRUCK_BOOKING_H\ITB_R_TRUCK_BOOKING_H.cs" />
+    <Compile Include="Models\TB_R_TRUCK_BOOKING_H\TB_R_TRUCK_BOOKING_HInfo.cs" />
+    <Compile Include="Models\TB_R_TRUCK_BOOKING_H\TB_R_TRUCK_BOOKING_HProvider.cs" />
+    <Compile Include="Models\TB_R_TRUCK_BOOKING_H\TB_R_TRUCK_BOOKING_HReposity.cs" />
+    <Compile Include="Models\TB_R_UNLOADING_PLAN\UNLOADING_MAINInfo.cs" />
+    <Compile Include="Models\TB_R_UNLOADING_PLAN\ITB_R_UNLOADING_PLAN.cs" />
+    <Compile Include="Models\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLANInfo.cs" />
+    <Compile Include="Models\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLANProvider.cs" />
+    <Compile Include="Models\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLANReposity.cs" />
+    <Compile Include="Models\TB_R_UNLOADING_PLAN_H\ITB_R_UNLOADING_PLAN_H.cs" />
+    <Compile Include="Models\TB_R_UNLOADING_PLAN_H\TB_R_UNLOADING_PLAN_HInfo.cs" />
+    <Compile Include="Models\TB_R_UNLOADING_PLAN_H\TB_R_UNLOADING_PLAN_HProvider.cs" />
+    <Compile Include="Models\TB_R_UNLOADING_PLAN_H\TB_R_UNLOADING_PLAN_HReposity.cs" />
+    <Compile Include="Models\TB_R_UP_PLAN_D\ITB_R_UP_PLAN_D.cs" />
+    <Compile Include="Models\TB_R_UP_PLAN_D\TB_R_UP_PLAN_DInfo.cs" />
+    <Compile Include="Models\TB_R_UP_PLAN_D\TB_R_UP_PLAN_DProvider.cs" />
+    <Compile Include="Models\TB_R_UP_PLAN_D\TB_R_UP_PLAN_DReposity.cs" />
+    <Compile Include="Models\TB_R_UP_PLAN_H\ITB_R_UP_PLAN_H.cs" />
+    <Compile Include="Models\TB_R_UP_PLAN_H\TB_R_UP_PLAN_HInfo.cs" />
+    <Compile Include="Models\TB_R_UP_PLAN_H\TB_R_UP_PLAN_HProvider.cs" />
+    <Compile Include="Models\TB_R_UP_PLAN_H\TB_R_UP_PLAN_HReposity.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\EmailService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configurations\Menu-DEV.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configurations\SingleSignOn-DEV.config" />
+    <Content Include="Content\angular\angular-gridster.js" />
+    <Content Include="Content\angular\angular-gridster.min.css" />
+    <Content Include="Content\angular\angular-gridster.min.js" />
+    <Content Include="Content\angular\angular.js" />
+    <Content Include="Content\angular\script-dashboard.js" />
+    <Content Include="Content\angular\script-main.js" />
+    <Content Include="Content\angular\style-common.css" />
+    <Content Include="Content\angular\style-dashboard.css" />
+    <Content Include="Content\angular\style-main.css" />
+    <Content Include="Content\angular\ui-bootstrap-tpls.min.js" />
+    <Content Include="Content\Audio\100-Delay-tacktime-line.mp3" />
+    <Content Include="Content\Audio\101-call-leader.mp3" />
+    <Content Include="Content\Audio\102-Confirm-flag-start.mp3" />
+    <Content Include="Content\Audio\103-Delay-finish-case.mp3" />
+    <Content Include="Content\Audio\audio1.mp3" />
+    <Content Include="Content\Audio\audio2.mp3" />
+    <Content Include="Content\Audio\audio3.mp3" />
+    <Content Include="Content\Bootstrap\avatars\anonymous.jpg" />
+    <Content Include="Content\Bootstrap\avatars\avatar.png" />
+    <Content Include="Content\Bootstrap\avatars\avatar1.png" />
+    <Content Include="Content\Bootstrap\avatars\avatar2.png" />
+    <Content Include="Content\Bootstrap\avatars\avatar3.png" />
+    <Content Include="Content\Bootstrap\avatars\avatar4.png" />
+    <Content Include="Content\Bootstrap\avatars\avatar5.png" />
+    <Content Include="Content\Bootstrap\avatars\profile-pic.jpg" />
+    <Content Include="Content\Bootstrap\avatars\user.jpg" />
+    <Content Include="Content\Bootstrap\css\ace-fonts.css" />
+    <Content Include="Content\Bootstrap\css\ace-ie.css" />
+    <Content Include="Content\Bootstrap\css\ace-part2.css" />
+    <Content Include="Content\Bootstrap\css\ace-rtl.css" />
+    <Content Include="Content\Bootstrap\css\ace-skins.css" />
+    <Content Include="Content\Bootstrap\css\ace.css" />
+    <Content Include="Content\Bootstrap\css\ace.onpage-help.css" />
+    <Content Include="Content\Bootstrap\css\bootstrap-datetimepicker.css" />
+    <Content Include="Content\Bootstrap\css\bootstrap-duallistbox.css" />
+    <Content Include="Content\Bootstrap\css\bootstrap-editable.css" />
+    <Content Include="Content\Bootstrap\css\bootstrap-multiselect.css" />
+    <Content Include="Content\Bootstrap\css\bootstrap-timepicker.css" />
+    <Content Include="Content\Bootstrap\css\bootstrap.css" />
+    <Content Include="Content\Bootstrap\css\chosen-sprite%402x.png" />
+    <Content Include="Content\Bootstrap\css\chosen-sprite.png" />
+    <Content Include="Content\Bootstrap\css\chosen.css" />
+    <Content Include="Content\Bootstrap\css\colorbox.css" />
+    <Content Include="Content\Bootstrap\css\colorpicker.css" />
+    <Content Include="Content\Bootstrap\css\datepicker.css" />
+    <Content Include="Content\Bootstrap\css\daterangepicker.css" />
+    <Content Include="Content\Bootstrap\css\dropzone.css" />
+    <Content Include="Content\Bootstrap\css\font-awesome.css" />
+    <Content Include="Content\Bootstrap\css\fullcalendar.css" />
+    <Content Include="Content\Bootstrap\css\fullcalendar.print.css" />
+    <Content Include="Content\Bootstrap\css\images\border.png" />
+    <Content Include="Content\Bootstrap\css\images\border1.png" />
+    <Content Include="Content\Bootstrap\css\images\border2.png" />
+    <Content Include="Content\Bootstrap\css\images\controls.png" />
+    <Content Include="Content\Bootstrap\css\images\ie6\borderBottomCenter.png" />
+    <Content Include="Content\Bootstrap\css\images\ie6\borderBottomLeft.png" />
+    <Content Include="Content\Bootstrap\css\images\ie6\borderBottomRight.png" />
+    <Content Include="Content\Bootstrap\css\images\ie6\borderMiddleLeft.png" />
+    <Content Include="Content\Bootstrap\css\images\ie6\borderMiddleRight.png" />
+    <Content Include="Content\Bootstrap\css\images\ie6\borderTopCenter.png" />
+    <Content Include="Content\Bootstrap\css\images\ie6\borderTopLeft.png" />
+    <Content Include="Content\Bootstrap\css\images\ie6\borderTopRight.png" />
+    <Content Include="Content\Bootstrap\css\images\loading.gif" />
+    <Content Include="Content\Bootstrap\css\images\loading_background.png" />
+    <Content Include="Content\Bootstrap\css\images\meteorshower.jpg" />
+    <Content Include="Content\Bootstrap\css\images\meteorshower2.jpg" />
+    <Content Include="Content\Bootstrap\css\images\overlay.png" />
+    <Content Include="Content\Bootstrap\css\images\pattern-old.jpg" />
+    <Content Include="Content\Bootstrap\css\images\pattern-old.png" />
+    <Content Include="Content\Bootstrap\css\images\pattern.png" />
+    <Content Include="Content\Bootstrap\css\images\spritemap%402x.png" />
+    <Content Include="Content\Bootstrap\css\images\spritemap.png" />
+    <Content Include="Content\Bootstrap\css\img\alpha.png" />
+    <Content Include="Content\Bootstrap\css\img\hue.png" />
+    <Content Include="Content\Bootstrap\css\img\saturation.png" />
+    <Content Include="Content\Bootstrap\css\jquery-ui.css" />
+    <Content Include="Content\Bootstrap\css\jquery-ui.custom.css" />
+    <Content Include="Content\Bootstrap\css\jquery.gritter.css" />
+    <Content Include="Content\Bootstrap\css\pace.css" />
+    <Content Include="Content\Bootstrap\css\prettify.css" />
+    <Content Include="Content\Bootstrap\css\sb-admin-2.css" />
+    <Content Include="Content\Bootstrap\css\select2-spinner.gif" />
+    <Content Include="Content\Bootstrap\css\select2.css" />
+    <Content Include="Content\Bootstrap\css\select2.png" />
+    <Content Include="Content\Bootstrap\css\select2x2.png" />
+    <Content Include="Content\Bootstrap\css\sunburst.css" />
+    <Content Include="Content\Bootstrap\css\tdk.css" />
+    <Content Include="Content\Bootstrap\css\ui.jqgrid.css" />
+    <Content Include="Content\Bootstrap\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Bootstrap\fonts\leaguespartan-bold.svg" />
+    <Content Include="Content\Bootstrap\images\back_disabled.png" />
+    <Content Include="Content\Bootstrap\images\back_enabled.png" />
+    <Content Include="Content\Bootstrap\images\back_enabled_hover.png" />
+    <Content Include="Content\Bootstrap\images\email1.png" />
+    <Content Include="Content\Bootstrap\images\email2.png" />
+    <Content Include="Content\Bootstrap\images\email3.png" />
+    <Content Include="Content\Bootstrap\images\email4.png" />
+    <Content Include="Content\Bootstrap\images\forward_disabled.png" />
+    <Content Include="Content\Bootstrap\images\forward_enabled.png" />
+    <Content Include="Content\Bootstrap\images\forward_enabled_hover.png" />
+    <Content Include="Content\Bootstrap\images\gallery\image-1.jpg" />
+    <Content Include="Content\Bootstrap\images\gallery\image-2.jpg" />
+    <Content Include="Content\Bootstrap\images\gallery\image-3.jpg" />
+    <Content Include="Content\Bootstrap\images\gallery\image-4.jpg" />
+    <Content Include="Content\Bootstrap\images\gallery\image-5.jpg" />
+    <Content Include="Content\Bootstrap\images\gallery\image-6.jpg" />
+    <Content Include="Content\Bootstrap\images\gallery\thumb-1.jpg" />
+    <Content Include="Content\Bootstrap\images\gallery\thumb-2.jpg" />
+    <Content Include="Content\Bootstrap\images\gallery\thumb-3.jpg" />
+    <Content Include="Content\Bootstrap\images\gallery\thumb-4.jpg" />
+    <Content Include="Content\Bootstrap\images\gallery\thumb-5.jpg" />
+    <Content Include="Content\Bootstrap\images\gallery\thumb-6.jpg" />
+    <Content Include="Content\Bootstrap\images\sort_asc.png" />
+    <Content Include="Content\Bootstrap\images\sort_asc_disabled.png" />
+    <Content Include="Content\Bootstrap\images\sort_both.png" />
+    <Content Include="Content\Bootstrap\images\sort_desc.png" />
+    <Content Include="Content\Bootstrap\images\sort_desc_disabled.png" />
+    <Content Include="Content\Bootstrap\images\spritemap%402x.png" />
+    <Content Include="Content\Bootstrap\images\spritemap.png" />
+    <Content Include="Content\Bootstrap\img\app-logo.png" />
+    <Content Include="Content\Bootstrap\img\clear.png" />
+    <Content Include="Content\Bootstrap\img\Error.png" />
+    <Content Include="Content\Bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\Bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Content\Bootstrap\img\information.png" />
+    <Content Include="Content\Bootstrap\img\istd-nav-logo.png" />
+    <Content Include="Content\Bootstrap\img\istd-nav-logo1.png" />
+    <Content Include="Content\Bootstrap\img\loading.gif" />
+    <Content Include="Content\Bootstrap\img\question.png" />
+    <Content Include="Content\Bootstrap\img\Warning.png" />
+    <Content Include="Content\Bootstrap\js\ace-elements.js" />
+    <Content Include="Content\Bootstrap\js\ace-extra.js" />
+    <Content Include="Content\Bootstrap\js\ace.js" />
+    <Content Include="Content\Bootstrap\js\ace\ace.ajax-content.js" />
+    <Content Include="Content\Bootstrap\js\ace\ace.auto-container.js" />
+    <Content Include="Content\Bootstrap\js\ace\ace.auto-padding.js" />
+    <Content Include="Content\Bootstrap\js\ace\ace.js" />
+    <Content Include="Content\Bootstrap\js\ace\ace.onpage-help.js" />
+    <Content Include="Content\Bootstrap\js\ace\ace.searchbox-autocomplete.js" />
+    <Content Include="Content\Bootstrap\js\ace\ace.settings-rtl.js" />
+    <Content Include="Content\Bootstrap\js\ace\ace.settings-skin.js" />
+    <Content Include="Content\Bootstrap\js\ace\ace.settings.js" />
+    <Content Include="Content\Bootstrap\js\ace\ace.sidebar-scroll-1.js" />
+    <Content Include="Content\Bootstrap\js\ace\ace.sidebar-scroll-2.js" />
+    <Content Include="Content\Bootstrap\js\ace\ace.sidebar.js" />
+    <Content Include="Content\Bootstrap\js\ace\ace.submenu-hover.js" />
+    <Content Include="Content\Bootstrap\js\ace\ace.touch-drag.js" />
+    <Content Include="Content\Bootstrap\js\ace\ace.widget-box.js" />
+    <Content Include="Content\Bootstrap\js\ace\ace.widget-on-reload.js" />
+    <Content Include="Content\Bootstrap\js\ace\elements.aside.js" />
+    <Content Include="Content\Bootstrap\js\ace\elements.colorpicker.js" />
+    <Content Include="Content\Bootstrap\js\ace\elements.fileinput.js" />
+    <Content Include="Content\Bootstrap\js\ace\elements.onpage-help.js" />
+    <Content Include="Content\Bootstrap\js\ace\elements.scroller.js" />
+    <Content Include="Content\Bootstrap\js\ace\elements.spinner.js" />
+    <Content Include="Content\Bootstrap\js\ace\elements.treeview.js" />
+    <Content Include="Content\Bootstrap\js\ace\elements.typeahead.js" />
+    <Content Include="Content\Bootstrap\js\ace\elements.wizard.js" />
+    <Content Include="Content\Bootstrap\js\ace\elements.wysiwyg.js" />
+    <Content Include="Content\Bootstrap\js\additional-methods.js" />
+    <Content Include="Content\Bootstrap\js\bootbox.js" />
+    <Content Include="Content\Bootstrap\js\bootstrap-colorpicker.js" />
+    <Content Include="Content\Bootstrap\js\bootstrap-filestyle.min.js" />
+    <Content Include="Content\Bootstrap\js\bootstrap-multiselect.js" />
+    <Content Include="Content\Bootstrap\js\bootstrap-tag.js" />
+    <Content Include="Content\Bootstrap\js\bootstrap-wysiwyg.js" />
+    <Content Include="Content\Bootstrap\js\bootstrap.js" />
+    <Content Include="Content\Bootstrap\js\chosen.jquery.js" />
+    <Content Include="Content\Bootstrap\js\dataTables\extensions\ColVis\js\dataTables.colVis.js" />
+    <Content Include="Content\Bootstrap\js\dataTables\extensions\TableTools\js\dataTables.tableTools.js" />
+    <Content Include="Content\Bootstrap\js\dataTables\extensions\TableTools\swf\copy_csv_xls.swf" />
+    <Content Include="Content\Bootstrap\js\dataTables\extensions\TableTools\swf\copy_csv_xls_pdf.swf" />
+    <Content Include="Content\Bootstrap\js\dataTables\jquery.dataTables.bootstrap.js" />
+    <Content Include="Content\Bootstrap\js\dataTables\jquery.dataTables.js" />
+    <Content Include="Content\Bootstrap\js\date-time\bootstrap-datepicker.js" />
+    <Content Include="Content\Bootstrap\js\date-time\bootstrap-datetimepicker.js" />
+    <Content Include="Content\Bootstrap\js\date-time\bootstrap-timepicker.js" />
+    <Content Include="Content\Bootstrap\js\date-time\daterangepicker.js" />
+    <Content Include="Content\Bootstrap\js\date-time\moment.js" />
+    <Content Include="Content\Bootstrap\js\dropzone.js" />
+    <Content Include="Content\Bootstrap\js\excanvas.js" />
+    <Content Include="Content\Bootstrap\js\flot\jquery.flot.js" />
+    <Content Include="Content\Bootstrap\js\flot\jquery.flot.pie.js" />
+    <Content Include="Content\Bootstrap\js\flot\jquery.flot.resize.js" />
+    <Content Include="Content\Bootstrap\js\fuelux\fuelux.spinner.js" />
+    <Content Include="Content\Bootstrap\js\fuelux\fuelux.tree.js" />
+    <Content Include="Content\Bootstrap\js\fuelux\fuelux.wizard.js" />
+    <Content Include="Content\Bootstrap\js\fullcalendar.js" />
+    <Content Include="Content\Bootstrap\js\html5shiv.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-ar.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-bg.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-bg1251.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-cat.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-cn.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-cs.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-da.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-de.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-dk.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-el.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-en.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-es.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-fa.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-fi.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-fr.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-gl.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-he.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-hr.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-hr1250.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-hu.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-id.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-is.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-it.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-ja.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-kr.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-lt.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-mne.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-nl.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-no.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-pl.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-pt-br.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-pt.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-ro.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-ru.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-sk.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-sr-latin.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-sr.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-sv.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-th.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-tr.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-tw.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-ua.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\i18n\grid.locale-vi.js" />
+    <Content Include="Content\Bootstrap\js\jqGrid\jquery.jqGrid.src.js" />
+    <Content Include="Content\Bootstrap\js\jquery-ui.custom.js" />
+    <Content Include="Content\Bootstrap\js\jquery-ui.js" />
+    <Content Include="Content\Bootstrap\js\jquery.autosize.js" />
+    <Content Include="Content\Bootstrap\js\jquery.bootstrap-duallistbox.js" />
+    <Content Include="Content\Bootstrap\js\jquery.colorbox.js" />
+    <Content Include="Content\Bootstrap\js\jquery.easypiechart.js" />
+    <Content Include="Content\Bootstrap\js\jquery.gritter.js" />
+    <Content Include="Content\Bootstrap\js\jquery.hotkeys.js" />
+    <Content Include="Content\Bootstrap\js\jquery.inputlimiter.1.3.1.js" />
+    <Content Include="Content\Bootstrap\js\jquery.js" />
+    <Content Include="Content\Bootstrap\js\jquery.knob.js" />
+    <Content Include="Content\Bootstrap\js\jquery.maskedinput.js" />
+    <Content Include="Content\Bootstrap\js\jquery.min.js" />
+    <Content Include="Content\Bootstrap\js\jquery.mobile.custom.js" />
+    <Content Include="Content\Bootstrap\js\jquery.mousewheel.js" />
+    <Content Include="Content\Bootstrap\js\jquery.nestable.js" />
+    <Content Include="Content\Bootstrap\js\jquery.raty.js" />
+    <Content Include="Content\Bootstrap\js\jquery.slimscroll.js" />
+    <Content Include="Content\Bootstrap\js\jquery.sparkline.js" />
+    <Content Include="Content\Bootstrap\js\jquery.ui.touch-punch.js" />
+    <Content Include="Content\Bootstrap\js\jquery.validate.js" />
+    <Content Include="Content\Bootstrap\js\jquery1x.js" />
+    <Content Include="Content\Bootstrap\js\jquery_ui.custom.js" />
+    <Content Include="Content\Bootstrap\js\language\css.js" />
+    <Content Include="Content\Bootstrap\js\language\generic.js" />
+    <Content Include="Content\Bootstrap\js\language\html.js" />
+    <Content Include="Content\Bootstrap\js\language\javascript.js" />
+    <Content Include="Content\Bootstrap\js\language\php.js" />
+    <Content Include="Content\Bootstrap\js\markdown\bootstrap-markdown.js" />
+    <Content Include="Content\Bootstrap\js\markdown\markdown.js" />
+    <Content Include="Content\Bootstrap\js\markdown\to-markdown.js" />
+    <Content Include="Content\Bootstrap\js\pace.js" />
+    <Content Include="Content\Bootstrap\js\prettify.js" />
+    <Content Include="Content\Bootstrap\js\rainbow.js" />
+    <Content Include="Content\Bootstrap\js\rainbow.min.js" />
+    <Content Include="Content\Bootstrap\js\respond.js" />
+    <Content Include="Content\Bootstrap\js\select2.js" />
+    <Content Include="Content\Bootstrap\js\spin.js" />
+    <Content Include="Content\Bootstrap\js\themes\all-hallows-eve.css" />
+    <Content Include="Content\Bootstrap\js\themes\blackboard.css" />
+    <Content Include="Content\Bootstrap\js\themes\dreamweaver.css" />
+    <Content Include="Content\Bootstrap\js\themes\espresso-libre.css" />
+    <Content Include="Content\Bootstrap\js\themes\github.css" />
+    <Content Include="Content\Bootstrap\js\themes\kimbie-dark.css" />
+    <Content Include="Content\Bootstrap\js\themes\kimbie-light.css" />
+    <Content Include="Content\Bootstrap\js\themes\monokai.css" />
+    <Content Include="Content\Bootstrap\js\themes\obsidian.css" />
+    <Content Include="Content\Bootstrap\js\themes\paraiso-dark.css" />
+    <Content Include="Content\Bootstrap\js\themes\paraiso-light.css" />
+    <Content Include="Content\Bootstrap\js\themes\pastie.css" />
+    <Content Include="Content\Bootstrap\js\themes\solarized-dark.css" />
+    <Content Include="Content\Bootstrap\js\themes\solarized-light.css" />
+    <Content Include="Content\Bootstrap\js\themes\sunburst.css" />
+    <Content Include="Content\Bootstrap\js\themes\tomorrow-night.css" />
+    <Content Include="Content\Bootstrap\js\themes\tricolore.css" />
+    <Content Include="Content\Bootstrap\js\themes\twilight.css" />
+    <Content Include="Content\Bootstrap\js\themes\zenburnesque.css" />
+    <Content Include="Content\Bootstrap\js\typeahead.jquery.js" />
+    <Content Include="Content\Bootstrap\js\x-editable\ace-editable.js" />
+    <Content Include="Content\Bootstrap\js\x-editable\bootstrap-editable.js" />
+    <Content Include="Content\Images\App\close-select20-20.png" />
+    <Content Include="Content\Images\App\close20-20.png" />
+    <Content Include="Content\Images\App\DXR_10.png" />
+    <Content Include="Content\Images\App\grain.png" />
+    <Content Include="Content\Images\App\icon.ico" />
+    <Content Include="Content\Images\App\preloader-w8-cycle-black.gif" />
+    <Content Include="Content\Images\App\prev.png" />
+    <Content Include="Content\Images\App\sand.png" />
+    <Content Include="Content\Images\blue-pattern.jpg" />
+    <Content Include="Content\Images\delete.png" />
+    <Content Include="Content\Images\desk.jpg" />
+    <Content Include="Content\Images\App\LoadingImage.gif" />
+    <Content Include="Content\Images\edit.png" />
+    <Content Include="Content\Images\Login\lexus.jpg" />
+    <Content Include="Content\Images\Login\LexusH.png" />
+    <Content Include="Content\Images\Login\LexusM.jpg" />
+    <Content Include="Content\Images\new.png" />
+    <Content Include="Content\Images\paperclip.ico" />
+    <Content Include="Content\Images\prev-2.png" />
+    <Content Include="Content\Images\tamgiac.png" />
+    <Content Include="Content\Images\warning-red.png" />
+    <Content Include="Content\Images\warning.png" />
+    <Content Include="Content\Scripts\App\TB_R_PRODUCTION_PLAN_D_W.js" />
+    <Content Include="Content\Scripts\App\TB_R_PRODUCTION_PLAN_M_V2_FC.js" />
+    <Content Include="Content\Scripts\App\TB_R_PRODUCTION_PLAN_M_V2.js" />
+    <Content Include="Content\Scripts\App\TB_R_PART_RUNDOWN_V2.js" />
+    <Content Include="Content\Scripts\App\RECEIVING5_DOCK.js" />
+    <Content Include="Content\Scripts\App\UNLOADING_MAIN_SCREEN4_DOCK.js" />
+    <Content Include="Content\Scripts\App\UNLOADING_MAIN_SCREEN_DOCK.js" />
+    <Content Include="Content\Scripts\App\TB_M_SCREEN_SETTING.js" />
+    <Content Include="Content\Scripts\App\TB_M_TMV_PIC.js" />
+    <Content Include="Content\Scripts\App\UNLOADING_MAIN_SCREEN4.js" />
+    <Content Include="Content\Scripts\App\RECEIVING5.js" />
+    <Content Include="Content\Scripts\App\PDF_CONTENT_LIST_MULTI_SMALL.js" />
+    <Content Include="Content\Scripts\App\PDF_ORDER_DELIVERY_SMALL.js" />
+    <Content Include="Content\Scripts\App\UNLOADING_MAIN_SCREEN3.js" />
+    <Content Include="Content\Scripts\App\RECEIVING4.js" />
+    <Content Include="Content\Scripts\App\RECEIVING3.js" />
+    <Content Include="Content\Scripts\App\PDF_KANBAN_SMALL.js" />
+    <Content Include="Content\Scripts\App\TB_R_KANBAN_REPORT.js" />
+    <Content Include="Content\Scripts\App\TB_R_CONTENT_LIST_REPORT.js" />
+    <Content Include="Content\Scripts\App\TB_M_SUPPLIER_STK_CONCEPT.js" />
+    <Content Include="Content\Scripts\App\TB_R_DAILY_ORDER_REPORT.js" />
+    <Content Include="Content\Scripts\App\RECEIVING2.js" />
+    <Content Include="Content\Scripts\App\PDF_CONTENT_LIST_MULTI.js" />
+    <Content Include="Content\Scripts\App\RECEIVING.js" />
+    <Content Include="Content\Scripts\App\TB_R_DAILY_ORDER.js" />
+    <Content Include="Content\Scripts\App\TB_R_PART_HIKIATE_STOCK_STD.js" />
+    <Content Include="Content\Scripts\App\TB_R_PART_RUNDOWN.js" />
+    <Content Include="Content\Scripts\App\TB_R_PART_SMQD.js" />
+    <Content Include="Content\Scripts\App\UNPACKING.js" />
+    <Content Include="Content\Scripts\App\UNLOADING_MAIN_SCREEN2.js" />
+    <Content Include="Content\Scripts\App\PDF_KANBAN.js" />
+    <Content Include="Content\Scripts\App\PDF_CONTENT_LIST.js" />
+    <Content Include="Content\Scripts\App\PDF_ORDER_DELIVERY.js" />
+    <Content Include="Content\Scripts\App\UNLOADING_DETAILS.js" />
+    <Content Include="Content\Scripts\App\TB_M_CALENDAR.js" />
+    <Content Include="Content\Scripts\App\TB_M_COLOR.js" />
+    <Content Include="Content\Scripts\App\TB_R_ASSEMBLY_DATA.js" />
+    <Content Include="Content\Scripts\App\TB_R_PART_IN_OUT.js" />
+    <Content Include="Content\Scripts\App\TB_R_PART_STOCK.js" />
+    <Content Include="Content\Scripts\App\TB_R_PRODUCTION_PLAN_D.js" />
+    <Content Include="Content\Scripts\App\TB_R_UNLOADING_PLAN_H.js" />
+    <Content Include="Content\Scripts\App\TB_R_UP_PLAN_D.js" />
+    <Content Include="Content\Scripts\App\TB_R_UP_PLAN_H.js" />
+    <Content Include="Content\Scripts\App\UNLOADING_MAIN_SCREEN.js" />
+    <Content Include="Content\Scripts\App\TB_R_TRUCK_BOOKING_D.js" />
+    <Content Include="Content\Scripts\App\TB_M_MODEL.js" />
+    <Content Include="Content\Scripts\App\ROLES_USERSList.js" />
+    <Content Include="Content\Scripts\App\TB_M_LOOKUP.js" />
+    <Content Include="Content\Scripts\App\TB_M_ROUTING.js" />
+    <Content Include="Content\Scripts\App\TB_M_SCANNING_USR.js" />
+    <Content Include="Content\Scripts\App\TB_M_SUPPLIER_DL_TIME.js" />
+    <Content Include="Content\Scripts\App\TB_M_SUPPLIER_INFO.js" />
+    <Content Include="Content\Scripts\App\TB_M_SUPPLIER_PIC.js" />
+    <Content Include="Content\Scripts\App\TB_M_TRANSPORTER.js" />
+    <Content Include="Content\Scripts\App\TB_M_TRUCK.js" />
+    <Content Include="Content\Scripts\App\TB_M_TRUCK_SUPPLIER.js" />
+    <Content Include="Content\Scripts\App\TB_M_TRUCK_TYPE.js" />
+    <Content Include="Content\Scripts\App\TB_M_USERS.js" />
+    <Content Include="Content\Scripts\App\TB_M_USER_ROLES.js" />
+    <Content Include="Content\Scripts\App\TB_M_VEHICLE_MASTER.js" />
+    <Content Include="Content\Scripts\App\TB_R_CONTENT_LIST.js" />
+    <Content Include="Content\Scripts\App\TB_R_KANBAN.js" />
+    <Content Include="Content\Scripts\App\TB_R_NQC_RESULT_M.js" />
+    <Content Include="Content\Scripts\App\TB_R_PART_HIKIATE.js" />
+    <Content Include="Content\Scripts\App\TB_R_PRODUCTION_PLAN_M.js" />
+    <Content Include="Content\Scripts\App\TB_R_TRUCK_BOOKING_H.js" />
+    <Content Include="Content\Scripts\App\TB_R_UNLOADING_PLAN.js" />
+    <Content Include="Content\Scripts\App\UNPACKING_DOCK_W.js" />
+    <Content Include="Content\Scripts\App\UNPACKING2.js" />
+    <Content Include="Content\Scripts\Core\application.js" />
+    <Content Include="Content\Scripts\Core\bootstrap-notify.min.js" />
+    <Content Include="Content\Scripts\Core\jquery-1.11.1.min.js" />
+    <Content Include="Content\Scripts\Core\jquery-confirm.min.js" />
+    <Content Include="Content\Scripts\Core\jquery-qrcode-0.14.0.min.js" />
+    <Content Include="Content\Scripts\Core\jquery.bootstrap-growl.js" />
+    <Content Include="Content\Scripts\Core\jquery.scrollTo.min.js" />
+    <Content Include="Content\Scripts\Core\message.js" />
+    <Content Include="Content\Scripts\Core\Placehoder.js" />
+    <Content Include="Content\Style\App\CALENDAR_SCREEN.css" />
+    <Content Include="Content\Style\App\UNLOADING_MAIN_SCREEN4.css" />
+    <Content Include="Content\Style\App\RECEIVING5.css" />
+    <Content Include="Content\Style\App\PDF_CONTENT_LIST_MULTI_SMALL.css" />
+    <Content Include="Content\Style\App\PDF_CONTENT_LIST_MULTI.css" />
+    <Content Include="Content\Style\App\PDF_ORDER_DELIVERY_SMALL.css" />
+    <Content Include="Content\Style\App\UNLOADING_MAIN_SCREEN3.css" />
+    <Content Include="Content\Style\App\RECEIVING4.css" />
+    <Content Include="Content\Style\App\RECEIVING3.css" />
+    <Content Include="Content\Style\App\PDF_KANBAN_SMALL.css" />
+    <Content Include="Content\Style\App\UNPACKING_DOCK_W.css" />
+    <Content Include="Content\Style\App\UNPACKING2.css" />
+    <Content Include="Content\Style\App\RECEIVING2.css" />
+    <Content Include="Content\Style\App\RECEIVING.css" />
+    <Content Include="Content\Style\App\UNPACKING.css" />
+    <Content Include="Content\Style\App\UNLOADING_MAIN_SCREEN2.css" />
+    <Content Include="Content\Style\App\PDF_KANBAN.css" />
+    <Content Include="Content\Style\App\PDF_CONTENT_LIST.css" />
+    <Content Include="Content\Style\App\PDF_ORDER_DELIVERY.css" />
+    <Content Include="Content\Style\App\section.css" />
+    <Content Include="Content\Style\App\UNLOADING_DETAILS.css" />
+    <Content Include="Content\Style\App\UNLOADING_MAIN_SCREEN.css" />
+    <Content Include="Content\Style\App\UNPACKING2_BK.css" />
+    <Content Include="Content\Style\Core\animate.css" />
+    <Content Include="Content\Style\Core\DevEx.css" />
+    <Content Include="Content\Style\Core\FixDevExpress17.css" />
+    <Content Include="Content\Style\Core\iconFont.css" />
+    <Content Include="Content\Style\Core\jquery-confirm.min.css" />
+    <Content Include="Content\UI\angulerGridster\angular-gridster.js" />
+    <Content Include="Content\UI\angulerGridster\angular-gridster.min.css" />
+    <Content Include="Content\UI\angulerGridster\angular.js" />
+    <Content Include="Content\UI\angulerGridster\angular-gridster-script.js" />
+    <Content Include="Content\UI\chart.js" />
+    <Content Include="Content\UI\html5shiv.min.js" />
+    <Content Include="Content\UI\jquery.cookie.js" />
+    <Content Include="Content\UI\jquery.min.js" />
+    <Content Include="Content\UI\metisMenu.js" />
+    <Content Include="Content\UI\metisMenu.min.js" />
+    <Content Include="Content\UI\morris\morris-data.js" />
+    <Content Include="Content\UI\morris\morris.css" />
+    <Content Include="Content\UI\morris\morris.js" />
+    <Content Include="Content\UI\morris\morris.min.js" />
+    <Content Include="Content\UI\morris\raphael.min.js" />
+    <Content Include="Content\UI\respond.min.js" />
+    <Content Include="Content\UI\sb-admin-2.js" />
+    <Content Include="Content\UI\timeline\timeline.css" />
+    <Content Include="Content\UI\tourist\backbone-1.0.0.js" />
+    <Content Include="Content\UI\tourist\jquery.qtip.css" />
+    <Content Include="Content\UI\tourist\jquery.qtip.js" />
+    <Content Include="Content\UI\tourist\tourist.css" />
+    <Content Include="Content\UI\tourist\tourist.js" />
+    <Content Include="Content\UI\tourist\tourist.min.js" />
+    <Content Include="Content\UI\underscore-min.js" />
+    <Content Include="Content\UI\uses.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
+    <Content Include="Service References\EmailService\EmailService.disco" />
+    <Content Include="Service References\EmailService\configuration91.svcinfo" />
+    <Content Include="Service References\EmailService\configuration.svcinfo" />
+    <Content Include="Service References\EmailService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="SQL\TB_M_SUPPLIER_PIC\TB_M_SUPPLIER_PIC_Search_V2.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_PIC\TB_M_SUPPLIER_PIC_Upload.sql" />
+    <Content Include="SQL\TB_M_TMV_PIC\TB_M_TMV_PIC_Search_V2.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_CONTENT_LIST_UP_GETCURRENT_SCAN_W.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_CONTENT_LIST_UP_GET_QTY_ACTUAL_PLAN_W.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST_REPORT\TB_R_CONTENT_LIST_REPORT_Search_V2.sql" />
+    <Content Include="SQL\TB_R_DAILY_ORDER\TB_R_DAILY_ORDER_GET_PIVOT_MONTH_V3.sql" />
+    <Content Include="SQL\TB_R_PART_HIKIATE\TB_R_PART_HIKIATE_Update_ModuleCD_V2.sql" />
+    <Content Include="SQL\TB_R_PART_RUNDOWN_V2\TB_R_PART_RUNDOWN_V2_Get.sql" />
+    <Content Include="SQL\TB_R_PART_RUNDOWN_V2\TB_R_PART_RUNDOWN_V2_Gets.sql" />
+    <Content Include="SQL\TB_R_PART_RUNDOWN_V2\TB_R_PART_RUNDOWN_V2_MERGE.sql" />
+    <Content Include="SQL\TB_R_PART_RUNDOWN_V2\TB_R_PART_RUNDOWN_V2_Search.sql" />
+    <Content Include="SQL\TB_M_SCREEN_SETTING\TB_M_SCREEN_SETTING_Delete.sql" />
+    <Content Include="SQL\TB_M_SCREEN_SETTING\TB_M_SCREEN_SETTING_Get.sql" />
+    <Content Include="SQL\TB_M_SCREEN_SETTING\TB_M_SCREEN_SETTING_GetByName.sql" />
+    <Content Include="SQL\TB_M_SCREEN_SETTING\TB_M_SCREEN_SETTING_Gets.sql" />
+    <Content Include="SQL\TB_M_SCREEN_SETTING\TB_M_SCREEN_SETTING_Insert.sql" />
+    <Content Include="SQL\TB_M_SCREEN_SETTING\TB_M_SCREEN_SETTING_Search.sql" />
+    <Content Include="SQL\TB_M_SCREEN_SETTING\TB_M_SCREEN_SETTING_Update.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_INFO\TB_M_SUPPLIER_INFO_GetsAllNameByUser.sql" />
+    <Content Include="SQL\TB_M_TMV_PIC\TB_M_TMV_PIC_Delete.sql" />
+    <Content Include="SQL\TB_M_TMV_PIC\TB_M_TMV_PIC_Insert.sql" />
+    <Content Include="SQL\TB_M_TMV_PIC\TB_M_TMV_PIC_Search.sql" />
+    <Content Include="SQL\TB_M_TMV_PIC\TB_M_TMV_PIC_Update.sql" />
+    <Content Include="SQL\TB_M_CALENDAR\TB_M_CALENDAR_GetResources.sql" />
+    <Content Include="SQL\TB_M_CALENDAR\TB_M_CALENDAR_GetAppointments.sql" />
+    <Content Include="SQL\TB_M_CALENDAR\TB_M_CALENDAR_GET_PIVOT_ORDER_RECIVE_DAY.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_OR_TIME\TB_M_SUPPLIER_OR_TIME_ActiveTruckBooking.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_PIC\TB_M_SUPPLIER_PIC_GetbySupplier.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_PIC\TB_M_SUPPLIER_PIC_GetbyTMV.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_DAILY_ORDER_RE_GET_QTY_ACTUAL_PLAN_TRUCK_DOCK.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_DAILY_ORDER_RE_GETCURRENT_SCAN_5_DOCK.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_DAILY_ORDER_RE_GET_QTY_ACTUAL_PLAN_TRUCK.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_DAILY_ORDER_RE_GETCURRENT_SCAN_5.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_CONTENT_LIST_UP_NOT_FINISH.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_DAILY_ORDER_RE_GETCURRENT_SCAN_4.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_CONTENT_LIST_UP_GETCURRENT_SCAN_2.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_CONTENT_LIST_UP_GET_QTY_ACTUAL_PLAN.sql" />
+    <Content Include="SQL\TB_R_DAILY_ORDER\TB_R_DAILY_ORDER_GET_ORDER_MULTI.sql" />
+    <Content Include="SQL\TB_R_DAILY_ORDER\TB_R_DAILY_ORDER_GET_PIVOT_MONTH_V2.sql" />
+    <Content Include="SQL\TB_R_DAILY_ORDER\TB_R_DAILY_ORDER_Search_V2.sql" />
+    <Content Include="SQL\TB_R_DAILY_ORDER\TB_R_DAILY_ORDER_GET_GRN_MONTH.sql" />
+    <Content Include="SQL\TB_R_KANBAN_REPORT\TB_R_KANBAN_REPORT_Alarm.sql" />
+    <Content Include="SQL\TB_R_KANBAN_REPORT\TB_R_KANBAN_REPORT_Get.sql" />
+    <Content Include="SQL\TB_R_KANBAN_REPORT\TB_R_KANBAN_REPORT_Gets.sql" />
+    <Content Include="SQL\TB_R_KANBAN_REPORT\TB_R_KANBAN_REPORT_Search.sql" />
+    <Content Include="SQL\TB_R_KANBAN_REPORT\TB_R_KANBAN_REPORT_Update.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_DAILY_ORDER_RE_GET_QTY_ACTUAL_PLAN.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST_REPORT\TB_R_CONTENT_LIST_REPORT_Alarm.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST_REPORT\TB_R_CONTENT_LIST_REPORT_Get.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST_REPORT\TB_R_CONTENT_LIST_REPORT_Gets.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST_REPORT\TB_R_CONTENT_LIST_REPORT_Search.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST_REPORT\TB_R_CONTENT_LIST_REPORT_Update.sql" />
+    <Content Include="SQL\TB_M_CALENDAR\TB_M_CALENDAR_GET_PIVOT_MONTH.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_INFO\TB_M_SUPPLIER_INFO_GetsAllName.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_OR_TIME\TB_M_SUPPLIER_OR_TIME_Delete.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_OR_TIME\TB_M_SUPPLIER_OR_TIME_Get.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_OR_TIME\TB_M_SUPPLIER_OR_TIME_Gets.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_OR_TIME\TB_M_SUPPLIER_OR_TIME_Insert.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_OR_TIME\TB_M_SUPPLIER_OR_TIME_Search.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_OR_TIME\TB_M_SUPPLIER_OR_TIME_SearchBySUPPLIER_ID.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_OR_TIME\TB_M_SUPPLIER_OR_TIME_Update.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_PIC\TB_M_SUPPLIER_PIC_GetMain.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_STK_CONCEPT\01.00.00.TB_M_SUPPLIER_STK_CONCEPT.Install.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_STK_CONCEPT\TB_M_SUPPLIER_STK_CONCEPT_GENERATE_BYCOPY_MONTH.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_STK_CONCEPT\TB_M_SUPPLIER_STK_CONCEPT_GENERATE_PART_DETAILS.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_STK_CONCEPT\TB_M_SUPPLIER_STK_CONCEPT_Upload.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_STK_CONCEPT\TB_M_SUPPLIER_STK_CONCEPT_Delete.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_STK_CONCEPT\TB_M_SUPPLIER_STK_CONCEPT_Get.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_STK_CONCEPT\TB_M_SUPPLIER_STK_CONCEPT_Gets.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_STK_CONCEPT\TB_M_SUPPLIER_STK_CONCEPT_Insert.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_STK_CONCEPT\TB_M_SUPPLIER_STK_CONCEPT_Search.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_STK_CONCEPT\TB_M_SUPPLIER_STK_CONCEPT_Update.sql" />
+    <Content Include="SQL\TB_R_DAILY_ORDER\TB_R_DAILY_ORDER_CheckLockGenerate.sql" />
+    <Content Include="SQL\TB_R_DAILY_ORDER\TB_R_DAILY_ORDER_GENERATE_MONTHLY.sql" />
+    <Content Include="SQL\TB_R_DAILY_ORDER\TB_R_DAILY_ORDER_GET_PIVOT_MONTH.sql" />
+    <Content Include="SQL\TB_R_DAILY_ORDER_REPORT\TB_R_DAILY_ORDER_REPORT_Search.sql" />
+    <Content Include="SQL\TB_M_CALENDAR\TB_M_CALENDAR_DeleteFuture.sql" />
+    <Content Include="SQL\TB_M_CALENDAR\TB_M_CALENDAR_Delete.sql" />
+    <Content Include="SQL\TB_M_CALENDAR\TB_M_CALENDAR_Get.sql" />
+    <Content Include="SQL\TB_M_CALENDAR\TB_M_CALENDAR_Gets.sql" />
+    <Content Include="SQL\TB_M_CALENDAR\TB_M_CALENDAR_Insert.sql" />
+    <Content Include="SQL\TB_M_CALENDAR\TB_M_CALENDAR_Search.sql" />
+    <Content Include="SQL\TB_M_CALENDAR\TB_M_CALENDAR_SearchBySupplier.sql" />
+    <Content Include="SQL\TB_M_CALENDAR\TB_M_CALENDAR_Update.sql" />
+    <Content Include="SQL\TB_M_MODEL\01.00.00.TB_M_MODEL.Install.sql" />
+    <Content Include="SQL\TB_M_MODEL\TB_M_MODEL_Delete.sql" />
+    <Content Include="SQL\TB_M_MODEL\TB_M_MODEL_Get.sql" />
+    <Content Include="SQL\TB_M_MODEL\TB_M_MODEL_Gets.sql" />
+    <Content Include="SQL\TB_M_MODEL\TB_M_MODEL_Insert.sql" />
+    <Content Include="SQL\TB_M_MODEL\TB_M_MODEL_Search.sql" />
+    <Content Include="SQL\TB_M_MODEL\TB_M_MODEL_Update.sql" />
+    <Content Include="SQL\TB_M_COLOR\01.00.00.TB_M_COLOR.Install.sql" />
+    <Content Include="SQL\TB_M_COLOR\TB_M_COLOR_GetsByNotVehicleID.sql" />
+    <Content Include="SQL\TB_M_COLOR\TB_M_COLOR_SearchByVehicleID.sql" />
+    <Content Include="SQL\TB_M_COLOR\TB_M_COLOR_Delete.sql" />
+    <Content Include="SQL\TB_M_COLOR\TB_M_COLOR_Get.sql" />
+    <Content Include="SQL\TB_M_COLOR\TB_M_COLOR_Gets.sql" />
+    <Content Include="SQL\TB_M_COLOR\TB_M_COLOR_Insert.sql" />
+    <Content Include="SQL\TB_M_COLOR\TB_M_COLOR_Search.sql" />
+    <Content Include="SQL\TB_M_COLOR\TB_M_COLOR_Update.sql" />
+    <Content Include="SQL\TB_M_ROUTING\01.00.00.TB_M_ROUTING.Install.sql" />
+    <Content Include="SQL\TB_M_ROUTING\TB_M_ROUTING_Delete.sql" />
+    <Content Include="SQL\TB_M_ROUTING\TB_M_ROUTING_Get.sql" />
+    <Content Include="SQL\TB_M_ROUTING\TB_M_ROUTING_Gets.sql" />
+    <Content Include="SQL\TB_M_ROUTING\TB_M_ROUTING_Insert.sql" />
+    <Content Include="SQL\TB_M_ROUTING\TB_M_ROUTING_Search.sql" />
+    <Content Include="SQL\TB_M_ROUTING\TB_M_ROUTING_Update.sql" />
+    <Content Include="SQL\TB_M_SCANNING_USR\TB_M_SCANNING_USR_Search.sql" />
+    <Content Include="SQL\TB_M_SCANNING_USR\TB_M_SCANNING_USR_Delete.sql" />
+    <Content Include="SQL\TB_M_SCANNING_USR\TB_M_SCANNING_USR_Get.sql" />
+    <Content Include="SQL\TB_M_SCANNING_USR\TB_M_SCANNING_USR_Gets.sql" />
+    <Content Include="SQL\TB_M_SCANNING_USR\TB_M_SCANNING_USR_Insert.sql" />
+    <Content Include="SQL\TB_M_SCANNING_USR\TB_M_SCANNING_USR_Update.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_DL_TIME\01.00.00.TB_M_SUPPLIER_DL_TIME.Install.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_DL_TIME\TB_M_SUPPLIER_DL_TIME_SearchBySUPPLIER_ID.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_DL_TIME\TB_M_SUPPLIER_DL_TIME_Delete.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_DL_TIME\TB_M_SUPPLIER_DL_TIME_Get.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_DL_TIME\TB_M_SUPPLIER_DL_TIME_Gets.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_DL_TIME\TB_M_SUPPLIER_DL_TIME_Insert.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_DL_TIME\TB_M_SUPPLIER_DL_TIME_Search.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_DL_TIME\TB_M_SUPPLIER_DL_TIME_Update.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_INFO\01.00.00.TB_M_SUPPLIER_INFO.Install.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_INFO\TB_M_SUPPLIER_INFO_Upload.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_INFO\TB_M_SUPPLIER_INFO_Delete.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_INFO\TB_M_SUPPLIER_INFO_Get.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_INFO\TB_M_SUPPLIER_INFO_Gets.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_INFO\TB_M_SUPPLIER_INFO_Insert.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_INFO\TB_M_SUPPLIER_INFO_Search.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_INFO\TB_M_SUPPLIER_INFO_Update.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_PIC\01.00.00.TB_M_SUPPLIER_PIC.Install.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_PIC\TB_M_SUPPLIER_PIC_Delete.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_PIC\TB_M_SUPPLIER_PIC_Get.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_PIC\TB_M_SUPPLIER_PIC_Gets.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_PIC\TB_M_SUPPLIER_PIC_Insert.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_PIC\TB_M_SUPPLIER_PIC_Search.sql" />
+    <Content Include="SQL\TB_M_SUPPLIER_PIC\TB_M_SUPPLIER_PIC_Update.sql" />
+    <Content Include="SQL\TB_M_TRANSPORTER\TB_M_TRANSPORTER_Delete.sql" />
+    <Content Include="SQL\TB_M_TRANSPORTER\TB_M_TRANSPORTER_Get.sql" />
+    <Content Include="SQL\TB_M_TRANSPORTER\TB_M_TRANSPORTER_Gets.sql" />
+    <Content Include="SQL\TB_M_TRANSPORTER\TB_M_TRANSPORTER_Insert.sql" />
+    <Content Include="SQL\TB_M_TRANSPORTER\TB_M_TRANSPORTER_Search.sql" />
+    <Content Include="SQL\TB_M_TRANSPORTER\TB_M_TRANSPORTER_Update.sql" />
+    <Content Include="SQL\TB_M_TRUCK\TB_M_TRUCK_GetTRUCKTYPE_ID.sql" />
+    <Content Include="SQL\TB_M_TRUCK\TB_M_TRUCK_Delete.sql" />
+    <Content Include="SQL\TB_M_TRUCK\TB_M_TRUCK_Get.sql" />
+    <Content Include="SQL\TB_M_TRUCK\TB_M_TRUCK_Gets.sql" />
+    <Content Include="SQL\TB_M_TRUCK\TB_M_TRUCK_GetsByTRUCKTYPE.sql" />
+    <Content Include="SQL\TB_M_TRUCK\TB_M_TRUCK_Insert.sql" />
+    <Content Include="SQL\TB_M_TRUCK\TB_M_TRUCK_Search.sql" />
+    <Content Include="SQL\TB_M_TRUCK\TB_M_TRUCK_Update.sql" />
+    <Content Include="SQL\TB_M_TRUCK_SUPPLIER\01.00.00.TB_M_TRUCK_SUPPLIER.Install.sql" />
+    <Content Include="SQL\TB_M_TRUCK_SUPPLIER\TB_M_TRUCK_SUPPLIER_Delete.sql" />
+    <Content Include="SQL\TB_M_TRUCK_SUPPLIER\TB_M_TRUCK_SUPPLIER_Get.sql" />
+    <Content Include="SQL\TB_M_TRUCK_SUPPLIER\TB_M_TRUCK_SUPPLIER_Gets.sql" />
+    <Content Include="SQL\TB_M_TRUCK_SUPPLIER\TB_M_TRUCK_SUPPLIER_Insert.sql" />
+    <Content Include="SQL\TB_M_TRUCK_SUPPLIER\TB_M_TRUCK_SUPPLIER_Search.sql" />
+    <Content Include="SQL\TB_M_TRUCK_SUPPLIER\TB_M_TRUCK_SUPPLIER_Update.sql" />
+    <Content Include="SQL\TB_M_TRUCK_TYPE\TB_M_TRUCK_TYPE_Delete.sql" />
+    <Content Include="SQL\TB_M_TRUCK_TYPE\TB_M_TRUCK_TYPE_Get.sql" />
+    <Content Include="SQL\TB_M_TRUCK_TYPE\TB_M_TRUCK_TYPE_Gets.sql" />
+    <Content Include="SQL\TB_M_TRUCK_TYPE\TB_M_TRUCK_TYPE_Insert.sql" />
+    <Content Include="SQL\TB_M_TRUCK_TYPE\TB_M_TRUCK_TYPE_Search.sql" />
+    <Content Include="SQL\TB_M_TRUCK_TYPE\TB_M_TRUCK_TYPE_Update.sql" />
+    <Content Include="SQL\TB_M_USERS\TB_M_USERS_getSecurityButton.sql" />
+    <Content Include="SQL\TB_M_USERS\TB_M_USERS_ChangePw.sql" />
+    <Content Include="SQL\TB_M_USERS\TB_M_USERS_GetByUserName.sql" />
+    <Content Include="SQL\TB_M_USER_ROLES\TB_M_USER_ROLES_GetsByUSER_ID.sql" />
+    <Content Include="SQL\TB_M_LOOKUP\TB_M_LOOKUP_Delete.sql" />
+    <Content Include="SQL\TB_M_LOOKUP\TB_M_LOOKUP_Get.sql" />
+    <Content Include="SQL\TB_M_LOOKUP\TB_M_LOOKUP_GetByDOMAIN_ITEMCODE.sql" />
+    <Content Include="SQL\TB_M_LOOKUP\TB_M_LOOKUP_Gets.sql" />
+    <Content Include="SQL\TB_M_LOOKUP\TB_M_LOOKUP_GetsByDOMAIN_CODE.sql" />
+    <Content Include="SQL\TB_M_LOOKUP\TB_M_LOOKUP_Insert.sql" />
+    <Content Include="SQL\TB_M_LOOKUP\TB_M_LOOKUP_Search.sql" />
+    <Content Include="SQL\TB_M_LOOKUP\TB_M_LOOKUP_Update.sql" />
+    <Content Include="SQL\TB_M_USERS\01.00.00.TB_M_USERS.Install.sql" />
+    <Content Include="SQL\TB_M_USERS\TB_M_USERS_Delete.sql" />
+    <Content Include="SQL\TB_M_USERS\TB_M_USERS_Get.sql" />
+    <Content Include="SQL\TB_M_USERS\TB_M_USERS_Gets.sql" />
+    <Content Include="SQL\TB_M_USERS\TB_M_USERS_Insert.sql" />
+    <Content Include="SQL\TB_M_USERS\TB_M_USERS_Search.sql" />
+    <Content Include="SQL\TB_M_USERS\TB_M_USERS_Update.sql" />
+    <Content Include="SQL\TB_M_USER_ROLES\01.00.00.TB_M_USER_ROLES.Install.sql" />
+    <Content Include="SQL\TB_M_USER_ROLES\TB_M_USER_ROLES_Delete.sql" />
+    <Content Include="SQL\TB_M_USER_ROLES\TB_M_USER_ROLES_Get.sql" />
+    <Content Include="SQL\TB_M_USER_ROLES\TB_M_USER_ROLES_Gets.sql" />
+    <Content Include="SQL\TB_M_USER_ROLES\TB_M_USER_ROLES_Insert.sql" />
+    <Content Include="SQL\TB_M_USER_ROLES\TB_M_USER_ROLES_Search.sql" />
+    <Content Include="SQL\TB_M_USER_ROLES\TB_M_USER_ROLES_Update.sql" />
+    <Content Include="SQL\TB_M_VEHICLE_MASTER\TB_M_VEHICLE_MASTER_GetMODEL_ID.sql" />
+    <Content Include="SQL\TB_M_VEHICLE_MASTER\TB_M_VEHICLE_MASTER_Delete.sql" />
+    <Content Include="SQL\TB_M_VEHICLE_MASTER\TB_M_VEHICLE_MASTER_Get.sql" />
+    <Content Include="SQL\TB_M_VEHICLE_MASTER\TB_M_VEHICLE_MASTER_Gets.sql" />
+    <Content Include="SQL\TB_M_VEHICLE_MASTER\TB_M_VEHICLE_MASTER_GetsByModelID.sql" />
+    <Content Include="SQL\TB_M_VEHICLE_MASTER\TB_M_VEHICLE_MASTER_Insert.sql" />
+    <Content Include="SQL\TB_M_VEHICLE_MASTER\TB_M_VEHICLE_MASTER_Search.sql" />
+    <Content Include="SQL\TB_M_VEHICLE_MASTER\TB_M_VEHICLE_MASTER_Update.sql" />
+    <Content Include="SQL\TB_R_ASSEMBLY_DATA\01.00.00.TB_R_ASSEMBLY_DATA.Install.sql" />
+    <Content Include="SQL\TB_R_ASSEMBLY_DATA\TB_R_ASSEMBLY_DATA_Delete.sql" />
+    <Content Include="SQL\TB_R_ASSEMBLY_DATA\TB_R_ASSEMBLY_DATA_Get.sql" />
+    <Content Include="SQL\TB_R_ASSEMBLY_DATA\TB_R_ASSEMBLY_DATA_Gets.sql" />
+    <Content Include="SQL\TB_R_ASSEMBLY_DATA\TB_R_ASSEMBLY_DATA_Insert.sql" />
+    <Content Include="SQL\TB_R_ASSEMBLY_DATA\TB_R_ASSEMBLY_DATA_Search.sql" />
+    <Content Include="SQL\TB_R_ASSEMBLY_DATA\TB_R_ASSEMBLY_DATA_Update.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\01.00.00.TB_R_CONTENT_LIST.Install.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_DAILY_ORDER_RE_GETCURRENT_SCAN_2.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_DAILY_ORDER_RE_GETCURRENT_SCAN.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_CONTENT_LIST_GETS_SCANNING.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_CONTENT_LIST_GetsByOrder.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_CONTENT_LIST_UP_GETCURRENT_SCAN.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_CONTENT_LIST_Import.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_CONTENT_LIST_GETS_UNLOADING_DETAILS.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_CONTENT_LIST_Delete.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_CONTENT_LIST_Get.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_CONTENT_LIST_Gets.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_CONTENT_LIST_Insert.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_CONTENT_LIST_Search.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_CONTENT_LIST_Update.sql" />
+    <Content Include="SQL\TB_R_CONTENT_LIST\TB_R_CONTENT_LIST_MERGE.sql" />
+    <Content Include="SQL\TB_R_DAILY_ORDER\01.00.00.TB_R_DAILY_ORDER.Install.sql" />
+    <Content Include="SQL\TB_R_DAILY_ORDER\TB_R_DAILY_ORDER_Delete.sql" />
+    <Content Include="SQL\TB_R_DAILY_ORDER\TB_R_DAILY_ORDER_Get.sql" />
+    <Content Include="SQL\TB_R_DAILY_ORDER\TB_R_DAILY_ORDER_Gets.sql" />
+    <Content Include="SQL\TB_R_DAILY_ORDER\TB_R_DAILY_ORDER_Insert.sql" />
+    <Content Include="SQL\TB_R_DAILY_ORDER\TB_R_DAILY_ORDER_Search.sql" />
+    <Content Include="SQL\TB_R_DAILY_ORDER\TB_R_DAILY_ORDER_Update.sql" />
+    <Content Include="SQL\TB_R_KANBAN\01.00.00.TB_R_KANBAN.Install.sql" />
+    <Content Include="SQL\TB_R_KANBAN\TB_R_KANBAN_SearchByOrderIdDistinctPKG.sql" />
+    <Content Include="SQL\TB_R_KANBAN\TB_R_KANBAN_SearchByOrderIdMultiDistinct.sql" />
+    <Content Include="SQL\TB_R_KANBAN\TB_R_KANBAN_GetsByOrderID.sql" />
+    <Content Include="SQL\TB_R_KANBAN\TB_R_KANBAN_GetByContentNo.sql" />
+    <Content Include="SQL\TB_R_KANBAN\TB_R_KANBAN_SearchByContentIdDistinct.sql" />
+    <Content Include="SQL\TB_R_KANBAN\TB_R_KANBAN_SearchByOrderIdDistinct.sql" />
+    <Content Include="SQL\TB_R_KANBAN\TB_R_KANBAN_SearchByOrderId.sql" />
+    <Content Include="SQL\TB_R_KANBAN\TB_R_KANBAN_GetByOrderNo.sql" />
+    <Content Include="SQL\TB_R_KANBAN\TB_R_KANBAN_Import.sql" />
+    <Content Include="SQL\TB_R_KANBAN\TB_R_KANBAN_SearchByContentId.sql" />
+    <Content Include="SQL\TB_R_KANBAN\TB_R_KANBAN_Delete.sql" />
+    <Content Include="SQL\TB_R_KANBAN\TB_R_KANBAN_Get.sql" />
+    <Content Include="SQL\TB_R_KANBAN\TB_R_KANBAN_Gets.sql" />
+    <Content Include="SQL\TB_R_KANBAN\TB_R_KANBAN_Insert.sql" />
+    <Content Include="SQL\TB_R_KANBAN\TB_R_KANBAN_Search.sql" />
+    <Content Include="SQL\TB_R_KANBAN\TB_R_KANBAN_Update.sql" />
+    <Content Include="SQL\TB_R_NQC_RESULT_M\TB_R_NQC_RESULT_M_Delete.sql" />
+    <Content Include="SQL\TB_R_NQC_RESULT_M\TB_R_NQC_RESULT_M_Get.sql" />
+    <Content Include="SQL\TB_R_NQC_RESULT_M\TB_R_NQC_RESULT_M_Gets.sql" />
+    <Content Include="SQL\TB_R_NQC_RESULT_M\TB_R_NQC_RESULT_M_Insert.sql" />
+    <Content Include="SQL\TB_R_NQC_RESULT_M\TB_R_NQC_RESULT_M_Search.sql" />
+    <Content Include="SQL\TB_R_NQC_RESULT_M\TB_R_NQC_RESULT_M_Update.sql" />
+    <Content Include="SQL\TB_R_PART_HIKIATE\01.00.00.TB_R_PART_HIKIATE.Install.sql" />
+    <Content Include="SQL\TB_R_PART_HIKIATE\TB_R_PART_HIKIATE_Update_ModuleCD.sql" />
+    <Content Include="SQL\TB_R_PART_HIKIATE\TB_R_PART_HIKIATE_GetbySupplier.sql" />
+    <Content Include="SQL\TB_R_PART_HIKIATE\TB_R_PART_HIKIATE_SearchDetails.sql" />
+    <Content Include="SQL\TB_R_PART_HIKIATE\TB_R_PART_HIKIATE_MERGE.sql" />
+    <Content Include="SQL\TB_R_PART_HIKIATE\TB_R_PART_HIKIATE_Delete.sql" />
+    <Content Include="SQL\TB_R_PART_HIKIATE\TB_R_PART_HIKIATE_Get.sql" />
+    <Content Include="SQL\TB_R_PART_HIKIATE\TB_R_PART_HIKIATE_Gets.sql" />
+    <Content Include="SQL\TB_R_PART_HIKIATE\TB_R_PART_HIKIATE_Insert.sql" />
+    <Content Include="SQL\TB_R_PART_HIKIATE\TB_R_PART_HIKIATE_Search.sql" />
+    <Content Include="SQL\TB_R_PART_HIKIATE\TB_R_PART_HIKIATE_Update.sql" />
+    <Content Include="SQL\TB_R_PART_HIKIATE_STOCK_STD\01.00.00.TB_R_PART_HIKIATE_STOCK_STD.Install.sql" />
+    <Content Include="SQL\TB_R_PART_HIKIATE_STOCK_STD\TB_R_PART_HIKIATE_STOCK_STD_SearchByPART_ID.sql" />
+    <Content Include="SQL\TB_R_PART_HIKIATE_STOCK_STD\TB_R_PART_HIKIATE_STOCK_STD_Delete.sql" />
+    <Content Include="SQL\TB_R_PART_HIKIATE_STOCK_STD\TB_R_PART_HIKIATE_STOCK_STD_Get.sql" />
+    <Content Include="SQL\TB_R_PART_HIKIATE_STOCK_STD\TB_R_PART_HIKIATE_STOCK_STD_Gets.sql" />
+    <Content Include="SQL\TB_R_PART_HIKIATE_STOCK_STD\TB_R_PART_HIKIATE_STOCK_STD_Insert.sql" />
+    <Content Include="SQL\TB_R_PART_HIKIATE_STOCK_STD\TB_R_PART_HIKIATE_STOCK_STD_Search.sql" />
+    <Content Include="SQL\TB_R_PART_HIKIATE_STOCK_STD\TB_R_PART_HIKIATE_STOCK_STD_Update.sql" />
+    <Content Include="SQL\TB_R_PART_IN_OUT\TB_R_PART_IN_OUT_Delete.sql" />
+    <Content Include="SQL\TB_R_PART_IN_OUT\TB_R_PART_IN_OUT_Get.sql" />
+    <Content Include="SQL\TB_R_PART_IN_OUT\TB_R_PART_IN_OUT_GetPART_ID.sql" />
+    <Content Include="SQL\TB_R_PART_IN_OUT\TB_R_PART_IN_OUT_Gets.sql" />
+    <Content Include="SQL\TB_R_PART_IN_OUT\TB_R_PART_IN_OUT_GetsByPartID.sql" />
+    <Content Include="SQL\TB_R_PART_IN_OUT\TB_R_PART_IN_OUT_Insert.sql" />
+    <Content Include="SQL\TB_R_PART_IN_OUT\TB_R_PART_IN_OUT_Search.sql" />
+    <Content Include="SQL\TB_R_PART_IN_OUT\TB_R_PART_IN_OUT_Update.sql" />
+    <Content Include="SQL\TB_R_PART_RUNDOWN\01.00.00.TB_R_PART_RUNDOWN.Install.sql" />
+    <Content Include="SQL\TB_R_PART_RUNDOWN\TB_R_PART_RUNDOWN_MERGE.sql" />
+    <Content Include="SQL\TB_R_PART_RUNDOWN\TB_R_PART_RUNDOWN_Delete.sql" />
+    <Content Include="SQL\TB_R_PART_RUNDOWN\TB_R_PART_RUNDOWN_Get.sql" />
+    <Content Include="SQL\TB_R_PART_RUNDOWN\TB_R_PART_RUNDOWN_Gets.sql" />
+    <Content Include="SQL\TB_R_PART_RUNDOWN\TB_R_PART_RUNDOWN_Insert.sql" />
+    <Content Include="SQL\TB_R_PART_RUNDOWN\TB_R_PART_RUNDOWN_Search.sql" />
+    <Content Include="SQL\TB_R_PART_RUNDOWN\TB_R_PART_RUNDOWN_Update.sql" />
+    <Content Include="SQL\TB_R_PART_SMQD\01.00.00.TB_R_PART_SMQD.Install.sql" />
+    <Content Include="SQL\TB_R_PART_SMQD\TB_R_PART_SMQD_Upload.sql" />
+    <Content Include="SQL\TB_R_PART_SMQD\TB_R_PART_SMQD_Delete.sql" />
+    <Content Include="SQL\TB_R_PART_SMQD\TB_R_PART_SMQD_Get.sql" />
+    <Content Include="SQL\TB_R_PART_SMQD\TB_R_PART_SMQD_Gets.sql" />
+    <Content Include="SQL\TB_R_PART_SMQD\TB_R_PART_SMQD_Insert.sql" />
+    <Content Include="SQL\TB_R_PART_SMQD\TB_R_PART_SMQD_Search.sql" />
+    <Content Include="SQL\TB_R_PART_SMQD\TB_R_PART_SMQD_Update.sql" />
+    <Content Include="SQL\TB_R_PART_STOCK\TB_R_PART_STOCK_DetailsIO_Search.sql" />
+    <Content Include="SQL\TB_R_PART_STOCK\TB_R_PART_STOCK_MERGE.sql" />
+    <Content Include="SQL\TB_R_PART_STOCK\TB_R_PART_STOCK_GET_PIVOT_MONTH.sql" />
+    <Content Include="SQL\TB_R_PART_STOCK\TB_R_PART_STOCK_Delete.sql" />
+    <Content Include="SQL\TB_R_PART_STOCK\TB_R_PART_STOCK_Get.sql" />
+    <Content Include="SQL\TB_R_PART_STOCK\TB_R_PART_STOCK_Gets.sql" />
+    <Content Include="SQL\TB_R_PART_STOCK\TB_R_PART_STOCK_Insert.sql" />
+    <Content Include="SQL\TB_R_PART_STOCK\TB_R_PART_STOCK_Search.sql" />
+    <Content Include="SQL\TB_R_PART_STOCK\TB_R_PART_STOCK_Update.sql" />
+    <Content Include="SQL\TB_R_PRODUCTION_PLAN_D_W\TB_R_PRODUCTION_PLAN_D_W_Delete.sql" />
+    <Content Include="SQL\TB_R_PRODUCTION_PLAN_D_W\TB_R_PRODUCTION_PLAN_D_W_Get.sql" />
+    <Content Include="SQL\TB_R_PRODUCTION_PLAN_D_W\TB_R_PRODUCTION_PLAN_D_W_Gets.sql" />
+    <Content Include="SQL\TB_R_PRODUCTION_PLAN_D_W\TB_R_PRODUCTION_PLAN_D_W_Insert.sql" />
+    <Content Include="SQL\TB_R_PRODUCTION_PLAN_D_W\TB_R_PRODUCTION_PLAN_D_W_Search.sql" />
+    <Content Include="SQL\TB_R_PRODUCTION_PLAN_D_W\TB_R_PRODUCTION_PLAN_D_W_Update.sql" />
+    <Content Include="SQL\TB_R_PRODUCTION_PLAN_D\TB_R_PRODUCTION_PLAN_D_Delete.sql" />
+    <Content Include="SQL\TB_R_PRODUCTION_PLAN_D\TB_R_PRODUCTION_PLAN_D_Get.sql" />
+    <Content Include="SQL\TB_R_PRODUCTION_PLAN_D\TB_R_PRODUCTION_PLAN_D_Gets.sql" />
+    <Content Include="SQL\TB_R_PRODUCTION_PLAN_D\TB_R_PRODUCTION_PLAN_D_Insert.sql" />
+    <Content Include="SQL\TB_R_PRODUCTION_PLAN_D\TB_R_PRODUCTION_PLAN_D_Search.sql" />
+    <Content Include="SQL\TB_R_PRODUCTION_PLAN_D\TB_R_PRODUCTION_PLAN_D_Update.sql" />
+    <Content Include="SQL\TB_R_PRODUCTION_PLAN_M\TB_R_PRODUCTION_PLAN_M_V2_FC_Search.sql" />
+    <Content Include="SQL\TB_R_PRODUCTION_PLAN_M\TB_R_PRODUCTION_PLAN_M_V2_Search.sql" />
+    <Content Include="SQL\TB_R_PRODUCTION_PLAN_M\TB_R_PRODUCTION_PLAN_M_Delete.sql" />
+    <Content Include="SQL\TB_R_PRODUCTION_PLAN_M\TB_R_PRODUCTION_PLAN_M_Get.sql" />
+    <Content Include="SQL\TB_R_PRODUCTION_PLAN_M\TB_R_PRODUCTION_PLAN_M_Gets.sql" />
+    <Content Include="SQL\TB_R_PRODUCTION_PLAN_M\TB_R_PRODUCTION_PLAN_M_Insert.sql" />
+    <Content Include="SQL\TB_R_PRODUCTION_PLAN_M\TB_R_PRODUCTION_PLAN_M_Search.sql" />
+    <Content Include="SQL\TB_R_PRODUCTION_PLAN_M\TB_R_PRODUCTION_PLAN_M_Update.sql" />
+    <Content Include="SQL\TB_R_TRUCK_BOOKING_D\TB_R_TRUCK_BOOKING_D_GetBOOKING_H_ID.sql" />
+    <Content Include="SQL\TB_R_TRUCK_BOOKING_D\TB_R_TRUCK_BOOKING_D_Delete.sql" />
+    <Content Include="SQL\TB_R_TRUCK_BOOKING_D\TB_R_TRUCK_BOOKING_D_Get.sql" />
+    <Content Include="SQL\TB_R_TRUCK_BOOKING_D\TB_R_TRUCK_BOOKING_D_Gets.sql" />
+    <Content Include="SQL\TB_R_TRUCK_BOOKING_D\TB_R_TRUCK_BOOKING_D_Insert.sql" />
+    <Content Include="SQL\TB_R_TRUCK_BOOKING_D\TB_R_TRUCK_BOOKING_D_Search.sql" />
+    <Content Include="SQL\TB_R_TRUCK_BOOKING_D\TB_R_TRUCK_BOOKING_D_Update.sql" />
+    <Content Include="SQL\TB_R_TRUCK_BOOKING_D\TB_R_TRUCK_BOOKING_D_GetsByBOOKING_H_ID.sql" />
+    <Content Include="SQL\TB_R_TRUCK_BOOKING_H\TB_R_TRUCK_BOOKING_H_Delete.sql" />
+    <Content Include="SQL\TB_R_TRUCK_BOOKING_H\TB_R_TRUCK_BOOKING_H_Get.sql" />
+    <Content Include="SQL\TB_R_TRUCK_BOOKING_H\TB_R_TRUCK_BOOKING_H_Gets.sql" />
+    <Content Include="SQL\TB_R_TRUCK_BOOKING_H\TB_R_TRUCK_BOOKING_H_Insert.sql" />
+    <Content Include="SQL\TB_R_TRUCK_BOOKING_H\TB_R_TRUCK_BOOKING_H_Search.sql" />
+    <Content Include="SQL\TB_R_TRUCK_BOOKING_H\TB_R_TRUCK_BOOKING_H_Update.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\01.00.00.TB_R_UNLOADING_PLAN.Install.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_ResetActual.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_GetsDataByMAIN4_DOCK_V2.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_Update_V2.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_Insert_V2.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_GetsDataByMAIN4_DOCK.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_GetsLINE4_DOCK.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_GetsDataByMAIN_DOCK.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_GetsLINE_DOCK.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_GetsLINE4.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_GetsDataByMAIN4.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_GetsDataByMAIN3.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_GetsLINE3.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_GetsDataByMAIN2.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_GetsLINE2.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_GetsLINE.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_GetsDataByMAIN.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_Delete.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_Get.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_Gets.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_Insert.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_Search.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN_Update.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN_H\01.00.00.TB_R_UNLOADING_PLAN_H.Install.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN_H\TB_R_UNLOADING_PLAN_H_GetsActiveTruckBooking.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN_H\TB_R_UNLOADING_PLAN_H_Delete.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN_H\TB_R_UNLOADING_PLAN_H_Get.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN_H\TB_R_UNLOADING_PLAN_H_Gets.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN_H\TB_R_UNLOADING_PLAN_H_Insert.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN_H\TB_R_UNLOADING_PLAN_H_Search.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN_H\TB_R_UNLOADING_PLAN_H_MERGE.sql" />
+    <Content Include="SQL\TB_R_UNLOADING_PLAN_H\TB_R_UNLOADING_PLAN_H_Update.sql" />
+    <Content Include="SQL\TB_R_UP_PLAN_D\01.00.00.TB_R_UP_PLAN_D.Install.sql" />
+    <Content Include="SQL\TB_R_UP_PLAN_D\TB_R_UP_PLAN_D_SearchByPLAN_H_ID.sql" />
+    <Content Include="SQL\TB_R_UP_PLAN_D\TB_R_UP_PLAN_D_Delete.sql" />
+    <Content Include="SQL\TB_R_UP_PLAN_D\TB_R_UP_PLAN_D_Get.sql" />
+    <Content Include="SQL\TB_R_UP_PLAN_D\TB_R_UP_PLAN_D_Gets.sql" />
+    <Content Include="SQL\TB_R_UP_PLAN_D\TB_R_UP_PLAN_D_Insert.sql" />
+    <Content Include="SQL\TB_R_UP_PLAN_D\TB_R_UP_PLAN_D_Search.sql" />
+    <Content Include="SQL\TB_R_UP_PLAN_D\TB_R_UP_PLAN_D_Update.sql" />
+    <Content Include="SQL\TB_R_UP_PLAN_H\01.00.00.TB_R_UP_PLAN_H.Install.sql" />
+    <Content Include="SQL\TB_R_UP_PLAN_H\TB_R_UP_PLAN_H_Delete.sql" />
+    <Content Include="SQL\TB_R_UP_PLAN_H\TB_R_UP_PLAN_H_Get.sql" />
+    <Content Include="SQL\TB_R_UP_PLAN_H\TB_R_UP_PLAN_H_Gets.sql" />
+    <Content Include="SQL\TB_R_UP_PLAN_H\TB_R_UP_PLAN_H_Insert.sql" />
+    <Content Include="SQL\TB_R_UP_PLAN_H\TB_R_UP_PLAN_H_Search.sql" />
+    <Content Include="SQL\TB_R_UP_PLAN_H\TB_R_UP_PLAN_H_Update.sql" />
+    <Content Include="Tdk-Lib\BouncyCastle.Crypto.dll" />
+    <Content Include="Tdk-Lib\BouncyCastle.Crypto.xml" />
+    <Content Include="Tdk-Lib\DevExpress.Charts.v17.2.Core.dll" />
+    <Content Include="Tdk-Lib\DevExpress.CodeParser.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Data.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Data.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.Images.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Office.v17.2.Core.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Office.v17.2.Core.xml" />
+    <Content Include="Tdk-Lib\DevExpress.Pdf.v17.2.Core.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Pdf.v17.2.Core.xml" />
+    <Content Include="Tdk-Lib\DevExpress.PivotGrid.v17.2.Core.dll" />
+    <Content Include="Tdk-Lib\DevExpress.PivotGrid.v17.2.Core.xml" />
+    <Content Include="Tdk-Lib\DevExpress.Printing.v17.2.Core.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Printing.v17.2.Core.xml" />
+    <Content Include="Tdk-Lib\DevExpress.RichEdit.v17.2.Core.dll" />
+    <Content Include="Tdk-Lib\DevExpress.RichEdit.v17.2.Core.xml" />
+    <Content Include="Tdk-Lib\DevExpress.RichEdit.v17.2.Export.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Sparkline.v17.2.Core.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Sparkline.v17.2.Core.xml" />
+    <Content Include="Tdk-Lib\DevExpress.SpellChecker.v17.2.Core.dll" />
+    <Content Include="Tdk-Lib\DevExpress.SpellChecker.v17.2.Core.xml" />
+    <Content Include="Tdk-Lib\DevExpress.Utils.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Utils.v17.2.UI.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Utils.v17.2.UI.xml" />
+    <Content Include="Tdk-Lib\DevExpress.Utils.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.Web.ASPxGauges.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Web.ASPxGauges.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.Web.ASPxHtmlEditor.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Web.ASPxHtmlEditor.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.Web.ASPxPivotGrid.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Web.ASPxPivotGrid.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.Web.ASPxRichEdit.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Web.ASPxRichEdit.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.Web.ASPxScheduler.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Web.ASPxScheduler.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.Web.ASPxSpellChecker.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Web.ASPxSpellChecker.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.Web.ASPxSpreadsheet.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Web.ASPxSpreadsheet.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.Web.ASPxThemes.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Web.ASPxTreeList.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Web.ASPxTreeList.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.Web.Bootstrap.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Web.Bootstrap.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.Web.Mvc.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Web.Mvc.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.Web.Resources.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Web.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.Web.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.XtraBars.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.XtraBars.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.XtraCharts.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.XtraCharts.v17.2.Extensions.dll" />
+    <Content Include="Tdk-Lib\DevExpress.XtraCharts.v17.2.UI.dll" />
+    <Content Include="Tdk-Lib\DevExpress.XtraCharts.v17.2.UI.xml" />
+    <Content Include="Tdk-Lib\DevExpress.XtraCharts.v17.2.Web.dll" />
+    <Content Include="Tdk-Lib\DevExpress.XtraCharts.v17.2.Web.xml" />
+    <Content Include="Tdk-Lib\DevExpress.XtraCharts.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.XtraGauges.v17.2.Core.dll" />
+    <Content Include="Tdk-Lib\DevExpress.XtraGauges.v17.2.Core.xml" />
+    <Content Include="Tdk-Lib\DevExpress.XtraGauges.v17.2.Presets.dll" />
+    <Content Include="Tdk-Lib\DevExpress.XtraGauges.v17.2.Presets.xml" />
+    <Content Include="Tdk-Lib\DevExpress.XtraGauges.v17.2.Win.dll" />
+    <Content Include="Tdk-Lib\DevExpress.XtraGauges.v17.2.Win.xml" />
+    <Content Include="Tdk-Lib\DevExpress.XtraGrid.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.XtraGrid.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.XtraPivotGrid.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.XtraPivotGrid.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.XtraPrinting.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.XtraPrinting.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.XtraReports.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.XtraReports.v17.2.Extensions.dll" />
+    <Content Include="Tdk-Lib\DevExpress.XtraReports.v17.2.Extensions.xml" />
+    <Content Include="Tdk-Lib\DevExpress.XtraReports.v17.2.Service.dll" />
+    <Content Include="Tdk-Lib\DevExpress.XtraReports.v17.2.Service.xml" />
+    <Content Include="Tdk-Lib\DevExpress.XtraReports.v17.2.Web.Azure.dll" />
+    <Content Include="Tdk-Lib\DevExpress.XtraReports.v17.2.Web.Azure.xml" />
+    <Content Include="Tdk-Lib\DevExpress.XtraReports.v17.2.Web.dll" />
+    <Content Include="Tdk-Lib\DevExpress.XtraReports.v17.2.Web.xml" />
+    <Content Include="Tdk-Lib\DevExpress.XtraReports.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.XtraScheduler.v17.2.Core.dll" />
+    <Content Include="Tdk-Lib\DevExpress.XtraScheduler.v17.2.Core.xml" />
+    <Content Include="Tdk-Lib\DevExpress.XtraScheduler.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.XtraScheduler.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.XtraSpellChecker.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.XtraSpellChecker.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpress.XtraSpreadsheet.v17.2.dll" />
+    <Content Include="Tdk-Lib\DevExpress.XtraSpreadsheet.v17.2.xml" />
+    <Content Include="Tdk-Lib\DevExpressWebUIExtension.dll" />
+    <Content Include="Tdk-Lib\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="Tdk-Lib\ICSharpCode.SharpZipLib.pdb" />
+    <Content Include="Tdk-Lib\ICSharpCode.SharpZipLib.xml" />
+    <Content Include="Tdk-Lib\log4net.dll" />
+    <Content Include="Tdk-Lib\MailKit.dll" />
+    <Content Include="Tdk-Lib\MailKit.xml" />
+    <Content Include="Tdk-Lib\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="Tdk-Lib\MimeKit.dll" />
+    <Content Include="Tdk-Lib\MimeKit.xml" />
+    <Content Include="Tdk-Lib\NPOI.dll" />
+    <Content Include="Tdk-Lib\NPOI.OOXML.dll" />
+    <Content Include="Tdk-Lib\NPOI.OpenXml4Net.dll" />
+    <Content Include="Tdk-Lib\NPOI.OpenXmlFormats.dll" />
+    <Content Include="Tdk-Lib\NPOI.xml" />
+    <Content Include="Tdk-Lib\Quartz.dll" />
+    <Content Include="Tdk-Lib\Quartz.xml" />
+    <Content Include="Tdk-Lib\Rotativa.dll" />
+    <Content Include="Tdk-Lib\ServiceStack.Text.dll" />
+    <Content Include="Tdk-Lib\System.Linq.Dynamic.dll" />
+    <Content Include="Tdk-Lib\System.Web.Helpers.dll" />
+    <Content Include="Tdk-Lib\System.Web.Mvc.dll" />
+    <Content Include="Tdk-Lib\System.Web.Razor.dll" />
+    <Content Include="Tdk-Lib\System.Web.WebPages.Deployment.dll" />
+    <Content Include="Tdk-Lib\System.Web.WebPages.dll" />
+    <Content Include="Tdk-Lib\System.Web.WebPages.Razor.dll" />
+    <Content Include="Tdk-Lib\TDKUtility.dll" />
+    <Content Include="Tdk-Lib\Toyota.Common.Configuration.dll" />
+    <Content Include="Tdk-Lib\Toyota.Common.Credential.dll" />
+    <Content Include="Tdk-Lib\Toyota.Common.Credential.Provider.dll" />
+    <Content Include="Tdk-Lib\Toyota.Common.Database.dll" />
+    <Content Include="Tdk-Lib\Toyota.Common.Database.Petapoco.dll" />
+    <Content Include="Tdk-Lib\Toyota.Common.Database.xml" />
+    <Content Include="Tdk-Lib\Toyota.Common.dll" />
+    <Content Include="Tdk-Lib\Toyota.Common.Logging.dll" />
+    <Content Include="Tdk-Lib\Toyota.Common.SSO.Lib.dll" />
+    <Content Include="Tdk-Lib\Toyota.Common.SSO.Service.dll" />
+    <Content Include="Tdk-Lib\Toyota.Common.Task.dll" />
+    <Content Include="Tdk-Lib\Toyota.Common.Web.Platform.dll" />
+    <Content Include="Tdk-Lib\Toyota.Common.Web.Service.dll" />
+    <Content Include="Tdk-Lib\Toyota.Common.Web.UI.Layout.dll" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Service References\EmailService\EmailService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configurations\Configurations.rar" />
+    <Content Include="Configurations\Database-DEV.config" />
+    <Content Include="Configurations\Locale-US.config" />
+    <Content Include="Configurations\System.config" />
+    <Content Include="App_Browsers\qt.browser" />
+    <None Include="Content\Bootstrap\css\less\ace-features.less" />
+    <None Include="Content\Bootstrap\css\less\ace-nav.less" />
+    <None Include="Content\Bootstrap\css\less\ace-responsive.less" />
+    <None Include="Content\Bootstrap\css\less\ace-rtl.less" />
+    <None Include="Content\Bootstrap\css\less\ace.less" />
+    <None Include="Content\Bootstrap\css\less\basic.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\alerts.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\badges.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\bootstrap.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\breadcrumbs.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\button-groups.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\buttons.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\carousel.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\close.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\code.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\component-animations.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\dropdowns.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\forms.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\glyphicons.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\grid.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\input-groups.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\jumbotron.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\labels.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\list-group.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\media.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\alerts.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\background-variant.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\border-radius.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\buttons.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\center-block.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\clearfix.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\forms.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\gradients.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\grid-framework.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\grid.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\hide-text.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\image.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\labels.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\list-group.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\nav-divider.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\nav-vertical-align.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\opacity.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\pagination.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\panels.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\progress-bar.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\reset-filter.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\resize.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\responsive-visibility.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\size.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\tab-focus.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\table-row.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\text-emphasis.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\text-overflow.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\mixins\vendor-prefixes.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\modals.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\navbar.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\navs.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\normalize.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\pager.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\pagination.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\panels.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\popovers.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\print.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\progress-bars.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\responsive-embed.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\responsive-utilities.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\scaffolding.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\tables.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\theme.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\thumbnails.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\tooltip.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\type.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\utilities.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\variables.less" />
+    <None Include="Content\Bootstrap\css\less\bootstrap\wells.less" />
+    <None Include="Content\Bootstrap\css\less\breadcrumbs.less" />
+    <None Include="Content\Bootstrap\css\less\bs3-reset.less" />
+    <None Include="Content\Bootstrap\css\less\buttons.less" />
+    <None Include="Content\Bootstrap\css\less\dropdown.less" />
+    <None Include="Content\Bootstrap\css\less\dropdown\colorpicker.less" />
+    <None Include="Content\Bootstrap\css\less\dropdown\navbar-dropdown.less" />
+    <None Include="Content\Bootstrap\css\less\dropdown\navbar-tabbed-dropdown.less" />
+    <None Include="Content\Bootstrap\css\less\ext\bootstrap-tag.less" />
+    <None Include="Content\Bootstrap\css\less\fonts-rel.less" />
+    <None Include="Content\Bootstrap\css\less\fonts.less" />
+    <None Include="Content\Bootstrap\css\less\footer.less" />
+    <None Include="Content\Bootstrap\css\less\form.less" />
+    <None Include="Content\Bootstrap\css\less\form\checkbox.less" />
+    <None Include="Content\Bootstrap\css\less\form\file.less" />
+    <None Include="Content\Bootstrap\css\less\gallery.less" />
+    <None Include="Content\Bootstrap\css\less\general.less" />
+    <None Include="Content\Bootstrap\css\less\icon-animated.less" />
+    <None Include="Content\Bootstrap\css\less\infobox.less" />
+    <None Include="Content\Bootstrap\css\less\items.less" />
+    <None Include="Content\Bootstrap\css\less\label-badge.less" />
+    <None Include="Content\Bootstrap\css\less\mixins.less" />
+    <None Include="Content\Bootstrap\css\less\modal.less" />
+    <None Include="Content\Bootstrap\css\less\navbar\collapsible.less" />
+    <None Include="Content\Bootstrap\css\less\navbar\navbar-menu-form.less" />
+    <None Include="Content\Bootstrap\css\less\navbar\toggle-button.less" />
+    <None Include="Content\Bootstrap\css\less\navbar\user-buttons-move-down.less" />
+    <None Include="Content\Bootstrap\css\less\navbar\user-buttons.less" />
+    <None Include="Content\Bootstrap\css\less\navbar\user-dropdown-position.less" />
+    <None Include="Content\Bootstrap\css\less\navbar\user-menu.less" />
+    <None Include="Content\Bootstrap\css\less\onpage-help.less" />
+    <None Include="Content\Bootstrap\css\less\other.less" />
+    <None Include="Content\Bootstrap\css\less\page.error.less" />
+    <None Include="Content\Bootstrap\css\less\page.inbox.less" />
+    <None Include="Content\Bootstrap\css\less\page.invoice.less" />
+    <None Include="Content\Bootstrap\css\less\page.login.less" />
+    <None Include="Content\Bootstrap\css\less\page.pricing.less" />
+    <None Include="Content\Bootstrap\css\less\page.profile.less" />
+    <None Include="Content\Bootstrap\css\less\page.timeline.less" />
+    <None Include="Content\Bootstrap\css\less\print.less" />
+    <None Include="Content\Bootstrap\css\less\progressbar.less" />
+    <None Include="Content\Bootstrap\css\less\scroll.less" />
+    <None Include="Content\Bootstrap\css\less\searchbox.less" />
+    <None Include="Content\Bootstrap\css\less\sidebar.less" />
+    <None Include="Content\Bootstrap\css\less\sidebar\active.less" />
+    <None Include="Content\Bootstrap\css\less\sidebar\compact.less" />
+    <None Include="Content\Bootstrap\css\less\sidebar\ff_fix.less" />
+    <None Include="Content\Bootstrap\css\less\sidebar\highlight.less" />
+    <None Include="Content\Bootstrap\css\less\sidebar\horizontal.less" />
+    <None Include="Content\Bootstrap\css\less\sidebar\hover.less" />
+    <None Include="Content\Bootstrap\css\less\sidebar\min.less" />
+    <None Include="Content\Bootstrap\css\less\sidebar\multiple.less" />
+    <None Include="Content\Bootstrap\css\less\sidebar\old-toggle-button.less" />
+    <None Include="Content\Bootstrap\css\less\sidebar\responsive-1.less" />
+    <None Include="Content\Bootstrap\css\less\sidebar\responsive-2.less" />
+    <None Include="Content\Bootstrap\css\less\sidebar\responsive-3.less" />
+    <None Include="Content\Bootstrap\css\less\sidebar\shortcuts-toggle.less" />
+    <None Include="Content\Bootstrap\css\less\sidebar\sidebar-fixed.less" />
+    <None Include="Content\Bootstrap\css\less\sidebar\sub-arrow.less" />
+    <None Include="Content\Bootstrap\css\less\skins\empty.less" />
+    <None Include="Content\Bootstrap\css\less\skins\no-skin.less" />
+    <None Include="Content\Bootstrap\css\less\skins\skin-1.less" />
+    <None Include="Content\Bootstrap\css\less\skins\skin-2.less" />
+    <None Include="Content\Bootstrap\css\less\skins\skin-3.less" />
+    <None Include="Content\Bootstrap\css\less\skins\skins.less" />
+    <None Include="Content\Bootstrap\css\less\tab-accordion.less" />
+    <None Include="Content\Bootstrap\css\less\tables.less" />
+    <None Include="Content\Bootstrap\css\less\thirdparty-calendar.less" />
+    <None Include="Content\Bootstrap\css\less\thirdparty-chosen.less" />
+    <None Include="Content\Bootstrap\css\less\thirdparty-colorbox.less" />
+    <None Include="Content\Bootstrap\css\less\thirdparty-dataTables.less" />
+    <None Include="Content\Bootstrap\css\less\thirdparty-date.less" />
+    <None Include="Content\Bootstrap\css\less\thirdparty-dropzone.less" />
+    <None Include="Content\Bootstrap\css\less\thirdparty-duallist-multiselect.less" />
+    <None Include="Content\Bootstrap\css\less\thirdparty-editable.less" />
+    <None Include="Content\Bootstrap\css\less\thirdparty-fuelux.less" />
+    <None Include="Content\Bootstrap\css\less\thirdparty-gritter.less" />
+    <None Include="Content\Bootstrap\css\less\thirdparty-jqgrid.less" />
+    <None Include="Content\Bootstrap\css\less\thirdparty-jquery-ui.less" />
+    <None Include="Content\Bootstrap\css\less\thirdparty-nestable.less" />
+    <None Include="Content\Bootstrap\css\less\thirdparty-raty.less" />
+    <None Include="Content\Bootstrap\css\less\thirdparty-select2.less" />
+    <None Include="Content\Bootstrap\css\less\thirdparty-slider.less" />
+    <None Include="Content\Bootstrap\css\less\thirdparty-typeahead.less" />
+    <None Include="Content\Bootstrap\css\less\thirdparty-wysiwyg.less" />
+    <None Include="Content\Bootstrap\css\less\tooltip-popover.less" />
+    <None Include="Content\Bootstrap\css\less\utility.less" />
+    <None Include="Content\Bootstrap\css\less\variables.less" />
+    <None Include="Content\Bootstrap\css\less\widget.less" />
+    <Content Include="Content\Bootstrap\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Bootstrap\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Bootstrap\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Bootstrap\fonts\FontAwesome.otf" />
+    <Content Include="Content\Bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Bootstrap\fonts\leaguespartan-bold.eot" />
+    <Content Include="Content\Bootstrap\fonts\leaguespartan-bold.ttf" />
+    <Content Include="Content\Bootstrap\fonts\leaguespartan-bold.woff" />
+    <Content Include="Content\Bootstrap\fonts\leaguespartan-bold.woff2" />
+    <Content Include="Content\Bootstrap\fonts\OpenSans-300.woff" />
+    <Content Include="Content\Bootstrap\fonts\OpenSans-400.woff" />
+    <None Include="Content\Bootstrap\fonts\fontawesome-webfont.woff2" />
+    <None Include="Content\Bootstrap\fonts\readme" />
+    <None Include="Content\Bootstrap\js\ace\readme" />
+    <None Include="Content\Bootstrap\js\ace\scripts.json" />
+    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\HeaderMenu.cshtml" />
+    <Content Include="Views\Shared\HorizontalMenu.cshtml" />
+    <Content Include="Views\Shared\VerticalMenu.cshtml" />
+    <Content Include="Views\Shared\_LayoutTop.cshtml" />
+    <Content Include="Views\Shared\_About.cshtml" />
+    <Content Include="Views\Shared\_TourPlugin.cshtml" />
+    <Content Include="Views\Home\_WidgetSettings.cshtml" />
+    <Content Include="Views\Shared\_UIPaging.cshtml" />
+    <Content Include="Views\Shared\_ScreenLayout.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\_Agreement.cshtml" />
+    <Content Include="Views\Login\_Carousel.cshtml" />
+    <Content Include="Views\Shared\_ModalConfirm.cshtml" />
+    <Content Include="Views\Shared\_DevExLayout.cshtml" />
+    <Content Include="Views\TB_M_LOOKUP\TB_M_LOOKUP.cshtml" />
+    <Content Include="Views\TB_M_LOOKUP\_TB_M_LOOKUPList.cshtml" />
+    <Content Include="Views\TB_M_LOOKUP\_TB_M_LOOKUPEdit.cshtml" />
+    <Content Include="Views\NotAuthorize\NotAuthorize.cshtml" />
+    <Content Include="Views\TB_M_USERS\TB_M_USERS.cshtml" />
+    <Content Include="Views\TB_M_USERS\_TB_M_USERSEdit.cshtml" />
+    <Content Include="Views\TB_M_USERS\_TB_M_USERSList.cshtml" />
+    <Content Include="Views\TB_M_USERS\_TB_M_USERSSearch.cshtml" />
+    <Content Include="Views\TB_M_USER_ROLES\TB_M_USER_ROLES.cshtml" />
+    <Content Include="Views\TB_M_USER_ROLES\_TB_M_USER_ROLESEdit.cshtml" />
+    <Content Include="Views\TB_M_USER_ROLES\_TB_M_USER_ROLESList.cshtml" />
+    <Content Include="Views\TB_M_USER_ROLES\_TB_M_USER_ROLESSearch.cshtml" />
+    <Content Include="Views\TB_M_USERS\_ROLES.cshtml" />
+    <Content Include="Views\TB_M_USERS\_ROLES_USERSList.cshtml" />
+    <Content Include="Views\TB_M_USERS\_ROLES_CCList.cshtml" />
+    <Content Include="Views\TB_M_USERS\_ROLES_USERSEdit.cshtml" />
+    <Content Include="Content\Template\LSP_PP_Template.xlsx" />
+    <Content Include="Content\Template\LSP_NQC_Result_Template.xlsx" />
+    <Content Include="Content\fonts\NobelVnu-Bold.ttf" />
+    <Content Include="Content\fonts\NobelVnu-Book.ttf" />
+    <Content Include="Content\fonts\NobelVnu-Light.ttf" />
+    <Content Include="Content\fonts\NobelVnu-Regular.ttf" />
+    <Content Include="Content\fonts\OpenSans-Bold.woff" />
+    <Content Include="Content\fonts\OpenSans-Light.woff" />
+    <Content Include="Content\fonts\OpenSans.woff" />
+    <Content Include="Content\fonts\OpenSans\BoldItalic\OpenSans-BoldItalic.eot" />
+    <Content Include="Content\fonts\OpenSans\BoldItalic\OpenSans-BoldItalic.svg" />
+    <Content Include="Content\fonts\OpenSans\BoldItalic\OpenSans-BoldItalic.ttf" />
+    <Content Include="Content\fonts\OpenSans\BoldItalic\OpenSans-BoldItalic.woff" />
+    <Content Include="Content\fonts\OpenSans\BoldItalic\OpenSans-BoldItalic.woff2" />
+    <Content Include="Content\fonts\OpenSans\Bold\OpenSans-Bold.eot" />
+    <Content Include="Content\fonts\OpenSans\Bold\OpenSans-Bold.svg" />
+    <Content Include="Content\fonts\OpenSans\Bold\OpenSans-Bold.ttf" />
+    <Content Include="Content\fonts\OpenSans\Bold\OpenSans-Bold.woff" />
+    <Content Include="Content\fonts\OpenSans\Bold\OpenSans-Bold.woff2" />
+    <Content Include="Content\fonts\OpenSans\ExtraBoldItalic\OpenSans-ExtraBoldItalic.eot" />
+    <Content Include="Content\fonts\OpenSans\ExtraBoldItalic\OpenSans-ExtraBoldItalic.svg" />
+    <Content Include="Content\fonts\OpenSans\ExtraBoldItalic\OpenSans-ExtraBoldItalic.ttf" />
+    <Content Include="Content\fonts\OpenSans\ExtraBoldItalic\OpenSans-ExtraBoldItalic.woff" />
+    <Content Include="Content\fonts\OpenSans\ExtraBoldItalic\OpenSans-ExtraBoldItalic.woff2" />
+    <Content Include="Content\fonts\OpenSans\ExtraBold\OpenSans-ExtraBold.eot" />
+    <Content Include="Content\fonts\OpenSans\ExtraBold\OpenSans-ExtraBold.svg" />
+    <Content Include="Content\fonts\OpenSans\ExtraBold\OpenSans-ExtraBold.ttf" />
+    <Content Include="Content\fonts\OpenSans\ExtraBold\OpenSans-ExtraBold.woff" />
+    <Content Include="Content\fonts\OpenSans\ExtraBold\OpenSans-ExtraBold.woff2" />
+    <Content Include="Content\fonts\OpenSans\Italic\OpenSans-Italic.eot" />
+    <Content Include="Content\fonts\OpenSans\Italic\OpenSans-Italic.svg" />
+    <Content Include="Content\fonts\OpenSans\Italic\OpenSans-Italic.ttf" />
+    <Content Include="Content\fonts\OpenSans\Italic\OpenSans-Italic.woff" />
+    <Content Include="Content\fonts\OpenSans\Italic\OpenSans-Italic.woff2" />
+    <Content Include="Content\fonts\OpenSans\LightItalic\OpenSans-LightItalic.eot" />
+    <Content Include="Content\fonts\OpenSans\LightItalic\OpenSans-LightItalic.svg" />
+    <Content Include="Content\fonts\OpenSans\LightItalic\OpenSans-LightItalic.ttf" />
+    <Content Include="Content\fonts\OpenSans\LightItalic\OpenSans-LightItalic.woff" />
+    <Content Include="Content\fonts\OpenSans\LightItalic\OpenSans-LightItalic.woff2" />
+    <Content Include="Content\fonts\OpenSans\Light\OpenSans-Light.eot" />
+    <Content Include="Content\fonts\OpenSans\Light\OpenSans-Light.svg" />
+    <Content Include="Content\fonts\OpenSans\Light\OpenSans-Light.ttf" />
+    <Content Include="Content\fonts\OpenSans\Light\OpenSans-Light.woff" />
+    <Content Include="Content\fonts\OpenSans\Light\OpenSans-Light.woff2" />
+    <Content Include="Content\fonts\OpenSans\Regular\OpenSans-Regular.eot" />
+    <Content Include="Content\fonts\OpenSans\Regular\OpenSans-Regular.svg" />
+    <Content Include="Content\fonts\OpenSans\Regular\OpenSans-Regular.ttf" />
+    <Content Include="Content\fonts\OpenSans\Regular\OpenSans-Regular.woff" />
+    <Content Include="Content\fonts\OpenSans\Regular\OpenSans-Regular.woff2" />
+    <Content Include="Content\fonts\OpenSans\SemiboldItalic\OpenSans-SemiboldItalic.eot" />
+    <Content Include="Content\fonts\OpenSans\SemiboldItalic\OpenSans-SemiboldItalic.svg" />
+    <Content Include="Content\fonts\OpenSans\SemiboldItalic\OpenSans-SemiboldItalic.ttf" />
+    <Content Include="Content\fonts\OpenSans\SemiboldItalic\OpenSans-SemiboldItalic.woff" />
+    <Content Include="Content\fonts\OpenSans\SemiboldItalic\OpenSans-SemiboldItalic.woff2" />
+    <Content Include="Content\fonts\OpenSans\Semibold\OpenSans-Semibold.eot" />
+    <Content Include="Content\fonts\OpenSans\Semibold\OpenSans-Semibold.svg" />
+    <Content Include="Content\fonts\OpenSans\Semibold\OpenSans-Semibold.ttf" />
+    <Content Include="Content\fonts\OpenSans\Semibold\OpenSans-Semibold.woff" />
+    <Content Include="Content\fonts\OpenSans\Semibold\OpenSans-Semibold.woff2" />
+    <Content Include="Content\fonts\PTSerif-Caption.woff" />
+    <Content Include="Content\Template\LSP_Plan Unloading Template.xlsx" />
+    <Content Include="Content\Template\CALENDAR - INFO.xls" />
+    <Content Include="Content\Template\PART_HIKIATE_TEMPLATE.xls" />
+    <Content Include="Content\Template\Daily Order_template.xls" />
+    <Content Include="Content\Template\Monthly Order_Template.xlsx" />
+    <Content Include="Content\fonts\iconfont.woff" />
+    <Content Include="Content\Template\Initial Rundown Stock_Template.xls" />
+    <Content Include="Content\Template\Monthly GRN_Template.xlsx" />
+    <Content Include="Content\Template\Upload_Stock_Template.xls" />
+    <Content Include="Content\Template\Delivery Note_Template.xlsx" />
+    <Content Include="Content\Template\SUPPLIER_PIC_template.xls" />
+    <Content Include="Content\Template\PRODUCTION_PLAN_Template.xlsx" />
+    <Content Include="Content\Template\LSP_Plan Unloading Template_V2.xlsx" />
+    <None Include="Properties\PublishProfiles\LSP.pubxml" />
+    <Content Include="Views\ChangePassword\ChangePassword.cshtml" />
+    <Content Include="Views\TB_M_COLOR\TB_M_COLOR.cshtml" />
+    <Content Include="Views\TB_M_COLOR\_TB_M_COLOREdit.cshtml" />
+    <Content Include="Views\TB_M_COLOR\_TB_M_COLORList.cshtml" />
+    <Content Include="Views\TB_M_COLOR\_TB_M_COLORSearch.cshtml" />
+    <Content Include="Views\TB_M_MODEL\TB_M_MODEL.cshtml" />
+    <Content Include="Views\TB_M_MODEL\_TB_M_MODELEdit.cshtml" />
+    <Content Include="Views\TB_M_MODEL\_TB_M_MODELList.cshtml" />
+    <Content Include="Views\TB_M_MODEL\_TB_M_MODELSearch.cshtml" />
+    <Content Include="Views\TB_M_SCANNING_USR\TB_M_SCANNING_USR.cshtml" />
+    <Content Include="Views\TB_M_SCANNING_USR\_TB_M_SCANNING_USREdit.cshtml" />
+    <Content Include="Views\TB_M_SCANNING_USR\_TB_M_SCANNING_USRList.cshtml" />
+    <Content Include="Views\TB_M_SCANNING_USR\_TB_M_SCANNING_USRSearch.cshtml" />
+    <Content Include="Views\TB_M_VEHICLE_MASTER\TB_M_VEHICLE_MASTER.cshtml" />
+    <Content Include="Views\TB_M_VEHICLE_MASTER\_TB_M_VEHICLE_MASTERSearch.cshtml" />
+    <Content Include="Views\TB_M_VEHICLE_MASTER\_TB_M_VEHICLE_MASTERList.cshtml" />
+    <Content Include="Views\TB_M_VEHICLE_MASTER\_TB_M_VEHICLE_MASTEREdit.cshtml" />
+    <Content Include="Views\TB_M_MODEL\_TB_M_MODEL_VEHICLE_MASTERList.cshtml" />
+    <Content Include="Views\TB_M_MODEL\_TB_M_MODEL_VEHICLE_MASTEREdit.cshtml" />
+    <Content Include="Views\TB_R_PRODUCTION_PLAN_M\TB_R_PRODUCTION_PLAN_M.cshtml" />
+    <Content Include="Views\TB_R_PRODUCTION_PLAN_M\_TB_R_PRODUCTION_PLAN_MSearch.cshtml" />
+    <Content Include="Views\TB_R_PRODUCTION_PLAN_M\_TB_R_PRODUCTION_PLAN_MList.cshtml" />
+    <Content Include="Views\TB_R_PRODUCTION_PLAN_M\_TB_R_PRODUCTION_PLAN_MEdit.cshtml" />
+    <Content Include="Views\TB_R_PRODUCTION_PLAN_M\_TB_R_PRODUCTION_PLAN_MImport.cshtml" />
+    <Content Include="Views\TB_R_PART_HIKIATE\TB_R_PART_HIKIATE.cshtml" />
+    <Content Include="Views\TB_R_PART_HIKIATE\_TB_R_PART_HIKIATEEdit.cshtml" />
+    <Content Include="Views\TB_R_PART_HIKIATE\_TB_R_PART_HIKIATEList.cshtml" />
+    <Content Include="Views\TB_R_PART_HIKIATE\_TB_R_PART_HIKIATESearch.cshtml" />
+    <Content Include="Views\TB_R_NQC_RESULT_M\TB_R_NQC_RESULT_M.cshtml" />
+    <Content Include="Views\TB_R_NQC_RESULT_M\_TB_R_NQC_RESULT_MSearch.cshtml" />
+    <Content Include="Views\TB_R_NQC_RESULT_M\_TB_R_NQC_RESULT_MList.cshtml" />
+    <Content Include="Views\TB_R_NQC_RESULT_M\_TB_R_NQC_RESULT_MEdit.cshtml" />
+    <Content Include="Views\TB_R_NQC_RESULT_M\_TB_R_NQC_RESULT_MImport.cshtml" />
+    <Content Include="Views\TB_R_PART_HIKIATE\_TB_R_PART_HIKIATEImport.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\TB_R_CONTENT_LIST.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\_TB_R_CONTENT_LISTEdit.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\_TB_R_CONTENT_LISTList.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\_TB_R_CONTENT_LISTSearch.cshtml" />
+    <Content Include="Views\TB_R_KANBAN\TB_R_KANBAN.cshtml" />
+    <Content Include="Views\TB_R_KANBAN\_TB_R_KANBANEdit.cshtml" />
+    <Content Include="Views\TB_R_KANBAN\_TB_R_KANBANList.cshtml" />
+    <Content Include="Views\TB_R_KANBAN\_TB_R_KANBANSearch.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\_TB_R_KANBANList.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\_TB_R_KANBANEdit.cshtml" />
+    <Content Include="Views\TB_M_TRUCK_TYPE\TB_M_TRUCK_TYPE.cshtml" />
+    <Content Include="Views\TB_M_TRUCK_TYPE\_TB_M_TRUCK_TYPESearch.cshtml" />
+    <Content Include="Views\TB_M_TRUCK_TYPE\_TB_M_TRUCK_TYPEList.cshtml" />
+    <Content Include="Views\TB_M_TRUCK_TYPE\_TB_M_TRUCK_TYPEEdit.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_INFO\TB_M_SUPPLIER_INFO.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_INFO\_TB_M_SUPPLIER_INFOEdit.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_INFO\_TB_M_SUPPLIER_INFOList.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_INFO\_TB_M_SUPPLIER_INFOSearch.cshtml" />
+    <Content Include="Views\TB_M_TRUCK\TB_M_TRUCK.cshtml" />
+    <Content Include="Views\TB_M_TRUCK\_TB_M_TRUCKSearch.cshtml" />
+    <Content Include="Views\TB_M_TRUCK\_TB_M_TRUCKList.cshtml" />
+    <Content Include="Views\TB_M_TRUCK\_TB_M_TRUCKEdit.cshtml" />
+    <Content Include="Views\TB_M_ROUTING\TB_M_ROUTING.cshtml" />
+    <Content Include="Views\TB_M_ROUTING\_TB_M_ROUTINGEdit.cshtml" />
+    <Content Include="Views\TB_M_ROUTING\_TB_M_ROUTINGList.cshtml" />
+    <Content Include="Views\TB_M_ROUTING\_TB_M_ROUTINGSearch.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_DL_TIME\TB_M_SUPPLIER_DL_TIME.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_DL_TIME\_TB_M_SUPPLIER_DL_TIMEEdit.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_DL_TIME\_TB_M_SUPPLIER_DL_TIMEList.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_DL_TIME\_TB_M_SUPPLIER_DL_TIMESearch.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_PIC\TB_M_SUPPLIER_PIC.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_PIC\_TB_M_SUPPLIER_PICEdit.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_PIC\_TB_M_SUPPLIER_PICList.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_PIC\_TB_M_SUPPLIER_PICSearch.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_INFO\_TB_M_SUPPLIER_DL_TIMEList.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_INFO\_TB_M_SUPPLIER_DL_TIMEEdit.cshtml" />
+    <Content Include="Views\TB_M_TRUCK_SUPPLIER\TB_M_TRUCK_SUPPLIER.cshtml" />
+    <Content Include="Views\TB_M_TRUCK_SUPPLIER\_TB_M_TRUCK_SUPPLIEREdit.cshtml" />
+    <Content Include="Views\TB_M_TRUCK_SUPPLIER\_TB_M_TRUCK_SUPPLIERList.cshtml" />
+    <Content Include="Views\TB_M_TRUCK_SUPPLIER\_TB_M_TRUCK_SUPPLIERSearch.cshtml" />
+    <Content Include="Views\TB_M_TRANSPORTER\TB_M_TRANSPORTER.cshtml" />
+    <Content Include="Views\TB_M_TRANSPORTER\_TB_M_TRANSPORTERSearch.cshtml" />
+    <Content Include="Views\TB_M_TRANSPORTER\_TB_M_TRANSPORTEREdit.cshtml" />
+    <Content Include="Views\TB_M_TRANSPORTER\_TB_M_TRANSPORTERList.cshtml" />
+    <Content Include="Views\TB_R_TRUCK_BOOKING_H\TB_R_TRUCK_BOOKING_H.cshtml" />
+    <Content Include="Views\TB_R_TRUCK_BOOKING_H\_TB_R_TRUCK_BOOKING_HSearch.cshtml" />
+    <Content Include="Views\TB_R_TRUCK_BOOKING_H\_TB_R_TRUCK_BOOKING_HEdit.cshtml" />
+    <Content Include="Views\TB_R_TRUCK_BOOKING_H\_TB_R_TRUCK_BOOKING_HList.cshtml" />
+    <Content Include="Views\TB_R_TRUCK_BOOKING_D\_TB_R_TRUCK_BOOKING_DEdit.cshtml" />
+    <Content Include="Views\TB_R_TRUCK_BOOKING_D\_TB_R_TRUCK_BOOKING_DList.cshtml" />
+    <Content Include="Views\TB_R_TRUCK_BOOKING_D\_TB_R_TRUCK_BOOKING_DSearch.cshtml" />
+    <Content Include="Views\TB_R_TRUCK_BOOKING_D\TB_R_TRUCK_BOOKING_D.cshtml" />
+    <Content Include="Views\TB_R_UNLOADING_PLAN\TB_R_UNLOADING_PLAN.cshtml" />
+    <Content Include="Views\TB_R_UNLOADING_PLAN\_TB_R_UNLOADING_PLANEdit.cshtml" />
+    <Content Include="Views\TB_R_UNLOADING_PLAN\_TB_R_UNLOADING_PLANList.cshtml" />
+    <Content Include="Views\TB_R_UNLOADING_PLAN\_TB_R_UNLOADING_PLANSearch.cshtml" />
+    <Content Include="Views\TB_R_UNLOADING_PLAN\UNLOADING_MAIN_SCREEN.cshtml" />
+    <Content Include="Views\TB_R_TRUCK_BOOKING_H\_TB_R_TRUCK_BOOKING_H_BOOKING_DList.cshtml" />
+    <Content Include="Views\TB_R_TRUCK_BOOKING_H\_TB_R_TRUCK_BOOKING_H_BOOKING_DEdit.cshtml" />
+    <Content Include="Views\TB_R_ASSEMBLY_DATA\TB_R_ASSEMBLY_DATA.cshtml" />
+    <Content Include="Views\TB_R_ASSEMBLY_DATA\_TB_R_ASSEMBLY_DATAEdit.cshtml" />
+    <Content Include="Views\TB_R_ASSEMBLY_DATA\_TB_R_ASSEMBLY_DATAList.cshtml" />
+    <Content Include="Views\TB_R_ASSEMBLY_DATA\_TB_R_ASSEMBLY_DATASearch.cshtml" />
+    <Content Include="Views\TB_R_UP_PLAN_D\TB_R_UP_PLAN_D.cshtml" />
+    <Content Include="Views\TB_R_UP_PLAN_D\_TB_R_UP_PLAN_DEdit.cshtml" />
+    <Content Include="Views\TB_R_UP_PLAN_D\_TB_R_UP_PLAN_DList.cshtml" />
+    <Content Include="Views\TB_R_UP_PLAN_D\_TB_R_UP_PLAN_DSearch.cshtml" />
+    <Content Include="Views\TB_R_UP_PLAN_H\TB_R_UP_PLAN_H.cshtml" />
+    <Content Include="Views\TB_R_UP_PLAN_H\_TB_R_UP_PLAN_HEdit.cshtml" />
+    <Content Include="Views\TB_R_UP_PLAN_H\_TB_R_UP_PLAN_HList.cshtml" />
+    <Content Include="Views\TB_R_UP_PLAN_H\_TB_R_UP_PLAN_HSearch.cshtml" />
+    <Content Include="Views\TB_R_UP_PLAN_H\_TB_R_UP_PLAN_DList.cshtml" />
+    <Content Include="Views\TB_R_UP_PLAN_H\_TB_R_UP_PLAN_DEdit.cshtml" />
+    <Content Include="Views\TB_R_PRODUCTION_PLAN_D\TB_R_PRODUCTION_PLAN_D.cshtml" />
+    <Content Include="Views\TB_R_PRODUCTION_PLAN_D\_TB_R_PRODUCTION_PLAN_DList.cshtml" />
+    <Content Include="Views\TB_R_PRODUCTION_PLAN_D\_TB_R_PRODUCTION_PLAN_DSearch.cshtml" />
+    <Content Include="Views\TB_R_PRODUCTION_PLAN_D\_TB_R_PRODUCTION_PLAN_DEdit.cshtml" />
+    <Content Include="Views\TB_R_PART_STOCK\TB_R_PART_STOCK.cshtml" />
+    <Content Include="Views\TB_R_PART_STOCK\_TB_R_PART_STOCKList.cshtml" />
+    <Content Include="Views\TB_R_PART_STOCK\_TB_R_PART_STOCKEdit.cshtml" />
+    <Content Include="Views\TB_R_PART_STOCK\_TB_R_PART_STOCKSearch.cshtml" />
+    <Content Include="Views\TB_R_PART_IN_OUT\TB_R_PART_IN_OUT.cshtml" />
+    <Content Include="Views\TB_R_PART_IN_OUT\_TB_R_PART_IN_OUTSearch.cshtml" />
+    <Content Include="Views\TB_R_PART_IN_OUT\_TB_R_PART_IN_OUTEdit.cshtml" />
+    <Content Include="Views\TB_R_PART_IN_OUT\_TB_R_PART_IN_OUTList.cshtml" />
+    <Content Include="Views\TB_R_PART_STOCK\_TB_R_PART_STOCK_PART_IN_OUTList.cshtml" />
+    <Content Include="Views\TB_R_PART_STOCK\_TB_R_PART_STOCK_PART_IN_OUTEdit.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\PDF_CONTENT_LIST.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\PDF_KANBAN.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\PDF_ORDER_DELIVERY.cshtml" />
+    <Content Include="Views\TB_R_UNLOADING_PLAN_H\TB_R_UNLOADING_PLAN_H.cshtml" />
+    <Content Include="Views\TB_R_UNLOADING_PLAN_H\_TB_R_UNLOADING_PLAN_HEdit.cshtml" />
+    <Content Include="Views\TB_R_UNLOADING_PLAN_H\_TB_R_UNLOADING_PLAN_HList.cshtml" />
+    <Content Include="Views\TB_R_UNLOADING_PLAN_H\_TB_R_UNLOADING_PLAN_HSearch.cshtml" />
+    <Content Include="Views\TB_R_UNLOADING_PLAN_H\_TB_R_UNLOADING_PLAN_HImport.cshtml" />
+    <Content Include="Views\TB_M_CALENDAR\_TB_M_CALENDAREdit.cshtml" />
+    <Content Include="Views\TB_M_CALENDAR\_TB_M_CALENDARList.cshtml" />
+    <Content Include="Views\TB_M_CALENDAR\_TB_M_CALENDARSearch.cshtml" />
+    <Content Include="Views\TB_M_CALENDAR\TB_M_CALENDAR.cshtml" />
+    <Content Include="Views\TB_M_CALENDAR\_TB_M_CALENDARImport.cshtml" />
+    <Content Include="Views\TB_M_CALENDAR\CALENDAR_SCREEN.cshtml" />
+    <Content Include="Views\TB_R_UNLOADING_PLAN\UNLOADING_SUB_SCREEN.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\UNLOADING_DETAILS.cshtml" />
+    <Content Include="Views\TB_R_UNLOADING_PLAN\UNLOADING_MAIN_SCREEN_2.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\_TB_R_CONTENT_LIST_Import.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\UNPACKING.cshtml" />
+    <Content Include="Views\TB_R_DAILY_ORDER\TB_R_DAILY_ORDER.cshtml" />
+    <Content Include="Views\TB_R_DAILY_ORDER\_TB_R_DAILY_ORDEREdit.cshtml" />
+    <Content Include="Views\TB_R_DAILY_ORDER\_TB_R_DAILY_ORDERList.cshtml" />
+    <Content Include="Views\TB_R_DAILY_ORDER\_TB_R_DAILY_ORDERSearch.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\_TB_R_DAILY_ORDERList.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\_TB_R_DAILY_ORDEREdit.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\RECEIVING.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\PDF_CONTENT_LIST_MULTI.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\RECEIVING2.cshtml" />
+    <Content Include="Views\TB_R_PART_SMQD\TB_R_PART_SMQD.cshtml" />
+    <Content Include="Views\TB_R_PART_SMQD\_TB_R_PART_SMQDEdit.cshtml" />
+    <Content Include="Views\TB_R_PART_SMQD\_TB_R_PART_SMQDList.cshtml" />
+    <Content Include="Views\TB_R_PART_SMQD\_TB_R_PART_SMQDSearch.cshtml" />
+    <Content Include="Views\TB_R_PART_SMQD\_TB_R_PART_SMQDImport.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_INFO\_TB_R_SUPPLIER_INFOImport.cshtml" />
+    <Content Include="Views\TB_R_PART_HIKIATE_STOCK_STD\TB_R_PART_HIKIATE_STOCK_STD.cshtml" />
+    <Content Include="Views\TB_R_PART_HIKIATE_STOCK_STD\_TB_R_PART_HIKIATE_STOCK_STDEdit.cshtml" />
+    <Content Include="Views\TB_R_PART_HIKIATE_STOCK_STD\_TB_R_PART_HIKIATE_STOCK_STDList.cshtml" />
+    <Content Include="Views\TB_R_PART_HIKIATE_STOCK_STD\_TB_R_PART_HIKIATE_STOCK_STDSearch.cshtml" />
+    <Content Include="Views\TB_R_PART_HIKIATE\_TB_R_PART_HIKIATE_STOCK_STDList.cshtml" />
+    <Content Include="Views\TB_R_PART_HIKIATE\_TB_R_PART_HIKIATE_STOCK_STDEdit.cshtml" />
+    <Content Include="Views\TB_R_PART_RUNDOWN\TB_R_PART_RUNDOWN.cshtml" />
+    <Content Include="Views\TB_R_PART_RUNDOWN\_TB_R_PART_RUNDOWNEdit.cshtml" />
+    <Content Include="Views\TB_R_PART_RUNDOWN\_TB_R_PART_RUNDOWNList.cshtml" />
+    <Content Include="Views\TB_R_PART_RUNDOWN\_TB_R_PART_RUNDOWNSearch.cshtml" />
+    <Content Include="Views\TB_R_DAILY_ORDER_REPORT\_TB_R_DAILY_ORDER_REPORTList.cshtml" />
+    <Content Include="Views\TB_R_DAILY_ORDER_REPORT\_TB_R_DAILY_ORDER_REPORTSearch.cshtml" />
+    <Content Include="Views\TB_R_DAILY_ORDER_REPORT\TB_R_DAILY_ORDER_REPORT.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_INFO\_TB_M_SUPPLIER_OR_TIMEEdit.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_INFO\_TB_M_SUPPLIER_OR_TIMEList.cshtml" />
+    <Content Include="Views\TB_M_CALENDAR\_TB_M_CALENDAR_DETAILS.cshtml" />
+    <Content Include="Views\TB_M_CALENDAR\_TB_M_CALENDAR_DETAILS_LIST.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_STK_CONCEPT\TB_M_SUPPLIER_STK_CONCEPT.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_STK_CONCEPT\_TB_M_SUPPLIER_STK_CONCEPTEdit.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_STK_CONCEPT\_TB_M_SUPPLIER_STK_CONCEPTList.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_STK_CONCEPT\_TB_M_SUPPLIER_STK_CONCEPTSearch.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_STK_CONCEPT\_TB_M_SUPPLIER_STK_CONCEPTImport.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\_TB_R_DAILY_ORDER_DETAILS.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\_TB_R_DAILY_ORDER_DETAILS_LIST.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\GENERATE_MONTHLY_ORDER.cshtml" />
+    <Content Include="Views\TB_R_PART_HIKIATE\_TB_R_PART_HIKIATE_DETAILSList.cshtml" />
+    <Content Include="Views\TB_R_PART_HIKIATE\_TB_R_PART_HIKIATE_DETAILS.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\DOWNLOAD_MONTHLY_ORDER.cshtml" />
+    <Content Include="Views\TB_M_LOOKUP\_TB_M_LOOKUPSearch.cshtml" />
+    <Content Include="Views\TB_R_PART_STOCK\_TB_R_PART_STOCK_DETAILS.cshtml" />
+    <Content Include="Views\TB_R_PART_STOCK\_TB_R_PART_STOCK_DETAILS_LIST.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST_REPORT\_TB_R_CONTENT_LIST_REPORTEdit.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST_REPORT\_TB_R_CONTENT_LIST_REPORTList.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST_REPORT\_TB_R_CONTENT_LIST_REPORTSearch.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST_REPORT\TB_R_CONTENT_LIST_REPORT.cshtml" />
+    <Content Include="Views\TB_R_KANBAN_REPORT\_TB_R_KANBAN_REPORTEdit.cshtml" />
+    <Content Include="Views\TB_R_KANBAN_REPORT\_TB_R_KANBAN_REPORTList.cshtml" />
+    <Content Include="Views\TB_R_KANBAN_REPORT\_TB_R_KANBAN_REPORTSearch.cshtml" />
+    <Content Include="Views\TB_R_KANBAN_REPORT\TB_R_KANBAN_REPORT.cshtml" />
+    <Content Include="Views\TB_M_CALENDAR\_TB_M_CALENDAR_DETAILS_ORDER.cshtml" />
+    <Content Include="Views\TB_M_CALENDAR\_TB_M_CALENDAR_DETAILS_ORDER_LIST.cshtml" />
+    <Content Include="Views\TB_R_TRUCK_BOOKING_H\_TB_R_UNLOADING_PLAN_H_Combobox.cshtml" />
+    <Content Include="Views\TB_R_TRUCK_BOOKING_H\_TB_M_SUPPLIER_OR_TIME_Combobox.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\UNPACKING2.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\PDF_KANBAN_SMALL.cshtml" />
+    <Content Include="Views\TB_M_CALENDAR\_TB_M_CALENDAR_DETAILS_SCHEDULER.cshtml" />
+    <Content Include="Views\TB_M_CALENDAR\_TB_M_CALENDAR_SCHEDULER.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\RECEIVING3.cshtml" />
+    <Content Include="Views\TB_R_PART_SMQD\_TB_R_PART_SMQD_PART_combobox.cshtml" />
+    <Content Include="Views\TB_R_PART_RUNDOWN\_TB_R_PART_RUNDOWNImport.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\RECEIVING4.cshtml" />
+    <Content Include="Views\TB_R_UNLOADING_PLAN\UNLOADING_MAIN_SCREEN_3.cshtml" />
+    <Content Include="Views\TB_R_KANBAN_REPORT\_TB_R_KANBAN_REPORT_CONTENT_NOT_FINISHList.cshtml" />
+    <Content Include="Views\TB_R_KANBAN_REPORT\_TB_R_KANBAN_REPORT_CONTENT_NOT_FINISH.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\DOWNLOAD_MONTHLY_GRN.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\PDF_ORDER_DELIVERY_SMALL.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\PDF_CONTENT_LIST_MULTI_SMALL.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\RECEIVING5.cshtml" />
+    <Content Include="Views\TB_R_PART_STOCK\_TB_R_PART_STOCKImport.cshtml" />
+    <Content Include="Views\TB_R_PART_STOCK\_TB_R_PART_STOCK_DETAILS_IO.cshtml" />
+    <Content Include="Views\TB_R_PART_STOCK\_TB_R_PART_STOCK_DETAILS_IO_LIST.cshtml" />
+    <Content Include="Views\TB_R_UNLOADING_PLAN\UNLOADING_MAIN_SCREEN_4.cshtml" />
+    <Content Include="Views\TB_M_TMV_PIC\_TB_M_TMV_PICList.cshtml" />
+    <Content Include="Views\TB_M_TMV_PIC\_TB_M_TMV_PICSearch.cshtml" />
+    <Content Include="Views\TB_M_TMV_PIC\TB_M_TMV_PIC.cshtml" />
+    <Content Include="Views\TB_M_SCREEN_SETTING\TB_M_SCREEN_SETTING.cshtml" />
+    <Content Include="Views\TB_M_SCREEN_SETTING\_TB_M_SCREEN_SETTINGList.cshtml" />
+    <Content Include="Views\TB_M_SCREEN_SETTING\_TB_M_SCREEN_SETTINGSearch.cshtml" />
+    <Content Include="Views\TB_R_UNLOADING_PLAN\UNLOADING_MAIN_SCREEN_DOCK.cshtml" />
+    <Content Include="Views\TB_R_UNLOADING_PLAN\UNLOADING_MAIN_SCREEN_4_DOCK.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\RECEIVING5_DOCK.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\SEND_MULTIPLE_ORDER.cshtml" />
+    <Content Include="Views\TB_R_PART_RUNDOWN_V2\_TB_R_PART_RUNDOWN_V2Import.cshtml" />
+    <Content Include="Views\TB_R_PART_RUNDOWN_V2\_TB_R_PART_RUNDOWN_V2List.cshtml" />
+    <Content Include="Views\TB_R_PART_RUNDOWN_V2\_TB_R_PART_RUNDOWN_V2Search.cshtml" />
+    <Content Include="Views\TB_R_PART_RUNDOWN_V2\TB_R_PART_RUNDOWN_V2.cshtml" />
+    <Content Include="Views\TB_M_SUPPLIER_PIC\_TB_M_SUPPLIER_PICImport.cshtml" />
+    <Content Include="Views\TB_R_PRODUCTION_PLAN_M_V2\_TB_R_PRODUCTION_PLAN_M_V2Import.cshtml" />
+    <Content Include="Views\TB_R_PRODUCTION_PLAN_M_V2\_TB_R_PRODUCTION_PLAN_M_V2List.cshtml" />
+    <Content Include="Views\TB_R_PRODUCTION_PLAN_M_V2\_TB_R_PRODUCTION_PLAN_M_V2Search.cshtml" />
+    <Content Include="Views\TB_R_PRODUCTION_PLAN_M_V2\TB_R_PRODUCTION_PLAN_M_V2.cshtml" />
+    <Content Include="Views\TB_R_PRODUCTION_PLAN_M_V2_FC\_TB_R_PRODUCTION_PLAN_M_V2_FCList.cshtml" />
+    <Content Include="Views\TB_R_PRODUCTION_PLAN_M_V2_FC\_TB_R_PRODUCTION_PLAN_M_V2_FCSearch.cshtml" />
+    <Content Include="Views\TB_R_PRODUCTION_PLAN_M_V2_FC\TB_R_PRODUCTION_PLAN_M_V2_FC.cshtml" />
+    <Content Include="Views\TB_R_PRODUCTION_PLAN_D_W\_TB_R_PRODUCTION_PLAN_D_WEdit.cshtml" />
+    <Content Include="Views\TB_R_PRODUCTION_PLAN_D_W\_TB_R_PRODUCTION_PLAN_D_WList.cshtml" />
+    <Content Include="Views\TB_R_PRODUCTION_PLAN_D_W\_TB_R_PRODUCTION_PLAN_D_WSearch.cshtml" />
+    <Content Include="Views\TB_R_PRODUCTION_PLAN_D_W\TB_R_PRODUCTION_PLAN_D_W.cshtml" />
+    <Content Include="Views\TB_R_CONTENT_LIST\UNPACKING_DOCK_W.cshtml" />
+    <Content Include="Views\TB_R_UNLOADING_PLAN_H\_TB_R_UNLOADING_PLAN_HImport_V2.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\Download\" />
+    <Folder Include="Content\Template\Download\" />
+    <Folder Include="Content\Upload\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\EmailService\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>30449</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace LSP.Models.TB_R_UNLOADING_PLAN
+{
+	public interface ITB_R_UNLOADING_PLAN
+	{
+		TB_R_UNLOADING_PLANInfo TB_R_UNLOADING_PLAN_Get(string id);       
+		
+		IList<TB_R_UNLOADING_PLANInfo> TB_R_UNLOADING_PLAN_Gets(string ID);
+        IList<UNLOADING_MAINInfo> TB_R_UNLOADING_PLAN_GetsDataByMAIN();
+        IList<TB_R_UNLOADING_PLANInfo> TB_R_UNLOADING_PLAN_GetsLINE();
+
+		IList<TB_R_UNLOADING_PLANInfo> TB_R_UNLOADING_PLAN_Search(TB_R_UNLOADING_PLANInfo obj);
+        
+		int TB_R_UNLOADING_PLAN_Insert(TB_R_UNLOADING_PLANInfo obj);
+		
+		int TB_R_UNLOADING_PLAN_Update(TB_R_UNLOADING_PLANInfo obj);
+
+        int TB_R_UNLOADING_PLAN_Insert_V2(TB_R_UNLOADING_PLANInfo obj);
+
+        int TB_R_UNLOADING_PLAN_Update_V2(TB_R_UNLOADING_PLANInfo obj);
+		
+		int TB_R_UNLOADING_PLAN_Delete(string id);
+
+        int TB_R_UNLOADING_PLAN_ResetActual(string id,string UPDATED_BY);
+
+        IList<UNLOADING_MAINInfo> TB_R_UNLOADING_PLAN_GetsDataByMAIN2();
+        IList<TB_R_UNLOADING_PLANInfo> TB_R_UNLOADING_PLAN_GetsLINE2();
+
+        IList<UNLOADING_MAINInfo> TB_R_UNLOADING_PLAN_GetsDataByMAIN3();
+        IList<TB_R_UNLOADING_PLANInfo> TB_R_UNLOADING_PLAN_GetsLINE3();
+        
+        IList<TB_R_UNLOADING_PLANInfo> TB_R_UNLOADING_PLAN_GetsLINE4();
+        IList<UNLOADING_MAINInfo> TB_R_UNLOADING_PLAN_GetsDataByMAIN4();
+
+        IList<TB_R_UNLOADING_PLANInfo> TB_R_UNLOADING_PLAN_GetsLINE4_DOCK(string SCREEN_NAME);
+        IList<UNLOADING_MAINInfo> TB_R_UNLOADING_PLAN_GetsDataByMAIN4_DOCK(string SCREEN_NAME);
+        IList<UNLOADING_MAINInfo> TB_R_UNLOADING_PLAN_GetsDataByMAIN4_DOCK_V2(string SCREEN_NAME);
+
+        IList<TB_R_UNLOADING_PLANInfo> TB_R_UNLOADING_PLAN_GetsLINE_DOCK(string SCREEN_NAME);
+        IList<UNLOADING_MAINInfo> TB_R_UNLOADING_PLAN_GetsDataByMAIN_DOCK(string SCREEN_NAME);
+
+    }
+}
+

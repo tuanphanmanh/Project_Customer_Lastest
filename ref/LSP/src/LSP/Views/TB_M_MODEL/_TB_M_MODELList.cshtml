@@ -1,0 +1,106 @@
+﻿@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = 10;
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.CallbackRouteValues = new { Controller = "TB_M_MODEL", Action = "GridCallback" };
+
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 8;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Left;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+    settings.SettingsBehavior.AllowFocusedRow = true;  
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "Op.";
+        c.Width = System.Web.UI.WebControls.Unit.Pixel(70);
+        c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        c.SetDataItemTemplateContent(
+            content =>
+            {
+                System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+                    strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Edit(this)' title='Edit'><i class='fa fa-pencil'></i></a>"));
+                }
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Delete"))
+                {
+                    strBuilder.Append(string.Concat(" <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Delete(this)'  title='Delete'><i class='fa fa-trash-o'></i></a>"));
+                }
+                Html.ViewContext.Writer.Write(strBuilder.ToString());
+            });
+    });
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "No.";
+            c.FieldName = "Row_No";
+            c.Width = 60;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "Model ID";
+            c.FieldName = "ID";
+            c.Width = 100;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "Model Name";
+            c.FieldName = "NAME";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "Abbreviation";
+            c.FieldName = "ABBREVIATION";
+        }
+    );
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "";
+        c.FieldName = "IS_ACTIVE";
+        c.SetDataItemTemplateContent(cc =>
+        {
+            Html.DevExpress().CheckBox(checkboxSettings =>
+            {
+                checkboxSettings.Name = "IS_ACTIVE_" + cc.KeyValue.ToString();
+                checkboxSettings.Checked = Convert.ToString(DataBinder.Eval(cc.DataItem, "IS_ACTIVE")) == "Y" ? true : false;
+                checkboxSettings.Properties.ClientSideEvents.CheckedChanged = "function() { return false; }";
+            }).Render(); 
+        });
+    });
+
+    //Vehicle Master
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+    settings.SettingsDetail.ShowDetailRow = true;
+    settings.SetDetailRowTemplateContent(c =>
+    {
+        ViewContext.Writer.Write(
+            "<b>VEHICLE_MASTER:</b> "+
+        string.Concat("<a class='btnCollectionNew AssignColor' href='#editVehicle' data-id='", DataBinder.Eval(c.DataItem, "ID"),
+                "' onclick='return VEHICLE_New(this)' title='NEW TB_M_VEHICLE_MASTER' >Assign VEHICLE</a>",
+
+                "<div class='clear'></div>"));
+            
+        Html.RenderAction("VEHICLE_MASTER_GridCallback",
+                new LSP.Models.TB_M_VEHICLE_MASTER.TB_M_VEHICLE_MASTERInfo() { MODEL_ID = int.Parse(DataBinder.Eval(c.DataItem, "ID").ToString()) });
+    });
+    settings.PreRender = (sender, e) =>
+    {
+        ((MVCxGridView)sender).DetailRows.ExpandRow(-1);
+    };
+
+}).Bind(LSP.Models.TB_M_MODEL.TB_M_MODELProvider.Instance.TB_M_MODEL_Search(Model ?? new LSP.Models.TB_M_MODEL.TB_M_MODELInfo())).GetHtml()

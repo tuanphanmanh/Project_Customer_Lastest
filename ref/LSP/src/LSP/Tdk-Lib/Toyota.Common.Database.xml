@@ -1,0 +1,740 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Toyota.Common.Database</name>
+    </assembly>
+    <members>
+        <member name="T:Toyota.Common.Database.BaseContextManager">
+            <summary>
+            Basic implementation of a context manager.
+            </summary>
+        </member>
+        <member name="T:Toyota.Common.Database.IDBContextManager">
+            <summary>
+            Manages creation of database context, <see cref="T:Toyota.Common.Database.IDBContext"/>.
+            It is submitted to the implementation whether to create database context on every request or using some pooling mechanism.
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContextManager.GetContext">
+            <summary>
+            Gets a database context using the manager's default criteria.
+            </summary>
+            <returns>Database context</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContextManager.GetContext(System.String)">
+            <summary>
+            Gets a database context by its name. 
+            If context name parameter is null or empty string,
+            then the implementation should return the default context, if any.
+            </summary>
+            <param name="name">Database context</param>
+            <returns>Database context instance</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContextManager.AddConnectionDescriptor(Toyota.Common.Database.ConnectionDescriptor)">
+            <summary>
+            Adds a connection descriptor. <see cref="T:Toyota.Common.Database.ConnectionDescriptor"/>.
+            </summary>
+            <param name="connectionDescriptor">Connection descriptor</param>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContextManager.GetConnectionDescriptor(System.String)">
+            <summary>
+            Gets a connection descriptor by its name. <see cref="T:Toyota.Common.Database.ConnectionDescriptor"/>.
+            </summary>
+            <param name="name">Name of descriptor</param>
+            <returns>Connection descriptor</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContextManager.SetConnectionDescriptor(Toyota.Common.Database.ConnectionDescriptor[])">
+            <summary>
+            Sets all connection descriptor supported by the manager. 
+            This will replace all existing connection descriptors.
+            <see cref="T:Toyota.Common.Database.ConnectionDescriptor"/>.
+            </summary>
+            <param name="connectionDescriptors">Array of connection descriptors</param>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContextManager.GetConnectionDescriptors">
+            <summary>
+            Gets all connection descriptors supported by the manager.
+            <see cref="T:Toyota.Common.Database.ConnectionDescriptor"/>.
+            </summary>
+            <returns>List of connection descriptors</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContextManager.SetDefaultConnectionDescriptor(Toyota.Common.Database.ConnectionDescriptor)">
+            <summary>
+            Sets default connection descriptors.
+            Default connection descriptors is used by <c>GetContext</c>, <see cref="M:Toyota.Common.Database.IDBContextManager.GetContext(System.String)"/>.
+            <see cref="T:Toyota.Common.Database.ConnectionDescriptor"/>.
+            </summary>
+            <param name="connectionDescriptor">Connection descriptors</param>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContextManager.SetDefaultConnectionDescriptor(System.String)">
+            <summary>
+            Sets default connection descriptors by referring to existing descriptor's name.
+            <see cref="M:Toyota.Common.Database.IDBContextManager.SetDefaultConnectionDescriptor(Toyota.Common.Database.ConnectionDescriptor)"/>.
+            <see cref="T:Toyota.Common.Database.ConnectionDescriptor"/>.
+            </summary>
+            <param name="name">Existing connection descriptor name</param>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContextManager.GetDefaultConnectionDescriptor">
+            <summary>
+            Gets default connection descriptor.
+            <see cref="T:Toyota.Common.Database.ConnectionDescriptor"/>.
+            </summary>
+            <returns>Default connection description</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContextManager.AddSqlLoader(Toyota.Common.Database.ISqlLoader)">
+            <summary>
+            Add SQL loader. 
+            <see cref="T:Toyota.Common.Database.ISqlLoader"/>.
+            </summary>
+            <param name="sqlLoader">SQL loader</param>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContextManager.RemoveSqlLoader(Toyota.Common.Database.ISqlLoader)">
+            <summary>
+            Remove SQL loader. 
+            <see cref="T:Toyota.Common.Database.ISqlLoader"/>.
+            </summary>
+            <param name="sqlLoader">SQL loader</param>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContextManager.GetSqlLoaders">
+            <summary>
+            Gets all sql loader supported by the manager.
+            <see cref="T:Toyota.Common.Database.ISqlLoader"/>.
+            </summary>
+            <returns>List of SQL loader</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContextManager.LoadSqlScript(System.String)">
+            <summary>
+            Loads SQL script by its name. 
+            The SQL script will be loaded by consulting to registered SQL Loaders.
+            <see cref="T:Toyota.Common.Database.ISqlLoader"/>.
+            </summary>
+            <param name="name">SQL script name</param>
+            <returns>SQL script</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContextManager.Close">
+            <summary>
+            Closes the manager.
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContextManager.SetContextExecutionMode(Toyota.Common.Database.DBContextExecutionMode)">
+            <summary>
+            Sets execution mode. This is the execution mode of the manager not the database context.
+            The manager will use its execution mode as a default mode for newly created database context.
+            This will only affect next newly created database context,
+            previous created database context will not be affected.
+            <see cref="T:Toyota.Common.Database.DBContextExecutionMode"/>
+            </summary>
+            <param name="contextExecutionMode">Execution mode</param>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContextManager.GetContextExecutionMode">
+            <summary>
+            Gets current execution mode. 
+            This is the execution mode of the manager, not the database context.
+            </summary>
+            <returns>Current execution mode of the manager</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseContextManager.#ctor(Toyota.Common.Database.ISqlLoader[],Toyota.Common.Database.ConnectionDescriptor[])">
+            <summary>
+            Creates instance of this class.
+            </summary>
+            <param name="sqlLoaders">Supported SQL loaders</param>
+            <param name="connectionDescriptors">Connection descriptors used to connect to database</param>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseContextManager.AddSqlLoader(Toyota.Common.Database.ISqlLoader)">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContextManager"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseContextManager.RemoveSqlLoader(Toyota.Common.Database.ISqlLoader)">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContextManager"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseContextManager.GetSqlLoaders">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContextManager"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseContextManager.LoadSqlScript(System.String)">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContextManager"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseContextManager.GetContext(System.String)">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContextManager"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseContextManager.GetContext">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContextManager"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseContextManager.AddConnectionDescriptor(Toyota.Common.Database.ConnectionDescriptor)">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContextManager"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseContextManager.GetConnectionDescriptors">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContextManager"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseContextManager.SetConnectionDescriptor(Toyota.Common.Database.ConnectionDescriptor[])">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContextManager"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseContextManager.GetConnectionDescriptor(System.String)">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContextManager"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseContextManager.SetDefaultConnectionDescriptor(Toyota.Common.Database.ConnectionDescriptor)">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContextManager"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseContextManager.SetDefaultConnectionDescriptor(System.String)">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContextManager"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseContextManager.GetDefaultConnectionDescriptor">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContextManager"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseContextManager.Close">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContextManager"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseContextManager.SetContextExecutionMode(Toyota.Common.Database.DBContextExecutionMode)">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContextManager"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseContextManager.GetContextExecutionMode">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContextManager"/>
+            </summary>
+        </member>
+        <member name="T:Toyota.Common.Database.BaseDBContext">
+            <summary>
+            Basic implementation of a database context
+            </summary>
+        </member>
+        <member name="T:Toyota.Common.Database.IDBContext">
+            <summary>
+            A representation of a database context. A database context holds one connection to a database.
+            </summary>
+            <remarks>
+            The term context used here is by means of a "channel", hence database context means a channel to a database.
+            Using this channel we hopely can do something to the database by using its language, i.e. SQL language.
+            <para>
+                All SQL script execution methods support indexed and named parameter. 
+                Indexed parameter uses integer numbers, hence first parameter is written <c>@0</c> ... and so on.
+                Named parameters uses human readable words, e.g. if we have a parameter denoting a username we can write the parameter as <c>@username</c>.
+            </para>
+            <example>
+            For indexed parameter we can execute an SQL script like following,
+            <code>
+                /* db is a database context */
+                var result = db.Query("select * from tb_r_notification where (sender = @0) and (recipient = @1)", new object[] { "lufty", "yogi" }");
+                IList&lt;Notification&gt; result = db.Fetch&lt;Notification&gt;("select * from tb_r_notification where (sender = @0) and (recipient = @1)", new object[] { "lufty", "yogi" }");
+            </code>
+            
+            For indexed parameter we can execute an SQL script like following,
+            <code>
+                /* db is a database context */
+                var result = db.Query("select * from tb_r_notification where (sender = @sender) and (recipient = @recipient)", new { sender = "lufty", recipient = "yogi" }");
+                IList&lt;Notification&gt; result = db.Fetch&lt;Notification&gt;("select * from tb_r_notification where (sender = @sender) and (recipient = @recipient)", new { sender = "lufty", recipient = "yogi" }");
+            </code>
+            </example>
+            </remarks>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContext.GetName">
+            <summary>
+            Gets the name of this context
+            </summary>
+            <returns>Name of the context</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContext.Query``1(System.String,System.Object[])">
+            <summary>
+            Executes an SQL query script.
+            <c>Query</c> returns an enumerator which can be used by the implementation to use a "lazy loading" mechanism for the result.
+            </summary>
+            <typeparam name="T">Type of the data model</typeparam>
+            <param name="sqlContext">SQL script</param>
+            <param name="args">SQL script's arguments</param>
+            <returns>Data result in an enumerator</returns> 
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContext.Fetch``1(System.String,System.Object[])">
+            <summary>
+            Executes an SQL query script.
+            Basically, <c>Fetch</c> executes a script in the same way as <c>Query</c> does. 
+            The only difference is <c>Fetch</c> returns a list of data models. Hence the implementation has to pull all resulted data from the
+            script execution and packs them into their models on a single list.
+            </summary>
+            <typeparam name="T">Type of the data model</typeparam>
+            <param name="sqlContext">SQL script</param>
+            <param name="args">SQL script's arguments</param>
+            <returns>List of data models</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContext.FetchByPage``1(System.String,System.Int64,System.Int64,System.Object[])">
+            <summary>
+            Pulling huge number of data is painful, especially when we use <c>Fetch</c>, it "hurts" the cpu and "suffocates" the memory :D. 
+            <c>FetchByPage</c> reduce the pain by pulling data result of executed script in form of "blocks" or by other common term "page".
+            For example if we have 10.000 records, instead of pulling all of them, we pull them partially page by page 
+            which every page contains, let say, 50 data. This way we dont waste memory and gain some cpu performance.
+            It is submitted to the implementation on what terms does the paging process applies, such as whether the script needs to have 
+            some particular syntax or a particular structure.
+            </summary>
+            <typeparam name="T">Type of data model</typeparam>
+            <param name="sqlContext">SQL script</param>
+            <param name="pageNumber">Current page number</param>
+            <param name="pageSize">Number of data contained on a page</param>
+            <param name="args">SQL script's arguments</param>
+            <returns>Instance of <c>IPagedData</c> which type is <c>T</c></returns>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContext.SingleOrDefault``1(System.String,System.Object[])">
+            <summary>
+            Executes an SQL query script and returns only one data if any data successfully pulled from the database.
+            It is submitted to the implementation on what terms does it choose which data to be pulled from the whole result.
+            The implementation also can apply some additional rules as a requirement, such as if there are more than one data 
+            resulted from the database then the method will throw an exception. Or contrary, the method will return the first data 
+            available from the database.
+            </summary>
+            <typeparam name="T">Type of the data model</typeparam>
+            <param name="sqlContext">SQL script</param>
+            <param name="args">SQL script's arguments</param>
+            <returns>Data object</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContext.ExecuteScalar``1(System.String,System.Object[])">
+            <summary>
+            Executes an SQL query script and returns the first data of whole data successfully pulled from the database.
+            So the difference between <c>ExecuteScalar</c> and <c>SingleOrDefault</c> 
+            is that <c>ExecuteScalar</c> defines a fixed policy that must be applied to the implementation.
+            </summary>
+            <typeparam name="T">Type of the data model</typeparam>
+            <param name="sqlContext">SQL script</param>
+            <param name="args">SQL script's arguments</param>
+            <returns>Data object</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContext.Execute(System.String,System.Object[])">
+            <summary>
+            Executes an SQL non-query script. SQL operations applies to this method such as UPDATE, DELETE, DROP, ALTER, 
+            and soon ... including stored procedure execution.
+            </summary>
+            <param name="sqlContext">SQL script</param>
+            <param name="args">SQL script's arguments</param>
+            <returns>Number of row affected</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContext.BeginTransaction">
+            <summary>
+            Mark the start of transactional operation. 
+            This method has to ensure that all database operation between this method and subsequent <c>CommitTransaction</c> call are transactioned,
+            meaning that if any error, exception, or unexpected condition occurs then all affected data from operations prior that error, 
+            exception, or unexpected condition will be rolled back to their previous state.
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContext.AbortTransaction">
+            <summary>
+            Abort transaction marked by <c>BeginTransaction</c>, <see cref="M:Toyota.Common.Database.IDBContext.BeginTransaction"/>.
+            The implementer should perform rollback process before completely close the transaction.
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContext.CommitTransaction">
+            <summary>
+            Mark the end of transactional operation and perform a commit process.
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContext.Close">
+            <summary>
+            Close the context.
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContext.GetSqlLoaders">
+            <summary>
+            Gets all query loader supported by the manager.
+            </summary>
+            <returns>List of query loader</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContext.LoadSqlScript(System.String)">
+            <summary>
+            Loads SQL script by its name. 
+            The SQL script will be loaded by consulting to registered SQL Loaders.
+            <see cref="T:Toyota.Common.Database.ISqlLoader"/>.
+            </summary>
+            <param name="name">SQL script name</param>
+            <returns>SQL script</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContext.SetExecutionMode(Toyota.Common.Database.DBContextExecutionMode)">
+            <summary>
+            Sets the execution mode. This will only affect next operation performed.
+            Implementer should set the default mode to Direct.
+            <see cref="T:Toyota.Common.Database.DBContextExecutionMode"/>
+            </summary>
+            <param name="executionMode">Execution mode</param>
+        </member>
+        <member name="M:Toyota.Common.Database.IDBContext.GetExecutionMode">
+            <summary>
+            Gets the execution mode.
+            <see cref="T:Toyota.Common.Database.DBContextExecutionMode"/>
+            </summary>
+            <returns>Execution mode</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseDBContext.#ctor(Toyota.Common.Database.ConnectionDescriptor,System.Collections.Generic.IList{Toyota.Common.Database.ISqlLoader})">
+            <summary>
+            Creates instance of this class
+            </summary>
+            <param name="connectionDescriptor">Connection descriptor used to connect to database</param>
+            <param name="sqlLoaders">Supported SQL loaders</param>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseDBContext.GetName">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContext"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseDBContext.Query``1(System.String,System.Object[])">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContext"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseDBContext.Fetch``1(System.String,System.Object[])">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContext"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseDBContext.FetchByPage``1(System.String,System.Int64,System.Int64,System.Object[])">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContext"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseDBContext.SingleOrDefault``1(System.String,System.Object[])">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContext"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseDBContext.ExecuteScalar``1(System.String,System.Object[])">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContext"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseDBContext.Execute(System.String,System.Object[])">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContext"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseDBContext.BeginTransaction">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContext"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseDBContext.CommitTransaction">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContext"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseDBContext.AbortTransaction">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContext"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseDBContext.Close">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContext"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseDBContext.GetSqlLoaders">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContext"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseDBContext.SetExecutionMode(Toyota.Common.Database.DBContextExecutionMode)">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContext"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseDBContext.GetExecutionMode">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContext"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseDBContext.LoadSqlContext(System.String)">
+            <summary>
+            Load the sql context given by the argument. 
+            If current execution mode is ByName, it will ask SQL script
+            of the context from registered SQL Loaders.
+            If current execution mode is Direct, it will return back the passed sql context to the caller.
+            </summary>
+            <param name="sqlContext">SQL context</param>
+            <returns>SQL script or the SQL context itself</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseDBContext.LoadSqlScript(System.String)">
+            <summary>
+            <see cref="T:Toyota.Common.Database.IDBContext"/>
+            </summary>
+        </member>
+        <member name="T:Toyota.Common.Database.ConnectionDescriptor">
+            <summary>
+            Holds informations about a database connection.
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.ConnectionDescriptor.#ctor">
+            <summary>
+            Creates instance of this class using default criteria.
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.ConnectionDescriptor.#ctor(System.String,System.String)">
+            <summary>
+            Creates instance of this class using default provider (<c>System.Data.SqlClient</c>).
+            </summary>
+            <param name="name">Name of this connection descriptor</param>
+            <param name="connectionString">Connection string</param>
+        </member>
+        <member name="M:Toyota.Common.Database.ConnectionDescriptor.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Creates instance of this class.
+            </summary>
+            <param name="name">Name of this connection descriptor</param>
+            <param name="connectionString">Connection string</param>
+            <param name="providerName">Full namespace of the client provider</param>
+        </member>
+        <member name="M:Toyota.Common.Database.ConnectionDescriptor.ToString">
+            <summary>
+            A string representation of the connection descriptor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Toyota.Common.Database.ConnectionDescriptor.Name">
+            <summary>
+            Name of this connection descriptor
+            </summary>
+        </member>
+        <member name="P:Toyota.Common.Database.ConnectionDescriptor.ConnectionString">
+            <summary>
+            Connection string
+            </summary>
+        </member>
+        <member name="P:Toyota.Common.Database.ConnectionDescriptor.ProviderName">
+            <summary>
+            Full namespace of the client provider.
+            <example><c>System.Data.SqlClient</c></example>
+            </summary>
+        </member>
+        <member name="P:Toyota.Common.Database.ConnectionDescriptor.IsDefault">
+            <summary>
+            Sets and Gets whether this is the default connection descriptor on the database manager.
+            <see cref="T:Toyota.Common.Database.IDBContextManager"/>
+            </summary>
+        </member>
+        <member name="T:Toyota.Common.Database.DBContextExecutionMode">
+            <summary>
+            Types of database context's execution mode
+            </summary>
+        </member>
+        <member name="F:Toyota.Common.Database.DBContextExecutionMode.Direct">
+            <summary>
+            Direct means the database context will executes the SQL context as is.
+            Hence if we pass a string of SQL script, then it will executes the string directly
+            without consulting with the SQL Loaders.
+            </summary>
+        </member>
+        <member name="F:Toyota.Common.Database.DBContextExecutionMode.ByName">
+            <summary>
+            ByName means the database context will consults with the SQL Loaders first
+            before executing the SQL context, and then executes whatever SQL script
+            returned by the SQL Loaders.
+            </summary>
+        </member>
+        <member name="T:Toyota.Common.Database.IPagedData`1">
+            <summary>
+            Represents a page on data paging when performing fetch operation, <see cref="T:Toyota.Common.Database.IDBContext"/>.
+            </summary>
+            <typeparam name="T">Type of data model</typeparam>
+        </member>
+        <member name="M:Toyota.Common.Database.IPagedData`1.GetCurrentPage">
+            <summary>
+            Gets current page
+            </summary>
+            <returns>Current page</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.IPagedData`1.GetPageSize">
+            <summary>
+            Gets page size
+            </summary>
+            <returns>Page size</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.IPagedData`1.GetPageCount">
+            <summary>
+            Gets total page
+            </summary>
+            <returns>Tota page count</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.IPagedData`1.GetDataCount">
+            <summary>
+            Gets total data contained on all page
+            </summary>
+            <returns>Total data count</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.IPagedData`1.GetData">
+            <summary>
+            Gets data contained by this page
+            </summary>
+            <returns>List of data</returns>
+        </member>
+        <member name="M:Toyota.Common.Database.IPagedData`1.Clone``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Creates a new paged data using given list of data.
+            </summary>
+            <typeparam name="U">Type of the data</typeparam>
+            <param name="data">List of data</param>
+            <returns>Instance of paged data</returns>
+        </member>
+        <member name="T:Toyota.Common.Database.ISqlLoader">
+            <summary>
+            An SQL script loader. 
+            It is submitted to the implementater where the SQL script will be loaded from.
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.ISqlLoader.LoadScript(System.String)">
+            <summary>
+            Loads SQL script by referring to its name.
+            This method should suppress all exeption occurs when loading
+            the SQL script so the program flow can be retain.
+            If the loader cannot find any suitable script then just
+            return null value to the caller.
+            </summary>
+            <param name="name">Name of SQL script</param>
+            <returns>SQL script</returns>
+        </member>
+        <member name="T:Toyota.Common.Database.PagedData`1">
+            <summary>
+            A default implementation of <c>IPagedData</c>.
+            <see cref="!:Toyota.Common.Database.IPagedData"/>
+            </summary>
+            <typeparam name="T">Type of Data</typeparam>
+        </member>
+        <member name="M:Toyota.Common.Database.PagedData`1.#ctor">
+            <summary>
+            Constructs instance of this class
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.PagedData`1.#ctor(System.Collections.Generic.IList{`0})">
+            <summary>
+            Constructs instance of the class
+            </summary>
+            <param name="data">List of data to use</param>
+        </member>
+        <member name="M:Toyota.Common.Database.PagedData`1.GetCurrentPage">
+            <summary>
+            <see cref="!:Toyota.Common.Database.IPagedData"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.PagedData`1.SetCurrentPage(System.Int64)">
+            <summary>
+            <see cref="!:Toyota.Common.Database.IPagedData"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.PagedData`1.GetPageSize">
+            <summary>
+            <see cref="!:Toyota.Common.Database.IPagedData"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.PagedData`1.SetPageSize(System.Int64)">
+            <summary>
+            <see cref="!:Toyota.Common.Database.IPagedData"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.PagedData`1.GetPageCount">
+            <summary>
+            <see cref="!:Toyota.Common.Database.IPagedData"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.PagedData`1.SetPageCount(System.Int64)">
+            <summary>
+            <see cref="!:Toyota.Common.Database.IPagedData"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.PagedData`1.GetDataCount">
+            <summary>
+            <see cref="!:Toyota.Common.Database.IPagedData"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.PagedData`1.GetData">
+            <summary>
+            <see cref="!:Toyota.Common.Database.IPagedData"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.PagedData`1.SetData(System.Collections.Generic.IList{`0})">
+            <summary>
+            <see cref="!:Toyota.Common.Database.IPagedData"/>
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.PagedData`1.Clone``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            <see cref="!:Toyota.Common.Database.IPagedData"/>
+            </summary>
+        </member>
+        <member name="T:Toyota.Common.Database.AssemblyFileSqlLoader">
+            <summary>
+            Loads SQL script from .sql files inside an assembly.
+            </summary>
+        </member>
+        <member name="T:Toyota.Common.Database.BaseFileSqlLoader">
+            <summary>
+            Basic construct of file-based SQL loader. 
+            It's using .sql extension.
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseFileSqlLoader.#ctor(System.String)">
+            <summary>
+            Constructs instance of this class
+            </summary>
+            <param name="rootPath">Root path of the SQL file</param>
+        </member>
+        <member name="M:Toyota.Common.Database.BaseFileSqlLoader.LoadScript(System.String)">
+            <summary>
+            <see cref="T:Toyota.Common.Database.ISqlLoader"/>
+            </summary>
+        </member>
+        <member name="P:Toyota.Common.Database.BaseFileSqlLoader.RootPath">
+            <summary>
+            Root path of the SQL file.
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.AssemblyFileSqlLoader.#ctor(System.Reflection.Assembly,System.String)">
+            <summary>
+            Creates instance of this class.
+            </summary>
+            <param name="assembly">Assembly container of the script files</param>
+            <param name="rootNamespace">Root namespace which contains the script files</param>
+            <param name="extension">Script files extension</param>
+        </member>
+        <member name="M:Toyota.Common.Database.AssemblyFileSqlLoader.LoadScript(System.String)">
+            <summary>
+            <see cref="T:Toyota.Common.Database.ISqlLoader"/>
+            </summary>
+        </member>
+        <member name="T:Toyota.Common.Database.FileSqlLoader">
+            <summary>
+            Loads SQL script from a .sql file.
+            </summary>
+        </member>
+        <member name="M:Toyota.Common.Database.FileSqlLoader.#ctor(System.String)">
+            <summary>
+            Creates instance of this class
+            </summary>
+            <param name="rootPath">Root path of the SQL file</param>
+        </member>
+        <member name="M:Toyota.Common.Database.FileSqlLoader.LoadScript(System.String)">
+            <summary>
+            This loader will only load SQL files inside the root path 
+            by one level, it will not search subdirectories inside the root path.
+            <see cref="T:Toyota.Common.Database.ISqlLoader"/>
+            </summary>
+        </member>
+    </members>
+</doc>

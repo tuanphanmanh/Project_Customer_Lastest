@@ -1,0 +1,175 @@
+.login.login-1 .login-aside .aside-img {
+    min-height: 450px;
+}
+
+.login.login-1 .login-signin,
+.login.login-1 .login-signup,
+.login.login-1 .login-forgot {
+    display: none;
+}
+
+.login.login-1.login-signin-on .login-signup {
+    display: none;
+}
+
+.login.login-1.login-signin-on .login-signin {
+    display: block;
+}
+
+.login.login-1.login-signin-on .login-forgot {
+    display: none;
+}
+
+.login.login-1.login-signup-on .login-signup {
+    display: block;
+}
+
+.login.login-1.login-signup-on .login-signin {
+    display: none;
+}
+
+.login.login-1.login-signup-on .login-forgot {
+    display: none;
+}
+
+.login.login-1.login-forgot-on .login-signup {
+    display: none;
+}
+
+.login.login-1.login-forgot-on .login-signin {
+    display: none;
+}
+
+.login.login-1.login-forgot-on .login-forgot {
+    display: block;
+}
+
+@media (min-width: 992px) {
+    .login.login-1 .login-aside {
+        width: 100%;
+        max-width: 600px;
+    }
+    .login.login-1 .login-content {
+        width: 100%;
+        max-width: 500px;
+    }
+    .login.login-1 .login-content .login-form {
+        width: 100%;
+        max-width: 450px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1399.98px) {
+    .login.login-1 .login-aside {
+        width: 100%;
+        max-width: 450px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .login.login-1 .login-content .login-form {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .login.login-1 .aside-img {
+        min-height: 300px !important;
+        background-size: 400px;
+    }
+    .login.login-1 .login-content .login-form {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+.has-danger .form-control-feedback {
+    color: #fd397a;
+    margin-top: 0.2rem;
+    font-size: 0.85rem;
+    text-align: left;
+}
+
+ul.text-danger {
+    list-style: none;
+    color: #f4516c;
+    margin-top: 0.2rem;
+    font-size: 0.85rem;
+    text-align: left;
+    padding-left: 0;
+}
+
+.captcha-container {
+    margin: auto;
+    width: 70%;
+}
+
+
+.login-account .pt-15 { padding-top: 8rem !important; }
+.login-account .max-h-70px {  max-height: 70px!important; }
+.login-account.d-flex { justify-content: center; }
+.login-account .flex-row-auto,
+.login-account.flex-row-auto,
+.login-account .flex-column-fluid { flex: 1; }
+.login-account .form-control.form-control-solid{ margin-bottom: 6px; background-color: #f3f6f9; border-color: #f3f6f9;  color: #3f4254; font-size: 1.175rem; }
+.login-account .form-control.form-control-solid.active,
+.login-account .form-control.form-control-solid.focus { background-color: #ebedf3; border-color: #ebedf3; color: #3f4254; }
+.login-account .form-control.form-control-solid.py-7 { padding-top: 0.8rem !important; padding-bottom: 0.8rem !important; }
+
+@media (min-width: 992px) {
+    .login-account .login-aside { width: 100%; max-width: 660px;  }
+    .login-account .login-aside-content .login-form { width: 100%; position: inherit !important;}
+    .login-account .login-aside {
+        background-image: url(/assets/common/images/Toyota_Hybrid_Tour_3Xe_46.jpg); height: 100%;
+        height: 100%;
+        background-color: black;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        position: absolute;
+        width: 100vw !important;
+        min-width: 100vw !important;
+    }
+}
+@media (min-width: 1200px) {
+    .login-account h3, .login-account .h3 { font-size: 2.5vw; }
+
+}
+@media (min-width: 1300px) {
+    .login-account .login-aside {
+        position: absolute;
+        width: 100vw !important;
+        min-width: 100vw !important;
+        background-size: cover;
+    }
+}
+@media (max-width: 991.98px) {
+    .login-account.flex-row-auto .login-aside,
+    .login-account.flex-row-auto .login-aside.flex-row-auto { display: none !important; }
+    .login-account .login-aside-content {
+        background-image: url(/assets/common/images/Toyota_Hybrid_Tour_3Xe_46.jpg) !important; background-size: cover !important;
+    }
+}
+.login-account button.btn:not(.btn-outline):not(.btn-dashed):not(.border-hover):not(.border-active):not(.btn-flush):not(.btn-icon):not(.btn-light-primary) {
+    padding: calc(0.8rem + 0px) calc(1.5rem + 0px) !important; width: 100%;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    background: linear-gradient(90deg, #5e6a81 0%, #1169b8 28.02079618%, #1169b8 75.41663051%, #197f91 100%);
+    opacity: unset !important;
+}
+.login-account button.btn.btn-light-primary:not(.btn-outline):not(.btn-dashed):not(.border-hover):not(.border-active):not(.btn-flush):not(.btn-icon) {
+    padding: calc(0.8rem + 0px) calc(1.5rem + 0px) !important; width: 100%;
+    border: 1px solid transparent;
+    font-weight: 700;
+}
+.login-account button.btn.btn-light-primary:not(.btn-outline):not(.btn-dashed):not(.border-hover):not(.border-active):not(.btn-flush):not(.btn-icon):hover {
+    background: linear-gradient(90deg, #5e6a81 0%, #1169b8 28.02079618%, #1169b8 75.41663051%, #197f91 100%);
+    opacity: unset !important;
+}
+
+
+.login-padding {
+    padding: 4rem 3vw !important;
+    margin: 0 !important;
+}

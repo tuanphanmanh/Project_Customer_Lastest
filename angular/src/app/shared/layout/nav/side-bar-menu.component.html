@@ -1,0 +1,399 @@
+﻿<div id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false" [class]="menuClass">
+    <div *ngIf="'Pages.Business.CreateNewDocument' | permission" id="sidebarbtn" class="sidebarbtn" #sidebarbtn
+        style="justify-content: center;padding-top: 10px;padding-bottom: 10px;height: 65px;">
+        <button id="collap" class="collap" #collap (click)="createNewRequest()" ejs-button [isPrimary]="true"
+            cssClass="e-outline" iconCss="fa-solid fa-square-plus"></button>
+        <button id="expand" class="expand" #expand (click)="createNewRequest()" ejs-button [isPrimary]="true"
+            cssClass="e-outline" iconCss="fa-solid fa-square-plus">{{ 'Create' | localize }}</button>
+    </div>
+    <div class="menu-item mb-5 mt-5" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"
+        *ngIf="currentTheme.baseSettings.menu.searchActive">
+        <menu-search-bar></menu-search-bar>
+    </div>
+    <ng-container [ngTemplateOutlet]="menuListTemplate"></ng-container>
+</div>
+<div data-kt-menu="true" data-kt-menu-expand="false" class="account">
+    <div class="py-2">
+        <a [routerLink]="'/app/main/account-setting'" style="display: flex; align-items: center;"
+            [class]="{ active: checkItemActive('/app/main/account-setting') }" routerLinkActive="active" class="menu-link">
+            <div class="menu-icon-style">
+                <div>
+                    <span class="menu-icon">
+                        <i [ngClass]="'fa-regular fa-circle-user'" style="font-size: 1.5em;"></i>
+                    </span>
+                </div>
+            </div>
+            <div style="padding-left: 2rem; font-weight: 600;">
+                <span class="menu-title">{{ 'MyAccount' | localize }}</span>
+            </div>
+        </a>
+    </div>
+    <div class="py-2">
+        <a style="display: flex; align-items: center; cursor: pointer;" (click)="logout()"
+            routerLinkActive="active" class="menu-link">
+            <div class="menu-icon-style">
+                <svg class="group-9" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M10.24 0C13.385 0 16.297 1.395 18.228 3.744C18.283 3.81059 18.3241 3.88756 18.3487 3.97033C18.3734 4.05311 18.3811 4.14 18.3715 4.22583C18.3619 4.31167 18.3351 4.39469 18.2928 4.46997C18.2504 4.54524 18.1934 4.61123 18.125 4.664C17.9858 4.7731 17.8096 4.82368 17.6337 4.80501C17.4579 4.78634 17.2962 4.69989 17.183 4.564C16.3386 3.54122 15.2778 2.71863 14.0769 2.15557C12.8761 1.59251 11.5653 1.30302 10.239 1.308C5.324 1.308 1.339 5.2 1.339 10C1.339 14.8 5.324 18.692 10.239 18.692C11.5844 18.6971 12.9137 18.3993 14.1282 17.8206C15.3428 17.2419 16.4115 16.3971 17.255 15.349C17.3663 15.2117 17.5266 15.1231 17.7021 15.102C17.8776 15.0809 18.0544 15.129 18.195 15.236C18.264 15.2879 18.3218 15.3531 18.3651 15.4277C18.4084 15.5024 18.4362 15.585 18.4469 15.6706C18.4577 15.7563 18.4511 15.8432 18.4275 15.9262C18.404 16.0093 18.364 16.0867 18.31 16.154C16.382 18.564 13.431 20 10.24 20C4.583 20 0 15.523 0 10C0 4.477 4.584 0 10.24 0ZM17.098 7.16L19.804 9.867C20.066 10.128 20.071 10.547 19.816 10.803L17.172 13.446C17.0465 13.5688 16.8775 13.6367 16.7019 13.6348C16.5264 13.6329 16.3588 13.5614 16.236 13.436C16.1737 13.3752 16.124 13.3028 16.0897 13.2228C16.0554 13.1428 16.0372 13.0568 16.0362 12.9698C16.0352 12.8827 16.0513 12.7964 16.0837 12.7156C16.1161 12.6348 16.1641 12.5612 16.225 12.499L17.772 10.952H7.462C7.37506 10.9531 7.28877 10.937 7.20805 10.9047C7.12733 10.8724 7.05375 10.8245 6.99154 10.7638C6.92932 10.703 6.87968 10.6307 6.84544 10.5507C6.8112 10.4708 6.79304 10.3849 6.792 10.298C6.792 9.936 7.092 9.643 7.462 9.643H17.731L16.173 8.085C16.0474 7.96232 15.9758 7.7948 15.9737 7.61928C15.9716 7.44375 16.0394 7.27459 16.162 7.149C16.2876 7.02636 16.4568 6.95863 16.6323 6.96069C16.8078 6.96275 16.9753 7.03444 17.098 7.16Z"
+                        fill="#3F2BC8" />
+                </svg>
+            </div>
+            <div style="padding-left: 2rem; font-weight: 600;">
+                <span class="menu-title">{{ 'Logout' | localize }}</span>
+            </div>
+        </a>
+    </div>
+</div>
+
+<ng-template #menuListTemplate>
+    <ng-container *ngFor="let child of menu.items">
+        <ng-container *ngIf="showMenuItem(child)" [ngTemplateOutlet]="mMenuItem"
+            [ngTemplateOutletContext]="{ item: child, parentItem: null }"></ng-container>
+    </ng-container>
+</ng-template>
+
+<ng-template #mMenuItem let-item="item" let-parentItem="parentItem">
+    <div *ngIf="showMenuItem(item)" [attr.data-kt-menu-trigger]="item.items.length ? 'click' : null"
+        [ngClass]="getItemCssClasses(item, parentItem)">
+        <!-- if menu item hasn't submenu -->
+        <a *ngIf="!item.items.length && !item.external" [queryParams]="item.parameters" [routerLink]="item.route"
+            routerLinkActive="active" class="menu-link" [ngClass]="{ 'without-sub': !item.items.length }">
+            <ng-container [ngTemplateOutlet]="mMenuItemText"
+                [ngTemplateOutletContext]="{ item: item, parentItem: parentItem }"></ng-container>
+        </a>
+        <a *ngIf="!item.items.length && item.external" [attr.href]="item.route" target="_blank" class="menu-link">
+            <ng-container [ngTemplateOutlet]="mMenuItemText"
+                [ngTemplateOutletContext]="{ item: item, parentItem: parentItem }"></ng-container>
+        </a>
+
+        <!-- if menu item has submenu child  -->
+        <a href="javascript:;" *ngIf="item.items.length" class="menu-link menu-toggle"
+            [ngClass]="{ active: isMenuItemIsActive(item) }">
+            <ng-container [ngTemplateOutlet]="mMenuItemText"
+                [ngTemplateOutletContext]="{ item: item, parentItem: parentItem }"></ng-container>
+        </a>
+
+        <!-- if menu item has submenu child then recursively call new menu item component -->
+        <div *ngIf="item.items.length" [class]="getSubMenuItemCssClass(item, parentItem)"
+            [style]="ui.getLeftAsideSubMenuStyles()">
+            <div class="menu-subnav">
+                <ng-container *ngFor="let child of item.items">
+                    <ng-container [ngTemplateOutlet]="mMenuItem"
+                        [ngTemplateOutletContext]="{ item: child, parentItem: item }"></ng-container>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #mMenuItemText let-item="item" let-parentItem="parentItem">
+    <!-- if menu item has icon -->
+    <div class="menu-icon-style"
+        *ngIf="item.icon !== 'esign-dashboard' && item.icon !== 'esign-document' && item.icon !== 'esign-transfer'">
+        <div>
+            <span class="menu-icon" *ngIf="item.icon" style="height: 2.5em;">
+                <i [ngClass]="item.icon" style="font-size: 1.5em; padding-left: 0.5rem; padding-top: 0.5rem;"></i>
+            </span>
+        </div>
+    </div>
+    <div class="menu-icon-style" *ngIf="item.icon === 'esign-dashboard'">
+        <div class="vuesax-bold-add">
+            <svg class="category" width="25" height="25" viewBox="0 0 20 20" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M4.16675 8.33268H5.83341C7.50008 8.33268 8.33341 7.49935 8.33341 5.83268V4.16602C8.33341 2.49935 7.50008 1.66602 5.83341 1.66602H4.16675C2.50008 1.66602 1.66675 2.49935 1.66675 4.16602V5.83268C1.66675 7.49935 2.50008 8.33268 4.16675 8.33268Z"
+                    stroke="#3F2BC8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path
+                    d="M14.1667 8.33268H15.8334C17.5001 8.33268 18.3334 7.49935 18.3334 5.83268V4.16602C18.3334 2.49935 17.5001 1.66602 15.8334 1.66602H14.1667C12.5001 1.66602 11.6667 2.49935 11.6667 4.16602V5.83268C11.6667 7.49935 12.5001 8.33268 14.1667 8.33268Z"
+                    stroke="#3F2BC8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path
+                    d="M14.1667 18.3327H15.8334C17.5001 18.3327 18.3334 17.4993 18.3334 15.8327V14.166C18.3334 12.4993 17.5001 11.666 15.8334 11.666H14.1667C12.5001 11.666 11.6667 12.4993 11.6667 14.166V15.8327C11.6667 17.4993 12.5001 18.3327 14.1667 18.3327Z"
+                    stroke="#3F2BC8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path
+                    d="M4.16675 18.3327H5.83341C7.50008 18.3327 8.33341 17.4993 8.33341 15.8327V14.166C8.33341 12.4993 7.50008 11.666 5.83341 11.666H4.16675C2.50008 11.666 1.66675 12.4993 1.66675 14.166V15.8327C1.66675 17.4993 2.50008 18.3327 4.16675 18.3327Z"
+                    stroke="#3F2BC8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </div>
+        <div class="vuesax-bold-add1">
+            <svg class="category" width="25" height="25" viewBox="0 0 20 20" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M6.03341 1.66602H4.45008C2.62508 1.66602 1.66675 2.62435 1.66675 4.44102V6.02435C1.66675 7.84102 2.62508 8.79935 4.44175 8.79935H6.02508C7.84175 8.79935 8.80008 7.84102 8.80008 6.02435V4.44102C8.80841 2.62435 7.85008 1.66602 6.03341 1.66602Z"
+                    fill="white" />
+                <path
+                    d="M15.5583 1.66602H13.975C12.1583 1.66602 11.2 2.62435 11.2 4.44102V6.02435C11.2 7.84102 12.1583 8.79935 13.975 8.79935H15.5583C17.375 8.79935 18.3333 7.84102 18.3333 6.02435V4.44102C18.3333 2.62435 17.375 1.66602 15.5583 1.66602Z"
+                    fill="white" />
+                <path
+                    d="M15.5583 11.1914H13.975C12.1583 11.1914 11.2 12.1497 11.2 13.9664V15.5497C11.2 17.3664 12.1583 18.3247 13.975 18.3247H15.5583C17.375 18.3247 18.3333 17.3664 18.3333 15.5497V13.9664C18.3333 12.1497 17.375 11.1914 15.5583 11.1914Z"
+                    fill="white" />
+                <path
+                    d="M6.03341 11.1914H4.45008C2.62508 11.1914 1.66675 12.1497 1.66675 13.9664V15.5497C1.66675 17.3747 2.62508 18.3331 4.44175 18.3331H6.02508C7.84175 18.3331 8.80008 17.3747 8.80008 15.5581V13.9747C8.80841 12.1497 7.85008 11.1914 6.03341 11.1914Z"
+                    fill="white" />
+            </svg>
+        </div>
+    </div>
+    <div class="menu-icon-style" *ngIf=" item.icon === 'esign-document' ">
+        <div class="vuesax-bold-add">
+            <svg class="edit" width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M13.4917 1.66602H6.50841C3.47508 1.66602 1.66675 3.47435 1.66675 6.50768V13.4827C1.66675 16.5243 3.47508 18.3327 6.50841 18.3327H13.4834C16.5167 18.3327 18.3251 16.5243 18.3251 13.491V6.50768C18.3334 3.47435 16.5251 1.66602 13.4917 1.66602ZM9.12508 14.591C8.88341 14.8327 8.42508 15.066 8.09175 15.116L6.04175 15.4077C5.96675 15.416 5.89175 15.4243 5.81675 15.4243C5.47508 15.4243 5.15841 15.3077 4.93341 15.0827C4.65841 14.8077 4.54175 14.4077 4.60841 13.966L4.90008 11.916C4.95008 11.5743 5.17508 11.1243 5.42508 10.8827L9.14175 7.16602C9.20841 7.34102 9.27508 7.51602 9.36675 7.71602C9.45008 7.89102 9.54175 8.07435 9.64175 8.24102C9.72508 8.38268 9.81675 8.51602 9.89175 8.61602C9.98341 8.75768 10.0917 8.89102 10.1584 8.96602C10.2001 9.02435 10.2334 9.06602 10.2501 9.08268C10.4584 9.33268 10.7001 9.56602 10.9084 9.74102C10.9667 9.79935 11.0001 9.83268 11.0167 9.84102C11.1417 9.94102 11.2667 10.041 11.3751 10.116C11.5084 10.216 11.6417 10.3077 11.7834 10.3827C11.9501 10.4827 12.1334 10.5743 12.3167 10.666C12.5084 10.7493 12.6834 10.8243 12.8584 10.8827L9.12508 14.591ZM14.4751 9.24102L13.7084 10.016C13.6584 10.066 13.5917 10.091 13.5251 10.091C13.5001 10.091 13.4667 10.091 13.4501 10.0827C11.7584 9.59935 10.4084 8.24935 9.92508 6.55768C9.90008 6.46602 9.92508 6.36602 9.99175 6.30768L10.7667 5.53268C12.0334 4.26602 13.2417 4.29102 14.4834 5.53268C15.1167 6.16602 15.4251 6.77435 15.4251 7.40768C15.4167 8.00768 15.1084 8.60768 14.4751 9.24102Z"
+                    fill="#3F2BC8" />
+            </svg>
+        </div>
+        <div class="vuesax-bold-add1">
+            <svg class="component-34" width="25" height="25" viewBox="0 0 20 20" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M13.4917 1.66602H6.50841C3.47508 1.66602 1.66675 3.47435 1.66675 6.50768V13.4827C1.66675 16.5244 3.47508 18.3327 6.50841 18.3327H13.4834C16.5167 18.3327 18.3251 16.5244 18.3251 13.491V6.50768C18.3334 3.47435 16.5251 1.66602 13.4917 1.66602ZM9.12508 14.591C8.88341 14.8327 8.42508 15.066 8.09175 15.116L6.04175 15.4077C5.96675 15.416 5.89175 15.4243 5.81675 15.4243C5.47508 15.4243 5.15841 15.3077 4.93341 15.0827C4.65841 14.8077 4.54175 14.4077 4.60841 13.966L4.90008 11.916C4.95008 11.5743 5.17508 11.1243 5.42508 10.8827L9.14175 7.16602C9.27419 7.5393 9.4416 7.89923 9.64175 8.24102C9.72508 8.38268 9.81675 8.51602 9.89175 8.61602C9.98341 8.75768 10.0917 8.89102 10.1584 8.96602C10.2001 9.02435 10.2334 9.06602 10.2501 9.08268C10.4584 9.33268 10.7001 9.56602 10.9084 9.74102C10.9667 9.79935 11.0001 9.83268 11.0167 9.84102C11.1417 9.94102 11.2667 10.041 11.3751 10.116C11.5084 10.216 11.6417 10.3077 11.7834 10.3827C11.9501 10.4827 12.1334 10.5743 12.3167 10.666C12.5084 10.7493 12.6834 10.8243 12.8584 10.8827L9.12508 14.591ZM14.4751 9.24102L13.7084 10.016C13.6843 10.04 13.6557 10.0589 13.6242 10.0718C13.5928 10.0847 13.5591 10.0912 13.5251 10.091C13.5001 10.091 13.4667 10.091 13.4501 10.0827C12.613 9.84001 11.8508 9.38958 11.2345 8.77327C10.6182 8.15697 10.1677 7.39481 9.92508 6.55768C9.90008 6.46602 9.92508 6.36602 9.99175 6.30768L10.7667 5.53268C12.0334 4.26602 13.2417 4.29102 14.4834 5.53268C15.1167 6.16602 15.4251 6.77435 15.4251 7.40768C15.4167 8.00768 15.1084 8.60768 14.4751 9.24102Z"
+                    fill="white" />
+            </svg>
+        </div>
+    </div>
+    <div class="menu-icon-style" *ngIf=" item.icon === 'esign-transfer'">
+        <div class="vuesax-bold-add">
+            <svg class="mdi-file-transfer-outline" width="25" height="25" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_1552_43508)">
+                    <path
+                        d="M13.09 20C13.21 20.72 13.46 21.39 13.81 22H6C4.89 22 4 21.11 4 20V4C4 3.46957 4.21071 2.96086 4.58579 2.58579C4.96086 2.21071 5.46957 2 6 2H14L20 8V13.09C19.67 13.04 19.34 13 19 13C18.66 13 18.33 13.04 18 13.09V9H13V4H6V20H13.09ZM23 17L20 14.5V16H16V18H20V19.5L23 17ZM18 18.5L15 21L18 23.5V22H22V20H18V18.5Z"
+                        fill="#3F2BC8" stroke="white" stroke-width="0.5" />
+                </g>
+                <defs>
+                    <clipPath id="clip0_1552_43508">
+                        <rect width="24" height="24" fill="white" />
+                    </clipPath>
+                </defs>
+            </svg>
+        </div>
+        <div class="vuesax-bold-add1">
+            <svg class="mdi-file-transfer" width="25" height="25" viewBox="0 0 20 20" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M15.8333 10.8327C16.1166 10.8327 16.3916 10.866 16.6666 10.9077V6.66602L11.6666 1.66602H4.99992C4.07492 1.66602 3.33325 2.40768 3.33325 3.33268V16.666C3.33325 17.591 4.07492 18.3327 4.99992 18.3327H11.5083C11.0833 17.5993 10.8333 16.7493 10.8333 15.8327C10.8333 13.0743 13.0749 10.8327 15.8333 10.8327ZM10.8333 2.91602L15.4166 7.49935H10.8333V2.91602ZM16.6666 16.2493V14.9993H13.3333V13.3327H16.6666V12.0827L19.1666 14.166L16.6666 16.2493ZM14.9999 16.666H18.3333V18.3327H14.9999V19.5827L12.4999 17.4993L14.9999 15.416V16.666Z"
+                    fill="white" />
+            </svg>
+        </div>
+    </div>
+
+    <div style="padding-left: 2rem;">
+        <ng-container *ngIf="!item.badge; else mMenuLinkBadge">
+            <!-- menu item title text -->
+            <span class="menu-title " *ngIf="!iconMenu || parentItem != null">{{ item.name | localize }}</span>
+        </ng-container>
+
+        <ng-template #mMenuLinkBadge>
+            <!-- menu item with badge -->
+            <span class="menu-link-title">
+                <span class="menu-link-wrap">
+                    <span class="menu-text">
+                        {{ item.name | localize }}
+                    </span>
+                    <span class="menu-link-badge">
+                        <span class="badge badge-primary" [ngClass]="item.badge.type">{{ item.badge.value }}</span>
+                    </span>
+                </span>
+            </span>
+        </ng-template>
+    </div>
+    <!-- if menu item has submenu child then put arrow icon -->
+    <span *ngIf="item.items.length && (!iconMenu || parentItem != null)" class="menu-arrow"></span>
+</ng-template>
+<!-- END: Left Aside -->
+<style>
+    .menu-icon-style {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 12px;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mdi-file-transfer-outline {
+        flex-shrink: 0;
+        position: relative;
+        overflow: visible;
+    }
+
+    .menu-rounded .menu-link {
+        border-radius: 30px;
+    }
+
+    [data-kt-app-layout=light-sidebar] .app-sidebar .menu .menu-item .menu-link.active {
+        background-color: transparent;
+    }
+
+    .menu-rounded .menu-link.active {
+        background: transparent;
+
+        /*  linear-gradient(106.26deg, rgba(234, 11, 32, 1) 0%, rgba(50, 45, 213, 1) 100%); */
+        .menu-icon-style {
+            background: #ff0000;
+        }
+
+        .vuesax-bold-add {
+            display: none;
+        }
+
+        .vuesax-bold-add1 {
+            display: flex;
+        }
+    }
+
+    .menu-link.active {
+        .menu-icon-style {
+            background: #ff0000;
+
+            .menu-icon {
+                .fa-regular {
+                    color: #fff;
+                }
+            }
+        }
+
+        .menu-title {
+            color: #ff0000;
+        }
+    }
+
+    .menu-link {
+        .menu-icon-style {
+            background: transparent;
+
+            .menu-icon {
+                .fa-regular {
+                    color: #3F2BC8;
+                }
+            }
+        }
+
+        .menu-title {
+            color: #3F2BC8;
+        }
+    }
+
+    /* .menu-rounded .menu-link.active .menu-icon-style .menu-icon i {
+        animation-name: fa-beat;
+        animation-delay: var(--fa-animation-delay, 0);
+        animation-direction: var(--fa-animation-direction, normal);
+        animation-duration: var(--fa-animation-duration, 1s);
+        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+        animation-timing-function:  var(--fa-animation-timing, ease-in-out);
+    } */
+    [data-kt-app-sidebar-hoverable=true][data-kt-app-sidebar-minimize=on] .app-sidebar:hover:not(.animating) {
+        transition: width 0.3s ease;
+        width: var(--kt-app-sidebar-width);
+    }
+
+    .e-btn.e-outline.e-primary {
+        color: #3F2BC8;
+        border-color: #3F2BC820;
+    }
+
+    .e-btn#expand {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
+        width: 90%;
+    }
+
+    .e-btn#collap {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
+        width: 20%;
+    }
+
+    .e-btn.e-outline.e-primary:hover:not(.e-btn:disabled):not(.noti-footer):not(.state-read),
+    .e-css.e-btn.e-outline.e-primary:hover {
+        background: #ff0000 !important;
+        border-color: #0078d420;
+        color: #fff;
+    }
+
+    .sidebarbtn {
+        display: flex;
+    }
+
+    .collap {
+        display: none;
+        border-radius: 15px;
+    }
+
+    .expand {
+        display: block;
+        border-radius: 15px;
+    }
+
+    [data-kt-app-sidebar-minimize=on] {
+        .app-sidebar-wrapper {
+            .menu {
+                .sidebarbtn {
+                    padding-left: 4px;
+                    display: block;
+
+                    .collap {
+                        display: block;
+                        height: 100%;
+                    }
+
+                    .expand {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    [data-kt-app-sidebar-minimize=off] {
+        .app-sidebar-wrapper {
+            .menu {
+                .sidebarbtn {
+                    display: flex;
+
+                    .collap {
+                        display: none;
+                    }
+
+                    .expand {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+
+    .category {
+        flex-shrink: 0;
+        position: relative;
+        overflow: visible;
+    }
+
+    .vuesax-bold-add {
+        display: flex;
+        align-items: center;
+    }
+
+    .vuesax-bold-add1 {
+        display: none;
+        align-items: center;
+    }
+
+    .e-btn .e-btn-icon,
+    .e-css.e-btn .e-btn-icon {
+        font-size: 25px;
+    }
+
+    .menu.menu-column {
+        border-bottom: 1px dashed #e4dbdb;
+    }
+
+    .account {
+        padding: 0.75rem 1.4rem;
+    }
+    [data-kt-app-layout=light-sidebar] .app-sidebar .menu {
+    font-weight: 600;
+    }
+</style>

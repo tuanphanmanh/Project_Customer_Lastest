@@ -1,0 +1,59 @@
+﻿{
+  "remoteServiceBaseUrl": "https://esign-standby.toyotavn.com.vn:5001",
+  "appBaseUrl": "https://esign-standby.toyotavn.com.vn",
+  "tenancyName": "TMV",
+  "config": {
+    "tenantId": "7f5f18eb-e49c-42fc-a52f-2731d1674ab1",
+    "clientId": "701efa1a-6997-442e-b8ea-3f87cb370c88",
+    "redirectUri": "https://esign-standby.toyotavn.com.vn/callback",
+    "scope": "openid profile email"
+  },
+  "localeMappings": {
+    "angular": [
+      {
+        "from": "pt-BR",
+        "to": "pt"
+      },
+      {
+        "from": "zh-CN",
+        "to": "zh"
+      },
+      {
+        "from": "he-IL",
+        "to": "he"
+      },
+      {
+        "from": "es-MX",
+        "to": "es"
+      },
+      {
+        "from": "vi",
+        "to": "en"
+      }
+    ],
+    "luxon": [
+      {
+        "from": "es-MX",
+        "to": "es"
+      },
+      {
+        "from": "zh-Hans",
+        "to": "zh-cn"
+      },
+      {
+        "from": "vi",
+        "to": "en-gb"
+      }
+    ],
+    "recaptcha": [
+      {
+        "from": "zh-Hans",
+        "to": "zh-cn"
+      },
+      {
+        "from": "es-MX",
+        "to": "es"
+      }
+    ]
+  }
+}

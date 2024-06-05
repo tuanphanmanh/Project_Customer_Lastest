@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="dxcontent_list">
+    <div class="content-header">
+        @Html.Partial("_TB_R_PRODUCTION_PLAN_M_V2_FCSearch")
+    </div>
+
+    @using (Html.BeginForm()) {
+	      @Html.Partial("_TB_R_PRODUCTION_PLAN_M_V2_FCList")
+     }	
+	
+
+	@section HeadScript {
+		<script src="@Url.Content("~/Content/Scripts/App/TB_R_PRODUCTION_PLAN_M_V2_FC.js")" type="text/javascript"></script>
+	}
+</div>

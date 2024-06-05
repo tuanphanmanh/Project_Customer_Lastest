@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="dxcontent_list">
+    <div class="content-header">
+        @Html.Partial("_TB_R_PRODUCTION_PLAN_M_V2Search")
+    </div>
+
+    @using (Html.BeginForm()) {
+	       @Html.Partial("_TB_R_PRODUCTION_PLAN_M_V2List")
+     }	
+	
+
+    <div class="content-header content-title">
+        <div class="action-area" style="float: right; margin-right: 2px; margin-top: 0px">
+            <button class="btn btn-primary btn-xs" type="button" onclick="DOWNLOAD_PP_TEMPLATE_V2(); return false;">
+                <i class="fa fa-download"></i> Production Plan Template</button>
+        </div>
+        <div class="action-area" style="float: right; margin-right: 2px; margin-top: 0px">
+            <button class="btn btn-primary btn-xs" type="button" onclick="IMPORT_PRODUCTION_PLAN_V2(); return false;">
+                <i class="fa fa-upload"></i> Upload</button>
+        </div>
+    </div>
+
+    @Html.DevExpress().PopupControl(settings =>
+    {
+        settings.HeaderText = "IMPORT PRODUCTION PLAN V2";
+        settings.Name = "popPRODUCTION_PLAN_V2";
+        settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+        settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.Modal = true;
+        settings.ShowCloseButton = true;
+        settings.PopupAnimationType = AnimationType.Fade;
+        settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+        settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+        settings.SetContent(() =>
+        {
+            Html.RenderPartial("_TB_R_PRODUCTION_PLAN_M_V2Import");
+        });
+        settings.ClientSideEvents.CloseUp = "OnPopPRODUCTION_PLAN_V2CloseUp";
+    }).GetHtml()
+
+	@section HeadScript {
+		<script src="@Url.Content("~/Content/Scripts/App/TB_R_PRODUCTION_PLAN_M_V2.js")" type="text/javascript"></script>
+	}
+</div>

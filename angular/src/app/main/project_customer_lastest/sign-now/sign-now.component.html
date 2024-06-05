@@ -1,0 +1,520 @@
+<div [@routerTransition]>
+    <div [class]="containerClass">
+        <div class="mac-book-air-277">
+            <div class="frame-1000006431">
+                <div class="frame-1000006430">
+                    <div class="frame-1000006426">
+                        <div class="frame-1000006455">
+                            <div class="frame-1000006295" (click)="BackPage()">
+                                <div class="vuesax-linear-arrow-left">
+                                    <div class="vuesax-linear-arrow-left2">
+                                        <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M14.9998 19.9201L8.47984 13.4001C7.70984 12.6301 7.70984 11.3701 8.47984 10.6001L14.9998 4.08008"
+                                                stroke="#E81447" stroke-width="1.5" stroke-miterlimit="10"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="required-signature-left btn-text-shadow">Required signature left</div>
+                            <div class="frame-1171275375">
+                                <div class="_2 btn-text-shadow">2</div>
+                            </div> -->
+                        </div>
+                        <div class="frame-1000003978"></div>
+                    </div>
+                    <div class="frame-1000003979">
+                        <div class="frame-1000006429">
+                            <div class="frame-1000006477">
+                                <ejs-dropdownlist id='ddlelement' placeholder = 'All files' cssClass="input-field" style="width: 400px;"
+                                    [(ngModel)]="selectDocumentId" (ngModelChange)="ChangeFileDocument($event)"
+                                    [fields]='listDocumentsfields'
+                                    [dataSource]='listDocuments' >
+
+                                <div style=" display: flex; flex-direction: column; flex: 1; width: 100%; position: relative;">
+                                    <ng-template #itemTemplate let-listDocuments style="display: flex; flex: 1; width: 100%; position: relative;">
+                                        <div class="data1_dll" style="display: flex; flex-direction: row;  align-items: center; flex: 1; width: 100%; position: relative;">
+                                            <span class="Order" style="width: 30px; padding: 0px !important; margin: 0px !important; text-align: center;">{{listDocuments.documentOrder}}</span>
+                                            <span class="ename" style="width: 200px; text-align: left; padding-left: 0px; margin-left: 0px;
+                                                display: -webkit-box; overflow: hidden; text-overflow: ellipsis; ">{{listDocuments.documentName}}</span>
+                                            <div class="property-1-transfer-blue" style="padding-right: 10px; width: 30px; text-align: center; ">
+                                                <svg *ngIf="checkNeedSign(listDocuments.id)" class="need-sign" width="20" height="20"
+                                                    viewBox="0 0 16 16" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M9.33333 14C9.2 14 9.08333 13.95 8.98333 13.85C8.88333 13.75 8.83333 13.6333 8.83333 13.5C8.83333 13.3556 8.88333 13.2361 8.98333 13.1417C9.08333 13.0472 9.2 13 9.33333 13C9.98889 13 10.5417 12.8667 10.9917 12.6C11.4417 12.3333 11.6667 12.0222 11.6667 11.6667C11.6667 11.4111 11.5028 11.1611 11.175 10.9167C10.8472 10.6722 10.4056 10.4833 9.85 10.35L10.6333 9.56667C11.3333 9.77778 11.8472 10.0694 12.175 10.4417C12.5028 10.8139 12.6667 11.2222 12.6667 11.6667C12.6667 12.4111 12.3278 12.9861 11.65 13.3917C10.9722 13.7972 10.2 14 9.33333 14ZM4 9.1C3.28889 8.94444 2.77778 8.7 2.46667 8.36667C2.15556 8.03333 2 7.68889 2 7.33333C2 6.94444 2.14444 6.59444 2.43333 6.28333C2.72222 5.97222 3.38889 5.62778 4.43333 5.25C5.16667 4.98333 5.63889 4.76667 5.85 4.6C6.06111 4.43333 6.16667 4.23889 6.16667 4.01667C6.16667 3.73889 6.04444 3.5 5.8 3.3C5.55556 3.1 5.17778 3 4.66667 3C4.36667 3 4.11111 3.03889 3.9 3.11667C3.68889 3.19444 3.5 3.31667 3.33333 3.48333C3.24444 3.57222 3.13056 3.625 2.99167 3.64167C2.85278 3.65833 2.72778 3.62222 2.61667 3.53333C2.49444 3.44444 2.43056 3.33333 2.425 3.2C2.41944 3.06667 2.46111 2.95 2.55 2.85C2.73889 2.60556 3.02222 2.40278 3.4 2.24167C3.77778 2.08056 4.2 2 4.66667 2C5.42222 2 6.02778 2.18056 6.48333 2.54167C6.93889 2.90278 7.16667 3.39444 7.16667 4.01667C7.16667 4.47222 7.00833 4.85833 6.69167 5.175C6.375 5.49167 5.75556 5.82222 4.83333 6.16667C4.08889 6.44444 3.59722 6.66389 3.35833 6.825C3.11944 6.98611 3 7.15556 3 7.33333C3 7.51111 3.15 7.68056 3.45 7.84167C3.75 8.00278 4.2 8.15556 4.8 8.3L4 9.1ZM12.2667 6.53333L10.1333 4.4L10.8833 3.65C11.0833 3.45 11.3056 3.35 11.55 3.35C11.7944 3.35 12.0167 3.45 12.2167 3.65L13.0167 4.45C13.2167 4.65 13.3167 4.87222 13.3167 5.11667C13.3167 5.36111 13.2167 5.58333 13.0167 5.78333L12.2667 6.53333ZM3.66667 13H4.36667L10.1167 7.25L9.41667 6.55L3.66667 12.3V13ZM2.91667 14C2.85 14 2.79167 13.975 2.74167 13.925C2.69167 13.875 2.66667 13.8167 2.66667 13.75V11.9667C2.66667 11.9444 2.68889 11.8889 2.73333 11.8L9.41667 5.11667L11.55 7.25L4.86667 13.9333C4.84444 13.9556 4.78889 13.9778 4.7 14H2.91667Z"
+                                                        fill="red" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </div>
+                                    <ng-template #valueTemplate let-listDocuments>
+                                        <div class="data1_dll" style="display: flex; flex-direction: row;  align-items: center; flex: 1; width: 100%">
+                                            <span class="Order">{{listDocuments.documentOrder}}</span>
+                                            <span class="ename" >{{listDocuments.documentName}}</span>
+                                            <div class="property-1-transfer-blue" >
+                                                <svg *ngIf="checkNeedSign(listDocuments.id)" class="need-sign" width="20" height="20"
+                                                    viewBox="0 0 16 16" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M9.33333 14C9.2 14 9.08333 13.95 8.98333 13.85C8.88333 13.75 8.83333 13.6333 8.83333 13.5C8.83333 13.3556 8.88333 13.2361 8.98333 13.1417C9.08333 13.0472 9.2 13 9.33333 13C9.98889 13 10.5417 12.8667 10.9917 12.6C11.4417 12.3333 11.6667 12.0222 11.6667 11.6667C11.6667 11.4111 11.5028 11.1611 11.175 10.9167C10.8472 10.6722 10.4056 10.4833 9.85 10.35L10.6333 9.56667C11.3333 9.77778 11.8472 10.0694 12.175 10.4417C12.5028 10.8139 12.6667 11.2222 12.6667 11.6667C12.6667 12.4111 12.3278 12.9861 11.65 13.3917C10.9722 13.7972 10.2 14 9.33333 14ZM4 9.1C3.28889 8.94444 2.77778 8.7 2.46667 8.36667C2.15556 8.03333 2 7.68889 2 7.33333C2 6.94444 2.14444 6.59444 2.43333 6.28333C2.72222 5.97222 3.38889 5.62778 4.43333 5.25C5.16667 4.98333 5.63889 4.76667 5.85 4.6C6.06111 4.43333 6.16667 4.23889 6.16667 4.01667C6.16667 3.73889 6.04444 3.5 5.8 3.3C5.55556 3.1 5.17778 3 4.66667 3C4.36667 3 4.11111 3.03889 3.9 3.11667C3.68889 3.19444 3.5 3.31667 3.33333 3.48333C3.24444 3.57222 3.13056 3.625 2.99167 3.64167C2.85278 3.65833 2.72778 3.62222 2.61667 3.53333C2.49444 3.44444 2.43056 3.33333 2.425 3.2C2.41944 3.06667 2.46111 2.95 2.55 2.85C2.73889 2.60556 3.02222 2.40278 3.4 2.24167C3.77778 2.08056 4.2 2 4.66667 2C5.42222 2 6.02778 2.18056 6.48333 2.54167C6.93889 2.90278 7.16667 3.39444 7.16667 4.01667C7.16667 4.47222 7.00833 4.85833 6.69167 5.175C6.375 5.49167 5.75556 5.82222 4.83333 6.16667C4.08889 6.44444 3.59722 6.66389 3.35833 6.825C3.11944 6.98611 3 7.15556 3 7.33333C3 7.51111 3.15 7.68056 3.45 7.84167C3.75 8.00278 4.2 8.15556 4.8 8.3L4 9.1ZM12.2667 6.53333L10.1333 4.4L10.8833 3.65C11.0833 3.45 11.3056 3.35 11.55 3.35C11.7944 3.35 12.0167 3.45 12.2167 3.65L13.0167 4.45C13.2167 4.65 13.3167 4.87222 13.3167 5.11667C13.3167 5.36111 13.2167 5.58333 13.0167 5.78333L12.2667 6.53333ZM3.66667 13H4.36667L10.1167 7.25L9.41667 6.55L3.66667 12.3V13ZM2.91667 14C2.85 14 2.79167 13.975 2.74167 13.925C2.69167 13.875 2.66667 13.8167 2.66667 13.75V11.9667C2.66667 11.9444 2.68889 11.8889 2.73333 11.8L9.41667 5.11667L11.55 7.25L4.86667 13.9333C4.84444 13.9556 4.78889 13.9778 4.7 14H2.91667Z"
+                                                        fill="red" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ejs-dropdownlist>
+
+                                <!-- <ejs-dropdownlist  id='ddlelement_signature_page' placeholder = 'Signature' cssClass="input-field" style="width: 300px;"
+                                    [(ngModel)]="selectSignaturePagefromDocument"
+                                    (ngModelChange)="ChangePageSignature($event)"
+                                    [disabled]="isDisableSignaturePage"
+                                    [fields]='PageSignatures'
+                                    [dataSource]='listSignaturePage' >
+                                    <div style=" display: flex; flex-direction: column; flex: 1; width: 100%; position: relative;">
+                                        <ng-template #itemTemplate let-listSignaturePage style="display: flex; flex: 1; width: 100%; position: relative;">
+                                            <div *ngIf="listSignaturePage.pageNum > 0" class="data1_dll" style="display: flex; flex-direction: row;  align-items: center; flex: 1; width: 100%; position: relative;">
+                                                <span class="Order" style="width: 50%; text-align: left;">{{(listSignaturePage.qty > 0) ? listSignaturePage.qty: "Signature"}}</span>
+                                                <span class="ename" style="width: 50%; text-align: right; padding-left: 0px; margin-left: 0px"> {{(listSignaturePage.pageNum > 0) ? "Page " + listSignaturePage.pageNum: "Page"}}</span>
+                                            </div>
+                                        </ng-template>
+                                    </div>
+                                    <ng-template #valueTemplate let-listSignaturePage>
+                                        <div class="data1_dll" style="display: flex; flex-direction: row;  align-items: center; flex: 1; width: 100%">
+                                            <span class="Order" style="width: 50%; text-align: left;">{{(listSignaturePage.qty > 0) ? listSignaturePage.qty: "Signature"}}</span>
+                                            <span class="ename" style="width: 50%; text-align: right; padding-left: 0px; margin-left: 0px">{{(listSignaturePage.pageNum > 0) ? "Page " + listSignaturePage.pageNum: "Page" }}</span>
+                                        </div>
+                                    </ng-template>
+                                </ejs-dropdownlist> -->
+                            </div>
+                            <div class="frame-1171275374">
+                                <!-- <div class="vuesax-bold-edit btn-esign" (click)="downloadClicked()">
+                                    <svg class="frame-1000006363" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g filter="url(#filter0_dd_267_17002)">
+                                            <path
+                                                d="M5.33333 2H4.44444C3.79614 2 3.17438 2.25754 2.71596 2.71596C2.25754 3.17438 2 3.79614 2 4.44444V15.5556C2 16.2039 2.25754 16.8256 2.71596 17.284C3.17438 17.7425 3.79614 18 4.44444 18H4.66667V12.6667C4.66667 12.1362 4.87738 11.6275 5.25245 11.2525C5.62753 10.8774 6.13623 10.6667 6.66667 10.6667H13.3333C13.8638 10.6667 14.3725 10.8774 14.7475 11.2525C15.1226 11.6275 15.3333 12.1362 15.3333 12.6667V18H15.5556C16.2039 18 16.8256 17.7425 17.284 17.284C17.7425 16.8256 18 16.2039 18 15.5556V6.69867C18.0001 6.31915 17.9254 5.94334 17.7802 5.59269C17.635 5.24205 17.4221 4.92346 17.1538 4.65511L15.3449 2.84622C14.8108 2.312 14.0887 2.00823 13.3333 2V6C13.3333 6.53043 13.1226 7.03914 12.7475 7.41421C12.3725 7.78929 11.8638 8 11.3333 8H7.33333C6.8029 8 6.29419 7.78929 5.91912 7.41421C5.54405 7.03914 5.33333 6.53043 5.33333 6V2ZM12 2V6C12 6.17681 11.9298 6.34638 11.8047 6.4714C11.6797 6.59643 11.5101 6.66667 11.3333 6.66667H7.33333C7.15652 6.66667 6.98695 6.59643 6.86193 6.4714C6.73691 6.34638 6.66667 6.17681 6.66667 6V2H12ZM14 18V12.6667C14 12.4899 13.9298 12.3203 13.8047 12.1953C13.6797 12.0702 13.5101 12 13.3333 12H6.66667C6.48986 12 6.32029 12.0702 6.19526 12.1953C6.07024 12.3203 6 12.4899 6 12.6667V18H14Z"
+                                                fill="white" />
+                                        </g>
+                                        <defs>
+                                            <filter id="filter0_dd_267_17002" x="-0.15" y="1.06" width="20.3"
+                                                height="20.34" filterUnits="userSpaceOnUse"
+                                                color-interpolation-filters="sRGB">
+                                                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                                <feColorMatrix in="SourceAlpha" type="matrix"
+                                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                                    result="hardAlpha" />
+                                                <feOffset dy="1.25" />
+                                                <feGaussianBlur stdDeviation="1.075" />
+                                                <feComposite in2="hardAlpha" operator="out" />
+                                                <feColorMatrix type="matrix"
+                                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.21 0" />
+                                                <feBlend mode="normal" in2="BackgroundImageFix"
+                                                    result="effect1_dropShadow_267_17002" />
+                                                <feColorMatrix in="SourceAlpha" type="matrix"
+                                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                                    result="hardAlpha" />
+                                                <feOffset />
+                                                <feGaussianBlur stdDeviation="0.47" />
+                                                <feComposite in2="hardAlpha" operator="out" />
+                                                <feColorMatrix type="matrix"
+                                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
+                                                <feBlend mode="normal" in2="effect1_dropShadow_267_17002"
+                                                    result="effect2_dropShadow_267_17002" />
+                                                <feBlend mode="normal" in="SourceGraphic"
+                                                    in2="effect2_dropShadow_267_17002" result="shape" />
+                                            </filter>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <svg (click)="downloadClicked()" class="basil-download-solid" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M5 16.25C5.19891 16.25 5.38968 16.329 5.53033 16.4697C5.67098 16.6103 5.75 16.8011 5.75 17V19C5.75 19.138 5.862 19.25 6 19.25H18C18.0663 19.25 18.1299 19.2237 18.1768 19.1768C18.2237 19.1299 18.25 19.0663 18.25 19V17C18.25 16.8011 18.329 16.6103 18.4697 16.4697C18.6103 16.329 18.8011 16.25 19 16.25C19.1989 16.25 19.3897 16.329 19.5303 16.4697C19.671 16.6103 19.75 16.8011 19.75 17V19C19.75 19.4641 19.5656 19.9092 19.2374 20.2374C18.9092 20.5656 18.4641 20.75 18 20.75H6C5.53587 20.75 5.09075 20.5656 4.76256 20.2374C4.43437 19.9092 4.25 19.4641 4.25 19V17C4.25 16.8011 4.32902 16.6103 4.46967 16.4697C4.61032 16.329 4.80109 16.25 5 16.25Z"
+                                        fill="#0374f6" />
+                                    <path
+                                        d="M10.7379 3.75C10.4897 3.75007 10.2506 3.84314 10.0677 4.01087C9.88477 4.17859 9.77137 4.40877 9.74986 4.656C9.59597 6.40842 9.56857 8.16964 9.66786 9.926C9.42086 9.939 9.17486 9.956 8.92786 9.973L7.43786 10.082C7.30663 10.0916 7.18015 10.1351 7.0708 10.2083C6.96144 10.2815 6.87295 10.3818 6.81398 10.4994C6.75502 10.617 6.7276 10.7479 6.73442 10.8793C6.74123 11.0107 6.78204 11.1381 6.85286 11.249C7.91475 12.9111 9.28306 14.3561 10.8849 15.507L11.4819 15.936C11.6328 16.0444 11.814 16.1027 11.9999 16.1027C12.1857 16.1027 12.3669 16.0444 12.5179 15.936L13.1149 15.507C14.7166 14.3561 16.085 12.9111 17.1469 11.249C17.2177 11.1381 17.2585 11.0107 17.2653 10.8793C17.2721 10.7479 17.2447 10.617 17.1857 10.4994C17.1268 10.3818 17.0383 10.2815 16.9289 10.2083C16.8196 10.1351 16.6931 10.0916 16.5619 10.082L15.0719 9.973C14.8253 9.95517 14.5787 9.9395 14.3319 9.926C14.4315 8.16967 14.4044 6.40844 14.2509 4.656C14.2293 4.4086 14.1158 4.17828 13.9327 4.01053C13.7496 3.84278 13.5102 3.74982 13.2619 3.75H10.7379Z"
+                                        fill="#0374f6" />
+                                </svg> -->
+                                <div class="frame-1000006325d" (click)="downloadDocument()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="13" viewBox="0 0 12 13" fill="none">
+                                        <g clip-path="url(#clip0_3631_131442)">
+                                        <path d="M4.93911 9.061C5.07841 9.20039 5.24381 9.31097 5.42587 9.38641C5.60792 9.46185 5.80305 9.50068 6.00011 9.50068C6.19718 9.50068 6.39231 9.46185 6.57436 9.38641C6.75641 9.31097 6.92181 9.20039 7.06111 9.061L8.66661 7.4555C8.75269 7.3603 8.79887 7.23564 8.79557 7.10733C8.79228 6.97902 8.73977 6.8569 8.64891 6.76624C8.55806 6.67558 8.43582 6.62333 8.30751 6.6203C8.1792 6.61728 8.05463 6.66372 7.95961 6.75L6.49661 8.2135L6.50011 0.5C6.50011 0.367392 6.44743 0.240215 6.35367 0.146447C6.2599 0.0526784 6.13272 0 6.00011 0V0C5.8675 0 5.74033 0.0526784 5.64656 0.146447C5.55279 0.240215 5.50011 0.367392 5.50011 0.5L5.49561 8.204L4.04061 6.75C3.94679 6.65625 3.81957 6.6036 3.68694 6.60365C3.5543 6.6037 3.42712 6.65643 3.33336 6.75025C3.23961 6.84407 3.18696 6.97129 3.18701 7.10393C3.18706 7.23656 3.23979 7.36375 3.33361 7.4575L4.93911 9.061Z" fill="#3F2BC8"/>
+                                        <path d="M11.5 8C11.3674 8 11.2402 8.05268 11.1464 8.14645C11.0527 8.24021 11 8.36739 11 8.5V10.5C11 10.6326 10.9473 10.7598 10.8536 10.8535C10.7598 10.9473 10.6326 11 10.5 11H1.5C1.36739 11 1.24021 10.9473 1.14645 10.8535C1.05268 10.7598 1 10.6326 1 10.5V8.5C1 8.36739 0.947322 8.24021 0.853553 8.14645C0.759785 8.05268 0.632608 8 0.5 8V8C0.367392 8 0.240215 8.05268 0.146447 8.14645C0.0526784 8.24021 0 8.36739 0 8.5L0 10.5C0 10.8978 0.158035 11.2793 0.43934 11.5607C0.720644 11.842 1.10218 12 1.5 12H10.5C10.8978 12 11.2794 11.842 11.5607 11.5607C11.842 11.2793 12 10.8978 12 10.5V8.5C12 8.36739 11.9473 8.24021 11.8536 8.14645C11.7598 8.05268 11.6326 8 11.5 8Z" fill="#3F2BC8"/>
+                                        </g>
+                                        <defs>
+                                        <clipPath id="clip0_3631_131442">
+                                        <rect width="12" height="12" fill="white"/>
+                                        </clipPath>
+                                        </defs>
+                                    </svg>
+                                    <div class="not-nowd">{{l('Download')}}</div>
+                                </div>
+                                <div class="component-119"  *ngIf="this.dataSummary?.isSign" (click)="rejectModal.show()">
+                                    <div class="vuesax-bold-close-circle">
+                                    <svg
+                                        class="close-circle"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                        d="M9.99996 1.66602C5.40829 1.66602 1.66663 5.40768 1.66663 9.99935C1.66663 14.591 5.40829 18.3327 9.99996 18.3327C14.5916 18.3327 18.3333 14.591 18.3333 9.99935C18.3333 5.40768 14.5916 1.66602 9.99996 1.66602ZM12.8 11.916C13.0416 12.1577 13.0416 12.5577 12.8 12.7993C12.675 12.9243 12.5166 12.9827 12.3583 12.9827C12.2 12.9827 12.0416 12.9243 11.9166 12.7993L9.99996 10.8827L8.08329 12.7993C7.95829 12.9243 7.79996 12.9827 7.64163 12.9827C7.48329 12.9827 7.32496 12.9243 7.19996 12.7993C6.95829 12.5577 6.95829 12.1577 7.19996 11.916L9.11663 9.99935L7.19996 8.08268C6.95829 7.84102 6.95829 7.44102 7.19996 7.19935C7.44163 6.95768 7.84163 6.95768 8.08329 7.19935L9.99996 9.11601L11.9166 7.19935C12.1583 6.95768 12.5583 6.95768 12.8 7.19935C13.0416 7.44102 13.0416 7.84102 12.8 8.08268L10.8833 9.99935L12.8 11.916Z"
+                                        fill="#E81447"
+                                        />
+                                    </svg>
+                                    </div>
+                                    <div class="reject">{{l('Reject')}}</div>
+                                </div>
+                                <div class="component-122" *ngIf="this.dataSummary?.isSign" (click)="reassignModal.show(RequestID)">
+                                    <div class="vuesax-linear-document-cloud">
+                                    <div class="document-cloud">
+                                        <svg
+                                        class="group"
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 16 16"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                        <path
+                                            d="M9.50037 0.5H5.75037C2.00037 0.5 0.500366 2 0.500366 5.75V10.25C0.500366 14 2.00037 15.5 5.75037 15.5"
+                                            stroke="#E81447"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                        <path
+                                            d="M15.5 6.5V8.75"
+                                            stroke="#E81447"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                        <path
+                                            d="M15.5004 6.5H12.5004C10.2504 6.5 9.50037 5.75 9.50037 3.5V0.5L15.5004 6.5Z"
+                                            stroke="#E81447"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                        </svg>
+
+                                        <svg
+                                        class="group2"
+                                        width="7"
+                                        height="9"
+                                        viewBox="0 0 7 9"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                        <path
+                                            d="M3.6131 3.675C3.5831 3.675 3.53808 3.675 3.50058 3.675C2.71308 3.645 2.09058 3.0075 2.09058 2.2125C2.09058 1.4025 2.74309 0.75 3.55309 0.75C4.36309 0.75 5.01559 1.41 5.01559 2.2125C5.02309 3.0075 4.4006 3.6525 3.6131 3.675Z"
+                                            stroke="#E81447"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                        <path
+                                            d="M1.49776 5.93359C0.500259 6.60109 0.500259 7.68859 1.49776 8.35609C2.63026 9.11359 4.49026 9.11359 5.62276 8.35609C6.62026 7.68859 6.62026 6.60109 5.62276 5.93359C4.49026 5.18359 2.63776 5.18359 1.49776 5.93359Z"
+                                            stroke="#E81447"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                        </svg>
+
+                                        <svg class="vector6" width="18" height="18"></svg>
+                                    </div>
+                                    </div>
+                                    <div class="reassign">{{l('Reassign')}}</div>
+                                </div>
+
+                                <div class="component-40 btn-esign" *ngIf="this.dataSummary?.isSign" (click)="CompleteSigning()">
+                                    <div class="vuesax-bold-send-2">
+                                        <svg class="send-2" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g filter="url(#filter0_dd_302_4427)">
+                                                <path
+                                                    d="M13.4496 2.46719L5.92461 4.96719C0.866276 6.65886 0.866276 9.41719 5.92461 11.1005L8.15794 11.8422L8.89961 14.0755C10.5829 19.1339 13.3496 19.1339 15.0329 14.0755L17.5413 6.55886C18.6579 3.18386 16.8246 1.34219 13.4496 2.46719ZM13.7163 6.95052L10.5496 10.1339C10.4246 10.2589 10.2663 10.3172 10.1079 10.3172C9.94961 10.3172 9.79128 10.2589 9.66628 10.1339C9.42461 9.89219 9.42461 9.49219 9.66628 9.25052L12.8329 6.06719C13.0746 5.82552 13.4746 5.82552 13.7163 6.06719C13.9579 6.30886 13.9579 6.70886 13.7163 6.95052Z"
+                                                    fill="white" />
+                                            </g>
+                                            <defs>
+                                                <filter id="filter0_dd_302_4427" x="-0.0191407" y="1.19672"
+                                                    width="20.0378" height="20.0724" filterUnits="userSpaceOnUse"
+                                                    color-interpolation-filters="sRGB">
+                                                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                                    <feColorMatrix in="SourceAlpha" type="matrix"
+                                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                                        result="hardAlpha" />
+                                                    <feOffset dy="1.25" />
+                                                    <feGaussianBlur stdDeviation="1.075" />
+                                                    <feComposite in2="hardAlpha" operator="out" />
+                                                    <feColorMatrix type="matrix"
+                                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.21 0" />
+                                                    <feBlend mode="normal" in2="BackgroundImageFix"
+                                                        result="effect1_dropShadow_302_4427" />
+                                                    <feColorMatrix in="SourceAlpha" type="matrix"
+                                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                                        result="hardAlpha" />
+                                                    <feOffset />
+                                                    <feGaussianBlur stdDeviation="0.47" />
+                                                    <feComposite in2="hardAlpha" operator="out" />
+                                                    <feColorMatrix type="matrix"
+                                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
+                                                    <feBlend mode="normal" in2="effect1_dropShadow_302_4427"
+                                                        result="effect2_dropShadow_302_4427" />
+                                                    <feBlend mode="normal" in="SourceGraphic"
+                                                        in2="effect2_dropShadow_302_4427" result="shape" />
+                                                </filter>
+                                            </defs>
+                                        </svg>
+                                    </div>
+                                    <div class="esign btn-text-shadow" >{{l('CompleteSigning')}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="frame-10000039792">
+                            <div class="tool">
+                                <div class="frame-1000006484">
+                                    <div class="frame-10000065092">
+                                        <div class="tools">{{l('SIGNHERE').toUpperCase()}}</div>
+                                        <!-- <div class="tools">{{l('TOOLS')}}</div> -->
+                                    </div>
+                                    <div class="frame-1000006513">
+                                        <div class="frame-10000063683">
+                                            <div class="component-104 sign_here"
+                                            *ngFor="let item of listSignaturePage; let i = index"
+                                            (click)="ChangePageSignature(item.documentId ,item.pageNum)">
+                                                <div *ngIf="selectDocumentId == item.documentId"
+                                                    class="number page">{{l('Page')}} {{item.pageNum}}</div>
+
+                                                <svg *ngIf="isShowSelectedPage(item.documentId, item.pageNum)"
+                                                    class="number_show"
+                                                    width="209" height="100" viewBox="0 0 209 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C7.58172 0 4 3.58172 4 8L4 92C4 96.4183 7.58173 100 12 100L201 100C205.418 100 209 96.4183 209 92V51.7094V8C209 3.58172 205.418 0 201 0L12 0ZM209 51.7094L193.492 11.2837C193.196 10.5104 192.453 10 191.625 10L11 10C9.89543 10 9 10.8954 9 12L9 88C9 89.1046 9.89544 90 11 90L190.7 90C191.49 90 192.207 89.5342 192.528 88.8116L209 51.7094Z" fill="white"/>
+                                                    <g filter="url(#filter0_dd_6058_214515)">
+                                                    <path d="M209 51.7094L192.528 88.8116C192.207 89.5342 191.49 90 190.7 90L11 90C9.89544 90 9 89.1046 9 88L9 12C9 10.8954 9.89543 10 11 10L191.625 10C192.453 10 193.196 10.5104 193.492 11.2837L209 51.7094Z" fill="#F1FCAE"/>
+                                                    </g>
+                                                    <defs>
+                                                    <filter id="filter0_dd_6058_214515" x="0" y="4" width="216" height="96" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                                    <feOffset dx="-1" dy="2"/>
+                                                    <feGaussianBlur stdDeviation="4"/>
+                                                    <feComposite in2="hardAlpha" operator="out"/>
+                                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.17 0"/>
+                                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6058_214515"/>
+                                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                                    <feOffset dx="-1" dy="2"/>
+                                                    <feGaussianBlur stdDeviation="2"/>
+                                                    <feComposite in2="hardAlpha" operator="out"/>
+                                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                                                    <feBlend mode="normal" in2="effect1_dropShadow_6058_214515" result="effect2_dropShadow_6058_214515"/>
+                                                    <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_6058_214515" result="shape"/>
+                                                    </filter>
+                                                    </defs>
+                                                </svg>
+
+                                                <svg *ngIf="!isShowSelectedPage(item.documentId, item.pageNum)"
+                                                    class="number_disable"
+                                                    width="209" height="100" viewBox="0 0 209 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13 0C8.58172 0 5 3.58172 5 8L5 92C5 96.4183 8.58173 100 13 100L202 100C206.418 100 210 96.4183 210 92V51.7094V8C210 3.58172 206.418 0 202 0L13 0ZM210 51.7094L194.492 11.2837C194.196 10.5104 193.453 10 192.625 10L12 10C10.8954 10 10 10.8954 10 12L10 88C10 89.1046 10.8954 90 12 90L191.7 90C192.49 90 193.207 89.5342 193.528 88.8116L210 51.7094Z" fill="white"/>
+                                                    <g filter="url(#filter0_dd_6058_214532)">
+                                                    <path d="M209.408 50.1652C209.787 51.1541 209.759 52.253 209.329 53.221L194.055 87.6231C193.414 89.0684 191.981 90 190.399 90L14 90C11.7909 90 10 88.2091 10 86L10 14C10 11.7909 11.7909 10 14 10L191.25 10C192.907 10 194.392 11.0209 194.985 12.5674L209.408 50.1652Z" fill="#DFDFDF"/>
+                                                    </g>
+                                                    <defs>
+                                                    <filter id="filter0_dd_6058_214532" x="-4" y="2" width="223.672" height="104" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                                    <feOffset dx="-1" dy="1"/>
+                                                    <feGaussianBlur stdDeviation="0.5"/>
+                                                    <feComposite in2="hardAlpha" operator="out"/>
+                                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
+                                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6058_214532"/>
+                                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                                    <feOffset dx="-2" dy="4"/>
+                                                    <feGaussianBlur stdDeviation="6"/>
+                                                    <feComposite in2="hardAlpha" operator="out"/>
+                                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.01 0"/>
+                                                    <feBlend mode="normal" in2="effect1_dropShadow_6058_214532" result="effect2_dropShadow_6058_214532"/>
+                                                    <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_6058_214532" result="shape"/>
+                                                    </filter>
+                                                    </defs>
+                                                </svg>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <ejs-pdfviewer #pdfviewer id="pdfViewer"
+                                (documentLoad)='documentLoaded($event)'
+                                [serviceUrl]="pdfServiceUrl"
+                                [documentPath]='documentUrl'
+
+                                [designerMode]="false"
+                                [enableNavigation]="true"
+                                [enableNavigationToolbar]="true"
+                                [enableToolbar]="false"
+                                [isSignatureEditable]="false"
+
+                                [enableTextMarkupAnnotation]='false'
+                                [enableTextMarkupResizer]="false"
+                                [enableMultiLineOverlap]="false"
+                                [enableMultiPageAnnotation]="false"
+                                [enableInkAnnotation]="false"
+                                [enableCommentPanel]="false"
+                                [enableAutoComplete]="false"
+                                [enableImportAnnotationMeasurement]="false"
+                                [enablePinchZoom]="false"
+                                [enableAnnotation]="false"
+                                [isValidFreeText]="false"
+                                [isAnnotationToolbarOpen]="false"
+                                [isAnnotationToolbarVisible]="false"
+                                [enableHandwrittenSignature]="false"
+                                [enableFormFields]="false"
+                                [enableDesktopMode]="false"
+                                [designerMode]="false"
+                      
+                                [enableRtl]="true"
+
+                                [enableThumbnail]="true"
+                                [enableBookmark]="true"
+                               
+                                [isThumbnailViewOpen]="true"
+                                [isBookmarkPanelOpen]="true" 
+
+                                (formFieldClick)="formFieldClick($event)"
+                                (annotationDoubleClick)="annotationDoubleClick($event)"
+                                (zoomChange)="pendding_rendering_field_html()"
+                                (pageChange)="pageChange($event)"
+                                (pageClick)="pendding_rendering_field_html()"
+                                (load)="onPdfViewerLoad($event)"
+                                zoomValue="100%"
+                                [interactionMode]="1"
+                                style="height:640px;display:block;width:100%;height: 100%;">
+                            </ejs-pdfviewer>
+                            <!-- <ejs-contextmenu id='contextmenu' target='#pdfViewer' [items]="menuItems" (select)="selectOption($event)"  (beforeOpen)="getPastePos()">
+
+                            </ejs-contextmenu> -->
+                            <!-- <ejs-signature id="mySignature" [height]="height" [width]=”width" >
+                            </ejs-signature> -->
+                            <!--
+                                [toolbarSettings]="toolbarSettings"
+                                [signatureFieldSettings]="signatureFieldSettings"
+
+                                [enableRtl]="true"
+                                [isThumbnailViewOpen]="true"
+
+
+                                [enableNavigation]="false"
+                                [enableNavigationToolbar]="false"
+                                [enableToolbar]="true"
+
+                                [designerMode]="false"
+
+                                [enableTextMarkupAnnotation]='false'
+                                [enableNavigationToolbar]="false"
+                                [enableTextMarkupResizer]="false"
+                                [enableMultiLineOverlap]="false"
+                                [enableMultiPageAnnotation]="false"
+                                [enableInkAnnotation]="false"
+                                [enableCommentPanel]="false"
+                                [enableAutoComplete]="false"
+                                [enableImportAnnotationMeasurement]="false"
+                                [enablePinchZoom]="false"
+                                [enableAnnotation]="false"
+
+                                [isValidFreeText]="false"
+                                [isAnnotationToolbarOpen]="false"
+                                [isAnnotationToolbarVisible]="false"
+
+                                [enableHandwrittenSignature]="true"
+                                [isSignatureEditable]="true"
+                                [enableFormFields]="true"
+                                [enableDesktopMode]="true"
+
+                                (formFieldClick)="formFieldClick($event)"
+                                (annotationDoubleClick)="annotationDoubleClick($event)"
+                            -->
+                            <input type="file" id="fileUpload" accept=".pdf" style="display:block;visibility:hidden;width:0;height:0;" >
+                            <div class="group-1171275203">
+                                <div class="frame-1000006478">
+                                    <div class="frame-1000006476">
+                                        <svg class="btn-esign b-radius5" (click)="previousClicked()" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="16" height="16" fill="white"/>
+                                            <path d="M10 15.1673H6.00001C2.38001 15.1673 0.833344 13.6207 0.833344 10.0007V6.00065C0.833344 2.38065 2.38001 0.833984 6.00001 0.833984H10C13.62 0.833984 15.1667 2.38065 15.1667 6.00065V10.0007C15.1667 13.6207 13.62 15.1673 10 15.1673ZM6.00001 1.83398C2.92668 1.83398 1.83334 2.92732 1.83334 6.00065V10.0007C1.83334 13.074 2.92668 14.1673 6.00001 14.1673H10C13.0733 14.1673 14.1667 13.074 14.1667 10.0007V6.00065C14.1667 2.92732 13.0733 1.83398 10 1.83398H6.00001Z" fill="#3F2BC8"/>
+                                            <path d="M10.3533 9.47276C10.2267 9.47276 10.1 9.42609 10 9.32609L8.00001 7.32609L6.00001 9.32609C5.80668 9.51943 5.48668 9.51943 5.29335 9.32609C5.10001 9.13276 5.10001 8.81276 5.29335 8.61943L7.64668 6.26609C7.84001 6.07276 8.16001 6.07276 8.35335 6.26609L10.7067 8.61943C10.9 8.81276 10.9 9.13276 10.7067 9.32609C10.6067 9.42609 10.48 9.47276 10.3533 9.47276Z" fill="#3F2BC8"/>
+                                        </svg>
+
+                                        <div class="frame-1000006475">
+                                            <div class="frame-1000006472">
+                                                <div class="_13">{{pdfviewerControl?.currentPageNumber ?? 0}}</div>
+                                            </div>
+                                            <svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <line x1="5.01689" y1="0.195366" x2="0.460225" y2="10.9302" stroke="#3F2BC8"/>
+                                            </svg>
+                                            <div class="_8">{{pdfviewerControl?.pageCount ?? 0}}</div>
+                                        </div>
+                                        <svg class="btn-esign b-radius5" (click)="nextClicked()" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="16" height="16" fill="white"/>
+                                            <path d="M10 15.1673H6.00001C2.38001 15.1673 0.833344 13.6207 0.833344 10.0007V6.00065C0.833344 2.38065 2.38001 0.833984 6.00001 0.833984H10C13.62 0.833984 15.1667 2.38065 15.1667 6.00065V10.0007C15.1667 13.6207 13.62 15.1673 10 15.1673ZM6.00001 1.83398C2.92668 1.83398 1.83334 2.92732 1.83334 6.00065V10.0007C1.83334 13.074 2.92668 14.1673 6.00001 14.1673H10C13.0733 14.1673 14.1667 13.074 14.1667 10.0007V6.00065C14.1667 2.92732 13.0733 1.83398 10 1.83398H6.00001Z" fill="#3F2BC8"/>
+                                            <path d="M8.00001 9.93956C7.87335 9.93956 7.74668 9.89289 7.64668 9.79289L5.29335 7.43956C5.10001 7.24622 5.10001 6.92622 5.29335 6.73289C5.48668 6.53956 5.80668 6.53956 6.00001 6.73289L8.00001 8.73289L10 6.73289C10.1933 6.53956 10.5133 6.53956 10.7067 6.73289C10.9 6.92622 10.9 7.24622 10.7067 7.43956L8.35335 9.79289C8.25335 9.89289 8.12668 9.93956 8.00001 9.93956Z" fill="#3F2BC8"/>
+                                        </svg>
+                                    </div>
+                                    <svg width="1" height="16" viewBox="0 0 1 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <line x1="0.5" x2="0.5" y2="16" stroke="#DBE0F0"/>
+                                    </svg>
+                                    <div class="frame-1000006474">
+                                        <svg class="btn-esign b-radius5" id="zoomOut" #zoomOut (click)="zoomOutClicked()" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="16" height="16" fill="white"/>
+                                            <path d="M9.33333 8.30078H6C5.72667 8.30078 5.5 8.07411 5.5 7.80078C5.5 7.52745 5.72667 7.30078 6 7.30078H9.33333C9.60667 7.30078 9.83333 7.52745 9.83333 7.80078C9.83333 8.07411 9.60667 8.30078 9.33333 8.30078Z" fill="#3F2BC8"/>
+                                            <path d="M7.66668 14.5007C3.90001 14.5007 0.833344 11.434 0.833344 7.66732C0.833344 3.90065 3.90001 0.833984 7.66668 0.833984C11.4333 0.833984 14.5 3.90065 14.5 7.66732C14.5 11.434 11.4333 14.5007 7.66668 14.5007ZM7.66668 1.83398C4.44668 1.83398 1.83334 4.45398 1.83334 7.66732C1.83334 10.8807 4.44668 13.5007 7.66668 13.5007C10.8867 13.5007 13.5 10.8807 13.5 7.66732C13.5 4.45398 10.8867 1.83398 7.66668 1.83398Z" fill="#3F2BC8"/>
+                                            <path d="M14.6667 15.1676C14.54 15.1676 14.4133 15.1209 14.3133 15.0209L12.98 13.6876C12.7867 13.4943 12.7867 13.1743 12.98 12.9809C13.1733 12.7876 13.4933 12.7876 13.6867 12.9809L15.02 14.3143C15.2133 14.5076 15.2133 14.8276 15.02 15.0209C14.92 15.1209 14.7933 15.1676 14.6667 15.1676Z" fill="#3F2BC8"/>
+                                        </svg>
+                                        <div class="frame-1000006473">
+                                            <div class="_90">{{pdfviewerControl?.zoomValue ?? '100%'}}</div>
+                                        </div>
+                                        <svg class="btn-esign b-radius5" id="zoomIn" #zoomIn (click)="zoomInClicked()" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="16" height="16" fill="white"/>
+                                            <path d="M9.46666 8.30078H6.13333C5.86 8.30078 5.63333 8.07411 5.63333 7.80078C5.63333 7.52745 5.86 7.30078 6.13333 7.30078H9.46666C9.74 7.30078 9.96666 7.52745 9.96666 7.80078C9.96666 8.07411 9.74 8.30078 9.46666 8.30078Z" fill="#3F2BC8"/>
+                                            <path d="M7.79999 9.96615C7.52665 9.96615 7.29999 9.73948 7.29999 9.46615V6.13281C7.29999 5.85948 7.52665 5.63281 7.79999 5.63281C8.07332 5.63281 8.29999 5.85948 8.29999 6.13281V9.46615C8.29999 9.73948 8.07332 9.96615 7.79999 9.96615Z" fill="#3F2BC8"/>
+                                            <path d="M7.66668 14.5007C3.90001 14.5007 0.833344 11.434 0.833344 7.66732C0.833344 3.90065 3.90001 0.833984 7.66668 0.833984C11.4333 0.833984 14.5 3.90065 14.5 7.66732C14.5 11.434 11.4333 14.5007 7.66668 14.5007ZM7.66668 1.83398C4.44668 1.83398 1.83334 4.45398 1.83334 7.66732C1.83334 10.8807 4.44668 13.5007 7.66668 13.5007C10.8867 13.5007 13.5 10.8807 13.5 7.66732C13.5 4.45398 10.8867 1.83398 7.66668 1.83398Z" fill="#3F2BC8"/>
+                                            <path d="M14.6667 15.1676C14.54 15.1676 14.4133 15.1209 14.3133 15.0209L12.98 13.6876C12.7867 13.4943 12.7867 13.1743 12.98 12.9809C13.1733 12.7876 13.4933 12.7876 13.6867 12.9809L15.02 14.3143C15.2133 14.5076 15.2133 14.8276 15.02 15.0209C14.92 15.1209 14.7933 15.1676 14.6667 15.1676Z" fill="#3F2BC8"/>
+                                        </svg>
+                                    </div>
+                                    <svg width="1" height="16" viewBox="0 0 1 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <line x1="0.5" x2="0.5" y2="16" stroke="#DBE0F0"/>
+                                    </svg>
+                                    <svg class="btn-esign b-radius5" id="fitPage" #fitPage (click)="pageFitClicked()" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="16" height="16" fill="white"/>
+                                        <path d="M10 15.1673H6.00001C2.38001 15.1673 0.833344 13.6207 0.833344 10.0007V6.00065C0.833344 2.38065 2.38001 0.833984 6.00001 0.833984H10C13.62 0.833984 15.1667 2.38065 15.1667 6.00065V10.0007C15.1667 13.6207 13.62 15.1673 10 15.1673ZM6.00001 1.83398C2.92668 1.83398 1.83334 2.92732 1.83334 6.00065V10.0007C1.83334 13.074 2.92668 14.1673 6.00001 14.1673H10C13.0733 14.1673 14.1667 13.074 14.1667 10.0007V6.00065C14.1667 2.92732 13.0733 1.83398 10 1.83398H6.00001Z" fill="#3F2BC8"/>
+                                        <path d="M4.00001 12.5003C3.87335 12.5003 3.74668 12.4536 3.64668 12.3536C3.45335 12.1603 3.45335 11.8403 3.64668 11.647L11.6467 3.64695C11.84 3.45362 12.16 3.45362 12.3533 3.64695C12.5467 3.84029 12.5467 4.16029 12.3533 4.35362L4.35335 12.3536C4.25335 12.4536 4.12668 12.5003 4.00001 12.5003Z" fill="#3F2BC8"/>
+                                        <path d="M12 7.16667C11.7267 7.16667 11.5 6.94 11.5 6.66667V4.5H9.33334C9.06001 4.5 8.83334 4.27333 8.83334 4C8.83334 3.72667 9.06001 3.5 9.33334 3.5H12C12.2733 3.5 12.5 3.72667 12.5 4V6.66667C12.5 6.94 12.2733 7.16667 12 7.16667Z" fill="#3F2BC8"/>
+                                        <path d="M6.66667 12.5007H4C3.72667 12.5007 3.5 12.274 3.5 12.0007V9.33398C3.5 9.06065 3.72667 8.83398 4 8.83398C4.27333 8.83398 4.5 9.06065 4.5 9.33398V11.5007H6.66667C6.94 11.5007 7.16667 11.7273 7.16667 12.0007C7.16667 12.274 6.94 12.5007 6.66667 12.5007Z" fill="#3F2BC8"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <popup-signature #popupSignature
+                        (onApplyTemplateSignature)="onApplyTemplateSignature($event)"
+                        (onApplyUploadSignature)="onApplyUploadSignature($event)"
+                        (onApplyDrawText_Signature)="onApplyDrawText_Signature($event)"
+                        (onApplyDrawSignatureDefault)="onApplyDrawSignatureDefault($event)"
+                        ></popup-signature>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<sign-success #successModal></sign-success>
+<reject-modal #rejectModal (onReject)="rejectRequest($event)" ></reject-modal>
+<reassign-modal #reassignModal [listSigner]="paramSigner" [requesterId]="requesterUserId" (modalSave)="onReassignRequest($event)"> </reassign-modal>

@@ -1,0 +1,238 @@
+﻿@using LSP.Models
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = LSP.Models.Common.PageSize_S(); //10
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = Common.PageSizeItemSettings(); //new string[] { "10", "20", "50" };
+
+    settings.SettingsResizing.ColumnResizeMode = ColumnResizeMode.Control;
+    settings.SettingsResizing.Visualization = ResizingMode.Live;
+    settings.SettingsBehavior.AllowEllipsisInText = true;
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.CallbackRouteValues = new { Controller = "TB_R_UNLOADING_PLAN_H", Action = "GridCallback" };
+
+    //settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Visible;
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 7;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Left;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+
+    //Export
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+
+    //Toolbar
+    settings.Toolbars.Add(toolbar =>
+    {
+        toolbar.Enabled = true;
+        toolbar.Position = GridToolbarPosition.Top;
+        toolbar.ItemAlign = GridToolbarItemAlign.Left;
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                Html.DevExpress().ButtonEdit(s =>
+                {
+                    s.Name = "search";
+                    s.Properties.NullText = "Search inline...";
+                    s.Properties.Buttons
+                        .Add()
+                        .Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
+                }).Render();
+            });
+        });
+
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnExportXls";
+                    s.ClientSideEvents.Click = "function(s, e) {gvList.ExportTo(ASPxClientGridViewExportFormat.Xls);}";
+                    s.Text = "Export to Xls";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxls16x16;
+                }).GetHtml();
+            });
+        });
+    });
+    //For Search panel
+    settings.SettingsSearchPanel.CustomEditorName = "search";
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "Op.";
+        c.Width = System.Web.UI.WebControls.Unit.Pixel(70);
+        c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        c.SetDataItemTemplateContent(
+            content =>
+            {
+                System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+                //if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                //   (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                //{
+                //    strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Edit(this)' title='Edit'><i class='fa fa-pencil'></i></a>"));
+                //}
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Delete"))
+                {
+                    strBuilder.Append(string.Concat(" <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Delete(this)'  title='Delete'><i class='fa fa-trash-o'></i></a>"));
+                }
+                Html.ViewContext.Writer.Write(strBuilder.ToString());
+            });
+        c.Width = 50;
+    });
+
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "No.";
+        c.FieldName = "ROW_NO";
+        c.Width = 50;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "DOCK";
+        c.FieldName = "DOCK";
+        c.Width = 50;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "TRUCK";
+        c.FieldName = "TRUCK";
+        c.Width = 60;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "RECEIVE";
+        c.FieldName = "SUPPLIERS";
+        c.Width = 180;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "RETURN";
+        c.FieldName = "SUPPLIERS_RETURN";
+        c.Width = 180;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "FROM DATE";
+        c.FieldName = "FROM_DATE";
+        c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+        c.Width = 80;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "PLAN START U/L (TIME)";
+        c.FieldName = "PLAN_START_UL_TIME_Str_HHMMSS";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 80;
+        //c.PropertiesEdit.DisplayFormatString = "HH:mm:ss";
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "PLAN FINISH U/L (TIME)";
+        c.FieldName = "PLAN_FINISH_UL_TIME_Str_HHMMSS";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 80;
+        //c.PropertiesEdit.DisplayFormatString = "HH:mm:ss";
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "ANDON NO";
+        c.FieldName = "ANDON_NO";
+        c.Width = 70;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "IS EPE?";
+        c.FieldName = "IS_ACTIVE_BOL";
+        c.ColumnType = MVCxGridViewColumnType.CheckBox;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 60;
+    });
+
+    settings.Columns.Add(
+        c =>
+        {
+            c.Caption = "QR CODE";
+            c.FieldName = "TRUCK";
+            c.Width = 110;
+            c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+            c.SetDataItemTemplateContent(
+                content =>
+                {
+                    System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+                    strBuilder.Append(
+                        string.Concat("<div id='QR_CODE_" + DataBinder.Eval(content.DataItem, "ID") + "' value='" + DataBinder.Eval(content.DataItem, "ID") + "'>",
+                                       //DataBinder.Eval(content.DataItem, "ANDON_NO") + "_" +
+                                       //DataBinder.Eval(content.DataItem, "DOCK") + "_" +
+                                       DataBinder.Eval(content.DataItem, "TRUCK") //+ "_" +
+                                                                                  //DataBinder.Eval(content.DataItem, "SUPPLIERS")
+                                      ,
+                                     "</div> <script type='text/javascript'> GenerateQRCode('#QR_CODE_" + DataBinder.Eval(content.DataItem, "ID") +"'); </script>"));
+                    Html.ViewContext.Writer.Write(strBuilder.ToString());
+                }
+            );
+        }
+    );
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "IS ACTIVE? (Y/N)";
+        c.FieldName = "IS_ACTIVE";
+        c.Width = 80;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        c.SetDataItemTemplateContent(cc =>
+        {
+            Html.DevExpress().CheckBox(checkboxSettings =>
+            {
+                checkboxSettings.Name = "_IS_ACTIVE_" + Convert.ToString(DataBinder.Eval(cc.DataItem, "ID"));
+                checkboxSettings.Checked = Convert.ToString(DataBinder.Eval(cc.DataItem, "IS_ACTIVE")) == "Y" ? true : false;
+                checkboxSettings.Properties.ClientSideEvents.CheckedChanged = "function() { return false; }";
+                //checkboxSettings.ClientEnabled = false;
+            }).Render();
+        });
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "UPDATED DATE";
+        c.FieldName = "UPDATED_DATE";
+        c.PropertiesEdit.DisplayFormatString = "dd/MM/yy HH:mm";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 90;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "UPDATED BY";
+        c.FieldName = "UPDATED_BY";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 70;
+    });
+    settings.ClientSideEvents.EndCallback = "ReGenerateQRCode";
+
+}).Bind(LSP.Models.TB_R_UNLOADING_PLAN_H.TB_R_UNLOADING_PLAN_HProvider.Instance.TB_R_UNLOADING_PLAN_H_Search(Model ?? new LSP.Models.TB_R_UNLOADING_PLAN_H.TB_R_UNLOADING_PLAN_HInfo())).GetHtml()
+

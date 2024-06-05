@@ -1,0 +1,393 @@
+﻿@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = 10;
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50" };
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.CallbackRouteValues = new { Controller = "TB_M_SUPPLIER_INFO", Action = "GridCallback" };
+
+    settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Visible;
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 7;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+    
+    settings.SettingsResizing.ColumnResizeMode = ColumnResizeMode.Control;
+    settings.SettingsResizing.Visualization = ResizingMode.Live;
+    settings.SettingsBehavior.AllowEllipsisInText = true;
+    
+    //Export
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+    settings.SettingsExport.BeforeExport = (sender, e) =>
+    {
+        MVCxGridView gridView = sender as MVCxGridView;
+        if (sender == null)
+            return;
+        gridView.Columns["Op."].Visible = false;
+    };
+
+    //Toolbar
+    settings.Toolbars.Add(toolbar =>
+    {
+        toolbar.Enabled = true;
+        toolbar.EnableAdaptivity = true;
+        toolbar.Position = GridToolbarPosition.Top;
+        toolbar.ItemAlign = GridToolbarItemAlign.Left;
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                Html.DevExpress().ButtonEdit(s =>
+                {
+                    s.Name = "search";
+                    s.Properties.NullText = "Search inline...";
+                    s.Properties.Buttons
+                        .Add()
+                        .Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
+                }).Render();
+            });
+        });
+
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnExportXls";
+                    s.ClientSideEvents.Click = "function(s, e) {gvList.ExportTo(ASPxClientGridViewExportFormat.Xls);}";
+                    s.Text = "Export to Xls";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxls16x16;
+                }).GetHtml();
+            });
+        });
+
+        //toolbar.Items.Add(GridViewToolbarCommand.ExportToXlsx);
+        toolbar.Items.Add(GridViewToolbarCommand.ShowFilterEditor);
+        toolbar.Items.Add(GridViewToolbarCommand.ClearFilter);
+        toolbar.Items.Add(GridViewToolbarCommand.ShowGroupPanel);
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "Help";
+                    s.ClientSideEvents.Init = "function(s, e) { }";
+                    s.ClientSideEvents.Click = "function(s, e) { }";
+                    s.Text = "Help";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.HelpIndex16x16gray;
+                }).GetHtml();
+            });
+        });
+
+
+    });
+    //For Search panel
+    settings.SettingsSearchPanel.CustomEditorName = "search";
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "Op.";
+        c.Width = System.Web.UI.WebControls.Unit.Pixel(70);
+        c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        c.SetDataItemTemplateContent(
+            content =>
+            {
+                System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+                    strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Edit(this)' title='Edit'><i class='fa fa-pencil'></i></a>"));
+                }
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Delete"))
+                {
+                    strBuilder.Append(string.Concat(" <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Delete(this)'  title='Delete'><i class='fa fa-trash-o'></i></a>"));
+                }
+                Html.ViewContext.Writer.Write(strBuilder.ToString());
+            });
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+        c.Width = 60;
+    });
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "No.";
+        c.FieldName = "ROW_NO";
+        c.Width = 50;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "ID";
+        c.FieldName = "ID";
+        c.Width = 50;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+    });
+    
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "SUPPLIER CODE";
+            c.FieldName = "SUPPLIER_CODE";
+            c.Width = 70;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.FixedStyle = GridViewColumnFixedStyle.Left;
+        });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "SUPPLIER PLANT CODE";
+        c.FieldName = "SUPPLIER_PLANT_CODE";
+        c.Width = 70;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "SUPPLIER ABBR.";
+        c.FieldName = "SUPPLIER_NAME";
+        c.Width = 70;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "SUPPLIER NAME";
+        c.FieldName = "SUPPLIER_NAME_EN";
+        c.Width = 120;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+    });
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "ADDRESS";
+        c.FieldName = "ADDRESS";
+        c.Width = 120;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "DOCK X";
+        c.FieldName = "DOCK_X";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "DOCK X ADDRESS";
+        c.FieldName = "DOCK_X_ADDRESS";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "DELIVERY METHOD";
+        c.FieldName = "DELIVERY_METHOD";
+        c.Width = 60;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "DELIVERY FREQUENCY";
+        c.FieldName = "DELIVERY_FREQUENCY";
+        c.Width = 60;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "CD";
+        c.FieldName = "CD";
+        c.Width = 50;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "ORDER DATE TYPE";
+        c.FieldName = "ORDER_DATE_TYPE";
+        c.Width = 60;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "KEIHEN TYPE";
+            c.FieldName = "KEIHEN_TYPE";
+            c.Width = 60;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "STK CONCEPT TMV MIN";
+            c.FieldName = "STK_CONCEPT_TMV_MIN";
+            c.Width = 60;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "STK CONCEPT TMV MAX";
+            c.FieldName = "STK_CONCEPT_TMV_MAX";
+            c.Width = 60;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "STK CONCEPT SUP M MIN";
+            c.FieldName = "STK_CONCEPT_SUP_M_MIN";
+            c.Width = 60;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "STK CONCEPT SUP M MAX";
+            c.FieldName = "STK_CONCEPT_SUP_M_MAX";
+            c.Width = 60;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "STK CONCEPT SUP P MIN";
+            c.FieldName = "STK_CONCEPT_SUP_P_MIN";
+            c.Width = 60;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "STK CONCEPT SUP P MAX";
+            c.FieldName = "STK_CONCEPT_SUP_P_MAX";
+            c.Width = 60;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "TMV PRODUCT PERCENTAGE";
+            c.FieldName = "TMV_PRODUCT_PERCENTAGE";
+            c.Width = 60;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PIC MAIN ID";
+            c.FieldName = "PIC_MAIN_ID";
+            c.Width = 60;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DELIVERY LT";
+            c.FieldName = "DELIVERY_LT";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 70;
+        }
+    );
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "PROD. SHIFT";
+        c.FieldName = "PRODUCTION_SHIFT";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 70;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "T/C FROM";
+        c.FieldName = "TC_FROM";
+        c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 80;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "T/C TO";
+        c.FieldName = "TC_TO";
+        c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 80;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "IS ACTIVE?";
+        c.FieldName = "IS_ACTIVE";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 70;
+        c.SetDataItemTemplateContent(cc =>
+        {
+            Html.DevExpress().CheckBox(checkboxSettings =>
+            {
+                checkboxSettings.Name = "IS_ACTIVE_" + cc.KeyValue.ToString();
+                checkboxSettings.Checked = Convert.ToString(DataBinder.Eval(cc.DataItem, "IS_ACTIVE")) == "Y" ? true : false;
+                checkboxSettings.Properties.ClientSideEvents.CheckedChanged = "function() { return false; }";
+                //checkboxSettings.ClientEnabled = false;
+            }).Render();
+        });
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "CREATED BY";
+        c.FieldName = "CREATED_BY";
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "CREATED DATE";
+        c.FieldName = "CREATED_DATE";
+        c.PropertiesEdit.DisplayFormatString = "dd/MM/yy HH:mm";
+    });
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "UPDATED BY";
+        c.FieldName = "UPDATED_BY";
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "UPDATED DATE";
+        c.FieldName = "UPDATED_DATE";
+        c.PropertiesEdit.DisplayFormatString = "dd/MM/yy HH:mm";
+    });
+
+    //Master
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+    settings.SettingsDetail.ShowDetailRow = true;
+    settings.SetDetailRowTemplateContent(c =>
+    {
+        ViewContext.Writer.Write(
+            "<b>Order Time:</b> " +
+            string.Concat("<a class='btnCollectionNew AssignOR_Time' href='#edit' data-id='", DataBinder.Eval(c.DataItem, "ID"),
+                                "' onclick='return OR_TimeNew(this)' title='Supplier Order Time' >Assign Supplier Order Time</a>",
+                                "<div class='clear'></div>"));
+        Html.RenderAction("SUPPLIER_OR_TIME_GridCallback",
+                new LSP.Models.TB_M_SUPPLIER_DL_TIME.TB_M_SUPPLIER_DL_TIMEInfo() { SUPPLIER_ID = DataBinder.Eval(c.DataItem, "ID").ToString() });
+    });
+    settings.PreRender = (sender, e) =>
+    {
+        ((MVCxGridView)sender).DetailRows.ExpandRow(-1);
+    };
+
+}).Bind(LSP.Models.TB_M_SUPPLIER_INFO.TB_M_SUPPLIER_INFOProvider.Instance.TB_M_SUPPLIER_INFO_Search(Model ?? new LSP.Models.TB_M_SUPPLIER_INFO.TB_M_SUPPLIER_INFOInfo())).GetHtml()

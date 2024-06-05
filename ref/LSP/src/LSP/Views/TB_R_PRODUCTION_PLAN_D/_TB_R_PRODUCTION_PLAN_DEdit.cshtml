@@ -1,0 +1,361 @@
+﻿<table class="edit-form">
+	<tr>
+        <td class="label"> 
+			CFC
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_CFC";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			KATASHIKI
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_KATASHIKI";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			PROD_SFX
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_PROD_SFX";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			LOT_NO
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_LOT_NO";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			NO_IN_LOT
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_NO_IN_LOT";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			BODY_NO
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_BODY_NO";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			EXT_COLOR
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_EXT_COLOR";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			VIN_NO
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_VIN_NO";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			PRODUCTION_LINE
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_PRODUCTION_LINE";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			SHIFT
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_SHIFT";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			SEQUENCE_NO
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_SEQUENCE_NO";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			WORKING_DATE
+		</td>
+        <td>
+            @Html.DevExpress().DateEdit(settings => 
+			{
+                settings.Name = "_WORKING_DATE";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			NO_IN_DAY
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_NO_IN_DAY";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			A_IN_DATE_PLAN
+		</td>
+        <td>
+            @Html.DevExpress().DateEdit(settings => 
+			{
+                settings.Name = "_A_IN_DATE_PLAN";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			A_IN_TIME_PLAN
+		</td>
+        <td>
+            @Html.DevExpress().TimeEdit(
+                settings => {
+                settings.Name = "_A_IN_TIME_PLAN";
+                settings.Width = 200;
+                settings.Properties.DisplayFormatString = "HH:mm:ss";
+                settings.Properties.EditFormatString = "HH:mm:ss"; 
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			A_IN_DATE_ACTUAL
+		</td>
+        <td>
+            @Html.DevExpress().DateEdit(settings => 
+			{
+                settings.Name = "_A_IN_DATE_ACTUAL";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			A_IN_TIME_ACTUAL
+		</td>
+        <td>
+            @Html.DevExpress().TimeEdit(
+                settings => {
+                settings.Name = "_A_IN_TIME_ACTUAL";
+                settings.Width = 200;
+                settings.Properties.DisplayFormatString = "HH:mm:ss";
+                settings.Properties.EditFormatString = "HH:mm:ss"; 
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			A_OUT_DATE_PLAN
+		</td>
+        <td>
+            @Html.DevExpress().DateEdit(settings => 
+			{
+                settings.Name = "_A_OUT_DATE_PLAN";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label"> 
+			A_OUT_TIME_PLAN
+		</td>
+        <td>
+           @Html.DevExpress().TimeEdit(
+                settings => {
+                settings.Name = "_A_OUT_TIME_PLAN";
+                settings.Width = 200;
+                settings.Properties.DisplayFormatString = "HH:mm:ss";
+                settings.Properties.EditFormatString = "HH:mm:ss"; 
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			A_OUT_DATE_ACTUAL
+		</td>
+        <td>
+            @Html.DevExpress().DateEdit(settings => 
+			{
+                settings.Name = "_A_OUT_DATE_ACTUAL";
+				settings.ControlStyle.CssClass = "dateedit";
+				settings.Width = 200;
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+			}).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			A_OUT_TIME_ACTUAL
+		</td>
+        <td>
+            @Html.DevExpress().TimeEdit(
+                settings => {
+                settings.Name = "_A_OUT_TIME_ACTUAL";
+                settings.Width = 200;
+                settings.Properties.DisplayFormatString = "HH:mm:ss";
+                settings.Properties.EditFormatString = "HH:mm:ss"; 
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+	<tr>
+        <td class="label"> 
+			VERSION_NO 
+		</td>
+        <td>
+            @Html.DevExpress().SpinEdit(
+            settings =>
+            {
+                settings.Name = "_VERSION_NO";
+                settings.Width = 200;
+                settings.Properties.SpinButtons.ShowIncrementButtons = true;
+                settings.Properties.Increment = 1;
+                settings.Properties.NumberType = SpinEditNumberType.Integer;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			IS_NQC_PROCESSED  
+		</td>
+        <td>
+            @Html.DevExpress().TextBox(settings =>
+            {
+                settings.Name = "_IS_NQC_PROCESSED";
+                settings.Width = 200;
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()
+			<span class="messageerror"></span>
+        </td>
+        <td class="label"> 
+			IS ACTIVE  
+		</td>
+        <td>
+           @Html.DevExpress().CheckBox(
+            settings =>
+            { 
+                settings.Name = "_IS_ACTIVE";
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml() 
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+ 
+    <tr>
+        <td colspan="6" style="padding-top: 20px;">
+            <div style="float: right; margin-right: 20px;">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnCancel";
+                    settings.ControlStyle.CssClass = "button";
+                    settings.Text = "Cancel";
+                    settings.ClientSideEvents.Click = "OnBtnCancelClicked";
+                }).GetHtml()
+            </div>
+            <div style="float: right; margin-right: 5px">
+			 @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				 (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+					@Html.DevExpress().Button(settings =>
+					{
+						settings.Name = "btnUpdate";
+						settings.ControlStyle.CssClass = "button";
+						settings.Text = "Save";
+						settings.UseSubmitBehavior = true;
+						settings.ClientSideEvents.Click = "function(s, e){ OnBtnUpdateClicked(this) }";
+					}).GetHtml()
+				}
+            </div>
+            <span id="userStatus" class="action-status"></span>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,84 @@
+﻿<div class="dxcontent_search"> 
+
+    <div class="itembox">		
+         @Html.DevExpress().DateEdit(settings =>
+            {
+                settings.Name = "_txtPRODUCTION_MONTH";
+                settings.Properties.Caption = "PROD. MONTH";
+                settings.Properties.CaptionSettings.VerticalAlign = EditorCaptionVerticalAlign.Middle;
+                settings.Properties.EditFormat = EditFormat.Custom;
+                settings.Properties.EditFormatString = "MM/yyyy";
+                settings.Properties.DisplayFormatString = "MM/yyyy";
+                settings.ControlStyle.CssClass = "dateedit textdate autobind";
+                settings.Date = DateTime.Now;
+                settings.Properties.CalendarProperties.ShowClearButton = false;
+                settings.Width = 90;
+            }).GetHtml() 			
+    </div>    
+
+    <div class="itembox">
+        <label class="placehoder">CFC</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+                settings.Name = "_txtCFC";
+				settings.ControlStyle.CssClass = "textbox";
+                settings.Width = 70;
+			}).GetHtml() 
+    </div>
+    <div class="itembox">
+        <label class="placehoder">PROD. SFX</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+                settings.Name = "_txtPROD_SFX";
+				settings.ControlStyle.CssClass = "textbox";
+                settings.Width = 80;
+			}).GetHtml() 
+    </div>
+    <div class="itembox">
+        <label class="placehoder">PROD. LINE</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+                settings.Name = "_txtPRODUCTION_LINE";
+				settings.ControlStyle.CssClass = "textbox";
+                settings.Width = 80;
+			}).GetHtml() 
+    </div>
+    <div class="itembox">
+		<label class="placehoder">WORKING DATE</label>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+                settings.Name = "_txtWORKING_DATE";
+                settings.ControlStyle.CssClass = "dateedit textdate";
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy";
+                settings.Width = 120;
+			}).GetHtml() 
+    </div>
+    <div class="itembox">
+		<label class="placehoder">W IN DATE PLAN</label>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+                settings.Name = "_txtW_IN_DATE_PLAN";
+                settings.ControlStyle.CssClass = "dateedit textdate";
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy";
+                settings.Width = 130;
+			}).GetHtml() 
+    </div>
+
+    <div class="itembox">    
+		@if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+			(Html.Toyota().Page.ControllerName.ToString(), "Search"))
+		{	
+			@Html.DevExpress().Button(settings =>
+			{
+				settings.Name = "btnSearch";
+				settings.Text = "Search";
+                settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsSearch16x16devav; 
+				settings.ClientSideEvents.Click = "DoSearch";
+			}).GetHtml()
+		}
+    </div>
+</div>
+
+
+
+

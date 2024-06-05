@@ -1,0 +1,234 @@
+﻿@using LSP.Models;
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = Common.PageSize_M(); //10
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = Common.PageSizeItemSettings(); //new string[] { "10", "20", "50" };
+    settings.SettingsResizing.ColumnResizeMode = ColumnResizeMode.Control;
+    settings.SettingsResizing.Visualization = ResizingMode.Live;
+    settings.SettingsBehavior.AllowEllipsisInText = true;
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 7;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+    settings.Styles.Header.BackColor = System.Drawing.ColorTranslator.FromHtml("#004d66");
+    settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Auto;
+    settings.Styles.Cell.Font.Size = 8;
+
+    settings.CallbackRouteValues = new { Controller = "TB_M_SCREEN_SETTING", Action = "GridCallback" };
+
+    //Focus row
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.Styles.FocusedRow.BackColor = System.Drawing.Color.SlateGray;
+
+    //Export
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+    settings.SettingsExport.RenderBrick = (s, e) =>
+    {
+        GridViewDataColumn dataColumn = e.Column as GridViewDataColumn;
+        if (e.Value is Boolean)
+        {
+            e.Text = (bool)e.Value == true ? "Y" : "N";
+        }
+    };
+    settings.SettingsDetail.ExportMode = GridViewDetailExportMode.Expanded;
+    settings.SettingsExport.Styles.Cell.Font.Size = 8;
+
+    if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+            (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+    {
+        settings.SettingsExport.BeforeExport = (sender, e) =>
+        {
+            MVCxGridView gridView = sender as MVCxGridView;
+            if (sender == null)
+                return;
+            gridView.Columns["Op."].Visible = false;
+        };
+    }
+
+    //Toolbar
+    settings.Toolbars.Add(toolbar =>
+    {
+        toolbar.Enabled = true;
+        toolbar.EnableAdaptivity = true;
+        toolbar.Position = GridToolbarPosition.Top;
+        toolbar.ItemAlign = GridToolbarItemAlign.Left;
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                Html.DevExpress().ButtonEdit(s =>
+                {
+                    s.Name = "search";
+                    s.Properties.NullText = "Search inline...";
+                    s.Properties.Buttons
+                        .Add()
+                        .Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
+                }).Render();
+            });
+        });
+       
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnExportXls";
+                    s.ClientSideEvents.Click = "function(s, e) {gvList.ExportTo(ASPxClientGridViewExportFormat.Xls);}";
+                    s.Text = "Export to Xls";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxls16x16;
+                }).GetHtml();
+            });
+        });
+    });
+
+    //Show group columns as default
+    settings.Settings.ShowGroupedColumns = true;
+
+    //For Search panel
+    settings.SettingsSearchPanel.CustomEditorName = "search";
+
+    if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+            (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+    {
+        //Action for batch update
+        settings.SettingsEditing.BatchUpdateRouteValues = new { Controller = "TB_M_SCREEN_SETTING", Action = "BatchEditingUpdateModel" };
+
+
+        settings.SettingsEditing.Mode = GridViewEditingMode.Batch;
+        settings.SettingsEditing.BatchEditSettings.EditMode = GridViewBatchEditMode.Row;
+
+        settings.SettingsEditing.BatchEditSettings.StartEditAction = GridViewBatchStartEditAction.DblClick;
+        settings.SettingsEditing.BatchEditSettings.HighlightDeletedRows = true;        
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.Caption = "Op.";
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowRecoverButton = false;
+
+        settings.CommandColumn.ShowNewButtonInHeader = true;
+        settings.CommandColumn.Width = 80;
+        settings.CommandColumn.ButtonRenderMode = GridCommandButtonRenderMode.Button;
+
+        settings.SettingsCommandButton.DeleteButton.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsDelete16x16gray;
+        settings.SettingsCommandButton.DeleteButton.Text = "Del";
+        settings.SettingsCommandButton.NewButton.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsAdd16x16gray;
+        /* For batch edit setting: END*/
+    }
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "NO";
+        c.FieldName = "ROW_NO";
+        c.Width = 50;
+        c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "SCREEN NAME";
+        c.FieldName = "SCREEN_NAME";
+        c.Width = 230;        
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "SCREEN TYPE";
+        c.FieldName = "SCREEN_TYPE";
+        c.Width = 100;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "SCREEN VALUE (DOCK)";
+        c.FieldName = "SCREEN_VALUE";
+        c.Width = 100;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "BARCODE ID";
+        c.FieldName = "BARCODE_ID";
+        c.Width = 90;
+    });
+        
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "DESCRIPTION";
+        c.FieldName = "DESCRIPTION";                
+        c.Width = 150;
+    });
+       
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "IS ACTIVE?";
+        c.FieldName = "IS_ACTIVE_BOL";
+        c.ColumnType = MVCxGridViewColumnType.CheckBox;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 60;
+    });
+   
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "CREATED BY";
+        c.FieldName = "CREATED_BY";
+        c.EditFormSettings.Visible = DefaultBoolean.False;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 70;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "CREATED DATE";
+        c.FieldName = "CREATED_DATE";
+        c.PropertiesEdit.DisplayFormatString = "dd/MM/yy HH:mm";
+        c.EditFormSettings.Visible = DefaultBoolean.False;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 90;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "UPDATED BY";
+        c.FieldName = "UPDATED_BY";
+        c.EditFormSettings.Visible = DefaultBoolean.False;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 70;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "UPDATED DATE";
+        c.FieldName = "UPDATED_DATE";
+        c.PropertiesEdit.DisplayFormatString = "dd/MM/yy HH:mm";
+        c.EditFormSettings.Visible = DefaultBoolean.False;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 90;
+    }); 
+
+    //for full width of cell editor in columns    
+    settings.CellEditorInitialize = (s, e) =>
+    {
+        ASPxEdit editor = (ASPxEdit)e.Editor;
+        editor.ValidationSettings.Display = Display.Dynamic;
+
+    };
+
+}).Bind(LSP.Models.TB_M_SCREEN_SETTING.TB_M_SCREEN_SETTINGProvider.Instance.TB_M_SCREEN_SETTING_Search(Model ?? new LSP.Models.TB_M_SCREEN_SETTING.TB_M_SCREEN_SETTINGInfo())).GetHtml()
+

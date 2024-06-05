@@ -1,0 +1,423 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+
+.dxpCtrl .dxpPageNumber.dxpCurrentPageNumber::before, 
+.dxpCtrl .dxpPageNumber.dxpCurrentPageNumber::after { background-color:white; content:none;  }
+
+/*.dxgvTable_MetropolisBlue .dxgvControl_MetropolisBlue { width:900px !important; }*/
+.dxgvTable_MetropolisBlue .dxgvTable td.dxgv.dxgvDetailCell { padding:10px 0; }
+.AssignKanban { display: inline-block; margin-bottom: 4px; }
+
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        try {
+
+            $(".UI_Tab .titleframe").click(function () {
+                var _href = $(this).attr("href");
+                document.location.href = _href;
+                /*
+                $(".UI_Tab .tabtitle .titleframe, .UI_Tab .tabcont .contframe").removeClass("active");
+                $(this).addClass("active");
+                var val = $(this).attr("val");
+                $(".UI_Tab .tabcont div[val='" + val + "'].contframe").addClass("active");
+                */
+            });
+
+        } catch (ex) {
+            console.error(ex.message, null);
+        }
+    });
+
+</script>
+<div class="UI_Tab">
+    <div class="tabtitle">
+        <div class="titleframe T1 active" val="T1" href="#"><span>Daily Order</span></div>
+        <div class="titleframe T2 " val="T2" href="/TB_R_PART_RUNDOWN"><span>Part Rundown</span></div>
+        <div class="titleframe T3 " val="T3" href="/TB_R_PART_RUNDOWN_V2"><span>Part Rundown V2</span></div>
+        <div class="titleframe T4 " val="T4" href="/TB_M_SUPPLIER_STK_CONCEPT"><span>Stock Concept</span></div>
+        <div class="titleframe T5 " val="T5" href="/TB_R_PRODUCTION_PLAN_D"><span>Production Plan A</span></div>
+        <div class="titleframe T6 " val="T6" href="/TB_R_PRODUCTION_PLAN_D_W"><span>Production Plan W</span></div>
+        <div class="titleframe T7 " val="T7" href="/TB_R_PART_STOCK"><span>Part Stock</span></div>
+    </div>
+    <div class="clear"></div>
+    <div class="tabcont">
+        <div class="contframe T1 active" val="T1">
+
+
+                <div class="dxcontent_list">
+	                <div class="content-header">
+		                @*<div class="action-area">
+			                @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				                (Html.Toyota().Page.ControllerName.ToString(), "New"))
+                              {
+				                @Html.DevExpress().Button(settings =>
+				                {
+					                settings.Name = "btnAdd";
+					                settings.Text = "Add New";
+                                    settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsAdd16x16;
+                                    settings.ClientSideEvents.Click = "AddOrder";
+				                }).GetHtml()
+			                }
+		                </div>
+                        *@
+
+                        <div class="action-area" style="float: right; margin-right: 2px; margin-top: 0px">
+                            @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                                    (Html.Toyota().Page.ControllerName.ToString(), "New"))
+                              {
+                                          Html.DevExpress().Button(
+                                              settings =>
+                                              {
+                                                  settings.Name = "btnSaveOrderExcel";
+                                                  settings.Text = "Order / Delivery (xlsx)";
+                                                  settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxls16x16;
+                                                  settings.ClientSideEvents.Click = "OrderDelivery_SaveToExcel"; 
+                                              }
+                                          ).GetHtml();
+                              }
+                        </div>
+
+                        <div class="action-area" style="float: right; margin-right: 2px; margin-top: 0px">
+                            @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                                    (Html.Toyota().Page.ControllerName.ToString(), "Search"))
+                              {
+                                          Html.DevExpress().Button(
+                                              settings =>
+                                              {
+                                                  settings.Name = "btnSavePdf";
+                                                  settings.Text = "Order / Delivery (Pdf)";
+                                                  settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttopdf16x16;
+                                                  settings.ClientSideEvents.Click = "OrderDelivery_SaveViewAsPDF2"; //OrderDelivery_SaveViewAsPDF2   //OrderDelivery_OpenPdf2
+                                              }
+                                          ).GetHtml();
+                              }
+                        </div>
+
+
+                        <div class="action-area" style="float: right; margin-right: 2px; margin-top: 0px">
+                            @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                                    (Html.Toyota().Page.ControllerName.ToString(), "Search"))
+                              {
+                                          Html.DevExpress().Button(
+                                              settings =>
+                                              {
+                                                  settings.Name = "btnContentListsPdf";
+                                                  settings.Text = "Content List (PDF)";
+                                                  settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttopdf16x16;
+                                                  settings.ClientSideEvents.Click = "ContentListMulti_SaveViewAsPDF"; //ContentListMulti_SaveViewAsPDF   //ContentListMulti_OpenPdf
+                                              }
+                                          ).GetHtml();
+                              }
+                        </div>
+
+                        <div class="action-area" style="float: right; margin-right: 2px; margin-top: 0px">
+                            @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                                    (Html.Toyota().Page.ControllerName.ToString(), "Search"))
+                              {
+                                          Html.DevExpress().Button(
+                                              settings =>
+                                              {
+                                                  settings.Name = "btnKanbansPdf";
+                                                  settings.Text = "Kanban (PDF)";
+                                                  settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttopdf16x16;
+                                                  settings.ClientSideEvents.Click = "Kanban_SaveViewAsPDF2"; //ContentListMulti_SaveViewAsPDF   //ContentListMulti_OpenPdf
+                                              }
+                                          ).GetHtml();
+                              }
+                        </div>
+
+                        <div class="action-area" style="float: right; margin-right: 2px; margin-top: 0px">
+                            @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                                    (Html.Toyota().Page.ControllerName.ToString(), "New"))
+                              {
+                                          Html.DevExpress().Button(
+                                              settings =>
+                                              {
+                                                  settings.Name = "btnSendEmail";
+                                                  settings.Text = "Send Email";
+                                                  settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.MailEmailtemplate16x16office2013;
+                                                  settings.ClientSideEvents.Click = "Send_Email_Order"; //ContentListMulti_SaveViewAsPDF   //ContentListMulti_OpenPdf
+                                              }
+                                          ).GetHtml();
+                              }
+                        </div>
+
+                        @*<div class="action-area" style="float: right; margin-right: 2px; margin-top: 0px">
+                            @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                                    (Html.Toyota().Page.ControllerName.ToString(), "New"))
+                              {
+                                          Html.DevExpress().Button(
+                                              settings =>
+                                              {
+                                                  settings.Name = "btnCONTENT_LISTPdf";
+                                                  settings.Text = "Content List (Pdf)";
+                                                  settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.SaveSave16x16;
+                                                  settings.ClientSideEvents.Click = "ContentList_SaveViewAsPDF"; //ContentList_SaveViewAsPDF
+                                              }
+                                          ).GetHtml();
+                              }
+                        </div>
+
+                        <div class="action-area" style="float: right; margin-right: 2px; margin-top: 0px">
+                            @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                                    (Html.Toyota().Page.ControllerName.ToString(), "New"))
+                              {
+                                          Html.DevExpress().Button(
+                                              settings =>
+                                              {
+                                                  settings.Name = "btnKANBANPdf";
+                                                  settings.Text = "Kanban (Pdf)";
+                                                  settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.SaveSave16x16;
+                                                  settings.ClientSideEvents.Click = "Kanban_OpenPdf"; // // Kanban_OpenPdf Kanban_SaveViewAsPDF
+                                              }
+                                          ).GetHtml();
+                              }
+                        </div>*@
+	                </div>
+
+                    <div class="content-header content-title">  
+                          @Html.Partial("_TB_R_CONTENT_LISTSearch") 
+	                </div>
+
+                     @using (Html.BeginForm()) {
+	                   @Html.Partial("_TB_R_DAILY_ORDERList")
+                    }
+	
+                     @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                                    (Html.Toyota().Page.ControllerName.ToString(), "New"))
+                     {
+                        <div class="content-header content-title">
+                            <div class="action-area" style="float: right; margin-right: 2px; margin-top: 0px">
+                                <button class="btn btn-primary btn-xs" type="button" onclick="DOWNLOAD_DAILY_ORDER_TEMPLATE(); return false;">
+                                    <i class="fa fa-download"></i> Template </button>
+                            </div>
+                            <div class="action-area" style="float: right; margin-right: 2px; margin-top: 0px">
+                                <button class="btn btn-primary btn-xs" type="button" onclick="IMPORT_CONTENT_LIST(); return false;">
+                                    <i class="fa fa-upload"></i> Upload </button>
+                            </div>
+                        </div>
+                     }
+
+                    @Html.DevExpress().PopupControl(settings =>
+	                {
+                        settings.HeaderText = "Download Monthly Order";
+                        settings.Name = "popDOWNLOAD_MONTHLY_ORDER";
+		                settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+		                settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+		                settings.Modal = true;
+		                settings.ShowCloseButton = false;
+                        settings.CloseAction = CloseAction.CloseButton;
+		                settings.PopupAnimationType = AnimationType.Fade;
+		                settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+		                settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+		                settings.SetContent(() =>
+		                {
+                            Html.RenderPartial("DOWNLOAD_MONTHLY_ORDER");
+		                });
+                        settings.ClientSideEvents.CloseUp = "OnPopDOWNLOAD_MONTHLY_ORDERCloseUp";
+	                }).GetHtml()
+
+                    @Html.DevExpress().PopupControl(settings =>
+	                {
+                        settings.HeaderText = "Download Monthly GRN";
+                        settings.Name = "popDOWNLOAD_MONTHLY_GRN";
+		                settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+		                settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+		                settings.Modal = true;
+		                settings.ShowCloseButton = false;
+                        settings.CloseAction = CloseAction.CloseButton;
+		                settings.PopupAnimationType = AnimationType.Fade;
+		                settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+		                settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+		                settings.SetContent(() =>
+		                {
+                            Html.RenderPartial("DOWNLOAD_MONTHLY_GRN");
+		                });
+                        settings.ClientSideEvents.CloseUp = "OnPopDOWNLOAD_MONTHLY_ORDERCloseUp";
+	                }).GetHtml()
+
+                    @Html.DevExpress().PopupControl(settings =>
+	                {
+                        settings.HeaderText = "Generate Monthly Order";
+                        settings.Name = "popGENERATE_MONTHLY_ORDER";
+		                settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+		                settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+		                settings.Modal = true;
+		                settings.ShowCloseButton = false;
+                        settings.CloseAction = CloseAction.CloseButton;
+		                settings.PopupAnimationType = AnimationType.Fade;
+		                settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+		                settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+		                settings.SetContent(() =>
+		                {
+                            Html.RenderPartial("GENERATE_MONTHLY_ORDER");
+		                });
+                        settings.ClientSideEvents.CloseUp = "OnPopGENERATE_MONTHLY_ORDERCloseUp";
+	                }).GetHtml()
+
+                     @Html.DevExpress().PopupControl(settings =>
+	                {
+                        settings.HeaderText = "Send Multiple Orders";
+                        settings.Name = "popSEND_MULTIPLE_ORDER";
+		                settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+		                settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+		                settings.Modal = true;
+		                settings.ShowCloseButton = false;
+                        settings.CloseAction = CloseAction.CloseButton;
+		                settings.PopupAnimationType = AnimationType.Fade;
+		                settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+		                settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+		                settings.SetContent(() =>
+		                {
+                            Html.RenderPartial("SEND_MULTIPLE_ORDER");
+		                });
+                        settings.ClientSideEvents.CloseUp = "OnPopSEND_MULTIPLE_ORDERCloseUp";
+	                }).GetHtml()
+
+                    @Html.DevExpress().PopupControl(settings =>
+	                {
+		                settings.HeaderText = "TB_R_DAILY_ORDER Management";
+		                settings.Name = "popTB_R_DAILY_ORDER";
+		                settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+		                settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+		                settings.Modal = true;
+		                settings.ShowCloseButton = true;
+		                settings.PopupAnimationType = AnimationType.Fade;
+		                settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+		                settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+		                settings.SetContent(() =>
+		                {
+			                Html.RenderPartial("_TB_R_DAILY_ORDEREdit");
+		                });
+		                settings.ClientSideEvents.CloseUp = "OnPopTB_R_DAILY_ORDERCloseUp";
+	                }).GetHtml()
+
+                    @Html.DevExpress().PopupControl(settings =>
+                    {
+                        settings.HeaderText = "CONTENT LIST UPLOAD";
+                        settings.Name = "popCONTENT_LIST";
+                        settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+                        settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+                        settings.Modal = true;
+                        settings.ShowCloseButton = true;
+                        settings.PopupAnimationType = AnimationType.Fade;
+                        settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+                        settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+                        settings.SetContent(() =>
+                        {
+                            Html.RenderPartial("_TB_R_CONTENT_LIST_Import");
+                        });
+                        settings.ClientSideEvents.CloseUp = "OnPopCONTENT_LISTCloseUp";
+                    }).GetHtml()
+
+	                @Html.DevExpress().PopupControl(settings =>
+	                {
+		                settings.HeaderText = "TB_R_CONTENT_LIST Management";
+		                settings.Name = "popTB_R_CONTENT_LIST";
+		                settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+		                settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+		                settings.Modal = true;
+		                settings.ShowCloseButton = true;
+		                settings.PopupAnimationType = AnimationType.Fade;
+		                settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+		                settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+		                settings.SetContent(() =>
+		                {
+			                Html.RenderPartial("_TB_R_CONTENT_LISTEdit");
+		                });
+		                settings.ClientSideEvents.CloseUp = "OnPopTB_R_CONTENT_LISTCloseUp";
+	                }).GetHtml()
+
+
+                    @Html.DevExpress().PopupControl(settings =>
+	                {
+                        settings.HeaderText = "KANBAN";
+                        settings.Name = "popKANBAN";
+		                settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+		                settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+		                settings.Modal = true;
+		                settings.ShowCloseButton = true;
+		                settings.PopupAnimationType = AnimationType.Fade;
+		                settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+                        settings.Height = System.Web.UI.WebControls.Unit.Pixel(200);
+		                settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+		                settings.SetContent(() =>
+		                {
+                            Html.RenderPartial("_TB_R_KANBANEdit");
+		                });
+                        settings.ClientSideEvents.CloseUp = "OnPopKANBANCloseUp";
+	                }).GetHtml()    	
+
+                     @Html.DevExpress().LoadingPanel(
+                        settings => {
+                        settings.Name = "LoadingPanel";
+                        settings.Modal = true;
+                        settings.Text = "Processing...";
+                        settings.Width = 160;
+                        settings.ContainerElementID = "";
+                    }
+                    ).GetHtml()
+
+                    @Html.DevExpress().PopupControl(settings =>
+                    {
+                        settings.HeaderText = "Details";
+                        settings.Name = "popDetails";
+                        settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+                        settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+                        settings.Modal = true;
+                        settings.ShowCloseButton = true;
+                        settings.CloseAction = CloseAction.CloseButton;
+                        settings.PopupAnimationType = AnimationType.Fade;
+                        settings.Width = System.Web.UI.WebControls.Unit.Pixel(1200); 
+                        settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+                        settings.SetContent(() =>
+                        {
+                            Html.RenderPartial("_TB_R_DAILY_ORDER_DETAILS");
+                        });
+                        settings.ClientSideEvents.CloseUp = "OnpopDetailsCloseUp";
+                     }).GetHtml()
+
+                    @Html.DevExpress().LoadingPanel(settings => {
+                        settings.Name = "LoadingPanel_GENERATE_MONTHLY_ORDER";
+                        settings.Modal = true;
+                        settings.Text = "Processing...";
+                        settings.Width = 160;
+                        settings.ContainerElementID = "tb_GENERATE_MONTHLY_ORDER";
+                    }
+                    ).GetHtml()
+
+                    @Html.DevExpress().LoadingPanel(settings => {
+                        settings.Name = "LoadingPanel_DOWNLOAD_MONTHLY_ORDER";
+                        settings.Modal = true;
+                        settings.Text = "Processing...";
+                        settings.Width = 160;
+                        settings.ContainerElementID = "tb_DOWNLOAD_MONTHLY_ORDER";
+                    }
+                    ).GetHtml()                   
+
+                    @Html.DevExpress().LoadingPanel(settings => {
+                        settings.Name = "LoadingPanel_SEND_MULTIPLE_ORDER";
+                        settings.Modal = true;
+                        settings.Text = "Please wait while system is being processed ...for some minutes.";
+                        settings.Width = 160;
+                        settings.ContainerElementID = "tb_SEND_MULTIPLE_ORDER";
+                    }
+                    ).GetHtml() 
+
+	                @section HeadScript {
+		                <script src="@Url.Content("~/Content/Scripts/App/TB_R_CONTENT_LIST.js")" type="text/javascript"></script>
+	                }
+                </div>
+
+
+</div>
+        <div class="contframe T2" val="T2"></div>
+        <div class="contframe T3" val="T3"></div>
+        <div class="contframe T4" val="T4"></div>
+        <div class="contframe T5" val="T5"></div>
+    </div>
+</div>

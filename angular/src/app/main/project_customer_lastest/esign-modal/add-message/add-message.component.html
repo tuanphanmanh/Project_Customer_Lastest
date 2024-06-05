@@ -1,0 +1,48 @@
+<ejs-dialog [isModal]='true' #modal id="modal" [visible]='visible' [animationSettings]='animationSettings'
+    [showCloseIcon]='false' [width]='dialogWidth' >
+    <ng-template #content>
+        <div class="frame-1171275376">
+            <div class="frame-1171275385">
+                <div class="frame-1171275284">
+                    <div class="vuesax-linear-close-circle" (click)="hide()">
+                        <div class="vuesax-linear-close-circle2">
+                            <svg class="close-circle" width="36" height="36" viewBox="0 0 36 36" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.7549 22.2449L22.2449 13.7549" stroke="#222222" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M22.2449 22.2449L13.7549 13.7549" stroke="#222222" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="frame-1171275283">
+                    <div class="frame-1171275480">
+                        <div class="comment">{{l('Comment')}}</div>
+                    </div>
+                </div>
+                <div class="frame-1171275479">
+                    <div class="frame-1171275230">
+                        <textarea id="textareames" (keyup)="changeKey($event)" #default rows="5" placeholder="Message here.." [(ngModel)]="message" class="w100"></textarea>
+                        <div class="frame-1171275335">
+                            <div class="input-value2">Public Message</div>
+                            <div class="suffix">
+                                <ejs-switch id="checked" [checked]="true"></ejs-switch>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="frame-1171275387">
+                    <div class="frame-1171275438">
+                        <div class="component-38" (click)="hide()">
+                            <div class="cancel">{{l('Cancel')}}</div>
+                        </div>
+                        <div class="component-37" (click)="submit()">
+                            <div class="yes">Yes</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</ejs-dialog>

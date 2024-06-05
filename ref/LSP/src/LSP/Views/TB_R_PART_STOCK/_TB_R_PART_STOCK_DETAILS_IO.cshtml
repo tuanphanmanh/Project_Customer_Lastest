@@ -1,0 +1,78 @@
+﻿ 
+    <div class="dxcontent_search">       
+         <div class="itembox">		
+			@Html.DevExpress().TextBox(settings =>
+			{
+                settings.Name = "_txtPART_NO_IO";
+				settings.ControlStyle.CssClass = "textbox";
+                settings.Properties.NullText = "PART NO";
+                settings.Width = 120;
+			}).GetHtml() 
+         </div>
+         <div class="itembox">        
+			@Html.DevExpress().TextBox(settings =>
+			{
+                settings.Name = "_txtSUPPLIER_CODE_IO";
+				settings.ControlStyle.CssClass = "textbox";
+                settings.Properties.NullText = "SUPPLIER";
+                settings.Width = 100;
+			}).GetHtml() 
+        </div>
+        <div class="itembox">		
+		    @Html.DevExpress().RadioButtonList(settings =>
+             {
+                 settings.Name = "_txtIS_IN_OUT";
+                 settings.Properties.Items.Add("All", "");            
+                 settings.Properties.Items.Add("IN", "I");
+                 settings.Properties.Items.Add("OUT", "O");                       
+                 settings.Properties.RepeatDirection = System.Web.UI.WebControls.RepeatDirection.Horizontal;             
+                 settings.SelectedIndex = 0;
+             }).GetHtml()	
+        </div>    
+         <div class="itembox">            
+            @Html.DevExpress().DateEdit(settings =>
+            {
+                settings.Name = "_txtSTOCK_DATE_FROM";
+                settings.ControlStyle.CssClass = "dateedit textdate val-required";
+                settings.Properties.Caption = "STOCK DATE FROM";
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";                       
+                settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                settings.Properties.ValidationSettings.RequiredField.ErrorText = "STOCK DATE FROM is mandatory";
+                settings.Properties.ValidationSettings.SetFocusOnError = true;
+                settings.Width = 100;
+            }).GetHtml()
+        </div>
+        <div class="itembox">            
+            @Html.DevExpress().DateEdit(settings =>
+            {
+                settings.Name = "_txtSTOCK_DATE_TO";
+                settings.ControlStyle.CssClass = "dateedit textdate val-required";
+                settings.Properties.Caption = "STOCK DATE TO";
+                settings.Properties.DisplayFormatString = "dd/MM/yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+                settings.Width = 100;     
+            }).GetHtml()
+        </div>
+       
+      
+        <div class="itembox">
+            @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                        (Html.Toyota().Page.ControllerName.ToString(), "Search"))
+            {	
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnDetailsIOSearch";
+                    settings.Text = "Search";
+                    settings.ClientSideEvents.Click = "SelectSTOCK_DetailsIO";
+                    settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsSearch16x16devav;
+                }).GetHtml()
+            }
+        </div>
+    </div>
+ 
+ @using (Html.BeginForm()) {
+    @Html.Partial("_TB_R_PART_STOCK_DETAILS_IO_LIST")
+ }
+
+

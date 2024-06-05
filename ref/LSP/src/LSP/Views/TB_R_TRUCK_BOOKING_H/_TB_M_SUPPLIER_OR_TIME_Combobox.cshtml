@@ -1,0 +1,17 @@
+﻿@Html.DevExpress().ComboBox(settings =>
+{
+    settings.Name = "_TB_M_SUPPLIER_OR_TIME"; 
+    settings.Width = 350;
+    settings.ControlStyle.CssClass = "textbox val-required";
+      
+    settings.Properties.ValueField = "ID";
+    settings.Properties.ValueType = typeof(string);
+    settings.Properties.Columns.Add("ROW_NO", "NO.", 50);
+    settings.Properties.Columns.Add("SUPPLIER_CODE", "SUPPLIER", 70);
+    settings.Properties.Columns.Add("ORDER_SEQ", "ORDER SEQ", 90);
+    settings.Properties.Columns.Add("ORDER_TYPE", "ORDER TYPE", 90);
+    settings.Properties.Columns.Add("RECEIVE_TIME", "RECEIVE TIME");
+    settings.Properties.TextFormatString = "{0} - {1} - {2} - {3} - {4}";
+    settings.SelectedIndex = 0;
+    settings.CallbackRouteValues = new { Controller = "TB_R_TRUCK_BOOKING_H", Action = "SUPPLIER_OR_TIME_GridCallback" };
+ }).BindList(LSP.Models.TB_M_SUPPLIER_OR_TIME.TB_M_SUPPLIER_OR_TIMEProvider.Instance.TB_M_SUPPLIER_OR_TIME_ActiveTruckBooking((string)Model ?? "")).GetHtml()

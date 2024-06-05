@@ -1,0 +1,190 @@
+﻿2015-07-16 10:09:27,324 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog - MySql.Data.MySqlClient.MySqlException: Data too long for column 'pSEQ_NO' at row 1
+   at TMV.DataAccess.MySqlDataAccess.ExecuteDataset(String connectionString, CommandType commandType, String commandText, MySqlParameter[] commandParameters) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlDataAccess.cs:line 560
+   at TMV.DataAccess.MySqlDataAccess.ExecuteDataset(String connectionString, String spName, Object[] parameterValues) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlDataAccess.cs:line 499
+   at TMV.DataAccess.TB_R_ScanningDAO.CheckLength(String sNo) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\Andon\Instruction\TB_R_ScanningDAO.cs:line 217
+   at TMV.BusinessObject.TB_R_ScanningBO.CheckLength(String sNo) in d:\Work\Code BHT (192.168.220.68)\TMV.BusinessObject\Andon\Instruction\TB_R_ScanningBO.cs:line 122
+   at TMV.Barcode.ValidateGlobals.CheckSEQ(MST_ProcessInfo pro, String sNo, Int32 isValidate, String& error) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Common\VINGlobals.cs:line 183
+   at TMV.Barcode.SEQ.btnScan_Click(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\SEQ.aspx.cs:line 85-
+2015-07-17 23:19:53,508 ERROR : TUDQ - tudamquoc -  - MessagesCommon - Message_WriteLog_Data - MySql.Data.MySqlClient.MySqlException: Fatal error encountered during data read. ---> MySql.Data.MySqlClient.MySqlException: Reading from the stream has failed. ---> System.IO.IOException: Unable to read data from the transport connection: A non-blocking socket operation could not be completed immediately. ---> System.Net.Sockets.SocketException: A non-blocking socket operation could not be completed immediately
+   at System.Net.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at MySql.Data.Common.MyNetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at MySql.Data.MySqlClient.TimedStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.BufferedStream.Read(Byte[] array, Int32 offset, Int32 count)
+   at MySql.Data.MySqlClient.MySqlStream.ReadFully(Stream stream, Byte[] buffer, Int32 offset, Int32 count)
+   at MySql.Data.MySqlClient.MySqlStream.LoadPacket()
+   --- End of inner exception stack trace ---
+   at MySql.Data.MySqlClient.MySqlStream.LoadPacket()
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.FetchDataRow(Int32 statementId, Int32 columns)
+   at MySql.Data.MySqlClient.Driver.FetchDataRow(Int32 statementId, Int32 columns)
+   at MySql.Data.MySqlClient.ResultSet.GetNextRow()
+   at MySql.Data.MySqlClient.ResultSet.NextRow(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlDataReader.Read()
+   --- End of inner exception stack trace ---
+   at TMV.DataAccess.MySqlParameterCache.GetSpParameterSet(String connectionString, String spName, Boolean includeReturnValueParameter) in d:\Code BHT\TMV.DataAccesss\MySqlParameterCache.cs:line 165
+   at TMV.DataAccess.MySqlParameterCache.GetSpParameterSet(String connectionString, String spName) in d:\Code BHT\TMV.DataAccesss\MySqlParameterCache.cs:line 115
+   at TMV.DataAccess.MySqlHelper.ExecuteDataset(String connectionString, String spName, Object[] parameterValues) in d:\Code BHT\TMV.DataAccesss\MySqlHelper.cs:line 525
+   at TMV.DataAccess.BC_Status_UnloadDAO.CheckMAC_Adress(String p_mac_address) in d:\Code BHT\TMV.DataAccesss\Topsse\BC_Status_UnloadDAO.cs:line 108
+   at BC_Status_UnloadBO.CheckMAC_Adress(String p_mac_address) in d:\Code BHT\TMV.BusinessObject\Topsse\BC_Status_UnloadBO.cs:line 70
+   at TMV.Barcode.Unloading.Page_Load(Object sender, EventArgs e) in d:\Code BHT\TMV.Barcode\Unloading.aspx.cs:line 55-Fatal error encountered during data read.
+2015-07-18 09:37:41,847 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - System.InvalidCastException: Specified cast is not valid.
+   at TMV.Barcode.Unloading.ScanUnloadingContainerInvoice() in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 182
+   at TMV.Barcode.Unloading.btnScan_Click(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 130-Specified cast is not valid.
+2015-07-18 09:38:53,331 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - System.InvalidCastException: Specified cast is not valid.
+   at TMV.Barcode.Unloading.ScanUnloadingContainerInvoice() in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 182
+   at TMV.Barcode.Unloading.btnScan_Click(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 130-Specified cast is not valid.
+2015-07-18 10:59:27,323 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - System.ArgumentException: Parameter count does not match Parameter Value count.
+   at TMV.DataAccess.MySqlHelper.AssignParameterValues(MySqlParameter[] commandParameters, Object[] parameterValues) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 58
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, String spName, Object[] parameterValues) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 289
+   at TMV.DataAccess.BC_Status_UnloadDAO.UpdateBin(String p_user, Int32 p_line, String p_container_invoice, String p_case_no) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\Topsse\BC_Status_UnloadDAO.cs:line 136
+   at BC_Status_UnloadBO.UpdateBin(String p_user, Int32 p_line, String p_container_invoice, String p_case_no) in d:\Work\Code BHT (192.168.220.68)\TMV.BusinessObject\Topsse\BC_Status_UnloadBO.cs:line 90
+   at TMV.Barcode.Unloading.ScanUnloadingLine() in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 233
+   at TMV.Barcode.Unloading.btnScan_Click(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 140-Parameter count does not match Parameter Value count.
+2015-07-18 11:04:46,892 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - System.ArgumentException: Parameter count does not match Parameter Value count.
+   at TMV.DataAccess.MySqlHelper.AssignParameterValues(MySqlParameter[] commandParameters, Object[] parameterValues) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 58
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, String spName, Object[] parameterValues) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 289
+   at TMV.DataAccess.BC_Status_UnloadDAO.UpdateBin(String p_user, Int32 p_line, String p_container_invoice, String p_case_no, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\Topsse\BC_Status_UnloadDAO.cs:line 136
+   at BC_Status_UnloadBO.UpdateBin(String p_user, Int32 p_line, String p_container_invoice, String p_case_no, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.BusinessObject\Topsse\BC_Status_UnloadBO.cs:line 90
+   at TMV.Barcode.Unloading.ScanUnloadingLine() in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 233
+   at TMV.Barcode.Unloading.btnScan_Click(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 140-Parameter count does not match Parameter Value count.
+2015-07-20 12:04:57,810 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - System.ArgumentException: Column 'SUB_PROCESSID' does not belong to table Table.
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at TMV.Barcode.Unloading.CheckMacAddress() in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 117
+   at TMV.Barcode.Unloading.Page_Load(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 77-Column 'SUB_PROCESSID' does not belong to table Table.
+2015-07-20 12:05:03,310 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - System.ArgumentException: Column 'SUB_PROCESSID' does not belong to table Table.
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at TMV.Barcode.Unloading.CheckMacAddress() in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 117
+   at TMV.Barcode.Unloading.Page_Load(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 77-Column 'SUB_PROCESSID' does not belong to table Table.
+2015-07-20 12:12:13,248 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - System.ArgumentException: Column 'SUB_PROCESSID' does not belong to table Table.
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at TMV.Barcode.Unloading.CheckMacAddress() in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 110
+   at TMV.Barcode.Unloading.Page_Load(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 77-Column 'SUB_PROCESSID' does not belong to table Table.
+2015-07-20 12:26:06,598 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - MySql.Data.MySqlClient.MySqlException: Column count doesn't match value count at row 1
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, MySqlParameter[] commandParameters) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 353
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, String spName, Object[] parameterValues) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 290
+   at TMV.DataAccess.BC_Status_UnloadDAO.Insert(BC_Status_UnloadInfo objInfo) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\Topsse\BC_Status_UnloadDAO.cs:line 66
+   at BC_Status_UnloadBO.Insert(BC_Status_UnloadInfo objInfo) in d:\Work\Code BHT (192.168.220.68)\TMV.BusinessObject\Topsse\BC_Status_UnloadBO.cs:line 50
+   at TMV.Barcode.Unloading.ScanUnloadingContainerInvoice() in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 242
+   at TMV.Barcode.Unloading.btnScan_Click(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 160-Column count doesn't match value count at row 1
+2015-07-20 12:26:12,039 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - System.ArgumentException: Column 'WH_UNLOAD_DATETIME' does not belong to table Table.
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at TMV.Barcode.Unloading.validate_data(String p_value, Int32 p_type) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 356
+   at TMV.Barcode.Unloading.btnScan_Click(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 162-Column 'WH_UNLOAD_DATETIME' does not belong to table Table.
+2015-07-20 12:26:42,550 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - MySql.Data.MySqlClient.MySqlException: Truncated incorrect DOUBLE value: 'syadmin'
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, MySqlParameter[] commandParameters) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 353
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, String spName, Object[] parameterValues) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 290
+   at TMV.DataAccess.BC_Status_UnloadDAO.Insert(BC_Status_UnloadInfo objInfo) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\Topsse\BC_Status_UnloadDAO.cs:line 66
+   at BC_Status_UnloadBO.Insert(BC_Status_UnloadInfo objInfo) in d:\Work\Code BHT (192.168.220.68)\TMV.BusinessObject\Topsse\BC_Status_UnloadBO.cs:line 50
+   at TMV.Barcode.Unloading.ScanUnloadingContainerInvoice() in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 242
+   at TMV.Barcode.Unloading.btnScan_Click(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 160-Truncated incorrect DOUBLE value: 'syadmin'
+2015-07-20 14:06:33,459 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - System.ArgumentException: Column 'WH_UNLOAD_DATETIME' does not belong to table Table.
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at TMV.Barcode.Unloading.validate_data(String p_value, Int32 p_type) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 356
+   at TMV.Barcode.Unloading.btnScan_Click(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 162-Column 'WH_UNLOAD_DATETIME' does not belong to table Table.
+2015-07-20 14:09:41,303 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - System.ArgumentException: Column 'WH_UNLOAD_DATETIME' does not belong to table Table.
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at TMV.Barcode.Unloading.validate_data(String p_value, Int32 p_type) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 356
+   at TMV.Barcode.Unloading.btnScan_Click(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 162-Column 'WH_UNLOAD_DATETIME' does not belong to table Table.
+2015-07-20 14:18:38,491 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - MySql.Data.MySqlClient.MySqlException: Table 'topsse.bc_key_id' doesn't exist
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, MySqlParameter[] commandParameters) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 353
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, String spName, Object[] parameterValues) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 290
+   at TMV.DataAccess.BC_Status_UnloadDAO.UpdateBin(String p_user, Int32 p_line, String p_container_invoice, String p_case_no, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\Topsse\BC_Status_UnloadDAO.cs:line 138
+   at BC_Status_UnloadBO.UpdateBin(String p_user, Int32 p_line, String p_container_invoice, String p_case_no, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.BusinessObject\Topsse\BC_Status_UnloadBO.cs:line 90
+   at TMV.Barcode.Unloading.ScanUnloadingLine() in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 271
+   at TMV.Barcode.Unloading.btnScan_Click(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 164-Table 'topsse.bc_key_id' doesn't exist
+2015-07-20 14:19:51,271 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - MySql.Data.MySqlClient.MySqlException: Unknown column 'p_CUR_USER' in 'field list'
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, MySqlParameter[] commandParameters) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 353
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, String spName, Object[] parameterValues) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 290
+   at TMV.DataAccess.BC_Status_UnloadDAO.UpdateBin(String p_user, Int32 p_line, String p_container_invoice, String p_case_no, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\Topsse\BC_Status_UnloadDAO.cs:line 138
+   at BC_Status_UnloadBO.UpdateBin(String p_user, Int32 p_line, String p_container_invoice, String p_case_no, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.BusinessObject\Topsse\BC_Status_UnloadBO.cs:line 90
+   at TMV.Barcode.Unloading.ScanUnloadingLine() in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 271
+   at TMV.Barcode.Unloading.btnScan_Click(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 164-Unknown column 'p_CUR_USER' in 'field list'
+2015-07-20 14:20:34,719 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - MySql.Data.MySqlClient.MySqlException: Unknown column 'p_CUR_USER' in 'field list'
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, MySqlParameter[] commandParameters) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 353
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, String spName, Object[] parameterValues) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 290
+   at TMV.DataAccess.BC_Status_UnloadDAO.UpdateBin(String p_user, Int32 p_line, String p_container_invoice, String p_case_no, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\Topsse\BC_Status_UnloadDAO.cs:line 138
+   at BC_Status_UnloadBO.UpdateBin(String p_user, Int32 p_line, String p_container_invoice, String p_case_no, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.BusinessObject\Topsse\BC_Status_UnloadBO.cs:line 90
+   at TMV.Barcode.Unloading.ScanUnloadingLine() in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 271
+   at TMV.Barcode.Unloading.btnScan_Click(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 164-Unknown column 'p_CUR_USER' in 'field list'
+2015-07-20 14:21:38,791 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - MySql.Data.MySqlClient.MySqlException: Unknown column 'p_CUR_USER' in 'field list'
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, MySqlParameter[] commandParameters) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 353
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, String spName, Object[] parameterValues) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 290
+   at TMV.DataAccess.BC_Status_UnloadDAO.UpdateBin(String p_user, Int32 p_line, String p_container_invoice, String p_case_no, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\Topsse\BC_Status_UnloadDAO.cs:line 138
+   at BC_Status_UnloadBO.UpdateBin(String p_user, Int32 p_line, String p_container_invoice, String p_case_no, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.BusinessObject\Topsse\BC_Status_UnloadBO.cs:line 90
+   at TMV.Barcode.Unloading.ScanUnloadingLine() in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 271
+   at TMV.Barcode.Unloading.btnScan_Click(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 164-Unknown column 'p_CUR_USER' in 'field list'
+2015-07-20 14:22:46,139 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - MySql.Data.MySqlClient.MySqlException: Data too long for column 'SCAN_TIME' at row 1
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, MySqlParameter[] commandParameters) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 353
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, String spName, Object[] parameterValues) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 290
+   at TMV.DataAccess.BC_Status_UnloadDAO.UpdateBin(String p_user, Int32 p_line, String p_container_invoice, String p_case_no, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\Topsse\BC_Status_UnloadDAO.cs:line 138
+   at BC_Status_UnloadBO.UpdateBin(String p_user, Int32 p_line, String p_container_invoice, String p_case_no, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.BusinessObject\Topsse\BC_Status_UnloadBO.cs:line 90
+   at TMV.Barcode.Unloading.ScanUnloadingLine() in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 271
+   at TMV.Barcode.Unloading.btnScan_Click(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 164-Data too long for column 'SCAN_TIME' at row 1
+2015-07-20 14:22:53,339 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - MySql.Data.MySqlClient.MySqlException: Data too long for column 'SCAN_TIME' at row 1
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, MySqlParameter[] commandParameters) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 353
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, String spName, Object[] parameterValues) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 290
+   at TMV.DataAccess.BC_Status_UnloadDAO.UpdateBin(String p_user, Int32 p_line, String p_container_invoice, String p_case_no, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\Topsse\BC_Status_UnloadDAO.cs:line 138
+   at BC_Status_UnloadBO.UpdateBin(String p_user, Int32 p_line, String p_container_invoice, String p_case_no, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.BusinessObject\Topsse\BC_Status_UnloadBO.cs:line 90
+   at TMV.Barcode.Unloading.ScanUnloadingLine() in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 271
+   at TMV.Barcode.Unloading.btnScan_Click(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 164-Data too long for column 'SCAN_TIME' at row 1
+2015-07-21 11:05:29,210 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - MySql.Data.MySqlClient.MySqlException: Unknown column 'p_container_invoice' in 'where clause'
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, MySqlParameter[] commandParameters) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 353
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, String spName, Object[] parameterValues) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 290
+   at TMV.DataAccess.BC_Status_UnloadDAO.LogOut(String p_mac_address, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\Topsse\BC_Status_UnloadDAO.cs:line 160
+   at BC_Status_UnloadBO.LogOut(String p_mac_address, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.BusinessObject\Topsse\BC_Status_UnloadBO.cs:line 105
+   at TMV.Barcode.Unloading.btnLogout_Click(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 496-Unknown column 'p_container_invoice' in 'where clause'
+2015-07-21 13:55:30,862 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - MySql.Data.MySqlClient.MySqlException: Unknown column 'p_site' in 'where clause'
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, MySqlParameter[] commandParameters) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 353
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, String spName, Object[] parameterValues) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 290
+   at TMV.DataAccess.BC_Status_UnloadDAO.LogOut(String p_container_invoice, String p_mac_address, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\Topsse\BC_Status_UnloadDAO.cs:line 160
+   at BC_Status_UnloadBO.LogOut(String p_container_invoice, String p_mac_address, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.BusinessObject\Topsse\BC_Status_UnloadBO.cs:line 105
+   at TMV.Barcode.Unloading.btnLogout_Click(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 495-Unknown column 'p_site' in 'where clause'
+2015-07-21 13:57:48,341 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - MySql.Data.MySqlClient.MySqlException: Unknown column 'p_site' in 'where clause'
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, MySqlParameter[] commandParameters) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 353
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, String spName, Object[] parameterValues) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 290
+   at TMV.DataAccess.BC_Status_UnloadDAO.LogOut(String p_container_invoice, String p_mac_address, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\Topsse\BC_Status_UnloadDAO.cs:line 160
+   at BC_Status_UnloadBO.LogOut(String p_container_invoice, String p_mac_address, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.BusinessObject\Topsse\BC_Status_UnloadBO.cs:line 105
+   at TMV.Barcode.Unloading.btnLogout_Click(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 495-Unknown column 'p_site' in 'where clause'
+2015-07-21 14:11:53,659 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - MySql.Data.MySqlClient.MySqlException: Unknown column 'p_site' in 'where clause'
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, MySqlParameter[] commandParameters) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 353
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, String spName, Object[] parameterValues) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 290
+   at TMV.DataAccess.BC_Status_UnloadDAO.LogOut(String p_container_invoice, String p_mac_address, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\Topsse\BC_Status_UnloadDAO.cs:line 161
+   at BC_Status_UnloadBO.LogOut(String p_container_invoice, String p_mac_address, Int32 p_site_id) in d:\Work\Code BHT (192.168.220.68)\TMV.BusinessObject\Topsse\BC_Status_UnloadBO.cs:line 105
+   at TMV.Barcode.Unloading.btnLogout_Click(Object sender, EventArgs e) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 497-Unknown column 'p_site' in 'where clause'
+2015-07-22 20:34:58,361 ERROR : TUDQ - tudamquoc -  - MessagesCommon - Message_WriteLog_Data - MySql.Data.MySqlClient.MySqlException: Unknown column 'p_container_invoice' in 'where clause'
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, MySqlParameter[] commandParameters) in d:\Code BHT\TMV.DataAccesss\MySqlHelper.cs:line 353
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, String spName, Object[] parameterValues) in d:\Code BHT\TMV.DataAccesss\MySqlHelper.cs:line 290
+   at TMV.DataAccess.BC_Status_UnloadDAO.InsProd(String p_user, Int32 p_site_id) in d:\Code BHT\TMV.DataAccesss\Topsse\BC_Status_UnloadDAO.cs:line 187
+   at BC_Status_UnloadBO.InsProd(String p_user, Int32 p_site_id) in d:\Code BHT\TMV.BusinessObject\Topsse\BC_Status_UnloadBO.cs:line 120
+   at TMV.Barcode.Unloading.ReturnCurSession(DataSet dsCheckMacAddress) in d:\Code BHT\TMV.Barcode\Unloading.aspx.cs:line 156
+   at TMV.Barcode.Unloading.CheckMacAddress() in d:\Code BHT\TMV.Barcode\Unloading.aspx.cs:line 109
+   at TMV.Barcode.Unloading.Page_Load(Object sender, EventArgs e) in d:\Code BHT\TMV.Barcode\Unloading.aspx.cs:line 77-Unknown column 'p_container_invoice' in 'where clause'
+2015-07-22 20:35:48,412 ERROR : TUDQ - tudamquoc -  - MessagesCommon - Message_WriteLog_Data - MySql.Data.MySqlClient.MySqlException: Unknown column 'p_container_invoice' in 'where clause'
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, MySqlParameter[] commandParameters) in d:\Code BHT\TMV.DataAccesss\MySqlHelper.cs:line 353
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, String spName, Object[] parameterValues) in d:\Code BHT\TMV.DataAccesss\MySqlHelper.cs:line 290
+   at TMV.DataAccess.BC_Status_UnloadDAO.InsProd(String p_user, Int32 p_site_id) in d:\Code BHT\TMV.DataAccesss\Topsse\BC_Status_UnloadDAO.cs:line 187
+   at BC_Status_UnloadBO.InsProd(String p_user, Int32 p_site_id) in d:\Code BHT\TMV.BusinessObject\Topsse\BC_Status_UnloadBO.cs:line 120
+   at TMV.Barcode.Unloading.ReturnCurSession(DataSet dsCheckMacAddress) in d:\Code BHT\TMV.Barcode\Unloading.aspx.cs:line 156
+   at TMV.Barcode.Unloading.CheckMacAddress() in d:\Code BHT\TMV.Barcode\Unloading.aspx.cs:line 109
+   at TMV.Barcode.Unloading.Page_Load(Object sender, EventArgs e) in d:\Code BHT\TMV.Barcode\Unloading.aspx.cs:line 77-Unknown column 'p_container_invoice' in 'where clause'
+2015-07-23 10:46:34,064 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog - System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at TMV.Common.Commons.StringToInt(String s) in d:\Work\Code BHT (192.168.220.68)\TMV.Common\Commons.cs:line 147-
+2015-07-23 11:00:55,938 ERROR : SUTUDQ - Tu -  - MessagesCommon - Message_WriteLog_Data - MySql.Data.MySqlClient.MySqlException: Unknown column 'p_max_id_prod' in 'field list'
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, MySqlParameter[] commandParameters) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 353
+   at TMV.DataAccess.MySqlHelper.ExecuteNonQuery(String connectionString, String spName, Object[] parameterValues) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\MySqlHelper.cs:line 290
+   at TMV.DataAccess.BC_Status_UnloadDAO.InsProd(String p_user, Int32 p_site_id, String p_container_invoice) in d:\Work\Code BHT (192.168.220.68)\TMV.DataAccesss\Topsse\BC_Status_UnloadDAO.cs:line 194
+   at BC_Status_UnloadBO.InsProd(String p_user, Int32 p_site_id, String p_container_invoice) in d:\Work\Code BHT (192.168.220.68)\TMV.BusinessObject\Topsse\BC_Status_UnloadBO.cs:line 125
+   at TMV.Barcode.Unloading.ReturnCurSession(DataSet dsCheckMacAddress) in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 157
+   at TMV.Barcode.Unloading.CheckMacAddress() in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 110
+   at TMV.Barcode.Unloading.ScanUnloadingType() in d:\Work\Code BHT (192.168.220.68)\TMV.Barcode\Unloading.aspx.cs:line 260-Unknown column 'p_max_id_prod' in 'field list'

@@ -1,0 +1,422 @@
+﻿@using LSP.Models
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = LSP.Models.Common.PageSize_M(); //10
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = Common.PageSizeItemSettings(); //new string[] { "10", "20", "50" };
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+
+    settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Visible;
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 7;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+    settings.CallbackRouteValues = new { Controller = "TB_R_PRODUCTION_PLAN_D_W", Action = "GridCallback" };
+
+     //Export
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+    settings.SettingsExport.BeforeExport = (sender, e) =>
+    {
+        MVCxGridView gridView = sender as MVCxGridView;
+        if (sender == null)
+            return;
+        gridView.Columns["Op."].Visible = false;
+    };
+
+    //Focus Row 
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.Styles.FocusedRow.BackColor = System.Drawing.Color.LightGray;
+    settings.Styles.Row.ForeColor = System.Drawing.Color.Black;
+    
+    //Toolbar
+    settings.Toolbars.Add(toolbar =>
+    {
+        toolbar.Enabled = true;
+        toolbar.EnableAdaptivity = true;
+        toolbar.Position = GridToolbarPosition.Top;
+        toolbar.ItemAlign = GridToolbarItemAlign.Left;
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                Html.DevExpress().ButtonEdit(s =>
+                {
+                    s.Name = "search";
+                    s.Properties.NullText = "Search inline...";
+                    s.Properties.Buttons
+                        .Add()
+                        .Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
+                }).Render();
+            });
+        });
+
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnExportXls";
+                    s.ClientSideEvents.Click = "function(s, e) {gvList.ExportTo(ASPxClientGridViewExportFormat.Xls);}";
+                    s.Text = "Export to Xls";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxls16x16;
+                }).GetHtml();
+            });
+        });
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "BtnCollapse";
+                    s.Text = "Collapse Rows";
+                    s.UseSubmitBehavior = false;
+                    s.ClientSideEvents.Click = "function() { gvList.CollapseAll() }";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.SpreadsheetCollapsefieldpivottable16x16;
+                }).GetHtml();
+            });
+        });
+
+        toolbar.Items.Add(i =>
+        {
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "BtnExpand";
+                    s.Text = "Expand Rows";
+                    s.UseSubmitBehavior = false;
+                    s.ClientSideEvents.Click = "function() { gvList.ExpandAll() }";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsExpandcollapse16x16devav;
+                }).GetHtml();
+            });
+        });
+        
+        //toolbar.Items.Add(GridViewToolbarCommand.ExportToXlsx);
+        toolbar.Items.Add(GridViewToolbarCommand.ShowFilterEditor);
+        toolbar.Items.Add(GridViewToolbarCommand.ClearFilter);
+        toolbar.Items.Add(GridViewToolbarCommand.ShowGroupPanel);
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "Help";
+                    s.ClientSideEvents.Init = "function(s, e) { }";
+                    s.ClientSideEvents.Click = "function(s, e) { }";
+                    s.Text = "Help";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.HelpIndex16x16gray;
+                }).GetHtml();
+            });
+        });
+
+
+    });
+    //For Search panel
+    settings.SettingsSearchPanel.CustomEditorName = "search";
+    
+    //Show group columns as default
+    settings.Settings.ShowGroupedColumns = true;
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "Op.";
+        c.Width = System.Web.UI.WebControls.Unit.Pixel(90);
+        c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        c.SetDataItemTemplateContent(content =>
+        {
+            System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+            strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "id"), "' onclick='return Edit(this)' title='Edit'><i class='fa fa-pencil'></i></a>"));
+            strBuilder.Append(string.Concat(" | <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "id"), "' onclick='return Delete(this)' title='Delete'><i class='fa fa-trash-o'></i></a>"));
+            Html.ViewContext.Writer.Write(strBuilder.ToString());
+        }
+        );
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+        c.Width = 70;
+    }
+    );
+
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "No.";
+            c.FieldName = "Row_No";
+            c.Width = 50;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "CFC";
+            c.FieldName = "CFC";
+            c.Width = 50;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "KATASHIKI";
+            c.FieldName = "KATASHIKI";
+            c.Width = 110;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PROD. SFX";
+            c.FieldName = "PROD_SFX";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 60;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LOT NO";
+            c.FieldName = "LOT_NO";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 70;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "NO IN LOT";
+            c.FieldName = "NO_IN_LOT";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 50;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "BODY NO";
+            c.FieldName = "BODY_NO";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 50;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "EXT. COLOR";
+            c.FieldName = "EXT_COLOR";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 60;
+        }
+    );
+    /*settings.Columns.Add(c =>
+        {
+            c.Caption = "VIN NO";
+            c.FieldName = "VIN_NO";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 120;
+        }
+    );*/
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LINE";
+            c.FieldName = "PRODUCTION_LINE";
+            c.Width = 50;
+            c.GroupIndex = 2;            
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "SHIFT";
+            c.FieldName = "SHIFT";
+            c.Width = 60;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "SEQ. NO";
+            c.FieldName = "SEQUENCE_NO";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 60;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "WORKING DATE";
+            c.FieldName = "WORKING_DATE";
+            c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 90;
+            c.GroupIndex = 1;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "NO IN DAY";
+            c.FieldName = "NO_IN_DAY";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;            
+            c.Width = 50;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "W IN DATE PLAN";
+            c.FieldName = "W_IN_DATE_PLAN";
+            c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 80;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "W IN TIME PLAN";
+            c.FieldName = "W_IN_TIME_PLAN";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 70;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "W IN DATE ACTUAL";
+            c.FieldName = "W_IN_DATE_ACTUAL";
+            c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 80;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "W IN TIME ACTUAL";
+            c.FieldName = "W_IN_TIME_ACTUAL";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 70;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "W OUT DATE PLAN";
+            c.FieldName = "W_OUT_DATE_PLAN";
+            c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 80;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "W OUT TIME PLAN";
+            c.FieldName = "W_OUT_TIME_PLAN";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 70;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "W OUT DATE ACTUAL";
+            c.FieldName = "W_OUT_DATE_ACTUAL";
+            c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 80;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "W OUT TIME ACTUAL";
+            c.FieldName = "W_OUT_TIME_ACTUAL";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 70;
+        }
+    );
+    /*settings.Columns.Add(c =>
+        {
+            c.Caption = "VER. NO";
+            c.FieldName = "VERSION_NO";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 50;
+        }
+    );*/
+    
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "IS NQC?";
+            c.FieldName = "IS_NQC_PROCESSED";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 60;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "IS ACTIVE?";
+            c.FieldName = "IS_ACTIVE";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+            c.Width = 70;
+            c.SetDataItemTemplateContent(cc =>
+            {
+                Html.DevExpress().CheckBox(checkboxSettings =>
+                {
+                    checkboxSettings.Name = "_IS_ACTIVE_" + Convert.ToString(DataBinder.Eval(cc.DataItem, "ID"));
+                    checkboxSettings.Checked = Convert.ToString(DataBinder.Eval(cc.DataItem, "IS_ACTIVE")) == "Y" ? true : false;
+                    checkboxSettings.Properties.ClientSideEvents.CheckedChanged = "function() { return false; }";
+                }).Render();
+            });
+        });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "UPDATED BY";
+        c.FieldName = "UPDATED_BY";
+        c.EditFormSettings.Visible = DefaultBoolean.False;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 80;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "UPDATED DATE";
+        c.FieldName = "UPDATED_DATE";
+        c.PropertiesEdit.DisplayFormatString = "dd/MM/yy HH:mm";
+        c.EditFormSettings.Visible = DefaultBoolean.False;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = 90;
+    });
+
+    settings.SettingsBehavior.AutoExpandAllGroups = true;
+    settings.HtmlRowPrepared = (s, e) =>
+    {
+        MVCxGridView gridView = s as MVCxGridView;
+        if (e.RowType == GridViewRowType.Group)
+        {
+            if (gridView.GetRowLevel(e.VisibleIndex) == 0)
+            {
+                e.Row.BackColor = System.Drawing.Color.CadetBlue;
+            }
+            else if (gridView.GetRowLevel(e.VisibleIndex) == 1)
+            {
+                e.Row.BackColor = System.Drawing.Color.Cornsilk;
+            }
+            else
+            {
+                e.Row.BackColor = System.Drawing.Color.Silver;
+            }
+
+            e.Row.Font.Bold = true;
+            e.Row.Font.Size = 8;
+        }
+
+        if (e.RowType != GridViewRowType.Data) return;
+    };    
+    
+}).Bind(LSP.Models.TB_R_PRODUCTION_PLAN_D_W.TB_R_PRODUCTION_PLAN_D_WProvider.Instance.TB_R_PRODUCTION_PLAN_D_W_Search(Model ?? new LSP.Models.TB_R_PRODUCTION_PLAN_D_W.TB_R_PRODUCTION_PLAN_D_WInfo())).GetHtml()
+
+
+
+

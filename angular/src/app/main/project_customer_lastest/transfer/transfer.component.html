@@ -1,0 +1,586 @@
+<div>
+    <div [class]="containerClass">
+        <div class="mac-book-air-26">
+            <div class="frame-1000006431">
+                <div class="frame-1000006430">
+                    <!-- <div class="frame-1000006426">
+                        <div class="frame-10000039782">
+                            <div class="frame-1000006455">
+                                <div class="transfer">Transfer</div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <p-tabView id="tab-main-transfer" (activeIndexChange)="changeTabView($event)">
+                        <p-tabPanel>
+                            <ng-template pTemplate="header">
+                                <div class="separator6"></div>
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <rect width="30" height="30" rx="15" fill="#2E1EF8" fill-opacity="0.12"/>
+                                    <rect x="6" y="6" width="18" height="18" fill="url(#pattern0)"/>
+                                    <rect x="6" y="6" width="18" height="18" fill="url(#pattern1)"/>
+                                    <defs>
+                                    <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                    <use xlink:href="#image0_629_14868" transform="scale(0.00195312)"/>
+                                    </pattern>
+                                    <pattern id="pattern1" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                    <use xlink:href="#image1_629_14868" transform="scale(0.00195312)"/>
+                                    </pattern>
+                                    <image id="image0_629_14868" width="512" height="512" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAFyGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLWMwMDIgNzkuMTY0NDYwLCAyMDIwLzA1LzEyLTE2OjA0OjE3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIzLTEwLTEwVDE5OjE2OjM5KzA3OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMy0xMC0xMFQxOToxOTo0MyswNzowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMy0xMC0xMFQxOToxOTo0MyswNzowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NjAwZmM0ODItYmYxYi0xNjRiLTg1NjktNzlhOWNjYzcyOTEzIiB4bXBNTTpEb2N1bWVudElEPSJh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"/>
+                                    <image id="image1_629_14868" width="512" height="512" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAFyGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLWMwMDIgNzkuMTY0NDYwLCAyMDIwLzA1LzEyLTE2OjA0OjE3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIzLTEwLTEwVDE5OjE2OjM5KzA3OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMy0xMC0xMFQxOTozMDowMSswNzowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMy0xMC0xMFQxOTozMDowMSswNzowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6YjNjZTYwYmQtZDZkMC1hNDQ3LTliMGItM2JlODhkODUyNGY3IiB4bXBNTTpEb2N1bWVudElEPSJh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"/>
+                                    </defs>
+                                </svg>
+                                {{l('Transfer')}}
+                            </ng-template>
+                            <div class="frame-1000006380">
+                                <div class="frame-1000006320">
+                                    <div class="frame-1171275369">
+                                        <div class="frame-1000006319">
+                                            <div class="frame-1000003997">
+                                                <span class="p-input-icon-left">
+                                                    <i class="pi pi-search"></i>
+                                                    <input type="text" [(ngModel)]="searchFilter" (keyup)="changeKey($event)"
+                                                        pInputText placeholder="{{ 'SearchWithThreeDot' | localize }}" />
+                                                </span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="33" height="32"
+                                                    viewBox="0 0 33 32" fill="none">
+                                                    <g clip-path="url(#clip0_1082_141027)">
+                                                        <path
+                                                            d="M18.7966 15.663C18.7129 15.755 18.6666 15.875 18.6666 15.9993V24.3327L14.3332 21.0827V15.9993C14.3332 15.875 14.2869 15.755 14.2032 15.663L7.56437 8.3603C7.50366 8.26143 7.46419 8.15086 7.44865 8.03565C7.43164 7.90961 7.44371 7.78135 7.48393 7.66069C7.52414 7.54004 7.59145 7.43019 7.68067 7.33956C7.75221 7.26691 7.83631 7.20815 7.92869 7.16602H25.0711C25.1635 7.20815 25.2476 7.26691 25.3191 7.33956C25.4084 7.43019 25.4757 7.54004 25.5159 7.66069C25.5561 7.78135 25.5682 7.90961 25.5512 8.03565C25.5356 8.15086 25.4961 8.26143 25.4354 8.3603L18.7966 15.663Z"
+                                                            fill="white" stroke="#0374F6" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_1082_141027">
+                                                            <rect width="32" height="32" fill="white"
+                                                                transform="translate(0.5)" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="frame-11712753791">
+                                                <div class="frame-11712753712">
+                                                    <ejs-tab id="genaral" heightAdjustMode='Content' height="100%"
+                                                        (selected)="onSelectTab($event)">
+                                                        <e-tabitems>
+                                                            <e-tabitem [headerTemplate]="actionRequired">
+                                                                <ng-template #actionRequired>
+                                                                    <div class="segmented-picker-option">
+                                                                        <div class="separator1"></div>
+                                                                        <div class="frame-1000006339">
+                                                                            <div class="vuesax-bold-edit-2">
+                                                                                <svg class="edit-2" width="24" height="24"
+                                                                                    viewBox="0 0 24 24" *ngIf="typeFilter===1"
+                                                                                    fill="none"
+                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path
+                                                                                        d="M21 22H3C2.59 22 2.25 21.66 2.25 21.25C2.25 20.84 2.59 20.5 3 20.5H21C21.41 20.5 21.75 20.84 21.75 21.25C21.75 21.66 21.41 22 21 22Z"
+                                                                                        fill="#EB0A1E" />
+                                                                                    <path
+                                                                                        d="M19.0196 3.47967C17.0796 1.53967 15.1796 1.48967 13.1896 3.47967L11.9796 4.68967C11.8796 4.78967 11.8396 4.94967 11.8796 5.08967C12.6396 7.73967 14.7596 9.85967 17.4096 10.6197C17.4496 10.6297 17.4896 10.6397 17.5296 10.6397C17.6396 10.6397 17.7396 10.5997 17.8196 10.5197L19.0196 9.30967C20.0096 8.32967 20.4896 7.37967 20.4896 6.41967C20.4996 5.42967 20.0196 4.46967 19.0196 3.47967Z"
+                                                                                        fill="#EB0A1E" />
+                                                                                    <path
+                                                                                        d="M15.6103 11.5298C15.3203 11.3898 15.0403 11.2498 14.7703 11.0898C14.5503 10.9598 14.3403 10.8198 14.1303 10.6698C13.9603 10.5598 13.7603 10.3998 13.5703 10.2398C13.5503 10.2298 13.4803 10.1698 13.4003 10.0898C13.0703 9.8098 12.7003 9.4498 12.3703 9.0498C12.3403 9.0298 12.2903 8.9598 12.2203 8.8698C12.1203 8.7498 11.9503 8.5498 11.8003 8.3198C11.6803 8.1698 11.5403 7.9498 11.4103 7.7298C11.2503 7.4598 11.1103 7.1898 10.9703 6.9098C10.9491 6.86441 10.9286 6.81924 10.9088 6.77434C10.7612 6.44102 10.3265 6.34358 10.0688 6.60133L4.34032 12.3298C4.21032 12.4598 4.09032 12.7098 4.06032 12.8798L3.52032 16.7098C3.42032 17.3898 3.61032 18.0298 4.03032 18.4598C4.39032 18.8098 4.89032 18.9998 5.43032 18.9998C5.55032 18.9998 5.67032 18.9898 5.79032 18.9698L9.63032 18.4298C9.81032 18.3998 10.0603 18.2798 10.1803 18.1498L15.9016 12.4285C16.1612 12.1689 16.0633 11.7235 15.7257 11.5794C15.6877 11.5632 15.6492 11.5467 15.6103 11.5298Z"
+                                                                                        fill="#EB0A1E" />
+                                                                                </svg>
+                                                                                <svg class="edit-2" width="24" height="24"
+                                                                                    viewBox="0 0 24 24" *ngIf="typeFilter===2 || typeFilter===3"
+                                                                                    fill="none"
+                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path
+                                                                                        d="M21 22H3C2.59 22 2.25 21.66 2.25 21.25C2.25 20.84 2.59 20.5 3 20.5H21C21.41 20.5 21.75 20.84 21.75 21.25C21.75 21.66 21.41 22 21 22Z"
+                                                                                        fill="#97A7B7" />
+                                                                                    <path
+                                                                                        d="M19.0196 3.47967C17.0796 1.53967 15.1796 1.48967 13.1896 3.47967L11.9796 4.68967C11.8796 4.78967 11.8396 4.94967 11.8796 5.08967C12.6396 7.73967 14.7596 9.85967 17.4096 10.6197C17.4496 10.6297 17.4896 10.6397 17.5296 10.6397C17.6396 10.6397 17.7396 10.5997 17.8196 10.5197L19.0196 9.30967C20.0096 8.32967 20.4896 7.37967 20.4896 6.41967C20.4996 5.42967 20.0196 4.46967 19.0196 3.47967Z"
+                                                                                        fill="#97A7B7" />
+                                                                                    <path
+                                                                                        d="M15.6103 11.5298C15.3203 11.3898 15.0403 11.2498 14.7703 11.0898C14.5503 10.9598 14.3403 10.8198 14.1303 10.6698C13.9603 10.5598 13.7603 10.3998 13.5703 10.2398C13.5503 10.2298 13.4803 10.1698 13.4003 10.0898C13.0703 9.8098 12.7003 9.4498 12.3703 9.0498C12.3403 9.0298 12.2903 8.9598 12.2203 8.8698C12.1203 8.7498 11.9503 8.5498 11.8003 8.3198C11.6803 8.1698 11.5403 7.9498 11.4103 7.7298C11.2503 7.4598 11.1103 7.1898 10.9703 6.9098C10.9491 6.86441 10.9286 6.81924 10.9088 6.77434C10.7612 6.44102 10.3265 6.34358 10.0688 6.60133L4.34032 12.3298C4.21032 12.4598 4.09032 12.7098 4.06032 12.8798L3.52032 16.7098C3.42032 17.3898 3.61032 18.0298 4.03032 18.4598C4.39032 18.8098 4.89032 18.9998 5.43032 18.9998C5.55032 18.9998 5.67032 18.9898 5.79032 18.9698L9.63032 18.4298C9.81032 18.3998 10.0603 18.2798 10.1803 18.1498L15.9016 12.4285C16.1612 12.1689 16.0633 11.7235 15.7257 11.5794C15.6877 11.5632 15.6492 11.5467 15.6103 11.5298Z"
+                                                                                        fill="#97A7B7" />
+                                                                                </svg>
+                                                                            </div>
+                                                                            <div
+                                                                                [ngClass]="typeFilter === 2 || typeFilter == 3 ? 'label' : 'action-required'">
+                                                                                {{l('ActionRequired')}}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </ng-template>
+                                                            </e-tabitem>
+                                                            <e-tabitem [headerTemplate]="waitingOther">
+                                                                <ng-template #waitingOther>
+                                                                    <div class="segmented-picker-option">
+                                                                        <div class="separator1"></div>
+                                                                        <div class="frame-1000006339">
+                                                                            <div class="vuesax-bold-edit-2">
+                                                                                <svg class="edit-2" width="24" height="24"
+                                                                                    *ngIf="typeFilter===1 || typeFilter == 3" viewBox="0 0 24 24"
+                                                                                    fill="none"
+                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path
+                                                                                        d="M13.5 4.61039V7.54039C13.5 8.21039 12.96 8.75039 12.29 8.75039H3.21C2.53 8.75039 2 8.19039 2 7.52039C2.01 6.39039 2.46 5.36039 3.21 4.61039C3.96 3.86039 5 3.40039 6.14 3.40039H12.29C12.96 3.40039 13.5 3.94039 13.5 4.61039Z"
+                                                                                        fill="#97A7B7" />
+                                                                                    <path
+                                                                                        d="M2 11.46V16.46C2 18.75 3.85 20.6 6.14 20.6H17.85C20.14 20.6 22 18.74 22 16.45V11.46C22 10.79 21.46 10.25 20.79 10.25H3.21C2.54 10.25 2 10.79 2 11.46ZM8 17.25H6C5.59 17.25 5.25 16.91 5.25 16.5C5.25 16.09 5.59 15.75 6 15.75H8C8.41 15.75 8.75 16.09 8.75 16.5C8.75 16.91 8.41 17.25 8 17.25ZM14.5 17.25H10.5C10.09 17.25 9.75 16.91 9.75 16.5C9.75 16.09 10.09 15.75 10.5 15.75H14.5C14.91 15.75 15.25 16.09 15.25 16.5C15.25 16.91 14.91 17.25 14.5 17.25Z"
+                                                                                        fill="#97A7B7" />
+                                                                                    <path
+                                                                                        d="M19.97 1.75H17.03C15.76 1.75 15 2.51 15 3.78V6.72C15 7.99 15.76 8.75 17.03 8.75H19.97C21.24 8.75 22 7.99 22 6.72V3.78C22 2.51 21.24 1.75 19.97 1.75ZM18.01 7.32C17.98 7.35 17.91 7.39 17.86 7.39L16.82 7.54C16.79 7.55 16.75 7.55 16.72 7.55C16.57 7.55 16.44 7.5 16.35 7.4C16.23 7.28 16.18 7.11 16.21 6.93L16.36 5.89C16.37 5.84 16.4 5.77 16.43 5.74L18.13 4.04C18.16 4.11 18.19 4.19 18.22 4.27C18.26 4.35 18.3 4.42 18.34 4.49C18.37 4.55 18.41 4.61 18.45 4.65C18.49 4.71 18.53 4.77 18.56 4.8C18.58 4.83 18.59 4.84 18.6 4.85C18.69 4.96 18.79 5.06 18.88 5.13C18.9 5.15 18.92 5.17 18.93 5.17C18.98 5.21 19.04 5.26 19.08 5.29C19.14 5.33 19.19 5.37 19.25 5.4C19.32 5.44 19.4 5.48 19.48 5.52C19.56 5.56 19.64 5.59 19.71 5.61L18.01 7.32ZM20.4 4.93L20.07 5.26C20.06 5.28 20.03 5.29 20 5.29C19.99 5.29 19.98 5.29 19.97 5.29C19.25 5.08 18.68 4.51 18.47 3.79C18.46 3.75 18.47 3.71 18.5 3.68L18.83 3.35C19.37 2.81 19.88 2.82 20.41 3.35C20.68 3.62 20.81 3.88 20.81 4.14C20.8 4.4 20.67 4.66 20.4 4.93Z"
+                                                                                        fill="#97A7B7" />
+                                                                                </svg>
+                                                                                <svg class="edit-2" width="24" height="24"
+                                                                                    *ngIf="typeFilter===2" viewBox="0 0 24 24"
+                                                                                    fill="none"
+                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path
+                                                                                        d="M13.5 4.61039V7.54039C13.5 8.21039 12.96 8.75039 12.29 8.75039H3.21C2.53 8.75039 2 8.19039 2 7.52039C2.01 6.39039 2.46 5.36039 3.21 4.61039C3.96 3.86039 5 3.40039 6.14 3.40039H12.29C12.96 3.40039 13.5 3.94039 13.5 4.61039Z"
+                                                                                        fill="#EB0A1E" />
+                                                                                    <path
+                                                                                        d="M2 11.46V16.46C2 18.75 3.85 20.6 6.14 20.6H17.85C20.14 20.6 22 18.74 22 16.45V11.46C22 10.79 21.46 10.25 20.79 10.25H3.21C2.54 10.25 2 10.79 2 11.46ZM8 17.25H6C5.59 17.25 5.25 16.91 5.25 16.5C5.25 16.09 5.59 15.75 6 15.75H8C8.41 15.75 8.75 16.09 8.75 16.5C8.75 16.91 8.41 17.25 8 17.25ZM14.5 17.25H10.5C10.09 17.25 9.75 16.91 9.75 16.5C9.75 16.09 10.09 15.75 10.5 15.75H14.5C14.91 15.75 15.25 16.09 15.25 16.5C15.25 16.91 14.91 17.25 14.5 17.25Z"
+                                                                                        fill="#EB0A1E" />
+                                                                                    <path
+                                                                                        d="M19.97 1.75H17.03C15.76 1.75 15 2.51 15 3.78V6.72C15 7.99 15.76 8.75 17.03 8.75H19.97C21.24 8.75 22 7.99 22 6.72V3.78C22 2.51 21.24 1.75 19.97 1.75ZM18.01 7.32C17.98 7.35 17.91 7.39 17.86 7.39L16.82 7.54C16.79 7.55 16.75 7.55 16.72 7.55C16.57 7.55 16.44 7.5 16.35 7.4C16.23 7.28 16.18 7.11 16.21 6.93L16.36 5.89C16.37 5.84 16.4 5.77 16.43 5.74L18.13 4.04C18.16 4.11 18.19 4.19 18.22 4.27C18.26 4.35 18.3 4.42 18.34 4.49C18.37 4.55 18.41 4.61 18.45 4.65C18.49 4.71 18.53 4.77 18.56 4.8C18.58 4.83 18.59 4.84 18.6 4.85C18.69 4.96 18.79 5.06 18.88 5.13C18.9 5.15 18.92 5.17 18.93 5.17C18.98 5.21 19.04 5.26 19.08 5.29C19.14 5.33 19.19 5.37 19.25 5.4C19.32 5.44 19.4 5.48 19.48 5.52C19.56 5.56 19.64 5.59 19.71 5.61L18.01 7.32ZM20.4 4.93L20.07 5.26C20.06 5.28 20.03 5.29 20 5.29C19.99 5.29 19.98 5.29 19.97 5.29C19.25 5.08 18.68 4.51 18.47 3.79C18.46 3.75 18.47 3.71 18.5 3.68L18.83 3.35C19.37 2.81 19.88 2.82 20.41 3.35C20.68 3.62 20.81 3.88 20.81 4.14C20.8 4.4 20.67 4.66 20.4 4.93Z"
+                                                                                        fill="#EB0A1E" />
+                                                                                </svg>
+                                                                            </div>
+                                                                            <div
+                                                                                [ngClass]="typeFilter === 1 || typeFilter == 3 ? 'label' : 'action-required'">
+                                                                                {{l('WaitingForOthers')}}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </ng-template>
+                                                            </e-tabitem>
+                                                            <e-tabitem [headerTemplate]="followUp">
+                                                                <ng-template #followUp>
+                                                                    <div class="segmented-picker-option2 flex">
+                                                                        <div class="frame-10000063362">
+                                                                            <svg  width="24" height="24"
+                                                                                viewBox="0 0 24 24" fill="none"
+                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                <path
+                                                                                    d="M13.7299 3.50965L15.4899 7.02965C15.7299 7.51965 16.3699 7.98965 16.9099 8.07965L20.0999 8.60965C22.1399 8.94965 22.6199 10.4296 21.1499 11.8896L18.6699 14.3696C18.2499 14.7896 18.0199 15.5996 18.1499 16.1796L18.8599 19.2496C19.4199 21.6796 18.1299 22.6196 15.9799 21.3496L12.9899 19.5796C12.4499 19.2596 11.5599 19.2596 11.0099 19.5796L8.01991 21.3496C5.87991 22.6196 4.57991 21.6696 5.13991 19.2496L5.84991 16.1796C5.97991 15.5996 5.74991 14.7896 5.32991 14.3696L2.84991 11.8896C1.38991 10.4296 1.85991 8.94965 3.89991 8.60965L7.08991 8.07965C7.61991 7.98965 8.25991 7.51965 8.49991 7.02965L10.2599 3.50965C11.2199 1.59965 12.7799 1.59965 13.7299 3.50965Z"
+                                                                                    stroke-width="2.8" fill="#FFC400" stroke="#FFC400"
+                                                                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                                                            </svg>
+                                                                        </div>
+                                                                    </div>
+                                                                </ng-template>
+                                                            </e-tabitem>
+                                                        </e-tabitems>
+                                                    </ejs-tab>
+                                                </div>
+                                                <div class="frame-1000006407">
+                                                    <ejs-tab (selected)="onSelectTabStatus($event)"
+                                                        (click)="TabFilterClick($event)" #tabFilter id="tabFilter"
+                                                        heightAdjustMode="None" height="100%" showCloseButton=false>
+                                                        <e-tabitems>
+                                                            <e-tabitem [headerTemplate]="headerWaiting">
+                                                                <ng-template #headerWaiting>
+                                                                    <div class="segmented-picker-option5">
+                                                                        <div class="separator21"></div>
+                                                                        <div class="frame-10000063353">
+                                                                            <div class="frame-10000063363">
+                                                                                <svg width="16" height="16" viewBox="0 0 16 16"
+                                                                                    fill="none"
+                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                    <circle cx="8" cy="8" r="8" fill="white" />
+                                                                                    <path
+                                                                                        d="M8 0C3.592 0 0 3.592 0 8C0 12.408 3.592 16 8 16C12.408 16 16 12.408 16 8C16 3.592 12.408 0 8 0ZM11.48 10.856C11.368 11.048 11.168 11.152 10.96 11.152C10.856 11.152 10.752 11.128 10.656 11.064L8.176 9.584C7.56 9.216 7.104 8.408 7.104 7.696V4.416C7.104 4.088 7.376 3.816 7.704 3.816C8.032 3.816 8.304 4.088 8.304 4.416V7.696C8.304 7.984 8.544 8.408 8.792 8.552L11.272 10.032C11.56 10.2 11.656 10.568 11.48 10.856Z"
+                                                                                        fill="#F3DC3B" />
+                                                                                    <circle cx="8" cy="8" r="7" stroke="#FFF9D2"
+                                                                                        stroke-width="2" />
+                                                                                </svg>
+                                                                                <div class="label2">{{l('OnProgress')}}</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </ng-template>
+                                                            </e-tabitem>
+                                                            <e-tabitem [headerTemplate]="headerRejected">
+                                                                <ng-template #headerRejected>
+                                                                    <div class="segmented-picker-option4">
+                                                                        <div class="separator21"></div>
+                                                                        <div class="frame-1000006337">
+                                                                            <svg width="16" height="16" viewBox="0 0 16 16"
+                                                                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <circle cx="8.00014" cy="8.00112" r="4.57143"
+                                                                                    fill="white" />
+                                                                                <path
+                                                                                    d="M8 0C3.592 0 0 3.592 0 8C0 12.408 3.592 16 8 16C12.408 16 16 12.408 16 8C16 3.592 12.408 0 8 0ZM10.688 9.84C10.92 10.072 10.92 10.456 10.688 10.688C10.568 10.808 10.416 10.864 10.264 10.864C10.112 10.864 9.96 10.808 9.84 10.688L8 8.848L6.16 10.688C6.04 10.808 5.888 10.864 5.736 10.864C5.584 10.864 5.432 10.808 5.312 10.688C5.08 10.456 5.08 10.072 5.312 9.84L7.152 8L5.312 6.16C5.08 5.928 5.08 5.544 5.312 5.312C5.544 5.08 5.928 5.08 6.16 5.312L8 7.152L9.84 5.312C10.072 5.08 10.456 5.08 10.688 5.312C10.92 5.544 10.92 5.928 10.688 6.16L8.848 8L10.688 9.84Z"
+                                                                                    fill="#D03131" />
+                                                                                <circle cx="8" cy="8" r="7" stroke="#FFC5C5"
+                                                                                    stroke-width="2" />
+                                                                            </svg>
+                                                                            <div class="label2">{{l('Rejected')}}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </ng-template>
+                                                            </e-tabitem>
+                                                            <e-tabitem [headerTemplate]="headerCompleted">
+                                                                <ng-template #headerCompleted>
+                                                                    <div class="segmented-picker-option4">
+                                                                        <div class="frame-10000063392">
+                                                                            <svg width="18" height="18" viewBox="0 0 18 18"
+                                                                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <g clip-path="url(#clip0_1669_182102)">
+                                                                                    <circle cx="9" cy="9" r="8" fill="#20C374"
+                                                                                        stroke="#B7EFC3" stroke-width="2" />
+                                                                                    <path
+                                                                                        d="M12.1116 6.66797L7.83385 10.9457L5.8894 9.0013"
+                                                                                        stroke="white" stroke-linecap="round"
+                                                                                        stroke-linejoin="round" />
+                                                                                </g>
+                                                                                <defs>
+                                                                                    <clipPath id="clip0_1669_182102">
+                                                                                        <rect width="18" height="18"
+                                                                                            fill="white" />
+                                                                                    </clipPath>
+                                                                                </defs>
+                                                                            </svg>
+                                                                            <div class="label2">{{l('Completed')}}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </ng-template>
+                                                            </e-tabitem>
+                                                        </e-tabitems>
+                                                    </ejs-tab>
+                                                </div>
+                                                <div class="frame-1000006406">
+                                                    <div class="frame-1000006394">
+                                                        <div class="frame-1000003992">
+                                                            <div class="frame-1000006514">
+                                                                <div class="segmented-picker-option8">
+                                                                    <div class="separator5"></div>
+                                                                    <button id="btn-system" ejs-dropdownbutton [items]='itemSystems'
+                                                                        [content]='systemFilterContent'
+                                                                        (select)="onChangeSystems($event)"></button>
+                                                                </div>
+                                                                <div class="segmented-picker-option8">
+                                                                    <div class="separator5"></div>
+                                                                    <button id="btn-requester" ejs-button [iconCss]="filterRequesterIcon"
+                                                                        iconPosition="Right"
+                                                                        (click)="onOpenDialog($event)">{{filterRequesterName}}</button>
+                                                                    <div #container class='root-container'></div>
+                                                                    <ejs-dialog [isModal]='true' #requester id="requester"
+                                                                        [visible]='false'
+                                                                        [animationSettings]='animationSettings'
+                                                                        [showCloseIcon]='false' [width]='"35%"'
+                                                                        [height]="'385px'">
+                                                                        <ng-template #content>
+                                                                            <span class="p-input-icon-left">
+                                                                                <i class="pi pi-search"></i>
+                                                                                <p-autoComplete id="searchUserFilter"
+                                                                                    [(ngModel)]="filterRequester"
+                                                                                    [suggestions]="listUser"
+                                                                                    placeholder="{{ 'SearchWithThreeDot' | localize }}"
+                                                                                    scrollHeight="350px"
+                                                                                    (completeMethod)="filterUser($event)"
+                                                                                    field="fullName">
+                                                                                    <ng-template let-data pTemplate="item">
+                                                                                        <div class="frame-3073">
+                                                                                            <div class="frame-3041">
+                                                                                                <img class="ellipse-3281"
+                                                                                                    [src]="!data.imageUrl  ? 'assets/common/images/default-profile-picture.png' : data.imageUrl" />
+                                                                                                <div class="frame-2988">
+                                                                                                    <div
+                                                                                                        class="frame-1171275486">
+                                                                                                        <div
+                                                                                                            class="frame-1171275511">
+                                                                                                            <div
+                                                                                                                class="frame-3075">
+                                                                                                                <div
+                                                                                                                    class="le-minh-thu">
+                                                                                                                    {{data.fullName}}
+                                                                                                                </div>
+                                                                                                                <div
+                                                                                                                    class="frame-1171275485">
+                                                                                                                    <div
+                                                                                                                        class="dgm-division-head">
+                                                                                                                        {{data.title}}/{{data.division}}
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <div
+                                                                                                                class="frame-1171275512">
+                                                                                                                <div
+                                                                                                                    class="hnthulm-toyotavn-com-vn">
+                                                                                                                    {{data.email}}
+                                                                                                                </div>
+                                                                                                                <div class="it">
+                                                                                                                    {{data.company}}
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </ng-template>
+                                                                                </p-autoComplete>
+                                                                            </span>
+                                                                            <div class="frame-1171275379">
+                                                                                <div class="frame-1000006527">
+                                                                                    <div class="frame-1171275380"
+                                                                                        *ngIf="filterRequester">
+                                                                                        <img class="ellipse-2070"
+                                                                                            [src]="!filterRequester.imageUrl  ? 'assets/common/images/default-profile-picture.png' : filterRequester.imageUrl" />
+                                                                                        <div class="frame-10000063662">
+                                                                                            <div class="vu-tuan-hieu2">
+                                                                                                {{filterRequester.fullName}}
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="it-infrastructure-security-service">
+                                                                                                {{filterRequester.title}}
+                                                                                            </div>
+                                                                                            <div class="it-division">
+                                                                                                {{filterRequester.division}}
+                                                                                            </div>
+                                                                                            <div class="assistant-manager">
+                                                                                                {{filterRequester.manager}}
+                                                                                            </div>
+                                                                                            <div class="assistant-manager">
+                                                                                                {{filterRequester.email}}</div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="frame-1171275387">
+                                                                                <div class="frame-1171275438">
+                                                                                    <div class="component-38"
+                                                                                        (click)="closeDialog()">
+                                                                                        <div class="cancel">{{l('Cancel')}}</div>
+                                                                                    </div>
+                                                                                    <div class="component-37"
+                                                                                        (click)="submitSearchUser()">
+                                                                                        <div class="yes">{{l('Submit')}}</div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </ng-template>
+                                                                    </ejs-dialog>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="frame-1000006513">
+                                                            <div class="segmented-picker-option8">
+                                                                <div class="separator5"></div>
+                                                                <div class="frame-10000063393">
+                                                                    <button id="btn-date" ejs-button [iconCss]="iconOrderRequestDate"
+                                                                        iconPosition="Right"
+                                                                        (click)="orderRequestDate()">{{l('RequestDate')}}</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="segmented-picker-option8">
+                                                                <div class="frame-10000063393">
+                                                                    <button id="btn-dateE" ejs-button [iconCss]="iconOrderExpectedDate"
+                                                                        iconPosition="Right"
+                                                                        (click)="orderExpectedDate()">{{l('ExpectedDate')}}</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="component-112">
+                                                <div class="frame-1171275523">
+                                                    <ejs-checkbox #checkboxL [checked]="false"
+                                                        (change)="checkAllHandlerL($event)"></ejs-checkbox>
+                                                    <div class="select-all">{{l('SelectAll')}} ( {{selectedLeftCount}})</div>
+                                                </div>
+                                            </div>
+                                            <div class="frame-1171275372">
+                                                <data-view-transfer id="listviewInstanceL" #listviewInstanceL
+                                                    [dataInput]="listLeft" (scroll)="onScroll()"
+                                                    (onChangeSelection)="onSelectL($event)" [isActiveTab]="typeFilter"
+                                                    style=" height: 100%;width: 100%; overflow-y: auto;"
+                                                    [ngStyle]="listLeft?.length > 0 ? {display: 'block' } : {display: 'none' }" />
+                                            </div>
+                                        </div>
+                                        <div class="frame-1171275368">
+                                            <div class="btn-add {{selectedLeftCount > 0? 'active' :'' }}" (click)="add()">
+                                                <div class="svg-active component-37a">
+                                                    <div class="add">{{l('Add')}}</div>
+                                                    <img src="assets/common/images/iconoir_fast-arrow-left.svg" />
+                                                </div>
+                                                <div class="svg-disable component-37ad">
+                                                    <div class="add">{{l('Add')}}</div>
+                                                    <img src="assets/common/images/iconoir_fast-arrow-left.svg" />
+                                                </div>
+                                            </div>
+                                            <div class="btn-remove {{selectedRightCount > 0? 'active' :'' }}"
+                                                (click)="remove()">
+                                                <svg class="svg-disable" width="83" height="28" viewBox="0 0 83 28" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <rect width="83" height="28" rx="6" fill="#F5F5F5" />
+                                                    <path
+                                                        d="M13.0859 7.625H17.2188C18.0833 7.625 18.8255 7.75521 19.4453 8.01562C20.0651 8.27604 20.5417 8.66146 20.875 9.17188C21.2083 9.68229 21.375 10.3099 21.375 11.0547C21.375 11.6432 21.2708 12.1536 21.0625 12.5859C20.8542 13.0182 20.5599 13.3802 20.1797 13.6719C19.8047 13.9635 19.362 14.1927 18.8516 14.3594L18.1797 14.7031H14.5312L14.5156 13.0078H17.2422C17.6849 13.0078 18.0521 12.9297 18.3438 12.7734C18.6354 12.6172 18.8542 12.401 19 12.125C19.151 11.849 19.2266 11.5339 19.2266 11.1797C19.2266 10.7995 19.1536 10.4714 19.0078 10.1953C18.862 9.91406 18.6406 9.69792 18.3438 9.54688C18.0469 9.39583 17.6719 9.32031 17.2188 9.32031H15.2344V19H13.0859V7.625ZM19.5078 19L16.875 13.9062L19.1484 13.8984L21.8125 18.8906V19H19.5078ZM26.8984 19.1562C26.2578 19.1562 25.6823 19.0521 25.1719 18.8438C24.6615 18.6354 24.2266 18.3464 23.8672 17.9766C23.513 17.6016 23.2396 17.1667 23.0469 16.6719C22.8594 16.1719 22.7656 15.6354 22.7656 15.0625V14.75C22.7656 14.099 22.8594 13.5078 23.0469 12.9766C23.2344 12.4401 23.5 11.9792 23.8438 11.5938C24.1875 11.2083 24.599 10.9115 25.0781 10.7031C25.5573 10.4948 26.0859 10.3906 26.6641 10.3906C27.263 10.3906 27.7917 10.4922 28.25 10.6953C28.7083 10.8932 29.0911 11.1745 29.3984 11.5391C29.7057 11.9036 29.9375 12.3411 30.0938 12.8516C30.25 13.3568 30.3281 13.9167 30.3281 14.5312V15.3984H23.7031V13.9766H28.2969V13.8203C28.2865 13.4922 28.224 13.1927 28.1094 12.9219C27.9948 12.6458 27.8177 12.4271 27.5781 12.2656C27.3385 12.099 27.0286 12.0156 26.6484 12.0156C26.3411 12.0156 26.0729 12.0833 25.8438 12.2188C25.6198 12.349 25.4323 12.5365 25.2812 12.7812C25.1354 13.0208 25.026 13.3073 24.9531 13.6406C24.8802 13.974 24.8438 14.3438 24.8438 14.75V15.0625C24.8438 15.4167 24.8906 15.7448 24.9844 16.0469C25.0833 16.349 25.2266 16.612 25.4141 16.8359C25.6068 17.0547 25.8359 17.2266 26.1016 17.3516C26.3724 17.4714 26.6797 17.5312 27.0234 17.5312C27.4557 17.5312 27.8464 17.4479 28.1953 17.2812C28.5495 17.1094 28.8568 16.8568 29.1172 16.5234L30.1562 17.6016C29.9792 17.862 29.7396 18.112 29.4375 18.3516C29.1406 18.5911 28.7812 18.7865 28.3594 18.9375C27.9375 19.0833 27.4505 19.1562 26.8984 19.1562ZM33.7656 12.2812V19H31.7031V10.5469H33.6484L33.7656 12.2812ZM33.4609 14.4688H32.8281C32.8281 13.8802 32.8984 13.3385 33.0391 12.8438C33.1849 12.349 33.3984 11.9193 33.6797 11.5547C33.9609 11.1849 34.3073 10.8984 34.7188 10.6953C35.1354 10.4922 35.6172 10.3906 36.1641 10.3906C36.5443 10.3906 36.8932 10.4479 37.2109 10.5625C37.5286 10.6719 37.8021 10.8464 38.0312 11.0859C38.2656 11.3203 38.4453 11.6276 38.5703 12.0078C38.6953 12.3828 38.7578 12.8333 38.7578 13.3594V19H36.6953V13.5703C36.6953 13.1745 36.638 12.8646 36.5234 12.6406C36.4141 12.4167 36.2552 12.2604 36.0469 12.1719C35.8385 12.0781 35.5885 12.0312 35.2969 12.0312C34.974 12.0312 34.6953 12.0964 34.4609 12.2266C34.2318 12.3516 34.0417 12.526 33.8906 12.75C33.7448 12.974 33.6354 13.2318 33.5625 13.5234C33.4948 13.8151 33.4609 14.1302 33.4609 14.4688ZM38.6016 14.0859L37.75 14.2422C37.7552 13.7109 37.8281 13.2135 37.9688 12.75C38.1094 12.2812 38.3151 11.8724 38.5859 11.5234C38.862 11.1693 39.2031 10.8932 39.6094 10.6953C40.0208 10.4922 40.4948 10.3906 41.0312 10.3906C41.4479 10.3906 41.8229 10.4505 42.1562 10.5703C42.4948 10.6849 42.7839 10.8698 43.0234 11.125C43.263 11.375 43.4453 11.7005 43.5703 12.1016C43.7005 12.5026 43.7656 12.9922 43.7656 13.5703V19H41.6875V13.5625C41.6875 13.151 41.6302 12.8359 41.5156 12.6172C41.4062 12.3984 41.2474 12.2474 41.0391 12.1641C40.8307 12.0755 40.5859 12.0312 40.3047 12.0312C40.0182 12.0312 39.7682 12.0859 39.5547 12.1953C39.3464 12.2995 39.1693 12.4453 39.0234 12.6328C38.8828 12.8203 38.776 13.0391 38.7031 13.2891C38.6354 13.5339 38.6016 13.7995 38.6016 14.0859ZM45.25 14.8594V14.6953C45.25 14.0755 45.3385 13.5052 45.5156 12.9844C45.6927 12.4583 45.9505 12.0026 46.2891 11.6172C46.6276 11.2318 47.0417 10.9323 47.5312 10.7188C48.0208 10.5 48.5781 10.3906 49.2031 10.3906C49.8385 10.3906 50.401 10.5 50.8906 10.7188C51.3854 10.9323 51.8021 11.2318 52.1406 11.6172C52.4792 12.0026 52.737 12.4583 52.9141 12.9844C53.0911 13.5052 53.1797 14.0755 53.1797 14.6953V14.8594C53.1797 15.474 53.0911 16.0443 52.9141 16.5703C52.737 17.0911 52.4792 17.5469 52.1406 17.9375C51.8021 18.3229 51.388 18.6224 50.8984 18.8359C50.4089 19.0495 49.849 19.1562 49.2188 19.1562C48.5938 19.1562 48.0339 19.0495 47.5391 18.8359C47.0443 18.6224 46.6276 18.3229 46.2891 17.9375C45.9505 17.5469 45.6927 17.0911 45.5156 16.5703C45.3385 16.0443 45.25 15.474 45.25 14.8594ZM47.3125 14.6953V14.8594C47.3125 15.2292 47.349 15.5755 47.4219 15.8984C47.4948 16.2214 47.6068 16.5052 47.7578 16.75C47.9089 16.9948 48.1042 17.1875 48.3438 17.3281C48.5885 17.4635 48.8802 17.5312 49.2188 17.5312C49.5521 17.5312 49.8385 17.4635 50.0781 17.3281C50.3177 17.1875 50.513 16.9948 50.6641 16.75C50.8203 16.5052 50.9349 16.2214 51.0078 15.8984C51.0807 15.5755 51.1172 15.2292 51.1172 14.8594V14.6953C51.1172 14.3307 51.0807 13.9896 51.0078 13.6719C50.9349 13.349 50.8203 13.0651 50.6641 12.8203C50.513 12.5703 50.3151 12.375 50.0703 12.2344C49.8307 12.0885 49.5417 12.0156 49.2031 12.0156C48.8698 12.0156 48.5833 12.0885 48.3438 12.2344C48.1042 12.375 47.9089 12.5703 47.7578 12.8203C47.6068 13.0651 47.4948 13.349 47.4219 13.6719C47.349 13.9896 47.3125 14.3307 47.3125 14.6953ZM57.3594 17.4375L59.3281 10.5469H61.4844L58.5859 19H57.2734L57.3594 17.4375ZM55.9219 10.5469L57.9141 17.4531L57.9844 19H56.6641L53.7578 10.5469H55.9219ZM66.2578 19.1562C65.6172 19.1562 65.0417 19.0521 64.5312 18.8438C64.0208 18.6354 63.5859 18.3464 63.2266 17.9766C62.8724 17.6016 62.599 17.1667 62.4062 16.6719C62.2188 16.1719 62.125 15.6354 62.125 15.0625V14.75C62.125 14.099 62.2188 13.5078 62.4062 12.9766C62.5938 12.4401 62.8594 11.9792 63.2031 11.5938C63.5469 11.2083 63.9583 10.9115 64.4375 10.7031C64.9167 10.4948 65.4453 10.3906 66.0234 10.3906C66.6224 10.3906 67.151 10.4922 67.6094 10.6953C68.0677 10.8932 68.4505 11.1745 68.7578 11.5391C69.0651 11.9036 69.2969 12.3411 69.4531 12.8516C69.6094 13.3568 69.6875 13.9167 69.6875 14.5312V15.3984H63.0625V13.9766H67.6562V13.8203C67.6458 13.4922 67.5833 13.1927 67.4688 12.9219C67.3542 12.6458 67.1771 12.4271 66.9375 12.2656C66.6979 12.099 66.388 12.0156 66.0078 12.0156C65.7005 12.0156 65.4323 12.0833 65.2031 12.2188C64.9792 12.349 64.7917 12.5365 64.6406 12.7812C64.4948 13.0208 64.3854 13.3073 64.3125 13.6406C64.2396 13.974 64.2031 14.3438 64.2031 14.75V15.0625C64.2031 15.4167 64.25 15.7448 64.3438 16.0469C64.4427 16.349 64.5859 16.612 64.7734 16.8359C64.9661 17.0547 65.1953 17.2266 65.4609 17.3516C65.7318 17.4714 66.0391 17.5312 66.3828 17.5312C66.8151 17.5312 67.2057 17.4479 67.5547 17.2812C67.9089 17.1094 68.2161 16.8568 68.4766 16.5234L69.5156 17.6016C69.3385 17.862 69.099 18.112 68.7969 18.3516C68.5 18.5911 68.1406 18.7865 67.7188 18.9375C67.2969 19.0833 66.8099 19.1562 66.2578 19.1562Z"
+                                                        fill="black" fill-opacity="0.15" />
+                                                    <rect x="0.5" y="0.5" width="82" height="27" rx="5.5" stroke="black"
+                                                        stroke-opacity="0.05" />
+                                                </svg>
+                                                <svg class="svg-active" width="84" height="29" viewBox="0 0 84 29" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <rect x="1" y="1" width="82" height="27" rx="5.5" fill="white" />
+                                                    <path
+                                                        d="M13.5859 8.125H17.7188C18.5833 8.125 19.3255 8.25521 19.9453 8.51562C20.5651 8.77604 21.0417 9.16146 21.375 9.67188C21.7083 10.1823 21.875 10.8099 21.875 11.5547C21.875 12.1432 21.7708 12.6536 21.5625 13.0859C21.3542 13.5182 21.0599 13.8802 20.6797 14.1719C20.3047 14.4635 19.862 14.6927 19.3516 14.8594L18.6797 15.2031H15.0312L15.0156 13.5078H17.7422C18.1849 13.5078 18.5521 13.4297 18.8438 13.2734C19.1354 13.1172 19.3542 12.901 19.5 12.625C19.651 12.349 19.7266 12.0339 19.7266 11.6797C19.7266 11.2995 19.6536 10.9714 19.5078 10.6953C19.362 10.4141 19.1406 10.1979 18.8438 10.0469C18.5469 9.89583 18.1719 9.82031 17.7188 9.82031H15.7344V19.5H13.5859V8.125ZM20.0078 19.5L17.375 14.4062L19.6484 14.3984L22.3125 19.3906V19.5H20.0078ZM27.3984 19.6562C26.7578 19.6562 26.1823 19.5521 25.6719 19.3438C25.1615 19.1354 24.7266 18.8464 24.3672 18.4766C24.013 18.1016 23.7396 17.6667 23.5469 17.1719C23.3594 16.6719 23.2656 16.1354 23.2656 15.5625V15.25C23.2656 14.599 23.3594 14.0078 23.5469 13.4766C23.7344 12.9401 24 12.4792 24.3438 12.0938C24.6875 11.7083 25.099 11.4115 25.5781 11.2031C26.0573 10.9948 26.5859 10.8906 27.1641 10.8906C27.763 10.8906 28.2917 10.9922 28.75 11.1953C29.2083 11.3932 29.5911 11.6745 29.8984 12.0391C30.2057 12.4036 30.4375 12.8411 30.5938 13.3516C30.75 13.8568 30.8281 14.4167 30.8281 15.0312V15.8984H24.2031V14.4766H28.7969V14.3203C28.7865 13.9922 28.724 13.6927 28.6094 13.4219C28.4948 13.1458 28.3177 12.9271 28.0781 12.7656C27.8385 12.599 27.5286 12.5156 27.1484 12.5156C26.8411 12.5156 26.5729 12.5833 26.3438 12.7188C26.1198 12.849 25.9323 13.0365 25.7812 13.2812C25.6354 13.5208 25.526 13.8073 25.4531 14.1406C25.3802 14.474 25.3438 14.8438 25.3438 15.25V15.5625C25.3438 15.9167 25.3906 16.2448 25.4844 16.5469C25.5833 16.849 25.7266 17.112 25.9141 17.3359C26.1068 17.5547 26.3359 17.7266 26.6016 17.8516C26.8724 17.9714 27.1797 18.0312 27.5234 18.0312C27.9557 18.0312 28.3464 17.9479 28.6953 17.7812C29.0495 17.6094 29.3568 17.3568 29.6172 17.0234L30.6562 18.1016C30.4792 18.362 30.2396 18.612 29.9375 18.8516C29.6406 19.0911 29.2812 19.2865 28.8594 19.4375C28.4375 19.5833 27.9505 19.6562 27.3984 19.6562ZM34.2656 12.7812V19.5H32.2031V11.0469H34.1484L34.2656 12.7812ZM33.9609 14.9688H33.3281C33.3281 14.3802 33.3984 13.8385 33.5391 13.3438C33.6849 12.849 33.8984 12.4193 34.1797 12.0547C34.4609 11.6849 34.8073 11.3984 35.2188 11.1953C35.6354 10.9922 36.1172 10.8906 36.6641 10.8906C37.0443 10.8906 37.3932 10.9479 37.7109 11.0625C38.0286 11.1719 38.3021 11.3464 38.5312 11.5859C38.7656 11.8203 38.9453 12.1276 39.0703 12.5078C39.1953 12.8828 39.2578 13.3333 39.2578 13.8594V19.5H37.1953V14.0703C37.1953 13.6745 37.138 13.3646 37.0234 13.1406C36.9141 12.9167 36.7552 12.7604 36.5469 12.6719C36.3385 12.5781 36.0885 12.5312 35.7969 12.5312C35.474 12.5312 35.1953 12.5964 34.9609 12.7266C34.7318 12.8516 34.5417 13.026 34.3906 13.25C34.2448 13.474 34.1354 13.7318 34.0625 14.0234C33.9948 14.3151 33.9609 14.6302 33.9609 14.9688ZM39.1016 14.5859L38.25 14.7422C38.2552 14.2109 38.3281 13.7135 38.4688 13.25C38.6094 12.7812 38.8151 12.3724 39.0859 12.0234C39.362 11.6693 39.7031 11.3932 40.1094 11.1953C40.5208 10.9922 40.9948 10.8906 41.5312 10.8906C41.9479 10.8906 42.3229 10.9505 42.6562 11.0703C42.9948 11.1849 43.2839 11.3698 43.5234 11.625C43.763 11.875 43.9453 12.2005 44.0703 12.6016C44.2005 13.0026 44.2656 13.4922 44.2656 14.0703V19.5H42.1875V14.0625C42.1875 13.651 42.1302 13.3359 42.0156 13.1172C41.9062 12.8984 41.7474 12.7474 41.5391 12.6641C41.3307 12.5755 41.0859 12.5312 40.8047 12.5312C40.5182 12.5312 40.2682 12.5859 40.0547 12.6953C39.8464 12.7995 39.6693 12.9453 39.5234 13.1328C39.3828 13.3203 39.276 13.5391 39.2031 13.7891C39.1354 14.0339 39.1016 14.2995 39.1016 14.5859ZM45.75 15.3594V15.1953C45.75 14.5755 45.8385 14.0052 46.0156 13.4844C46.1927 12.9583 46.4505 12.5026 46.7891 12.1172C47.1276 11.7318 47.5417 11.4323 48.0312 11.2188C48.5208 11 49.0781 10.8906 49.7031 10.8906C50.3385 10.8906 50.901 11 51.3906 11.2188C51.8854 11.4323 52.3021 11.7318 52.6406 12.1172C52.9792 12.5026 53.237 12.9583 53.4141 13.4844C53.5911 14.0052 53.6797 14.5755 53.6797 15.1953V15.3594C53.6797 15.974 53.5911 16.5443 53.4141 17.0703C53.237 17.5911 52.9792 18.0469 52.6406 18.4375C52.3021 18.8229 51.888 19.1224 51.3984 19.3359C50.9089 19.5495 50.349 19.6562 49.7188 19.6562C49.0938 19.6562 48.5339 19.5495 48.0391 19.3359C47.5443 19.1224 47.1276 18.8229 46.7891 18.4375C46.4505 18.0469 46.1927 17.5911 46.0156 17.0703C45.8385 16.5443 45.75 15.974 45.75 15.3594ZM47.8125 15.1953V15.3594C47.8125 15.7292 47.849 16.0755 47.9219 16.3984C47.9948 16.7214 48.1068 17.0052 48.2578 17.25C48.4089 17.4948 48.6042 17.6875 48.8438 17.8281C49.0885 17.9635 49.3802 18.0312 49.7188 18.0312C50.0521 18.0312 50.3385 17.9635 50.5781 17.8281C50.8177 17.6875 51.013 17.4948 51.1641 17.25C51.3203 17.0052 51.4349 16.7214 51.5078 16.3984C51.5807 16.0755 51.6172 15.7292 51.6172 15.3594V15.1953C51.6172 14.8307 51.5807 14.4896 51.5078 14.1719C51.4349 13.849 51.3203 13.5651 51.1641 13.3203C51.013 13.0703 50.8151 12.875 50.5703 12.7344C50.3307 12.5885 50.0417 12.5156 49.7031 12.5156C49.3698 12.5156 49.0833 12.5885 48.8438 12.7344C48.6042 12.875 48.4089 13.0703 48.2578 13.3203C48.1068 13.5651 47.9948 13.849 47.9219 14.1719C47.849 14.4896 47.8125 14.8307 47.8125 15.1953ZM57.8594 17.9375L59.8281 11.0469H61.9844L59.0859 19.5H57.7734L57.8594 17.9375ZM56.4219 11.0469L58.4141 17.9531L58.4844 19.5H57.1641L54.2578 11.0469H56.4219ZM66.7578 19.6562C66.1172 19.6562 65.5417 19.5521 65.0312 19.3438C64.5208 19.1354 64.0859 18.8464 63.7266 18.4766C63.3724 18.1016 63.099 17.6667 62.9062 17.1719C62.7188 16.6719 62.625 16.1354 62.625 15.5625V15.25C62.625 14.599 62.7188 14.0078 62.9062 13.4766C63.0938 12.9401 63.3594 12.4792 63.7031 12.0938C64.0469 11.7083 64.4583 11.4115 64.9375 11.2031C65.4167 10.9948 65.9453 10.8906 66.5234 10.8906C67.1224 10.8906 67.651 10.9922 68.1094 11.1953C68.5677 11.3932 68.9505 11.6745 69.2578 12.0391C69.5651 12.4036 69.7969 12.8411 69.9531 13.3516C70.1094 13.8568 70.1875 14.4167 70.1875 15.0312V15.8984H63.5625V14.4766H68.1562V14.3203C68.1458 13.9922 68.0833 13.6927 67.9688 13.4219C67.8542 13.1458 67.6771 12.9271 67.4375 12.7656C67.1979 12.599 66.888 12.5156 66.5078 12.5156C66.2005 12.5156 65.9323 12.5833 65.7031 12.7188C65.4792 12.849 65.2917 13.0365 65.1406 13.2812C64.9948 13.5208 64.8854 13.8073 64.8125 14.1406C64.7396 14.474 64.7031 14.8438 64.7031 15.25V15.5625C64.7031 15.9167 64.75 16.2448 64.8438 16.5469C64.9427 16.849 65.0859 17.112 65.2734 17.3359C65.4661 17.5547 65.6953 17.7266 65.9609 17.8516C66.2318 17.9714 66.5391 18.0312 66.8828 18.0312C67.3151 18.0312 67.7057 17.9479 68.0547 17.7812C68.4089 17.6094 68.7161 17.3568 68.9766 17.0234L70.0156 18.1016C69.8385 18.362 69.599 18.612 69.2969 18.8516C69 19.0911 68.6406 19.2865 68.2188 19.4375C67.7969 19.5833 67.3099 19.6562 66.7578 19.6562Z"
+                                                        fill="#0374F6" />
+                                                    <rect x="1" y="1" width="82" height="27" rx="5.5" stroke="#0374F6" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="frame-10000063202">
+                                            <div class="frame-10000039972">
+                                                <span class="p-input-icon-left">
+                                                    <i class="pi pi-search"></i>
+                                                    <p-autoComplete id="searchUser" [(ngModel)]="transferTo"
+                                                        [suggestions]="searchResult" placeholder="{{ 'SearchWithThreeDot' | localize }}"
+                                                        scrollHeight="300px" (completeMethod)="filterTransferUser($event)"
+                                                        field="fullName">
+                                                        <ng-template let-data pTemplate="item">
+                                                            <div class="frame-3073">
+                                                                <div class="frame-3041">
+                                                                    <img class="ellipse-3281"
+                                                                        [src]="!data.imageUrl  ? 'assets/common/images/default-profile-picture.png' : data.imageUrl" />
+                                                                    <div class="frame-2988">
+                                                                        <div class="frame-1171275486">
+                                                                            <div class="frame-1171275511">
+                                                                                <div class="frame-3075">
+                                                                                    <div class="le-minh-thu">{{data.fullName}}
+                                                                                    </div>
+                                                                                    <div class="frame-1171275485">
+                                                                                        <div class="dgm-division-head">
+                                                                                            {{data.title}}/{{data.division}}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="frame-1171275512">
+                                                                                    <div class="hnthulm-toyotavn-com-vn">
+                                                                                        {{data.email}}</div>
+                                                                                    <div class="it">{{data.company}}</div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </ng-template>
+                                                    </p-autoComplete>
+                                                </span>
+                                            </div>
+                                            <div class="frame-1171275379">
+                                                <div class="frame-1000006527">
+                                                    <div class="frame-1171275380" *ngIf="transferTo">
+                                                        <img class="ellipse-2070"
+                                                            [src]="!transferTo.imageUrl  ? 'assets/common/images/default-profile-picture.png' : transferTo.imageUrl" />
+                                                        <div class="frame-10000063662">
+                                                            <div class="vu-tuan-hieu2">{{transferTo.fullName}}</div>
+                                                            <div class="it-infrastructure-security-service">
+                                                                {{transferTo.title}}
+                                                            </div>
+                                                            <div class="it-division">{{transferTo.division}}</div>
+                                                            <div class="assistant-manager">{{transferTo.manager}}</div>
+                                                            <div class="assistant-manager">{{transferTo.email}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="component-112">
+                                                <div class="frame-1171275523">
+                                                    <ejs-checkbox #checkboxR [checked]="false"
+                                                        (change)="checkAllHandlerR($event)"></ejs-checkbox>
+                                                    <div class="select-all">{{l('SelectAll')}} ( {{selectedRightCount}})</div>
+                                                </div>
+                                            </div>
+                                            <div class="frame-346">
+                                                <data-view-transfer id="listviewInstanceR" #listviewInstanceR
+                                                    [dataInput]="listRight" (onChangeSelection)="onSelectR($event)"
+                                                    style=" height: 100%;width: 100%;overflow-y: auto;" [isActiveTab]="typeFilter"
+                                                    [ngStyle]="listRight?.length > 0 ? {display: 'block' } : {display: 'none' }" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="frame-1171275337">
+                                        <div
+                                            class="btn-transfer {{(this.listRight.length > 0 && this.transferTo?.id) ? 'active' :'' }}">
+                                            <button [busyIf]="loading" [disabled]="loading" class="svg-active component-37t" (click)="submitTransfer()">
+                                                <svg class="mdi-file-transfer" width="20" height="20" viewBox="0 0 20 20"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M15.8333 10.8327C16.1167 10.8327 16.3917 10.866 16.6667 10.9077V6.66602L11.6667 1.66602H5.00001C4.07501 1.66602 3.33334 2.40768 3.33334 3.33268V16.666C3.33334 17.591 4.07501 18.3327 5.00001 18.3327H11.5083C11.0833 17.5993 10.8333 16.7493 10.8333 15.8327C10.8333 13.0743 13.075 10.8327 15.8333 10.8327ZM10.8333 2.91602L15.4167 7.49935H10.8333V2.91602ZM16.6667 16.2493V14.9993H13.3333V13.3327H16.6667V12.0827L19.1667 14.166L16.6667 16.2493ZM15 16.666H18.3333V18.3327H15V19.5827L12.5 17.4993L15 15.416V16.666Z"
+                                                        fill="white" />
+                                                </svg>
+                                                <div class="transfer">{{l('Transfer')}}</div>
+                                            </button>
+                                            <div class="svg-disable component-37d">
+                                                <svg class="mdi-file-transfer" width="20" height="20" viewBox="0 0 20 20"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M15.8333 10.8327C16.1167 10.8327 16.3917 10.866 16.6667 10.9077V6.66602L11.6667 1.66602H5.00001C4.07501 1.66602 3.33334 2.40768 3.33334 3.33268V16.666C3.33334 17.591 4.07501 18.3327 5.00001 18.3327H11.5083C11.0833 17.5993 10.8333 16.7493 10.8333 15.8327C10.8333 13.0743 13.075 10.8327 15.8333 10.8327ZM10.8333 2.91602L15.4167 7.49935H10.8333V2.91602ZM16.6667 16.2493V14.9993H13.3333V13.3327H16.6667V12.0827L19.1667 14.166L16.6667 16.2493ZM15 16.666H18.3333V18.3327H15V19.5827L12.5 17.4993L15 15.416V16.666Z"
+                                                        fill="white" />
+                                                </svg>
+                                                <div class="transfer">{{l('Transfer')}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-tabPanel>
+                        <p-tabPanel>
+                            <ng-template pTemplate="header">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="15" cy="15" r="15" fill="white"/>
+                                    <path d="M15 0C6.735 0 0 6.735 0 15C0 23.265 6.735 30 15 30C23.265 30 30 23.265 30 15C30 6.735 23.265 0 15 0ZM21.525 20.355C21.315 20.715 20.94 20.91 20.55 20.91C20.355 20.91 20.16 20.865 19.98 20.745L15.33 17.97C14.175 17.28 13.32 15.765 13.32 14.43V8.28C13.32 7.665 13.83 7.155 14.445 7.155C15.06 7.155 15.57 7.665 15.57 8.28V14.43C15.57 14.97 16.02 15.765 16.485 16.035L21.135 18.81C21.675 19.125 21.855 19.815 21.525 20.355Z" fill="#F3DC3B"/>
+                                    <circle cx="15" cy="15" r="13" stroke="#FFF9D2" stroke-width="4"/>
+                                </svg>
+                                {{l('History')}}
+                            </ng-template>
+                            <div class="control-section">
+                                <!-- <div class="master-title d-flex align-items-center">
+                                    <p class="h5 title">{{'TransferHistory' | localize }}</p>
+                                </div> -->
+                                <div class="form-filter col-12 d-flex">
+                                    <div class="input-filter col-3">
+                                        <esign-input [text]="l('RequestTitle')" [(ngModel)]="requestFilter" [placeholder]="l('Search')" ></esign-input>
+                                    </div>
+                                    <div class="input-filter col-3">
+                                        <esign-combobox [text]="l('TransferFrom')" [items]="transferFromOptions" [(ngModel)]="transferFrom" ></esign-combobox>
+                                    </div>
+                                    <div class="input-filter col-3">
+                                        <esign-datepicker [text]="l('FromDate')" [dateInputFormat]="'D/MMM/Y'" [(ngModel)]="transferFromDate" ></esign-datepicker>
+                                    </div>
+                                    <div class="input-filter col-3">
+                                        <esign-datepicker [text]="l('ToDate')" [dateInputFormat]="'D/MMM/Y'" [(ngModel)]="transferToDate" ></esign-datepicker>
+                                    </div>
+                                    <div class="input-filter button-filter">
+                                        <button ejs-button cssClass="e-outline" (click)="searchHistory()" iconCss="fas fa-search" cssClass="e-outline" [isPrimary]="true">
+                                            {{ 'Search' | localize }}
+                                        </button>
+                                        <button ejs-button cssClass="e-outline" (click)="clearTextSearch()" iconCss="fas fa-refresh" cssClass="e-outline" [isPrimary]="true">
+                                            {{ 'Refresh' | localize }}
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row pt-1">
+                                    <div class="col-12 d-flex justify-content-start align-items-center">
+                                        <esign-grid
+                                            [rowData]="rowDataHistory"
+                                            [height]="'100%'"
+                                            [columnDefs]="columnDeftHistory"
+                                            [allowPager]="true"
+                                            [allowSorting]="true"
+                                            (onChangeSelection)="changeSelection($event)"
+                                            [selectionSettings]="selectionSettings"
+                                            [filterSettings]="filterSettings"
+                                            [allowFiltering]="true"
+                                            [pagination]="paginationHistory"
+                                            [allowResizing]="true"
+                                            (onChangePager)="changePager($event)"
+                                            [showIndex]="true"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </p-tabPanel>
+                    </p-tabView>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

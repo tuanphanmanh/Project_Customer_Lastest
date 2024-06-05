@@ -1,0 +1,129 @@
+﻿@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList" + Model.MODEL_ID;
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = 10;
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.CallbackRouteValues = new { Controller = "TB_M_MODEL", Action = "VEHICLE_MASTER_GridCallback", MODEL_ID = Model.MODEL_ID };
+
+    settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Visible;
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 8;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Left;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+    settings.SettingsBehavior.AllowFocusedRow = true;  
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "Op.";
+        c.Width = System.Web.UI.WebControls.Unit.Pixel(70);
+        c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        c.SetDataItemTemplateContent(
+            content =>
+            {
+                System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+                    strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return VEHICLEEdit(this)' title='Edit'><i class='fa fa-pencil'></i></a>"));
+                }
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Delete"))
+                {
+                    strBuilder.Append(string.Concat(" <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return VEHICLEDelete(this)'  title='Delete'><i class='fa fa-trash-o'></i></a>"));
+                }
+                Html.ViewContext.Writer.Write(strBuilder.ToString());
+            });
+    });
+
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "No.";
+            c.FieldName = "Row_No";
+            c.Width = 60;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "Model ID";
+            c.FieldName = "MODEL_ID";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "CFC";
+            c.FieldName = "CFC";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "Project code";
+            c.FieldName = "PROJECT_CODE";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "Katashiki";
+            c.FieldName = "KATASHIKI";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "Prod SFX";
+            c.FieldName = "PROD_SFX";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "MKT SFX";
+            c.FieldName = "MKT_SFX";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "Grade mark";
+            c.FieldName = "GRADE_MARK";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "Start LOT";
+            c.FieldName = "START_LOT";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "Start PROD.DATE";
+            c.FieldName = "START_PROD_DATE";
+            c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "End LOT";
+            c.FieldName = "END_LOT";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "End PROD.DATE";
+            c.FieldName = "END_PROD_DATE";
+            c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "Is active";
+            c.FieldName = "IS_ACTIVE";
+        }
+    );
+
+}).Bind(LSP.Models.TB_M_VEHICLE_MASTER.TB_M_VEHICLE_MASTERProvider.Instance.TB_M_VEHICLE_MASTER_GetsByModelID(Model ?? new LSP.Models.TB_M_VEHICLE_MASTER.TB_M_VEHICLE_MASTERInfo())).GetHtml()

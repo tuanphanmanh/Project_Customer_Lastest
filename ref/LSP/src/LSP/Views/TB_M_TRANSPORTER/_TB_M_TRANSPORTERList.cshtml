@@ -1,0 +1,80 @@
+﻿@using LSP.Models
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = LSP.Models.Common.PageSize(); //10
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = Common.PageSizeItemSettings(); //new string[] { "10", "20", "50" };
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 8;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+    settings.CallbackRouteValues = new { Controller = "TB_M_TRANSPORTER", Action = "GridCallback" };
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "Op.";
+        c.Width = System.Web.UI.WebControls.Unit.Pixel(90);
+        c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        c.SetDataItemTemplateContent(content =>
+        {
+            System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+            strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "id"), "' onclick='return Edit(this)' title='Edit'><i class='fa fa-pencil'></i></a>"));
+            strBuilder.Append(string.Concat(" | <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "id"), "' onclick='return Delete(this)' title='Delete'><i class='fa fa-trash-o'></i></a>"));
+            Html.ViewContext.Writer.Write(strBuilder.ToString());
+        }
+        );
+    }
+    );
+
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "No.";
+            c.FieldName = "Row_No";
+            c.Width = 60;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "Name";
+            c.FieldName = "NAME";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "Abbreviation";
+            c.FieldName = "ABBREVIATION";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "IS ACTIVE";
+            c.FieldName = "IS_ACTIVE";
+            c.SetDataItemTemplateContent(cc =>
+            {
+                Html.DevExpress().CheckBox(checkboxSettings =>
+                {
+                    checkboxSettings.Name = "_IS_ACTIVE_" + Convert.ToString(DataBinder.Eval(cc.DataItem, "ID"));
+                    checkboxSettings.Checked = Convert.ToString(DataBinder.Eval(cc.DataItem, "IS_ACTIVE")) == "Y" ? true : false;
+                    checkboxSettings.Properties.ClientSideEvents.CheckedChanged = "function() { return false; }";
+                }).Render();
+            });
+        }
+    );
+
+}).Bind(LSP.Models.TB_M_TRANSPORTER.TB_M_TRANSPORTERProvider.Instance.TB_M_TRANSPORTER_Search(Model ?? new LSP.Models.TB_M_TRANSPORTER.TB_M_TRANSPORTERInfo())).GetHtml()
+
+
+

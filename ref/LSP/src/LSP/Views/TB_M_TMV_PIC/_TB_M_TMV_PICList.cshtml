@@ -1,0 +1,198 @@
+﻿@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = LSP.Models.Common.PageSize_M(); //10
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items =  LSP.Models.Common.PageSizeItemSettings(); //new string[] { "10", "20", "50" };
+    settings.SettingsResizing.ColumnResizeMode = ColumnResizeMode.Control;
+    settings.SettingsResizing.Visualization = ResizingMode.Live;
+    settings.SettingsBehavior.AllowEllipsisInText = true;
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 7;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+    settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Auto;
+    
+    settings.CallbackRouteValues = new { Controller = "TB_M_TMV_PIC", Action = "GridCallback" };
+  
+    //Export
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+    settings.SettingsExport.BeforeExport = (sender, e) =>
+    {
+        MVCxGridView gridView = sender as MVCxGridView;
+        if (sender == null)
+            return;
+        gridView.Columns["Op."].Visible = false;
+    };
+
+    //Toolbar
+    settings.Toolbars.Add(toolbar =>
+    {
+        toolbar.Enabled = true;
+        toolbar.EnableAdaptivity = true;
+        toolbar.Position = GridToolbarPosition.Top;
+        toolbar.ItemAlign = GridToolbarItemAlign.Left;
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                Html.DevExpress().ButtonEdit(s =>
+                {
+                    s.Name = "search";
+                    s.Properties.NullText = "Search inline...";
+                    s.Properties.Buttons
+                        .Add()
+                        .Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
+                }).Render();
+            });
+        });
+
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnExportXls";
+                    s.ClientSideEvents.Click = "function(s, e) {gvList.ExportTo(ASPxClientGridViewExportFormat.Xls);}";
+                    s.Text = "Export to Xls";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxls16x16;
+                }).GetHtml();
+            });
+        });       
+    });
+    //For Search panel
+    settings.SettingsSearchPanel.CustomEditorName = "search";
+    
+   
+    /* For batch edit setting: BEGIN*/
+    if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature(Html.Toyota().Page.ControllerName.ToString(), "Edit"))  
+    {
+        //Action for batch update
+        settings.SettingsEditing.BatchUpdateRouteValues = new { Controller = "TB_M_TMV_PIC", Action = "BatchEditingUpdateModel" };
+
+        settings.SettingsEditing.Mode = GridViewEditingMode.Batch;
+        settings.SettingsEditing.BatchEditSettings.EditMode = GridViewBatchEditMode.Row;
+
+        settings.SettingsEditing.BatchEditSettings.StartEditAction = GridViewBatchStartEditAction.DblClick;
+        settings.SettingsEditing.BatchEditSettings.HighlightDeletedRows = true;
+        //settings.SettingsEditing.BatchEditSettings.KeepChangesOnCallbacks = DefaultBoolean.True;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.Caption = "Op.";
+        settings.CommandColumn.ShowDeleteButton = false;
+        settings.CommandColumn.ShowRecoverButton = false;
+      
+        settings.CommandColumn.Width = 75;           
+        /* For batch edit setting: END*/
+    }
+
+    if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature(Html.Toyota().Page.ControllerName.ToString(), "New"))
+    {
+        settings.CommandColumn.ButtonRenderMode = GridCommandButtonRenderMode.Button;  
+        settings.CommandColumn.ShowNewButtonInHeader = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.SettingsCommandButton.DeleteButton.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsDelete16x16gray;
+        settings.SettingsCommandButton.DeleteButton.Text = "Del";
+        settings.SettingsCommandButton.NewButton.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsAdd16x16gray;
+        /* For batch edit setting: END*/
+    }
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "No.";
+        c.FieldName = "ROW_NO";
+        c.Width = 50;
+        c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+    }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "USER ACCOUNT";
+            c.FieldName = "PIC_USER_ACCOUNT";
+            c.EditFormSettings.Visible = DevExpress.Utils.DefaultBoolean.False;
+            c.Width = 80;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PIC NAME";
+            c.FieldName = "PIC_NAME";
+            c.Width = 100;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "MOBILE No.";
+            c.FieldName = "PIC_TELEPHONE";
+            c.Width = 100;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "EXT. TELEPHONE";
+        c.FieldName = "PIC_TELEPHONE_2";
+        c.Width = 100;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+    
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PIC EMAIL";
+            c.FieldName = "PIC_EMAIL";
+            c.Width = 150;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "SUPPLIERS";
+        c.FieldName = "SUPPLIERS";
+        c.Width = 500;
+        c.EditorProperties().Memo(p =>
+        {
+            p.MaxLength = 1024;
+            p.Rows = 3;
+            p.Height = System.Web.UI.WebControls.Unit.Pixel(120);
+        });
+    });
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "IS ACTIVE?";
+        c.FieldName = "IS_ACTIVE_BOL";
+        c.ColumnType = MVCxGridViewColumnType.CheckBox;
+        c.Width = 70;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+    
+    //for full width of cell editor in columns    
+    settings.CellEditorInitialize = (s, e) =>
+    {
+        ASPxEdit editor = (ASPxEdit)e.Editor;
+        editor.ValidationSettings.Display = Display.Dynamic;
+    };     
+    
+}).Bind(LSP.Models.TB_M_TMV_PIC.TB_M_TMV_PICProvider.Instance.TB_M_TMV_PIC_Search(Model ?? new LSP.Models.TB_M_TMV_PIC.TB_M_TMV_PICInfo())).GetHtml()

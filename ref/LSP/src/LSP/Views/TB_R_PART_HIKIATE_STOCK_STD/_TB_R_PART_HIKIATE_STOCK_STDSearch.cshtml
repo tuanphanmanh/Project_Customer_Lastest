@@ -1,0 +1,108 @@
+﻿@*
+---Phần Search trên form
+TextBox : .textbox, .autobind (cho ô find gia tri tu dong)
+DateEdit : .textdate
+ComboBox : .textcombobox
+*@
+<div class="dxcontent_search"> 
+    <div class="itembox">
+		<label class="placehoder">PART ID</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtPART_ID";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">MIN STOCK</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtMIN_STOCK";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">MAX STOCK</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtMAX_STOCK";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">TC FROM</label>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_txtTC_FROM";
+				settings.ControlStyle.CssClass = "dateedit textdate";
+				settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+			}).GetHtml() 
+    </div>
+    <div class="itembox">
+		<label class="placehoder">TC TO</label>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_txtTC_TO";
+				settings.ControlStyle.CssClass = "dateedit textdate";
+				settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+			}).GetHtml() 
+    </div>
+    <div class="itembox">
+		<label class="placehoder">IS ACTIVE</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtIS_ACTIVE";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">CREATED BY</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtCREATED_BY";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">CREATED DATE</label>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_txtCREATED_DATE";
+				settings.ControlStyle.CssClass = "dateedit textdate";
+				settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+			}).GetHtml() 
+    </div>
+    <div class="itembox">
+		<label class="placehoder">UPDATED BY</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtUPDATED_BY";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">UPDATED DATE</label>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_txtUPDATED_DATE";
+				settings.ControlStyle.CssClass = "dateedit textdate";
+				settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+			}).GetHtml() 
+    </div>
+    <div class="itembox">    
+		@if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+			(Html.Toyota().Page.ControllerName.ToString(), "Search"))
+		{	
+			@Html.DevExpress().Button(settings =>
+			{
+				settings.Name = "btnSearch";
+				settings.Text = "Search";
+				settings.ClientSideEvents.Click = "DoSearch";
+			}).GetHtml()
+		}
+    </div>
+</div>

@@ -1,0 +1,292 @@
+﻿@{
+    Layout = "~/Views/Shared/_ScreenLayout.cshtml";
+}
+<link rel="Stylesheet" href="/Content/Style/App/PDF_ORDER_DELIVERY.css" />
+<script src="/Content/Scripts/Core/jquery-qrcode-0.14.0.min.js"></script>
+<script src="/Content/Scripts/App/PDF_ORDER_DELIVERY.js" type="text/javascript"></script>
+@using LSP.Models.TB_R_DAILY_ORDER;
+@using LSP.Models.TB_R_KANBAN;
+
+@{
+    
+    TB_R_DAILY_ORDERInfo obj = (TB_R_DAILY_ORDERInfo)ViewBag.ORDER;
+    IList<TB_R_KANBANInfo> objdetail = (IList<TB_R_KANBANInfo>) ViewBag.KANBAN;
+    IList<TB_R_KANBANInfo> objdetailPackaging = (IList<TB_R_KANBANInfo>)ViewBag.KANBAN_PKG;
+
+   /* string _qrcode = string.Format("{0}{1}-{2}-{3}", obj.SUPPLIER_CODE
+                                                                , string.Format("{0:yyMMdd}", obj.ORDER_DATETIME)
+                                                                , obj.TRIP_NO
+                                                                , obj.DOCK_NO);*/
+    string _qrcode = obj.ORDER_NO + "_ORDER";
+    string _supplier = obj.SUPPLIER_CODE;                                                    
+    
+}
+
+<div class="MAIN">
+        <div class="controlMessage">
+                <span class="message1"></span>  
+                <span class="message2"></span> 
+                <span class="message3"></span>
+        </div> 
+        <div class="clear"></div>
+         <div class="CONTENT">
+             <div class="c1">DAILY ORDER / DELIVERY NOTE</div>
+             <div class="c2">(PHIẾU ORDER VÀ GIAO NHẬN HÀNG HÓA)</div>
+             <table class="tb1" cellspacing="0" cellpadding="4">
+                 <tr>
+                     <td class="t1">Supplier <i class="supt1">(Nhà cung cấp) :</i></td>
+                     <td class="t2 Supplier"><span>@obj.SUPPLIER_CODE</span></td>
+                     <td class="t3">Delivery date <span class="supt1">(Ngày giao hàng) :</span></td>
+                     <td class="t4 Delivery_date">@string.Format("{0:dd-MMM-yy}",obj.EST_ARRIVAL_DATETIME)</td>
+                     <td class="t5 QRCode" rowspan="5"> @_qrcode</td>
+                 </tr>
+                 <tr>
+                     <td class="t1">Customer <i class="supt1">(Khách hàng) :</i></td>
+                     <td class="t2 Customer"><span>TMV</span></td>
+                     <td class="t3">Delivery time <span class="supt1">(Giờ giao hàng) :</span></td>
+                     <td class="t4 Delivery_time">@string.Format("{0:hh:mm tt}",obj.EST_ARRIVAL_DATETIME)</td>
+                 </tr>
+                 <tr>
+                     <td class="t1">Order No  <i class="supt1">(Số order) :</i></td>
+                     <td class="t2 Order_No"><span>@obj.ORDER_NO</span></td>
+                     <td class="t3 Trip_No">Trip No. <i class="supt1">(Chuyến giao hàng số) :</i></td>
+                     <td class="t4">@obj.TRIP_NO</td>
+                 </tr>
+                 <tr>
+                     <td class="t1">Order date/ time  <i class="supt1">(Ngày/ giờ order) :</i></td>
+                     <td class="t2 Oder_date_time">@string.Format("{0:dd/MMM/yyyy - HH:mm}",obj.ORDER_DATETIME)<span></span></td>
+                     <td class="t3">Truck license No. <i class="supt1">(Biển số xe) :</i></td>
+                     <td class="t4 Truck_license_No"></td>
+                 </tr>
+                 <tr>
+                     <td class="t1">Invoice No  <i class="supt1">(Số hóa đơn) :</i></td>
+                     <td class="t2"><span></span></td>
+                     <td class="t3"><i class="supt1"></i></td>
+                     <td class="t4 Truck_license_No"></td>
+                 </tr>
+             </table>
+              <div class="c3">Shipping information <i class="">(Nội dung lô hàng) :</i></div>
+
+             <table class="tb2" cellspacing="0" cellpadding="4">
+                 <tr class="hd1">
+                     <td>No</td>
+                     <td>Back No</td>
+                     <td>Part No</td>
+                     <td>Part name</td>
+                     <td>Unit</td>
+                     <td>Packaging Size</td>
+                     <td>Packaging q'ty</td>
+                     <td class='Part_qty'>Part q'ty</td>                     
+                     <td>Check by FWD</td>
+                     <td>Check by TMV</td>
+                     <td>Remark</td>  
+                 </tr>
+                 @{
+                     int no = 0;
+                     int totalboxs = 0;
+                     int total_PALLET_BOX_QTY = 0;    
+                     string sPART_NO = "";
+                                      
+                     foreach(TB_R_KANBANInfo item in objdetail)
+                     {
+                         no++;
+                         totalboxs = totalboxs + item.BOX_QTY_2;
+                         total_PALLET_BOX_QTY = total_PALLET_BOX_QTY + item.PALLET_BOX_QTY;
+                         if (item.PART_NO.Length >10){ 
+                             sPART_NO = item.PART_NO.Substring(0, 5) + "-" + item.PART_NO.Substring(5, 5) + "-" + item.PART_NO.Substring(10, 2); 
+                         }
+                         else { 
+                             sPART_NO = item.PART_NO; 
+                         }
+                         
+                         
+                         <tr class='data'> 
+                             <td class='No'>@no</td>
+                             <td class='Back_No'>@item.BACK_NO</td>
+                             <td class='Part_No'>@sPART_NO</td>
+                             <td class='Part_name'>@item.PART_NAME</td>
+                             <td class='Unit'>@item.PCS</td>
+                             <td class='Qty_box'>@item.BOX_SIZE</td>                             
+                             <td class='Box_qty'>@item.BOX_QTY</td>
+                             <td class='Part_qty'>@(item.BOX_SIZE * item.BOX_QTY)</td>
+                             <td class='Check_FWD'>&nbsp;</td>
+                             <td class='Check_TMV'>&nbsp;</td>
+                             <td class='Remark'>&nbsp;</td>
+                         </tr>
+                     }
+                     
+                     if (objdetail.Count < 20){
+
+                         string _htm = "";
+                         int add = 15 - objdetail.Count; 
+                         for(int i = 0; i < add; i++){
+                             no++;
+                             _htm = _htm + "<tr class='data'> " +
+                                                     "    <td class='No'>" + no + "</td>" +
+                                                     "    <td class='Back_No'>&nbsp;</td>" +
+                                                     "    <td class='Part_No'>&nbsp;</td>" +
+                                                     "    <td class='Part_name'>&nbsp;</td>" +
+                                                     "    <td class='Unit'>&nbsp;</td>" +
+                                                     "    <td class='Qty_box'>&nbsp;</td>" +                                                    
+                                                     "    <td class='Box_qty'>&nbsp;</td>" +
+                                                     "    <td class='Part_qty'>&nbsp;</td>" +
+                                                     "    <td class='Check_FWD'>&nbsp;</td>" +
+                                                     "    <td class='Check_TMV'>&nbsp;</td>" +
+                                                     "   <td class='Remark'>&nbsp;</td>" +
+                                                     "</tr>";
+                         }
+                         @Html.Raw(_htm);
+                     }
+                     
+                }
+                 
+                 <tr class=""></tr>
+        @{
+            if (_supplier != "UMG" && _supplier != "HVL" && _supplier != "SASH")
+            {
+                <tr class="total">
+                    <td colspan="3" class="Total_txt">Total boxes :</td>  
+                    <td colspan="5" class="Total_boxes_val">@totalboxs</td>
+                    <td colspan="3" class="total_none">&nbsp;</td>
+                </tr>
+                <tr class="total">
+                    <td colspan="3" class="Total_txt">Total packages :</td>  
+                    <td colspan="5" class="Total_pallets_val">@obj.PLAN_PALLET_QTY</td>
+                    <td colspan="3" class="total_none">&nbsp;</td>
+                </tr> 
+            }
+            else if (_supplier == "SASH")
+            {
+                <tr class="total">
+                    <td colspan="3" class="Total_txt">Total packages :</td>  
+                    <td colspan="5" class="Total_pallets_val">@obj.PLAN_PALLET_QTY</td>
+                    <td colspan="3" class="total_none">&nbsp;</td>
+                </tr> 
+            }                  
+            else
+            {
+                <tr class="total">
+                    <td colspan="3" class="Total_txt">Total boxes :</td>  
+                    <td colspan="5" class="Total_pallets_val">@obj.PLAN_PALLET_QTY</td>
+                    <td colspan="3" class="total_none">&nbsp;</td>
+                </tr> 
+            }                 
+        }
+             </table>
+
+             <div class="c3">Remarks <i class="">(Các ghi chép khác) :</i></div>                          
+             <div class="c4"></div>
+             <div class="c4"></div>
+
+             <div class="c3">We both acknowledge the above cargo volume & delivery condition and certified as under signature.
+                 <br /><i class="">(Chúng tôi cùng nhau xác nhận các điều kiện và số lượng hàng giao trên và đồng ý ký vào biên bản giao nhận hàng hóa này).</i></div>
+             
+             <div class="c5">TOTAL RETURN EMPTY BOX/PALLET :</div>
+              <table class="tb4" cellspacing="0" cellpadding="4">
+                 <tr class="hd1">
+                     <td>No</td>
+                     <td>Packazing type :</td> 
+                     <td>Unit</td>
+                     <td>Q'ty of receiving box</td>
+                     <td>Dummy box <br />(Hộp chèn)</td>
+                     <td>Q'ty of return box</td>
+                     <td>Remark</td>  
+                 </tr>
+
+                  @{
+                     int row_no = 0;
+                     int totalPKG = 0;
+                                                               
+                     foreach (TB_R_KANBANInfo item in objdetailPackaging)
+                     {
+                         row_no++;
+                         totalPKG = totalPKG + item.BOX_QTY_2;                           
+                         <tr class='data'> 
+                             <td class='No'>@row_no</td>
+                             <td class='Packazing_type'>@item.PACKAGING_TYPE</td> 
+                             <td class='Unit'>@item.PCS</td>
+                             <td class='receiving_box'>@item.BOX_QTY_2</td>   
+                             <td class='Dummy_box'>&nbsp;</td>                           
+                             <td class='return_box'>&nbsp;</td> 
+                             <td class='Remark'>&nbsp;</td>
+                         </tr>                                                                                                                                                  
+                     }
+
+                      if (objdetailPackaging.Count < 9)
+                      {
+
+                         string _htm = "";
+                         int addline = 9 - objdetailPackaging.Count;
+                         for (int i = 0; i < addline; i++)
+                         {
+                             row_no++;                            
+                             _htm = _htm + "<tr class='data'>" +
+                                             "    <td class='No'>" + row_no + "</td>" +
+                                             "    <td class='Packazing_type'>&nbsp;</td> " +
+                                             "    <td class='Unit'>&nbsp;</td>" +
+                                             "    <td class='receiving_box'>&nbsp;</td>" +
+                                             "    <td class='Dummy_box'>&nbsp;</td>" +
+                                             "    <td class='return_box'>&nbsp;</td> " +
+                                             "    <td class='Remark'>&nbsp;</td>" +
+                                            "</tr>";
+                         }
+                         @Html.Raw(_htm);
+                      }
+
+                      row_no++;
+                }
+
+                 @*{ 
+                     for (int i = 1; i < 8; i++ )
+                     { 
+                         <tr class='data'> 
+                             <td class='No'>@i</td>
+                             <td class='Packazing_type'>&nbsp;</td> 
+                             <td class='Unit'>&nbsp;</td>
+                             <td class='receiving_box'>&nbsp;</td>                             
+                             <td class='return_box'>&nbsp;</td> 
+                             <td class='Remark'>&nbsp;</td>
+                         </tr>
+                    } 
+                 }*@
+                  <tr class="total">
+                        <td class='No'>@row_no</td>
+                        <td class='Packazing_type'>Total</td> 
+                        <td class='Unit'>PCS</td>
+                        <td class='receiving_box'>@totalPKG</td>  
+                        <td class='Dummy_box'>&nbsp;</td>                           
+                        <td class='return_box'>&nbsp;</td> 
+                        <td class='Remark'>&nbsp;</td>
+                 </tr> 
+             </table>
+
+             <table class="tb3" cellspacing="0" cellpadding="4">
+                 <tr>
+                     @*<td class="t1">@obj.SUPPLIER_CODE <span class="supt1">(Người giao)</span></td>*@
+                     <td class="t1" colspan="3">SUPPLIER' SIGNTURE <span class="supt1">(Nhà cung cấp)</span></td>
+                     @*<td class="t1">WAREHOUSE <span class="supt1">(Kho)</span></td>*@
+                     <td class="t1">DRIVER <span class="supt1">(Lái xe)</span></td>
+                     <td class="t1">TMV <span class="supt1">(Người nhận)</span></td>
+                 </tr>
+                 <tr>
+                     <td class="t2">&nbsp;</td>
+                     <td class="t2">&nbsp;</td>
+                     <td class="t2">&nbsp;</td>
+                     <td class="t2">&nbsp;</td>
+                     <td class="t2">&nbsp;</td>
+                 </tr>
+                 <tr>
+                     <td class="t3">&nbsp;</td>
+                     <td class="t3">&nbsp;</td>
+                     <td class="t3">&nbsp;</td>
+                     <td class="t3">&nbsp;</td>
+                     <td class="t3">&nbsp;</td>
+                 </tr>
+             </table>             
+         </div>           
+</div>
+
+ 
+<script type="text/javascript">
+    document.title = "DAILY ORDER / DELIVERY NOTE";
+</script>

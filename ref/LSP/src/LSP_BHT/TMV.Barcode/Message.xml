@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="yes"?>
+<Messages>
+  <M00000AWRN01>Khong the Logout.</M00000AWRN01>
+  <M00000AWRN02>Khong the Undo 2 lan.</M00000AWRN02>          
+  <M00000AWRN03>Khong the Undo.</M00000AWRN03>        
+  <M00000AWRN04>User '{0}' khong dung.</M00000AWRN04>
+  <M00000AWRN05>'{0}' không có hoặc đã quét.</M00000AWRN05>
+  <M00000AWRN06>'{0}' chưa đến thời gian vào.</M00000AWRN06>
+  <M00000AWRN07>'{0}' Không tồn tại.</M00000AWRN07>
+  <M00000AWRN08>'{0}' khong nam trong ke hoach hom nay.</M00000AWRN08>
+  <M00000AWRN09>'{0}' da nhan du hang.</M00000AWRN09>
+  <M00000AWRN10>'{0}' Phai quet Order truoc.</M00000AWRN10>
+  <M00000AWRN11>'{0}' Order Khong ton tai</M00000AWRN11>
+  <M00000AWRN12>'{0}' Content Khong ton tai</M00000AWRN12>
+  <M00000AWRN13>'{0}' Phai quet Content truoc.</M00000AWRN13>
+  <M00000AWRN14>'{0}' Kaban Khong ton tai</M00000AWRN14>
+  <M00000AWRN15>Content truoc chua ket thuc</M00000AWRN15>
+</Messages>

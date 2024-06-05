@@ -1,0 +1,62 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="dxcontent_list">
+	<div class="content-header content-title">
+          @Html.Partial("_TB_R_TRUCK_BOOKING_HSearch")
+		<div class="action-area">
+			@Html.DevExpress().Button(settings =>
+			{
+				settings.Name = "btnAdd";
+				settings.Text = "Add New";
+                settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsAdd16x16;
+				settings.ClientSideEvents.Click = "Add";
+			}).GetHtml()
+		</div>                
+	</div>   
+	@Html.Partial("_TB_R_TRUCK_BOOKING_HList")
+
+	@Html.DevExpress().PopupControl(settings =>
+    {
+        settings.HeaderText = "TB_R_TRUCK_BOOKING_H Management";
+        settings.Name = "popTB_R_TRUCK_BOOKING_H";
+        settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+        settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.Modal = true;
+        settings.ShowCloseButton = true;
+        settings.CloseAction = CloseAction.CloseButton;
+        settings.PopupAnimationType = AnimationType.Fade;
+        settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+        settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+        settings.SetContent(() =>
+        {
+            Html.RenderPartial("_TB_R_TRUCK_BOOKING_HEdit");
+        });
+        settings.ClientSideEvents.CloseUp = "OnPopTB_R_TRUCK_BOOKING_HCloseUp";
+    }).GetHtml()
+
+    @Html.DevExpress().PopupControl(settings =>
+	{
+        settings.HeaderText = "BOOKING DETAILS";
+        settings.Name = "popTB_R_TRUCK_BOOKING_DETAILS";
+		settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+		settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+		settings.Modal = true;
+		settings.ShowCloseButton = true;
+		settings.PopupAnimationType = AnimationType.Fade;
+		settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+        settings.Height = System.Web.UI.WebControls.Unit.Pixel(200);
+		settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+		settings.SetContent(() =>
+		{
+            Html.RenderPartial("_TB_R_TRUCK_BOOKING_H_BOOKING_DEdit");
+		});
+        settings.ClientSideEvents.CloseUp = "OnPopTB_R_TRUCK_BOOKING_DCloseUp";
+	}).GetHtml() 
+
+	@section HeadScript {
+		<script src="@Url.Content("~/Content/Scripts/App/TB_R_TRUCK_BOOKING_H.js")" type="text/javascript"></script>
+	}
+</div>
+

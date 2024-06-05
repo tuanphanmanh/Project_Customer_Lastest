@@ -1,0 +1,206 @@
+﻿@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = 10;
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50" };
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+
+    settings.CallbackRouteValues = new { Controller = "TB_R_DAILY_ORDER_REPORT", Action = "GridCallback"};
+
+    settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Visible;
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 7;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Left;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+
+    settings.SettingsResizing.ColumnResizeMode = ColumnResizeMode.Control;
+    settings.SettingsResizing.Visualization = ResizingMode.Live;
+    settings.SettingsBehavior.AllowEllipsisInText = true;
+    //Export
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+    
+    //Toolbar
+    settings.Toolbars.Add(toolbar =>
+    {
+        toolbar.Enabled = true;
+        toolbar.EnableAdaptivity = true;
+        toolbar.Position = GridToolbarPosition.Top;
+        toolbar.ItemAlign = GridToolbarItemAlign.Left;
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                Html.DevExpress().ButtonEdit(s =>
+                {
+                    s.Name = "search";
+                    s.Properties.NullText = "Search inline...";
+                    s.Properties.Buttons
+                        .Add()
+                        .Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
+                }).Render();
+            });
+        });
+
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnExportXls";
+                    s.ClientSideEvents.Click = "function(s, e) {gvList.ExportTo(ASPxClientGridViewExportFormat.Xls);}";
+                    s.Text = "Export to Xls";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxls16x16;
+                }).GetHtml();
+            });
+        });                
+                               
+    });
+    //For Search panel
+    settings.SettingsSearchPanel.CustomEditorName = "search";
+    settings.Styles.FocusedRow.BackColor = System.Drawing.Color.LightGray;
+    settings.Styles.Row.ForeColor = System.Drawing.Color.Black;
+        
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "No.";
+            c.FieldName = "ROW_NO";
+            c.Width = 60;
+        }
+    );
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "ORDER MONTH";
+        c.FieldName = "ORDER_MONTH";
+        c.PropertiesEdit.DisplayFormatString = "MM/yyyy";
+        c.Width = 60;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "WORKING DATE";
+            c.FieldName = "WORKING_DATE";
+            c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+            c.Width = 80;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "SHIFT";
+            c.FieldName = "SHIFT";
+            c.Width = 70;
+        }
+    );    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "SUPPLIER";
+        c.FieldName = "SUPPLIER_CODE";
+        c.Width = 70;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    }
+    );
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "ORDER NO";
+        c.FieldName = "ORDER_NO";
+        c.Width = 120;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    }
+    );
+    
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PART NO";
+            c.FieldName = "PART_NO";
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );    
+    
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "COLOR SFX";
+            c.FieldName = "COLOR_SFX";
+            c.Width = 60;            
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "PART NAME";
+        c.FieldName = "PART_NAME";
+    }
+    );
+     settings.Columns.Add(c =>
+    {
+        c.Caption = "UOM";
+        c.FieldName = "UNIT";
+        c.Width = 60;   
+    }
+    );
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "ORDER QTY";
+        c.FieldName = "USAGE_ORDER_QTY";
+        c.Width = 70;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    }
+    );
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "RECEIVED QTY";
+        c.FieldName = "USAGE_ACTUAL_QTY";
+        c.Width = 70;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    }
+    );
+
+    settings.FormatConditions.AddHighlight("USAGE_ACTUAL_QTY", "[USAGE_ACTUAL_QTY] >= [USAGE_ORDER_QTY]", GridConditionHighlightFormat.GreenFillWithDarkGreenText);
+    settings.FormatConditions.AddHighlight("USAGE_ACTUAL_QTY", "[USAGE_ACTUAL_QTY] < [USAGE_ORDER_QTY]", GridConditionHighlightFormat.YellowFillWithDarkYellowText);
+    
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "ORGANISATION";
+            c.FieldName = "ORGANISATION";
+            c.Width = 90;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        }
+    );
+               
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "ACTIVE?";
+        c.FieldName = "IS_ACTIVE";
+        c.SetDataItemTemplateContent(cc =>
+        {
+            Html.DevExpress().CheckBox(checkboxSettings =>
+            {
+                checkboxSettings.Name = "_IS_ACTIVE" + Convert.ToString(DataBinder.Eval(cc.DataItem, "ROW_NO"));
+                checkboxSettings.Checked = Convert.ToString(DataBinder.Eval(cc.DataItem, "IS_ACTIVE")) == "Y" ? true : false;
+                checkboxSettings.Properties.ClientSideEvents.CheckedChanged = "function() { return false; }";                
+            }).Render();
+        });
+        c.Width = 60;
+    });
+    
+}).Bind(LSP.Models.TB_R_DAILY_ORDER_REPORT.TB_R_DAILY_ORDER_REPORTProvider.Instance.TB_R_DAILY_ORDER_REPORT_Search(Model ?? new LSP.Models.TB_R_DAILY_ORDER_REPORT.TB_R_DAILY_ORDER_REPORTInfo())).GetHtml()
+

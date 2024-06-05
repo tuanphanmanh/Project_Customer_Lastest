@@ -1,0 +1,821 @@
+<div [class]="containerClass" (dragover)="dragOverHandler($event)" (drop)="dropHandler($event)">
+    <div class="mac-book-air-35">
+        <div class="frame-1000006431">
+            <div class="frame-1000006430">
+                <div class="frame-1000006426">
+                    <div class="frame-1000006455" style="width:60%">
+                        <button class="frame-1000006295" [routerLink]="['/app/main/document-management']">
+                            <div class="vuesax-linear-arrow-left">
+                                <div class="vuesax-linear-arrow-left2">
+                                    <svg class="arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M15.0001 19.9201L8.48009 13.4001C7.71009 12.6301 7.71009 11.3701 8.48009 10.6001L15.0001 4.08008"
+                                            stroke="#ff0000" stroke-width="1.5" stroke-miterlimit="10"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </button>
+                        <div class="prepare-document-for-signing btn-text-shadow">{{l('PrepareDocumentForSigning')}}</div>
+                        <div class="step-1-2 btn-text-shadow">{{ '(' + l('Step1/2') + ')' }}</div>
+                    </div>
+                    <div class="frame-1000003978" style="width:40%">
+                        <button class="component-122 btn-esign" (click)="saveDraftData()">
+                            <div class="vuesax-bold-edit">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                                    <g filter="url(#filter0_di_6567_282200)">
+                                      <path d="M14.49 1.66406H7.50671C4.47338 1.66406 2.66504 3.4724 2.66504 6.50573V13.4808C2.66504 16.5224 4.47338 18.3308 7.50671 18.3308H14.4817C17.515 18.3308 19.3233 16.5224 19.3233 13.4891V6.50573C19.3317 3.4724 17.5233 1.66406 14.49 1.66406ZM10.1233 14.5891C9.88171 14.8308 9.42338 15.0641 9.09004 15.1141L7.04004 15.4058C6.96504 15.4141 6.89004 15.4224 6.81505 15.4224C6.47338 15.4224 6.15671 15.3058 5.93171 15.0808C5.65671 14.8058 5.54004 14.4058 5.60671 13.9641L5.89838 11.9141C5.94838 11.5724 6.17338 11.1224 6.42338 10.8808L10.14 7.16406C10.2067 7.33906 10.2733 7.51406 10.365 7.71406C10.4483 7.88906 10.54 8.0724 10.64 8.23906C10.7233 8.38073 10.815 8.51406 10.89 8.61406C10.9817 8.75573 11.09 8.88906 11.1567 8.96406C11.1983 9.0224 11.2317 9.06406 11.2483 9.08073C11.4567 9.33073 11.6983 9.56406 11.9067 9.73906C11.965 9.7974 11.9983 9.83073 12.015 9.83906C12.14 9.93906 12.265 10.0391 12.3733 10.1141C12.5067 10.2141 12.64 10.3058 12.7817 10.3808C12.9483 10.4808 13.1317 10.5724 13.315 10.6641C13.5067 10.7474 13.6817 10.8224 13.8567 10.8808L10.1233 14.5891ZM15.4733 9.23906L14.7067 10.0141C14.6567 10.0641 14.59 10.0891 14.5233 10.0891C14.4983 10.0891 14.465 10.0891 14.4483 10.0808C12.7567 9.5974 11.4067 8.2474 10.9233 6.55573C10.8983 6.46406 10.9233 6.36406 10.99 6.30573L11.765 5.53073C13.0317 4.26406 14.24 4.28906 15.4817 5.53073C16.115 6.16406 16.4233 6.7724 16.4233 7.40573C16.415 8.00573 16.1067 8.60573 15.4733 9.23906Z" fill="black" fill-opacity="0.6"/>
+                                    </g>
+                                    <defs>
+                                      <filter id="filter0_di_6567_282200" x="1.72504" y="0.724063" width="18.5382" height="18.856" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                        <feOffset/>
+                                        <feGaussianBlur stdDeviation="0.47"/>
+                                        <feComposite in2="hardAlpha" operator="out"/>
+                                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6567_282200"/>
+                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_6567_282200" result="shape"/>
+                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                        <feOffset dy="1.25"/>
+                                        <feGaussianBlur stdDeviation="1.075"/>
+                                        <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.21 0"/>
+                                        <feBlend mode="normal" in2="shape" result="effect2_innerShadow_6567_282200"/>
+                                      </filter>
+                                    </defs>
+                                  </svg>
+                            </div>
+                            <div class="edit2 btn-text-shadow">{{ 'Save' | localize }}</div>
+                        </button>
+                        <button (click)="nextAction()" class="success-button btn-esign">
+                            <div class="vuesax-bold-send-2">
+                                <img src="assets/common/images/Frame_1000006363.svg" />
+                            </div>
+                            <div class="esign btn-text-shadow">{{ 'Next' | localize }}</div>
+                        </button>
+                    </div>
+                </div>
+                <div class="frame-1000003979 frame-body-scroll">
+                    <div class="frame-1000006432 flex-row1">
+                        <div class=" bottom-split-border flex-row1 ">
+                            <div class="frame-document-content-input1 flex-row1">
+                                <div class="label3">
+                                    <div class="label4">
+                                        <div class="label-value2">{{l('Document')}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="label">
+                                        <div class="label2">
+                                            <span class="label-value">{{l('DocumentTitle')}}</span>
+                                            <span  class="label-value" style="color: red;">*</span>
+                                        </div>
+                                    </div>
+                                    <input [placeholder]="'EnterDocumentTitle*' | localize" class="input-field" [maxlength]="200"
+                                        [(ngModel)]="documentData.title" />
+                                </div>
+                                <div class="frame-row-1">
+                                    <div class="frame-col-1">
+                                        <div class="label">
+                                            <div class="label2">
+                                                <span class="label-value">{{l('Category')}}</span>
+                                                <span  class="label-value" style="color: red;">*</span>
+
+                                            </div>
+                                        </div>
+                                        <ejs-multiselect id='multiselectelement' [dataSource]='categoryList'
+                                            cssClass="input-field custom-input" [mode]="'CheckBox'" [fields]='fields'
+                                            [placeholder]="'Category' | localize" [selectAllText]="'SelectAll' | localize"
+                                            [unSelectAllText]="'UnselectAll' | localize" [allowFiltering]="true"
+                                            [filterBarPlaceholder]="'Search'  | localize" [(ngModel)]="documentData.listCategoryId"
+                                            [showSelectAll]="false">
+                                        </ejs-multiselect>
+                                    </div>
+                                    <div class="frame-col-1">
+                                        <div class="label">
+                                            <div class="label2">
+                                                <div class="label-value">{{l('ExpectedDate')}}</div>
+                                            </div>
+                                        </div>
+                                        <p-calendar [showIcon]="true" [dateFormat]="'dd/M/yy'" [minDate]="today"
+                                            [(ngModel)]="expectedDateInput" (ngModelChange)="expectedDateChange($event)"
+                                            [className]="'calender-field'"></p-calendar>
+                                    </div>
+                                    <div class="frame-col-1">
+                                        <div class=" label">
+                                            <div class="label2">
+                                            </div>
+                                        </div>
+                                        <div class="Digital-Signature">
+                                            <label for="Digital-Signature" class="label-value">{{l('DigitalSignature')}}</label>
+                                            <ejs-switch name="Digital-Signature" id="checked"
+                                                [(ngModel)]="documentData.isDigitalSignature"></ejs-switch>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 ">
+                                    <div class="label">
+                                        <div class="label2">
+                                            <div class="label-value">{{l('Message')}}</div>
+                                        </div>
+                                    </div>
+                                    <textarea class="cursor-unset input-field" [(ngModel)]="documentData.message"
+                                        [placeholder]="'EnterMessageToAllRecipients...' | localize"
+                                        style="max-height: 100px;min-height: 100px;">
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" bottom-split-border flex-row1 " *ngIf="showSummary()">
+                            <div class=" frame-document-content-input1 flex-row1 col-12">
+                                <div class="label3">
+                                    <div class="label4">
+                                        <div class="label-value2">{{l('Summary')}}</div>
+                                        <div class="vuesax-linear-info-circle">
+                                            <div class="vuesax-linear-info-circle2">
+                                                <svg class="info-circle" width="16" height="17" viewBox="0 0 16 17"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M8.00008 1.83341C4.33341 1.83341 1.33341 4.83341 1.33341 8.50008C1.33341 12.1667 4.33341 15.1667 8.00008 15.1667C11.6667 15.1667 14.6667 12.1667 14.6667 8.50008C14.6667 4.83341 11.6667 1.83341 8.00008 1.83341Z"
+                                                        stroke="#97A7B7" stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                    <path d="M8 11.1667V7.83341" stroke="#97A7B7" stroke-width="1.5"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M8.00366 5.83325H7.99767" stroke="#97A7B7" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" flex-row1 ph-0">
+                                <div class="frame-document-content-input1 col-12">
+                                    <div class="frame-row-1">
+                                        <div class="frame-col-1">
+                                            <div class="label">
+                                                <div class="label2">
+                                                    <div class="label-value">{{l('TotalCost')}} (USD)</div>
+                                                </div>
+                                            </div>
+                                            <input inputmode="numeric" type="text" placeholder="99,9xxx"
+                                                max="10000000000" class="input-field" style="text-align: right;"
+                                                (keyup)="formatCurrency()"
+                                                [(ngModel)]="totalCostTemp" />
+                                        </div>
+                                        <div class="frame-col-1">
+                                            <div class="label">
+                                                <div class="label2">
+                                                    <div class="label-value">ROI (years)</div>
+                                                </div>
+                                            </div>
+                                            <input placeholder="2.2" type="number" class="input-field"
+                                                style="text-align: right;" [(ngModel)]="documentData.roi" />
+                                        </div>
+                                        <div class="frame-col-1">
+                                            <div class="label">
+                                                <div class="label2">
+                                                    <div class="label-value">{{l('ProjectSchedule')}}</div>
+                                                </div>
+                                            </div>
+                                            <p-calendar [showButtonBar]="true" (ngModelChange)="changeProjectDate($event)"
+                                                [showIcon]="true" view="month" dateFormat="M/yy" [readonlyInput]="true"
+                                                [numberOfMonths]="2" [(ngModel)]="rangeDates" selectionMode="range"
+                                                [className]="'calender-field'">
+                                            </p-calendar>
+                                        </div>
+                                    </div>
+                                    <div class="flex-row1 ph-0">
+                                        <div class="flex-row1 ph-0">
+                                            <div class="col-12 ph-0">
+                                                <div class="label">
+                                                    <div class="label2">
+                                                        <div class="label-value">{{l('Content')}}</div>
+                                                    </div>
+                                                </div>
+                                                <textarea class="input-field" [(ngModel)]="documentData.content"
+                                                    [placeholder]="'EnterMessageToAllRecipients...' | localize"
+                                                    style="max-height: 80px;min-height: 80px;">
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bottom-split-border flex-row1">
+                            <div class="col-12 flex-row1 ph-0">
+                                <div class=" frame-document-content-input " style="display: flex; width:100%">
+                                    <div class="label-value2" style="width: 50%;">{{l('AddFiles')}}</div>
+                                    <div *ngIf="itemList?.length" class="frame-1171275209"
+                                        style="width: 50%;flex-flow: row;
+                                        justify-content: flex-end;">
+                                        <div class="frame-1000006518" [ngClass]="{'disabled-div': (isDisableConvertPdf)}" (click)="ConvertToPDF()">
+                                            <div class="add-me" style="width:fit-content">{{l('ConvertToPDF')}}</div>
+                                        </div>
+                                        <div style="border-left: 1.5px solid grey; height: 22px;"></div>
+                                        <div class="frame-1000006518" [ngClass]="{'disabled-div': ((this.selectedFiles.length <= 1))}" (click)="mergeDocumentFile()">
+                                            <div class="add-me" style="width:fit-content">{{l('MergeFile')}}</div>
+                                        </div>
+                                        <div style="border-left: 1.5px solid grey; height: 22px;"></div>
+                                        <div class="frame-1000006518" (click)="removeAllFile()">
+                                            <div class="add-me" style="width:fit-content">{{l('RemoveAll')}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="col-12 upload-file-panel" (click)="uploadFile()">
+                                        <div class="frame-1000006531">
+                                            <svg class="group-1171275193" width="38" height="27" viewBox="0 0 38 27"
+                                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M30.6598 11.6001C30.8798 10.9401 31.0998 10.2801 31.0998 9.4001C31.0998 4.5601 27.1398 0.600098 22.2998 0.600098C18.9998 0.600098 15.9198 2.5801 14.5998 5.4401C13.9398 5.2201 13.0598 5.0001 12.3998 5.0001C9.3198 5.0001 6.8998 7.4201 6.8998 10.5001C6.8998 10.9401 6.8998 11.3801 7.1198 11.6001C3.1598 12.2601 0.299805 15.3401 0.299805 19.3001C0.299805 23.4801 3.8198 27.0001 7.9998 27.0001H15.6998V20.4001H9.0998L18.9998 10.5001L28.8998 20.4001H22.2998V27.0001H29.9998C34.1798 27.0001 37.6998 23.4801 37.6998 19.3001C37.6998 15.3401 34.6198 12.0401 30.6598 11.6001Z"
+                                                    fill="#0374f6" />
+                                            </svg>
+                                            <div class="frame-1000006532">
+                                                <div class="frame-1000006541">
+                                                    <div class="drag-drop-file-here-or">
+                                                        {{l('DragDropFileHere', '&amp;')}}
+                                                    </div>
+                                                    <a class="browse" style="cursor: pointer;">{{l('OrBrowse')}}</a>
+                                                </div>
+                                                <div class="frame-1000006542">
+                                                    <span class="supported-format">
+                                                        {{l('SupportedFormat')}}:
+                                                    </span>
+                                                    <span class="pdf" style="color: red;">PDF</span>
+                                                    <span class="pdf" style="color: green;">, XLSX</span>
+                                                    <span class="pdf" style="color: blue;">, DOCX</span>
+                                                    <span class="pdf">, IMAGE</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 ph-0 list-file-upload mt-2  ">
+                                        <div cdkDropList cdkDropListOrientation="horizontal" class="example-list-file"
+                                             (cdkDropListDropped)="dropFile($event)">
+                                            <div *ngFor="let item of itemList, let i = index" class="file-item-panel mt-1"
+                                                cdkDrag [cdkDragData]="item">
+                                                <div class="frame-1000003980">
+                                                    <div style="display: flex;flex-direction: column">
+                                                        <div class="check-box-file">
+                                                            <ejs-checkbox (change)="selectFileToMerge($event,i)"></ejs-checkbox>
+                                                        </div>
+                                                        <div class="frame-1171275238">
+                                                            <div class="_1">{{i + 1}}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="frame-1000006438">
+                                                        <div class="frame-1000006523">
+                                                            <div class="frame-1171275237">
+                                                                <div class="frame">
+                                                                    <div class="artboard">
+                                                                        <div class="files-icon-pdf">
+                                                                            <img class="icon-pdf" *ngIf="isDetectIcon(item,'pdf')" src="assets/common/images/files-icon-pdf.svg" />
+                                                                            <img class="icon-pdf" *ngIf="isDetectIcon(item,'doc,docx')" src="assets/common/images/files-icon-docx.svg" />
+                                                                            <img class="icon-pdf" *ngIf="isDetectIcon(item,'xls,xlsx')" src="assets/common/images/files-icon-xlsx.svg" />
+                                                                            <img class="icon-pdf" *ngIf="isDetectIcon(item,'png,jpeg,jpg')" src="assets/common/images/files-icon-img.svg" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="pdf-filename pdf-filename_{{i}}">
+                                                                    <div class="textname">{{item.name}}</div>
+                                                                    <div class="edittextname">
+                                                                        <input type="text" class="input-filename" (keypress)="clickPress($event,i)" (focusout)="renameOutFocus(i)" value="{{ item.name.replace('.pdf', '') }}" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="icon-file">
+                                                                <svg class="file-edit" (click)="changeFileName(i)" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <g clip-path="url(#clip0_4130_131700)">
+                                                                    <path d="M10.5229 2.87997L13.12 5.47712M8.79145 15H15M1.86572 11.5371L1 15L4.46287 14.1343L14.4931 4.10409C14.8177 3.7794 15 3.33908 15 2.87997C15 2.42085 14.8177 1.98054 14.4931 1.65584L14.3442 1.50694C14.0195 1.18235 13.5791 1 13.12 1C12.6609 1 12.2206 1.18235 11.8959 1.50694L1.86572 11.5371Z" stroke="#3F2BC8" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                    </g>
+                                                                    <defs>
+                                                                    <clipPath id="clip0_4130_131700">
+                                                                    <rect width="16" height="16" fill="white"/>
+                                                                    </clipPath>
+                                                                    </defs>
+                                                                </svg>
+
+                                                                <div class="frame-1171275207" (click)="previewDoc(item)" style="display: flex; width:20px;cursor: pointer;">
+                                                                    <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M12.97 7.325V7.36656C15.5469 7.36656 17.625 9.44469 17.625 11.98C17.625 14.5569 15.5469 16.635 12.97 16.635C10.3931 16.635 8.315 14.5569 8.315 11.98C8.315 11.5228 8.39812 11.1072 8.52281 10.6916C8.81375 10.8994 9.22937 10.9825 9.645 10.9825C10.8919 10.9825 11.9725 9.94344 11.9725 8.655C11.9309 8.28094 11.8478 7.86531 11.64 7.53281C12.0556 7.40812 12.5128 7.36656 12.97 7.325ZM24.7737 11.3981C24.8569 11.5644 24.8984 11.7722 24.8984 12.0216C24.8984 12.2294 24.8569 12.4372 24.7737 12.6034C22.5294 17.0091 18.0406 19.96 12.97 19.96C7.85781 19.96 3.36906 17.0091 1.12469 12.6034C1.04156 12.4372 1 12.2294 1 11.98C1 11.7722 1.04156 11.5644 1.12469 11.3981C3.36906 6.9925 7.85781 4 12.97 4C18.0406 4 22.5294 6.9925 24.7737 11.3981ZM12.97 17.965C17.0431 17.965 20.8253 15.6791 22.8203 11.98C20.8253 8.28094 17.0431 5.995 12.97 5.995C8.85531 5.995 5.07312 8.28094 3.07812 11.98C5.07312 15.6791 8.85531 17.965 12.97 17.965Z" fill="#3F2BC8" stroke="white" stroke-width="0.4"/>
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.97 7.325V7.36656C12.9713 7.36656 12.9725 7.36656 12.9738 7.36656C15.5489 7.36859 17.625 9.44593 17.625 11.98C17.625 14.5569 15.5469 16.635 12.97 16.635C10.3931 16.635 8.315 14.5569 8.315 11.98C8.315 11.6416 8.36055 11.3259 8.43479 11.0162C8.46084 10.9075 8.49042 10.7995 8.52281 10.6916C8.60909 10.7532 8.70634 10.8039 8.8113 10.8446C9.06027 10.9414 9.35263 10.9825 9.645 10.9825C10.8919 10.9825 11.9725 9.94344 11.9725 8.655C11.9424 8.38399 11.8905 8.09116 11.7851 7.82393C11.745 7.72232 11.6972 7.62441 11.64 7.53281C11.7455 7.50116 11.8537 7.47487 11.9639 7.45257C12.1863 7.40755 12.4169 7.37883 12.65 7.3552C12.7563 7.34443 12.8632 7.33471 12.97 7.325ZM12.65 7.67694C12.4589 7.69675 12.2755 7.71975 12.1002 7.75207C12.2097 8.04672 12.261 8.35412 12.2905 8.61966L12.2925 8.63728V8.655C12.2925 10.1239 11.0649 11.3025 9.645 11.3025C9.34385 11.3025 9.02163 11.2628 8.73076 11.1563C8.67034 11.4251 8.635 11.6948 8.635 11.98C8.635 14.3801 10.5699 16.315 12.97 16.315C15.3701 16.315 17.305 14.3801 17.305 11.98C17.305 9.62328 15.372 7.68656 12.97 7.68656H12.65V7.67694ZM23.1839 11.98L23.102 12.1319C21.0528 15.9313 17.1643 18.285 12.97 18.285C8.73475 18.285 4.84592 15.9319 2.79648 12.1319L2.71455 11.98L2.79648 11.8281C4.84592 8.02808 8.73475 5.675 12.97 5.675C17.1643 5.675 21.0528 8.02868 23.102 11.8281L23.1839 11.98ZM24.5784 12.0216C24.5784 11.8063 24.5424 11.6515 24.488 11.5422C22.294 7.23637 17.911 4.32 12.97 4.32C7.98687 4.32 3.60421 7.23689 1.41041 11.5422C1.35432 11.6549 1.32 11.8111 1.32 11.98C1.32 12.1952 1.35603 12.3501 1.41041 12.4593C3.60337 16.763 7.98509 19.64 12.97 19.64C17.9128 19.64 22.2948 16.7635 24.488 12.4593C24.5441 12.3466 24.5784 12.1904 24.5784 12.0216ZM24.7738 12.6034C22.5294 17.0091 18.0406 19.96 12.97 19.96C7.85781 19.96 3.36906 17.0091 1.12469 12.6034C1.04156 12.4372 1 12.2294 1 11.98C1 11.7722 1.04156 11.5644 1.12469 11.3981C3.36906 6.9925 7.85781 4 12.97 4C18.0406 4 22.5294 6.9925 24.7738 11.3981C24.8569 11.5644 24.8984 11.7722 24.8984 12.0216C24.8984 12.2294 24.8569 12.4372 24.7738 12.6034ZM3.07812 11.98C5.07312 8.28094 8.85531 5.995 12.97 5.995C17.0431 5.995 20.8253 8.28094 22.8203 11.98C20.8253 15.6791 17.0431 17.965 12.97 17.965C8.85531 17.965 5.07312 15.6791 3.07812 11.98Z" fill="white"/>
+                                                                        </svg>
+                                                                </div>
+                                                                <div class="frame-1171275207">
+                                                                    <div (click)="removeModal.show([i])"
+                                                                        class="vuesax-linear-trash">
+                                                                        <div class="vuesax-linear-trash2">
+                                                                            <img class="icon-pdf"
+                                                                                src="assets/common/images/trash.svg" />
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="frame-1000006435">
+                                                            <div class="frame-1000006502">
+                                                                <div class="frame-1000006446">
+                                                                    <svg class="vector43" width="4" height="4"
+                                                                        viewBox="0 0 4 4" fill="none"
+                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                        <path
+                                                                            d="M2 0C0.9 0 0 0.9 0 2C0 3.1 0.9 4 2 4C3.1 4 4 3.1 4 2C4 0.9 3.1 0 2 0Z"
+                                                                            fill="#97A7B7" />
+                                                                    </svg>
+                                                                    <div class="_1-page">{{item.page}} Pages</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="frame-1000006501">
+                                                                <div class="frame-1000006446">
+                                                                    <svg class="vector44" width="5" height="4"
+                                                                        viewBox="0 0 5 4" fill="none"
+                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                        <path
+                                                                            d="M2.19995 0C1.09995 0 0.199951 0.9 0.199951 2C0.199951 3.1 1.09995 4 2.19995 4C3.29995 4 4.19995 3.1 4.19995 2C4.19995 0.9 3.29995 0 2.19995 0Z"
+                                                                            fill="#97A7B7" />
+                                                                    </svg>
+                                                                    <div class="_5-21-mb">{{item.fileSize}}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div *ngIf="item.uploadStatus != 'success'" id="myProgress">
+                                                            <div attr.id="{{'bar'+ i}}" class="myBar"></div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bottom-split-border flex-row1">
+                            <div class="col-12 flex-row1 ph-0">
+                                <div class=" frame-document-content-input " style="display: flex; width:100%">
+                                    <div class="label-value2" style="width: 50%;">{{l('RefDocuments')}}</div>
+                                    <!-- <div *ngIf="itemList?.length" (click)="removeAllFile()" class="frame-1171275209"
+                                        style="width: 50%;flex-flow: row-reverse;">
+                                        <div class="frame-1000006518">
+                                            <div class="add-me" style="width:fit-content">Remove all</div>
+                                        </div>
+                                    </div> -->
+                                </div>
+
+                                <!-- <div class="col-12 mt-2"> -->
+                                    <button class="frame-1171275594" (click)="searchRequestDoc.show()">
+                                        <svg
+                                            class="vuesax-linear-add"
+                                            width="12"
+                                            height="12"
+                                            viewBox="0 0 12 12"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                            <path
+                                                d="M3 6H9"
+                                                stroke="#3F2BC8"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            />
+                                            <path
+                                                d="M6 9V3"
+                                                stroke="#3F2BC8"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            />
+                                            </svg>
+                                        <div class="download-all">{{l('RefDocument')}}</div>
+                                    </button>
+                                <!-- </div> -->
+
+                                <div class="col-12 mt-2">
+                                    <!-- Documents -->
+                                    <div class="frame-1000006512">
+                                        <div class="frame-1000006437a">
+                                            <ng-container [ngTemplateOutlet]="listDocument"></ng-container>
+                                            <ng-template #listDocument>
+                                                <ng-container *ngFor="let document of references; let i = index">
+                                                    <div class="detail">
+                                                        <div class="frame-1171275238">
+                                                            <div class="_1">{{i + 1}}</div>
+                                                        </div>
+                                                        <div class="frame-45362">
+                                                            <div class="frame-45360">
+                                                                <div class="_68342023">{{document?.title}}</div>
+                                                            </div>
+                                                            <div class="frame-45366">
+                                                                <input class="note" [(ngModel)]="document.note" (focusout)="onFocusOut()" (keydown)="onKeyDown($event)" placeholder="Note here..."/>
+                                                                <svg class="file-edit" width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <g clip-path="url(#clip0_4130_131700)">
+                                                                    <path d="M10.5229 2.87997L13.12 5.47712M8.79145 15H15M1.86572 11.5371L1 15L4.46287 14.1343L14.4931 4.10409C14.8177 3.7794 15 3.33908 15 2.87997C15 2.42085 14.8177 1.98054 14.4931 1.65584L14.3442 1.50694C14.0195 1.18235 13.5791 1 13.12 1C12.6609 1 12.2206 1.18235 11.8959 1.50694L1.86572 11.5371Z" stroke="#3F2BC8" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                    </g>
+                                                                    <defs>
+                                                                    <clipPath id="clip0_4130_131700">
+                                                                    <rect width="16" height="16" fill="white"/>
+                                                                    </clipPath>
+                                                                    </defs>
+                                                                </svg>
+
+
+                                                            </div>
+                                                        </div>
+                                                        <div (click)="removeRefItem([i])"
+                                                                        class="vuesax-linear-trash">
+                                                                        <div class="vuesax-linear-trash2">
+                                                                            <img class="icon-pdf"
+                                                                                src="assets/common/images/trash.svg" />
+                                                                        </div>
+
+                                                                    </div>
+
+                                                    </div>
+                                                </ng-container>
+                                            </ng-template>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="bottom-split-border flex-row1 ">
+                            <div class="col-12 flex-row1 ph-0">
+                                <div class="frame-10000065093">
+                                    <div class="label-value2">{{l('AddSigner')}}</div>
+                                    <div *ngIf="!checkHasMe()" (click)="addMe()" class="frame-1171275209">
+                                        <div class="frame-1000006518">
+                                            <div class="add-me">{{l('AddMe')}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div cdkDropList class="step-panel-list example-list pb-4"
+                                    (cdkDropListDropped)="drop($event,'parent')" [cdkDropListData]="stepList"
+                                    [cdkDropListConnectedTo]="dls">
+                                    <div *ngFor="let step of stepList, let i = index" class="step-panel example-box"
+                                        [ngStyle]="{borderColor : colorStepList[i%12] }" cdkDrag [cdkDragData]="step"
+                                        (cdkDragStarted)="onDragStarted($event)"  (cdkDragEnded)="onDragEnded($event)">
+                                        <div class="step-start">
+                                            <div class="frame-1171275249"></div>
+                                            <div class="search">
+                                                <div class="frame-1000006404">
+                                                    <div class="frame-1000006405">
+                                                        <div class="_12">{{i + 1}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div (click)="addUser(i+1)" class="vuesax-linear-add-square">
+                                                <div class="vuesax-linear-add-square2">
+                                                    <svg class="add-square" width="21" height="20" viewBox="0 0 21 20"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M7.16675 10H13.8334" stroke="#0374f6"
+                                                            stroke-width="1.5" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path d="M10.5 13.3332V6.6665" stroke="#0374f6"
+                                                            stroke-width="1.5" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path
+                                                            d="M8.00008 18.3332H13.0001C17.1667 18.3332 18.8334 16.6665 18.8334 12.4998V7.49984C18.8334 3.33317 17.1667 1.6665 13.0001 1.6665H8.00008C3.83341 1.6665 2.16675 3.33317 2.16675 7.49984V12.4998C2.16675 16.6665 3.83341 18.3332 8.00008 18.3332Z"
+                                                            stroke="#0374f6" stroke-width="1.5" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 flex-row1 ">
+                                            <div cdkDropList [cdkDropListData]="step.signers"
+                                                (cdkDropListDropped)="drop($event,'children')"
+                                                class="col-12 flex-row2 example-list pb-4 pt-4"
+                                                [cdkDropListConnectedTo]="dls">
+                                                <div *ngFor="let  stepUser of step.signers;trackBy: trackByFn; let ui = index"
+                                                    cdkDrag [cdkDragData]="stepUser"  (cdkDragEnded)="onDragEnded($event)"
+                                                    (cdkDragStarted)="onDragStarted($event)"
+                                                    [cdkDragDisabled]="step.signers?.length == 1" class="col-6 pr-0">
+                                                    <div class="user-panel col-12">
+                                                        <img class="ellipse-2070"
+                                                            [src]="!stepUser?.imgUrl ? 'assets/common/images/default-profile-picture.png' : stepUser?.imgUrl" />
+                                                        <div class="frame-1171275241">
+                                                            <div class="frame-1171275214">
+                                                                <div class="frame-1171275242">
+                                                                    <div class=" flex-row">
+                                                                        <div class="col-6"
+                                                                            (mousedown)="$event.stopPropagation()">
+                                                                            <p-autoComplete class="searchUserName"
+                                                                                [minLength]="0"
+                                                                                (onDropdownClick)="preventFocusLoss($event)"
+                                                                                [ngClass]="'input-field2'"
+                                                                                [(ngModel)]="step.signers[ui]"
+                                                                                [suggestions]="searchResultName"
+                                                                                [placeholder]="l('FullName')"
+                                                                                scrollHeight="300px"
+                                                                                (onSelect)="onSelectSigner($event)"
+                                                                                (completeMethod)="filterUserName($event)"
+                                                                                field="fullName">
+                                                                                <ng-template let-data pTemplate="item">
+                                                                                    <div class="frame-3073">
+                                                                                        <div class="frame-3041">
+                                                                                            <img class="ellipse-3281"
+                                                                                                [src]="!data.imgUrl ? 'assets/common/images/default-profile-picture.png' : data.imgUrl" />
+                                                                                            <div class="frame-2988">
+                                                                                                <div
+                                                                                                    class="frame-1171275486">
+                                                                                                    <div
+                                                                                                        class="frame-1171275511">
+                                                                                                        <div
+                                                                                                            class="frame-3075">
+                                                                                                            <div
+                                                                                                                class="le-minh-thu">
+                                                                                                                {{data.fullName}}
+                                                                                                            </div>
+                                                                                                            <div
+                                                                                                                class="frame-1171275485">
+                                                                                                                <div
+                                                                                                                    class="dgm-division-head">
+                                                                                                                    {{data.title}}
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div
+                                                                                                            class="frame-1171275512">
+                                                                                                            <div
+                                                                                                                class="hnthulm-toyotavn-com-vn">
+                                                                                                                {{data.email}}
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </ng-template>
+                                                                            </p-autoComplete>
+                                                                        </div>
+                                                                        <div class="col-6"
+                                                                            (mousedown)="$event.stopPropagation()">
+                                                                            <p-autoComplete class="searchUserEmail"
+                                                                                [minLength]="0"
+                                                                                (onDropdownClick)="preventFocusLoss($event)"
+                                                                                [ngClass]="'input-field2'"
+                                                                                [(ngModel)]="step.signers[ui]"
+                                                                                [suggestions]="searchResultEmail"
+                                                                                [placeholder]="l('EmailAddress')"
+                                                                                scrollHeight="300px"
+                                                                                (onSelect)="onSelectSigner($event)"
+                                                                                (completeMethod)="filterUserEmail($event)"
+                                                                                field="email">
+                                                                                <ng-template let-data pTemplate="item">
+                                                                                    <div class="frame-3073">
+                                                                                        <div class="frame-3041">
+                                                                                            <img class="ellipse-3281"
+                                                                                                [src]="!data.imgUrl ? 'assets/common/images/default-profile-picture.png' : data.imgUrl" />
+                                                                                            <div class="frame-2988">
+                                                                                                <div
+                                                                                                    class="frame-1171275486">
+                                                                                                    <div
+                                                                                                        class="frame-1171275511">
+                                                                                                        <div
+                                                                                                            class="frame-3075">
+                                                                                                            <div
+                                                                                                                class="le-minh-thu">
+                                                                                                                {{data.fullName}}
+                                                                                                            </div>
+                                                                                                            <div
+                                                                                                                class="frame-1171275485">
+                                                                                                                <div
+                                                                                                                    class="dgm-division-head">
+                                                                                                                    {{data.title}}
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div
+                                                                                                            class="frame-1171275512">
+                                                                                                            <div
+                                                                                                                class="hnthulm-toyotavn-com-vn">
+                                                                                                                {{data.email}}
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </ng-template>
+                                                                            </p-autoComplete>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class=" flex-row">
+                                                                        <div class="col-6">
+                                                                            <div class="software-development-it">
+                                                                                {{stepUser.title}}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <div class="frame-1171275245">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div *ngIf="stepUser.private == true"
+                                                                        class=" flex-row">
+                                                                        <div class="col-12">
+                                                                            <textarea class="input-field"
+                                                                                (mousedown)="$event.stopPropagation()"
+                                                                                [(ngModel)]="stepUser.note"
+                                                                                placeholder="Enter private message..."
+                                                                                style="max-height: 45px;min-height: 45px;"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="frame-1171275247">
+                                                                    <div (click)="removeUser(i , ui)"
+                                                                        class="vuesax-linear-trash3">
+                                                                        <div class="vuesax-linear-trash2">
+                                                                            <img class="icon-pdf1"
+                                                                                src="assets/common/images/trash.svg" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div (click)="addPrivateMessage(i,ui)"
+                                                                        class="vuesax-linear-message-2">
+                                                                        <div class="vuesax-linear-message-22">
+                                                                            <svg class="message-23" width="21"
+                                                                                height="20" viewBox="0 0 21 20"
+                                                                                fill="none"
+                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                <path d="M7.58337 8.75H13.4167"
+                                                                                    stroke="#0374f6" stroke-width="1.5"
+                                                                                    stroke-miterlimit="10"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round" />
+                                                                                <path
+                                                                                    d="M6.33329 15.3582H9.66663L13.375 17.8249C13.925 18.1916 14.6666 17.7999 14.6666 17.1332V15.3582C17.1666 15.3582 18.8333 13.6916 18.8333 11.1916V6.19157C18.8333 3.69157 17.1666 2.0249 14.6666 2.0249H6.33329C3.83329 2.0249 2.16663 3.69157 2.16663 6.19157V11.1916C2.16663 13.6916 3.83329 15.3582 6.33329 15.3582Z"
+                                                                                    stroke="#0374f6" stroke-width="1.5"
+                                                                                    stroke-miterlimit="10"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round" />
+                                                                            </svg>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="frame-1171275205">
+                                    <div class="frame-1171275267">
+                                        <button (click)="addStep()" class="button-style">
+                                            <div class="vuesax-linear-user-add">
+                                                <div class="vuesax-linear-user-add2">
+                                                    <div class="user-add">
+                                                        <img src="assets/common/images/user-add.svg" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="add-signer">{{l('AddSigner/CC')}}</div>
+                                        </button>
+                                    </div>
+                                    <div class="frame-10000064592" (click)="showSearchSigner()">
+                                        <div class="mingcute-more-2-line">
+                                            <img src="assets/common/images/group-dot.svg" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="frame-10000064312 flex-row1">
+                                <div class="col-12 flex-row  ph-0">
+                                    <div class="frame-1000006509 col-12 flex-row1">
+                                        <div class="add-cc">{{l('AddCC')}}</div>
+                                        <div class="vuesax-linear-info-circle">
+                                            <div class="vuesax-linear-info-circle2">
+                                                <svg class="info-circle2" width="16" height="17" viewBox="0 0 16 17"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M8.00008 1.83317C4.33341 1.83317 1.33341 4.83317 1.33341 8.49984C1.33341 12.1665 4.33341 15.1665 8.00008 15.1665C11.6667 15.1665 14.6667 12.1665 14.6667 8.49984C14.6667 4.83317 11.6667 1.83317 8.00008 1.83317Z"
+                                                        stroke="#97A7B7" stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                    <path d="M8 11.1665V7.83317" stroke="#97A7B7" stroke-width="1.5"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M8.00366 5.8335H7.99767" stroke="#97A7B7" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="frame-10000064372 col-12">
+                                        <div class="summary-content2 ">
+                                            <div class="frame-10000063152">
+                                                <div class="label3">
+                                                    <div class="label4">
+                                                        <div class="label-value4">
+                                                            {{l('CCFloatLabelText')}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p-autoComplete id="inputCC" cdkDropListOrientation="vertical" cdkDropList [cdkDropListConnectedTo]="dls"  (cdkDropListDropped)="dropCC($event)"
+                                                [placeholder]="'CCPlaceholderText' | localize"
+                                                [forceSelection]="true" [(ngModel)]="selectedCC"
+                                                [suggestions]="searchResultEmail" field="email"
+                                                (completeMethod)="filterUserCC($event)" [multiple]="true">
+                                                <!-- <ng-template let-data pTemplate="multiple-container" >
+                                                    <div >
+
+                                                    </div>
+                                                </ng-template> -->
+                                                <ng-template let-data pTemplate="item">
+                                                    <div class="frame-3073">
+                                                        <div class="frame-3041">
+                                                            <img class="ellipse-3281"
+                                                                [src]="!data.imgUrl ? 'assets/common/images/default-profile-picture.png' : data.imgUrl" />
+                                                            <div class="frame-2988">
+                                                                <div class="frame-1171275486">
+                                                                    <div class="frame-1171275511">
+                                                                        <div class="frame-3075">
+                                                                            <div class="le-minh-thu">{{data.fullName}}
+                                                                            </div>
+                                                                            <div class="frame-1171275485">
+                                                                                <div class="dgm-division-head">
+                                                                                    {{data.title}}</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="frame-1171275512">
+                                                                            <div class="hnthulm-toyotavn-com-vn">
+                                                                                {{data.email}}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                                <ng-template let-data pTemplate="selectedItem">
+                                                    <div class="frame-3073cc">
+                                                        <div class="frame-3041">
+                                                            <img class="ellipse-3281"
+                                                                [src]="!data.imgUrl ? 'assets/common/images/default-profile-picture.png' : data.imgUrl" />
+                                                            <div class="frame-2988cc">
+                                                                <div class="frame-1171275486cc">
+                                                                    <div class="frame-1171275511">
+                                                                        <div class="frame-3075">
+                                                                            <div class="le-minh-thu">{{data.fullName}}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="frame-1171275512">
+                                                                            <div class="hnthulm-toyotavn-com-vn">
+                                                                                {{data.email}}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                            </p-autoComplete>
+                                        </div>
+                                    </div>
+                                    <div class="frame-1171275335">
+                                        <div class="suffix">
+                                            <ejs-switch id="checked" [checked]="isSaveTemplateSingerCC"
+                                                (checkedChange)="focusCC($event)"></ejs-switch>
+                                        </div>
+                                        <div class="frame-11712753341">
+                                            <input id="ccInput" class="input-field1" style="font-size: 12px; width:280px;
+                                            padding: 6px 8px 6px 16px;" [disabled]="!isSaveTemplateSingerCC"
+                                                [placeholder]="'SaveTempateText' | localize"
+                                                [(ngModel)]="ccText" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button (click)="nextAction()" id="nextAction" class="hidden" class="success-button btn-esign">
+        <div class="vuesax-bold-send-2">
+            <img src="assets/common/images/next-action.svg" />
+        </div>
+        <div class="esign btn-text-shadown btn-esign">{{ 'Next' | localize }}</div>
+    </button>
+    <!-- <div id="kt_scrolltop" class="scrolltop" ></div> -->
+    <remove-document #removeModal (modalSave)="removeFileItem($event)"></remove-document>
+    <!-- <remove-document #removeRefModal (modalSave)="removeFileItem($event)"></remove-document> -->
+    <search-signer #searchSigner [listSigner]="searchSignerData"
+        (modalSave)="submitSearchSigner($event)"></search-signer>
+
+    <search-request #searchRequestDoc [requestId]="documentData?.id" [references]="references" (modalSave)="saveRefDocument($event)"></search-request>
+    <app-review #reviewModal ></app-review>
+    <confirm-file-exists #confirmFileExists (modalSave)="confirmFileExistsYes($event)" (modalNo)="confirmFileExistsNo($event)"></confirm-file-exists>
+

@@ -1,0 +1,57 @@
+﻿<table class="edit-form BOOKING_DETAIL" id="tb_BOOKING_DETAIL">	    
+    <tr>        
+        <tr>
+        <td class="label"> 
+			SUPPLIER ORDER TRIP / TIME
+		</td>
+        <td>          
+             @Html.Partial("_TB_M_SUPPLIER_OR_TIME_Combobox")                           
+			<span class="messageerror"></span>
+        </td>        
+    </tr>
+    </tr>	
+    <tr>
+        <td class="label"> 
+			IS ACTIVE?  
+		</td>
+        <td>
+            @Html.DevExpress().CheckBox(
+            settings =>
+            {
+                settings.Name = "_IS_ACTIVE_DETAIL";
+                settings.ControlStyle.CssClass = "textbox";
+            }).GetHtml()  
+			<span class="messageerror"></span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="padding-top: 20px;">
+            <div style="float: right; margin-right: 150px;">
+                @Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnCancelDetails";
+                    settings.ControlStyle.CssClass = "button";
+                    settings.Text = "Cancel";
+                    settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsCancel16x16;
+                    settings.ClientSideEvents.Click = "OnBtnCancelDetailsClicked";
+                }).GetHtml()
+            </div>
+            <div style="float: right; margin-right: 5px">
+			 @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				 (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+					@Html.DevExpress().Button(settings =>
+					{
+						settings.Name = "btnUpdateDetails";
+						settings.ControlStyle.CssClass = "button";
+						settings.Text = "Save";
+						settings.UseSubmitBehavior = true;
+                        settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.SaveSave16x16;
+                        settings.ClientSideEvents.Click = "function(s, e){ OnBtnUpdateDetailsClicked(this) }";
+					}).GetHtml()
+				}
+            </div>
+            <span id="userStatus" class="action-status"></span>
+        </td>
+    </tr>
+</table>

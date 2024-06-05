@@ -1,0 +1,146 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="dxcontent_list">
+	<div class="content-header content-title">
+        @Html.Partial("_TB_M_CALENDARSearch")
+        @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+		(Html.Toyota().Page.ControllerName.ToString(), "New"))
+        {
+		    <div class="action-area">
+			    @Html.DevExpress().Button(settings =>
+			    {
+				    settings.Name = "btnAdd";
+				    settings.Text = "Add New";
+                    settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsAdd16x16;
+				    settings.ClientSideEvents.Click = "Add";
+			    }).GetHtml()
+		    </div>      
+         }  
+	</div>
+
+      @using (Html.BeginForm()) {
+	   @Html.Partial("_TB_M_CALENDARList")
+    }
+	
+    <div class="content-header content-title">        
+        <div class="action-area" style="float: right;margin-right:2px;margin-top:0px">
+                @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				(Html.Toyota().Page.ControllerName.ToString(), "Upload"))
+                {
+	            <button class="btn btn-primary btn-xs" type="button" onclick="IMPORT_CALENDAR(); return false;">
+                 <i class="fa fa-upload"></i>Upload</button>
+			    }   
+        </div>
+
+         <div class="action-area" style="float: right;margin-right:2px;margin-top:0px">
+                @if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				(Html.Toyota().Page.ControllerName.ToString(), "Download"))
+                {
+	            <button class="btn btn-primary btn-xs" type="button" onclick="DOWNLOAD_CALENDAR_TEMPLATE(); return false;">
+                <i class="fa fa-download"></i> Template</button>
+			    }   
+        </div>
+    </div>
+
+    @Html.DevExpress().PopupControl(settings =>
+    {
+        settings.HeaderText = "Details";
+        settings.Name = "popDetails";
+            settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+            settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+            settings.Modal = true;
+            settings.ShowCloseButton = true;
+            settings.CloseAction = CloseAction.CloseButton;
+            settings.PopupAnimationType = AnimationType.Fade;
+            settings.Width = System.Web.UI.WebControls.Unit.Pixel(1200); 
+            settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+            settings.SetContent(() =>
+            {
+                Html.RenderPartial("_TB_M_CALENDAR_DETAILS");
+            });
+            settings.ClientSideEvents.CloseUp = "OnpopDetailsCloseUp";
+        }).GetHtml()
+
+     @Html.DevExpress().PopupControl(settings =>
+    {
+        settings.HeaderText = "Details Order - Receive Day";
+        settings.Name = "popDetailsOrder";
+            settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+            settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+            settings.Modal = true;
+            settings.ShowCloseButton = true;
+            settings.CloseAction = CloseAction.CloseButton;
+            settings.PopupAnimationType = AnimationType.Fade;
+            settings.Width = System.Web.UI.WebControls.Unit.Pixel(1200); 
+            settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+            settings.SetContent(() =>
+            {
+                Html.RenderPartial("_TB_M_CALENDAR_DETAILS_ORDER");
+            });
+            settings.ClientSideEvents.CloseUp = "OnpopDetailsOrderCloseUp";
+        }).GetHtml()
+
+    @Html.DevExpress().PopupControl(settings =>
+    {
+        settings.HeaderText = "IMPORT CALENDAR";
+        settings.Name = "popCALENDAR";
+        settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+        settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.Modal = true;
+        //settings.ShowCloseButton = true; 
+        settings.CloseAction = CloseAction.CloseButton;          
+        settings.PopupAnimationType = AnimationType.Fade;
+        settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+        settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+        settings.SetContent(() =>
+        {
+            Html.RenderPartial("_TB_M_CALENDARImport");
+        });
+        settings.ClientSideEvents.CloseUp = "OnPopCALENDARCloseUp";
+    }).GetHtml()
+
+	@Html.DevExpress().PopupControl(settings =>
+    {
+        settings.HeaderText = "TB_M_CALENDAR Management";
+        settings.Name = "popTB_M_CALENDAR";
+        settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+        settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.Modal = true;
+        //settings.ShowCloseButton = true;
+        settings.CloseAction = CloseAction.CloseButton;        
+        settings.PopupAnimationType = AnimationType.Fade;
+        settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+        settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+        settings.SetContent(() =>
+        {
+            Html.RenderPartial("_TB_M_CALENDAREdit");
+        });
+        settings.ClientSideEvents.CloseUp = "OnPopTB_M_CALENDARCloseUp";
+    }).GetHtml()
+    @*
+    @Html.DevExpress().PopupControl(settings =>
+    {
+        settings.HeaderText = "CALENDAR Scheduler Management";
+        settings.Name = "popTB_M_CALENDAR_SCHEDULER";
+        settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+        settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.Modal = true;
+        //settings.ShowCloseButton = true;
+        settings.CloseAction = CloseAction.CloseButton;        
+        settings.PopupAnimationType = AnimationType.Fade;
+        settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+        settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+        settings.SetContent(() =>
+        {
+            Html.RenderPartial("_TB_M_CALENDAR_SCHEDULER");
+        });
+        settings.ClientSideEvents.CloseUp = "";
+    }).GetHtml()
+    *@
+	@section HeadScript {
+		<script src="@Url.Content("~/Content/Scripts/App/TB_M_CALENDAR.js")" type="text/javascript"></script>
+	}
+</div>
+

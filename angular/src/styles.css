@@ -1,0 +1,305 @@
+@import '../node_modules/@syncfusion/ej2-base/styles/fluent.css';
+@import '../node_modules/@syncfusion/ej2-buttons/styles/fluent.css';
+@import '../node_modules/@syncfusion/ej2-dropdowns/styles/fluent.css';
+@import '../node_modules/@syncfusion/ej2-inputs/styles/fluent.css';
+@import '../node_modules/@syncfusion/ej2-navigations/styles/fluent.css';
+@import '../node_modules/@syncfusion/ej2-popups/styles/fluent.css';
+@import '../node_modules/@syncfusion/ej2-splitbuttons/styles/fluent.css';
+@import '../node_modules/@syncfusion/ej2-pdfviewer/styles/fluent.css';
+@import '../node_modules/@syncfusion/ej2-notifications/styles/fluent.css';
+@import '../node_modules/@syncfusion/ej2-lists/styles/fluent.css';
+/* @import '../node_modules/@syncfusion/ej2-calendars/styles/fluent.css'; */
+@import '../node_modules/@syncfusion/ej2-angular-dropdowns/styles/fluent.css';
+@import '../node_modules/@syncfusion/ej2-angular-inputs/styles/fluent.css';
+@import "../node_modules/@syncfusion/ej2-angular-lists/styles/fluent.css";
+@import '../node_modules/@syncfusion/ej2-angular-grids/styles/fluent.css';
+@import '../node_modules/primeng/resources/primeng.min.css';
+@import '../node_modules/primeng/resources/primeng.css';
+@import '../node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css';
+@import '../node_modules/@syncfusion/ej2-icons/styles/fluent.css';
+@import '../node_modules/@syncfusion/ej2-richtexteditor/styles/fluent.css';
+
+/* You can add global styles to this file, and also import other style files */
+.margin-left-5 {
+    margin-left: 5px !important;
+}
+
+.margin-right-5 {
+    margin-right: 5px !important;
+}
+
+.margin-top-5 {
+    margin-top: 5px !important;
+}
+
+.margin-top-15 {
+    margin-top: 15px !important;
+}
+
+.margin-bottom-5 {
+    margin-bottom: 5px !important;
+}
+
+.margin-bottom-5 {
+    margin-bottom: 5px !important;
+}
+
+.margin-bottom-15 {
+    margin-bottom: 15px !important;
+}
+
+.padding-left-5 {
+    padding-left: 5px !important;
+}
+
+.padding-right-5 {
+    padding-right: 5px !important;
+}
+
+.padding-top-5 {
+    padding-top: 5px !important;
+}
+
+.padding-bottom-5 {
+    padding-bottom: 5px !important;
+}
+
+.width-percent-5 {
+    width: 5%;
+}
+
+.width-percent-10 {
+    width: 10%;
+}
+
+.width-percent-15 {
+    width: 15%;
+}
+
+.width-percent-20 {
+    width: 20%;
+}
+
+.width-percent-30 {
+    width: 30%;
+}
+
+.width-percent-40 {
+    width: 40%;
+}
+
+.width-percent-50 {
+    width: 50%;
+}
+
+.width-percent-100 {
+    width: 100%;
+}
+
+/* Sweet alert */
+
+body.swal2-height-auto {
+    height: inherit !important;
+}
+
+.swal2-popup.swal2-toast {
+    padding: 10px 12px !important;
+    display: block !important;
+}
+
+.swal2-popup.swal2-toast .swal2-header,
+.swal2-popup.swal2-toast .swal2-title,
+.swal2-popup.swal2-toast .swal2-content {
+    text-align: left !important;
+    margin: 0 !important;
+}
+
+.swal2-popup.swal2-toast .swal2-title {
+    margin-bottom: 4px !important;
+}
+
+.swal2-icon.swal2-info::before,
+.swal2-icon.swal2-warning::before,
+.swal2-icon.swal2-success::before,
+.swal2-icon.swal2-error::before {
+    content: "";
+}
+
+@keyframes glowing {
+    0% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.3;
+    }
+}
+
+.glowing {
+    animation: glowing 2s infinite;
+}
+
+.root-initial-loader .overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(51, 51, 51, 0.8);
+    z-index: 99999 !important;
+    width: 100%;
+    height: 100%;
+}
+
+.root-initial-loader i {
+    position: absolute;
+    color: rgb(91, 167, 234);
+    z-index: 100000 !important;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.root-initial-loader .fa-spin-2x {
+    -webkit-animation: fa-spin 1s infinite linear;
+    animation: fa-spin 1s infinite linear;
+}
+ngx-spinner .loading-text {
+    font-weight: bold;
+    color: white;
+    font-size: 1.3em;
+}
+
+bs-days-calendar-view + bs-days-calendar-view {
+    margin-left: 10px;
+}
+
+bs-days-calendar-view {
+    display: inline-block;
+    border-radius: 4px 0 0 4px;
+}
+
+@media (max-width: 768px) {
+    .btn-md-icon {
+        margin-right: 0 !important;
+        padding-right: 0 !important;
+    }
+}
+.login-account .login_content .login-form .form-group label {
+    font-size: 14px;
+    color: #52796F;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+
+/* Create edit modal */
+
+.create-edit-form{
+    margin: 10px 0 10px 0;
+}
+.e-dlg-header-content{
+    background-color: #a6dbfb;
+}
+.button-action-form{
+border-top: 1px solid #a6dbfb;
+   padding: 20px 0 20px 0;
+}
+
+body .pb-5 { padding-bottom: 0 !important; }
+[data-kt-app-sidebar-hoverable=true][data-kt-app-sidebar-minimize=on] #kt_app_sidebar.app-sidebar:hover:not(.animating) {
+    transition: width 0.3s ease;
+    width: 75px;
+}
+
+.btn-text-shadow { text-shadow: 0px 1.25px 2.1500000953674316px #00000036, 0px 0px 0.9399999976158142px #0000001a; }
+body div .btn-esign { cursor: pointer; }
+
+body div .b-radius5 { border-radius: 5px; }
+body div .btn-box-shadow:hover { box-shadow: 0px 1.25px 2.15px 0px #00000036, 0px 0px 0.94px 0px #0000001a }
+
+.e-checkbox-wrapper .e-frame.e-check,
+    .e-css.e-checkbox-wrapper .e-frame.e-check {
+        background-color: #28c157;
+        border-color: #31f34c;
+        color: #fff;
+        border-radius: 4px;
+        width: 18px;
+        height: 18px;
+
+    }
+
+    .e-checkbox-wrapper .e-checkbox:focus+.e-frame.e-check,
+    .e-css.e-checkbox-wrapper .e-checkbox:focus+.e-frame.e-check {
+        background-color: #28c157;
+        border-color: #31f34c;
+        border-radius: 4px;
+        width: 18px;
+        height: 18px;
+    }
+
+    .e-checkbox-wrapper .e-frame,
+    .e-css.e-checkbox-wrapper .e-frame {
+        border-radius: 4px;
+        width: 18px;
+        height: 18px;
+    }
+.e-checkbox-wrapper .e-frame, .e-css.e-checkbox-wrapper .e-frame { border-color: #12D176; border-radius: 4px;}
+.e-checkbox-wrapper label, .e-css.e-checkbox-wrapper label { border: 2px solid #12d17633; border-radius: 5px; }
+
+.data1_dll { display: flex; gap: 16px; padding: 0px 16px; width: 100%; flex-direction: row;  align-items: center; }
+#ddlelement_popup,
+.e-dll.e-popup.e-lib.e-popup-open { display: flex; flex-direction: column; flex: 1; width: 100%; }
+
+.e-dialog.e-pv-signature-dialog-height { border-radius: 20px; }
+.e-ddl-header { display: flex; flex-direction: column; flex: 1; width: 100%; }
+.p-checkbox-box.p-highlight {
+    background-color: --kt-form-check-input-checked-bg-color-solid;
+    border-color: --kt-form-check-input-checked-bg-color-solid;
+}
+.p-checkbox .p-checkbox-box{
+    border-radius: 6px;
+}
+.p-paginator {
+    padding: 0;
+}
+.cursor-unset { cursor: unset; }
+.disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.ql-picker-options {
+    padding: 0.5rem 0 !important;
+}
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded.ql-color-picker .ql-picker-options .ql-picker-item {
+    width: 16px !important;
+    height: 16px !important;
+}
+#iframeRTE_rte-view {
+    height: calc(100% - 41px) !important;
+    top: 41px;
+}
+
+/* fix form http://localhost:4200/app/main/document-management/view-refDocument */
+@media (max-width: 991.98px) {
+    #kt_app_page .app-header {
+        background-color: transparent;  border-bottom: 1px solid #E4E6EF;
+    }
+    #kt_app_page #kt_app_header_container > div:nth-child(1) {
+        background-color: white;
+        margin-left: -1rem !important;
+        margin-right: 0rem !important;
+        padding-left: 0.5rem;
+    }
+    #kt_app_page #kt_app_header_container > div:nth-child(2) {
+        background-color: white;
+    }
+}
+/* end fix /view-refDocument */

@@ -1,0 +1,137 @@
+﻿@*
+---Phần Search trên form
+TextBox : .textbox, .autobind (cho ô find gia tri tu dong)
+DateEdit : .textdate
+ComboBox : .textcombobox
+*@
+<div class="dxcontent_search"> 
+    <div class="itembox">
+		<label class="placehoder">CONTENT LIST ID</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtCONTENT_LIST_ID";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">BACK NO</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtBACK_NO";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">PART NO</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtPART_NO";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">COLOR SFX</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtCOLOR_SFX";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">PART NAME</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtPART_NAME";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">BOX SIZE</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtBOX_SIZE";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">BOX QTY</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtBOX_QTY";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">PC ADDRESS</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtPC_ADDRESS";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">WH SPS PICKING</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtWH_SPS_PICKING";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">CREATED BY</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtCREATED_BY";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">CREATED DATE</label>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_txtCREATED_DATE";
+				settings.ControlStyle.CssClass = "dateedit textdate";
+				settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+			}).GetHtml() 
+    </div>
+    <div class="itembox">
+		<label class="placehoder">UPDATED BY</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtUPDATED_BY";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">
+		<label class="placehoder">UPDATED DATE</label>
+			@Html.DevExpress().DateEdit(settings => 
+			{
+				settings.Name = "_txtUPDATED_DATE";
+				settings.ControlStyle.CssClass = "dateedit textdate";
+				settings.Properties.DisplayFormatString = "dd/MM/yyyy"; //"dd-MM-yyyy";
+                settings.Properties.EditFormatString = "dd/MM/yyyy";
+			}).GetHtml() 
+    </div>
+    <div class="itembox">
+		<label class="placehoder">IS ACTIVE</label>
+			@Html.DevExpress().TextBox(settings =>
+			{
+				settings.Name = "_txtIS_ACTIVE";
+				settings.ControlStyle.CssClass = "textbox";
+			}).GetHtml()
+    </div>
+    <div class="itembox">    
+		@if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+			(Html.Toyota().Page.ControllerName.ToString(), "Search"))
+		{	
+			@Html.DevExpress().Button(settings =>
+			{
+				settings.Name = "btnSearch";
+				settings.Text = "Search";
+				settings.ClientSideEvents.Click = "DoSearch";
+                settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsSearch16x16devav;
+			}).GetHtml()
+		}
+    </div>
+</div>

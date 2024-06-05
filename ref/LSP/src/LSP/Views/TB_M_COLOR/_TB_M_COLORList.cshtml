@@ -1,0 +1,95 @@
+﻿@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = 10;
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.CallbackRouteValues = new { Controller = "TB_M_COLOR", Action = "GridCallback" };
+
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 8;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3; 
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Left;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 9;
+
+    settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
+    settings.SettingsBehavior.ConfirmDelete = true; 
+    
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "";
+        c.Width = System.Web.UI.WebControls.Unit.Pixel(70);
+        c.CellStyle.CssClass = "edit_delete";
+        c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        c.SetDataItemTemplateContent(
+            content =>
+            {
+                System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+                    strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Edit(this)' title='Edit'><i class='fa fa-pencil'></i></a>"));
+                }
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Delete"))
+                {
+                    strBuilder.Append(string.Concat(" <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Delete(this)'  title='Delete'><i class='fa fa-trash-o'></i></a>"));
+                }
+                Html.ViewContext.Writer.Write(strBuilder.ToString());
+            });
+    });
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "No.";
+            c.FieldName = "ROW_NO";
+            c.Width = 60;
+        }
+    );   
+	settings.Columns.Add(c =>
+        {
+            c.Caption = "CODE";
+            c.FieldName = "CODE";
+        }
+    );
+	settings.Columns.Add(c =>
+        {
+            c.Caption = "NAME EN";
+            c.FieldName = "NAME_EN";
+        }
+    );
+	settings.Columns.Add(c =>
+        {
+            c.Caption = "NAME VN";
+            c.FieldName = "NAME_VN";
+        }
+    );
+	settings.Columns.Add(c =>
+        {
+            c.Caption = "TYPE";
+            c.FieldName = "TYPE";
+        }
+    );
+	settings.Columns.Add(c =>
+        {
+            c.Caption = "IS ACTIVE?";
+            c.FieldName = "IS_ACTIVE";
+            c.SetDataItemTemplateContent(cc =>
+            {
+                Html.DevExpress().CheckBox(checkboxSettings =>
+                {
+                    checkboxSettings.Name = "IS_ACTIVE_" + cc.KeyValue.ToString();
+                    checkboxSettings.Checked = Convert.ToString(DataBinder.Eval(cc.DataItem, "IS_ACTIVE")) == "Y" ? true : false;
+                    checkboxSettings.Properties.ClientSideEvents.CheckedChanged = "function() { return false; }";
+                    checkboxSettings.ClientEnabled = false;
+                }).Render();
+            }); 
+      });
+    
+}).Bind(LSP.Models.TB_M_COLOR.TB_M_COLORProvider.Instance.TB_M_COLOR_Search(Model ?? new LSP.Models.TB_M_COLOR.TB_M_COLORInfo())).GetHtml() 

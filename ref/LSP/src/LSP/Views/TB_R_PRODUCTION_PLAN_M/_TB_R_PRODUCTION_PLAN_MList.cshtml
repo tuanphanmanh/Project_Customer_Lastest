@@ -1,0 +1,327 @@
+﻿@using LSP.Models
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = LSP.Models.Common.PageSize(); //10
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = Common.PageSizeItemSettings(); //new string[] { "10", "20", "50" };
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+
+    settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Visible;
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 8;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+    settings.CallbackRouteValues = new { Controller = "TB_R_PRODUCTION_PLAN_M", Action = "GridCallback" };
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "Op.";
+        c.Width = System.Web.UI.WebControls.Unit.Pixel(90);
+        c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        c.SetDataItemTemplateContent(content =>
+        {
+            System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+            strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "id"), "' onclick='return Edit(this)' title='Edit'><i class='fa fa-pencil'></i></a>"));
+            strBuilder.Append(string.Concat(" | <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "id"), "' onclick='return Delete(this)' title='Delete'><i class='fa fa-trash-o'></i></a>"));
+            Html.ViewContext.Writer.Write(strBuilder.ToString());
+        }
+        );
+    }
+    );
+
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "No.";
+            c.FieldName = "Row_No";
+            c.Width = 60;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "CFC";
+            c.FieldName = "CFC";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "Katashiki";
+            c.FieldName = "KATASHIKI";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "PROD_SFX";
+            c.FieldName = "PROD_SFX";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "INT_COLOR";
+            c.FieldName = "INT_COLOR";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "EXT_COLOR";
+            c.FieldName = "EXT_COLOR";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "Production month";
+            c.FieldName = "PRODUCTION_MONTH";
+            c.Width = 120;
+            c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME";
+            c.FieldName = "LO_VOLUME";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY01";
+            c.FieldName = "LO_VOLUME_DAY01";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY02";
+            c.FieldName = "LO_VOLUME_DAY02";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY03";
+            c.FieldName = "LO_VOLUME_DAY03";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY04";
+            c.FieldName = "LO_VOLUME_DAY04";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY05";
+            c.FieldName = "LO_VOLUME_DAY05";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY06";
+            c.FieldName = "LO_VOLUME_DAY06";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY07";
+            c.FieldName = "LO_VOLUME_DAY07";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY08";
+            c.FieldName = "LO_VOLUME_DAY08";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY09";
+            c.FieldName = "LO_VOLUME_DAY09";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY10";
+            c.FieldName = "LO_VOLUME_DAY10";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY11";
+            c.FieldName = "LO_VOLUME_DAY11";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY12";
+            c.FieldName = "LO_VOLUME_DAY12";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY13";
+            c.FieldName = "LO_VOLUME_DAY13";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY14";
+            c.FieldName = "LO_VOLUME_DAY14";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY15";
+            c.FieldName = "LO_VOLUME_DAY15";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY16";
+            c.FieldName = "LO_VOLUME_DAY16";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY17";
+            c.FieldName = "LO_VOLUME_DAY17";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY18";
+            c.FieldName = "LO_VOLUME_DAY18";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY19";
+            c.FieldName = "LO_VOLUME_DAY19";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY20";
+            c.FieldName = "LO_VOLUME_DAY20";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY21";
+            c.FieldName = "LO_VOLUME_DAY21";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY22";
+            c.FieldName = "LO_VOLUME_DAY22";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY23";
+            c.FieldName = "LO_VOLUME_DAY23";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY24";
+            c.FieldName = "LO_VOLUME_DAY24";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY25";
+            c.FieldName = "LO_VOLUME_DAY25";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY26";
+            c.FieldName = "LO_VOLUME_DAY26";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY27";
+            c.FieldName = "LO_VOLUME_DAY27";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY28";
+            c.FieldName = "LO_VOLUME_DAY28";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY29";
+            c.FieldName = "LO_VOLUME_DAY29";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY30";
+            c.FieldName = "LO_VOLUME_DAY30";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "LO_VOLUME_DAY31";
+            c.FieldName = "LO_VOLUME_DAY31";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "IS_NQC_REQ_PROCESSED";
+            c.FieldName = "IS_NQC_REQ_PROCESSED";
+            c.Width = 150;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "IS_NQC_RES_PROCESSED";
+            c.FieldName = "IS_NQC_RES_PROCESSED";
+            c.Width = 150;
+        }
+    );
+
+}).Bind(LSP.Models.TB_R_PRODUCTION_PLAN_M.TB_R_PRODUCTION_PLAN_MProvider.Instance.TB_R_PRODUCTION_PLAN_M_Search(Model ?? new LSP.Models.TB_R_PRODUCTION_PLAN_M.TB_R_PRODUCTION_PLAN_MInfo())).GetHtml()
+

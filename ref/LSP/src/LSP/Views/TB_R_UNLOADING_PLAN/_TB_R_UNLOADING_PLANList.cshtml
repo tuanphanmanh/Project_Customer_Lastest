@@ -1,0 +1,404 @@
+﻿@using LSP.Models;
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = Common.PageSize_M();
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = Common.PageSizeItemSettings();//new string[] { "10", "20", "50" };
+        
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.CallbackRouteValues = new { Controller = "TB_R_UNLOADING_PLAN", Action = "GridCallback" };
+	
+	settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Visible;
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 7;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+			    
+     //Export
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;    
+        
+    //Focus Row 
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.Styles.FocusedRow.BackColor = System.Drawing.Color.LightGray;
+    settings.Styles.Row.ForeColor = System.Drawing.Color.Black;
+            
+    //Toolbar
+    settings.Toolbars.Add(toolbar =>
+    {
+        toolbar.Enabled = true;
+        toolbar.Position = GridToolbarPosition.Top;
+        toolbar.ItemAlign = GridToolbarItemAlign.Left;
+                
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                Html.DevExpress().ButtonEdit(s =>
+                {
+                    s.Name = "search";
+                    s.Properties.NullText = "Search inline...";
+                    s.Properties.Buttons
+                        .Add()
+                        .Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
+                }).Render();
+            });
+        });
+                
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnExportXls";
+                    s.ClientSideEvents.Click = "function(s, e) {gvList.ExportTo(ASPxClientGridViewExportFormat.Xls);}";
+                    s.Text = "Export to Xls";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxls16x16;
+                }).GetHtml();
+            });
+        });
+
+        if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Reset"))
+        {
+            toolbar.Items.Add(i =>
+            {
+                i.BeginGroup = true;
+                i.SetTemplateContent(c =>
+                {
+                    @Html.DevExpress().Button(s =>
+                    {
+                        s.Name = "btnResetAct";
+                        s.ClientSideEvents.Click = "function(s, e) {ResetActual();}";
+                        s.Text = "Reset Actual";
+                        s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.DataResetmodeldifferences16x16;
+                    }).GetHtml();
+                });
+            });
+        }
+        //toolbar.Items.Add(GridViewToolbarCommand.ExportToXlsx);
+        //toolbar.Items.Add(GridViewToolbarCommand.ShowFilterEditor);
+        //toolbar.Items.Add(GridViewToolbarCommand.ClearFilter);
+        //toolbar.Items.Add(GridViewToolbarCommand.ShowGroupPanel);
+                                                                
+    });
+    //For Search panel
+    settings.SettingsSearchPanel.CustomEditorName = "search";  
+    
+	settings.Columns.Add(c =>
+	{
+		c.Caption = "Op.";
+		c.Width = System.Web.UI.WebControls.Unit.Pixel(70);
+		c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+		c.SetDataItemTemplateContent(
+			content =>
+			{
+				System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+				if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				   (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+				{
+					strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Edit(this)' title='Edit'><i class='fa fa-pencil'></i></a>"));
+				}
+
+                 /*string IS_STARTED = DataBinder.Eval(content.DataItem, "ACTUAL_START_UP_DELAY").ToString();
+                 if (IS_STARTED.Equals("0"))
+                 {
+                     if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                        (Html.Toyota().Page.ControllerName.ToString(), "Delete"))
+                     {
+                         strBuilder.Append(string.Concat(" <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Delete(this)'  title='Delete'><i class='fa fa-trash-o'></i></a>"));
+                     }
+                 }*/
+				
+				Html.ViewContext.Writer.Write(strBuilder.ToString());
+			});
+        c.Width = 40;
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+	});
+
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "NO.";
+                c.FieldName = "ROW_NO";
+                c.Width = 50;
+                c.FixedStyle = GridViewColumnFixedStyle.Left;
+            }
+            );
+    
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "DOCK";
+					c.FieldName = "DOCK";
+                    c.Width = 50;
+                    c.FixedStyle = GridViewColumnFixedStyle.Left;
+				}
+			);
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "TRUCK";
+					c.FieldName = "TRUCK";
+                    c.Width = 60;
+                    c.FixedStyle = GridViewColumnFixedStyle.Left;
+				}
+			);
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "RECEIVE";
+					c.FieldName = "SUPPLIERS";
+                    c.FixedStyle = GridViewColumnFixedStyle.Left;
+				}
+			);
+
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "RETURN";
+                c.FieldName = "SUPPLIERS_RETURN";
+                c.FixedStyle = GridViewColumnFixedStyle.Left;
+            });
+    
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "WORKING DATE";
+					c.FieldName = "WORKING_DATE";
+                    c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+                    c.Width = 80;
+                    c.FixedStyle = GridViewColumnFixedStyle.Left;
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+				}
+			);
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "SHIFT";
+					c.FieldName = "SHIFT";
+                    c.Width = 60;
+                    c.FixedStyle = GridViewColumnFixedStyle.Left;
+				}
+			);
+    
+            /*
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "ORDER NO";
+					c.FieldName = "SEQUENCE_NO";
+                    c.Width = 60;
+				}
+			);*/
+
+            settings.Columns.AddBand(cBand =>
+            {
+                cBand.Caption = "PLAN";
+                cBand.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;               
+                cBand.Columns.Add(c =>
+                {
+                    c.Caption = "START U/L";
+                    c.FieldName = "PLAN_START_UP_DATETIME";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy HH:mm:ss";
+                }
+                );
+                cBand.Columns.Add(c =>
+                {
+                    c.Caption = "FINISH U/L";
+                    c.FieldName = "PLAN_FINISH_UP_DATETIME";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy HH:mm:ss";
+                }
+                );
+
+                cBand.Columns.Add(c =>
+                {
+                    c.Caption = "REVISED START U/L";
+                    c.FieldName = "REVISED_PLAN_START_UP_DATETIME";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy HH:mm:ss";
+                }
+                );
+                cBand.Columns.Add(c =>
+                {
+                    c.Caption = "REVISED FINISH U/L";
+                    c.FieldName = "REVISED_PLAN_FINISH_UP_DATETIME";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy HH:mm:ss";
+                }
+                );                                
+            });
+
+            settings.Columns.AddBand(cBand =>
+            {
+                cBand.Caption = "ACTUAL";
+                cBand.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+                cBand.Columns.Add(c =>
+                {
+                    c.Caption = "START U/L";
+                    c.FieldName = "ACTUAL_START_UP_DATETIME";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy HH:mm:ss";
+                }
+                 );
+                cBand.Columns.Add(c =>
+                {
+                    c.Caption = "FINISH U/L";
+                    c.FieldName = "ACTUAL_FINISH_UP_DATETIME";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy HH:mm:ss";
+                }
+                );
+
+            });
+           		
+            settings.Columns.AddBand(cBand =>
+            {
+                cBand.Caption = "DELAY / ADVANCE (Minutes)";
+                cBand.HeaderStyle.Wrap = DefaultBoolean.True;
+                cBand.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+                cBand.Columns.Add(c =>
+                {
+                    c.Caption = "START U/L";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.FieldName = "ACTUAL_START_UP_DELAY";
+                    c.Width = 60;
+                });
+                cBand.Columns.Add(c =>
+                {
+                    c.Caption = "FINISH U/L";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.FieldName = "ACTUAL_FINISH_UP_DELAY";
+                    c.Width = 60;
+                });
+                
+            });
+
+            settings.Columns.AddBand(cBand =>
+            {
+                cBand.Caption = "STATUS";
+                cBand.HeaderStyle.Wrap = DefaultBoolean.True;
+                cBand.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+                cBand.Columns.Add(c =>
+                {
+                    c.Caption = "START U/L";
+                    c.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.FieldName = "STATUS_DESC_2";
+                }
+                );
+                
+                cBand.Columns.Add(c =>
+                {
+                    c.Caption = "FINISH U/L";
+                    c.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.FieldName = "STATUS_DESC";
+                }
+                );                
+            });
+
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "STATUS_DESC_2";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[STATUS_DESC_2] ='DELAY'";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.Red;
+            });
+
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "STATUS_DESC_2";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[STATUS_DESC_2] ='EARLY'";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.Yellow;
+            });
+
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "STATUS_DESC";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[STATUS_DESC] ='DELAY'";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.Red;
+            });
+
+            settings.FormatConditions.AddHighlight(h =>
+            {
+                h.FieldName = "STATUS_DESC";
+                h.Format = GridConditionHighlightFormat.Custom;
+                h.Expression = "[STATUS_DESC] ='EARLY'";
+                h.CellStyle.Font.Size = 8;
+                h.CellStyle.BackColor = System.Drawing.Color.Yellow;
+            });                           
+          
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "ISSUES";
+					c.FieldName = "ISSUES";
+				}
+			);
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "CAUSE";
+					c.FieldName = "CAUSE";
+				}
+			);
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "COUTERMEASURE";
+					c.FieldName = "COUTERMEASURE";
+				}
+			);
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "PIC RECORDER";
+					c.FieldName = "PIC_RECORDER";
+				}
+			);
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "PIC ACTION";
+					c.FieldName = "PIC_ACTION";
+				}
+			);
+			settings.Columns.Add(c =>
+				{
+					c.Caption = "ACTION DUEDATE";
+					c.FieldName = "ACTION_DUEDATE";
+                    c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy HH:mm:ss";
+				}
+			);
+            settings.Columns.Add(c =>
+				{
+					c.Caption = "RESULT";
+					c.FieldName = "RESULT";
+				}
+			);
+            settings.Columns.Add(c =>
+            {
+                c.Caption = "Is active";
+                c.FieldName = "IS_ACTIVE";
+                c.SetDataItemTemplateContent(cc =>
+                {
+                    Html.DevExpress().CheckBox(checkboxSettings =>
+                    {
+                        checkboxSettings.Name = "IS_ACTIVE_" + cc.KeyValue.ToString();
+                        checkboxSettings.Checked = Convert.ToString(DataBinder.Eval(cc.DataItem, "IS_ACTIVE")) == "Y" ? true : false;
+                        checkboxSettings.Properties.ClientSideEvents.CheckedChanged = "function() { return false; }";
+                    }).Render();
+                });
+            });
+    
+}).Bind(LSP.Models.TB_R_UNLOADING_PLAN.TB_R_UNLOADING_PLANProvider.Instance.TB_R_UNLOADING_PLAN_Search(Model ?? new LSP.Models.TB_R_UNLOADING_PLAN.TB_R_UNLOADING_PLANInfo())).GetHtml()
+

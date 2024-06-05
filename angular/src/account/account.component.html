@@ -1,0 +1,83 @@
+﻿<div class="d-flex flex-row-auto flex-root login-account">
+    <div class="login-aside d-flex flex-column flex-row-auto"  >
+        <!-- <div class="d-flex flex-column-auto flex-column pt-lg-40 pt-15">
+            <a
+                (click)="goToHome()"
+                href=""
+                class="d-flex justify-content-center"
+                [class.mb-12]="!isSelectEditionPage()"
+            >
+                <img
+                    *ngIf="!appSession.tenant || !appSession.tenant.HasLogo()" alt="logo" class="max-h-70px"
+                    [src]="appRootUrl() + 'assets/common/images/logo-in-black.png'"
+                    [class.mb-20]="isSelectEditionPage()"
+                />
+                <img
+                    *ngIf="appSession.tenant && appSession.tenant.HasLogo()"
+                    [src]="
+                        remoteServiceBaseUrl +
+                        '/TenantCustomization/GetTenantLogo?skin=' +
+                        getLogoSkin() +
+                        '&tenantId=' +
+                        appSession.tenant.id
+                    " alt="logo" class="max-h-70px"
+                />
+            </a>
+            <h3 class="font-weight-bolder text-center font-size-h4 font-size-h1-lg" style="color: white;">
+                Toyota Motor Vietnam <br/> start your impossible.
+            </h3>
+        </div> -->
+        <!-- <div class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center" ></div> -->
+    </div>
+    <div
+        class=" login-aside-content
+            d-flex
+            flex-column flex-column-fluid
+            bgi-position-y-bottom
+            position-x-center
+            bgi-no-repeat bgi-size-contain bgi-attachment-fixed
+        "
+        style="background: #F2FAFF;"
+    >
+
+
+        <div
+            class="d-flex flex-center flex-column flex-column-fluid p-10"
+            [class.pb-lg-20]="!isSelectEditionPage()"
+            [class.pb-0]="isSelectEditionPage()"
+        >
+            <!--begin::Logo-->
+
+            <!--end::Logo-->
+            <!--begin::Wrapper-->
+            <div *ngIf="isSelectEditionPage()" class="container-xxl mx-auto">
+                <!-- <div *ngIf="showTenantChange()" class="tenant-change-box mb-5 tenant-change-box">
+                    <tenant-change></tenant-change>
+                </div> -->
+                <!--begin::Form-->
+                <router-outlet></router-outlet>
+                <!--end::Form-->
+            </div>
+            <div *ngIf="!isSelectEditionPage()" class="login_content w-lg-500px bg-body rounded shadow-sm mx-auto login-padding"  style="position: relative; border-radius: 20px !important;" >
+                <!-- <div *ngIf="showTenantChange()" class="tenant-change-box mb-5 tenant-change-box">
+                    <tenant-change></tenant-change>
+                </div> -->
+                <!--begin::Form-->
+                <router-outlet></router-outlet>
+                <!--end::Form-->
+            </div>
+            <!--end::Wrapper-->
+        </div>
+        <!--end::Content-->
+        <!--begin::Footer-->
+        <!-- <div class="d-flex flex-center flex-column-auto p-10" [class.pt-0]="isSelectEditionPage()">
+
+            <div class="d-flex align-items-center fw-bold fs-6">
+                <language-switch class="mx-auto"></language-switch>
+            </div>
+
+        </div> -->
+        <!--end::Footer-->
+    </div>
+    <!--end::Authentication - Sign-in-->
+</div>

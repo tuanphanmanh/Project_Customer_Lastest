@@ -1,0 +1,192 @@
+﻿@{
+    Layout = "~/Views/Shared/_ScreenLayout.cshtml";
+}
+@using LSP.Models.TB_R_CONTENT_LIST;
+@using LSP.Models.TB_R_KANBAN;
+
+<script src="/Content/Scripts/Core/jquery-qrcode-0.14.0.min.js"></script>
+<script src="/Content/Scripts/App/PDF_CONTENT_LIST.js" type="text/javascript"></script>
+<link rel="Stylesheet" href="/Content/Style/App/PDF_CONTENT_LIST.css" />
+
+
+@{
+    
+    TB_R_CONTENT_LISTInfo obj =  (TB_R_CONTENT_LISTInfo) ViewBag.CONTENT;
+    IList<TB_R_KANBANInfo> objdetail = (IList<TB_R_KANBANInfo>) ViewBag.KANBAN;
+
+    /*string _qrcode = string.Format("{0}{1}-{2}-{3}", obj.SUPPLIER_CODE
+                                                                , string.Format("{0:yyMMdd}", obj.ORDER_DATETIME)
+                                                                , obj.TRIP_NO
+                                                                , obj.DOCK_NO);*/
+
+    string _qrcode = obj.CONTENT_NO + "_CONTE";
+    string _qrcode_FN = obj.CONTENT_NO + "_FINISH"; //Finish QR Code
+    string cssbg = (objdetail.Count > 0) ? objdetail[0].COLOR : "transparent";
+    
+}
+
+<div class="MAIN">
+        <div class="controlMessage">
+                <span class="message1"></span>  
+                <span class="message2"></span> 
+                <span class="message3"></span>
+        </div> 
+        <div class="clear"></div>
+
+         <div class="CONTENT">
+             <table class="tb1" cellspacing="0" cellpadding="4">
+                 <tr>
+                     <td colspan="4" class="content_header">
+                            <div class="QRCode" >
+                                    @_qrcode
+                            </div>
+                            <div class="val">CONTENT LIST</div>
+                            <div class="QRCode_FN_Header" > FINISH:
+                                    <div class="QRCode_FN" >
+                                         @_qrcode_FN
+                                    </div>
+                            </div>    
+                     </td>
+                 </tr>
+                 <tr>
+                     <td colspan="4"> 
+                                 <table class="suptb1" cellspacing="0" cellpadding="0">
+                                     <tr>
+                                         <td><span>Order No :</span></td>
+                                         <td><span>@obj.ORDER_NO</span></td>
+                                         <td><span>No. of box/pallet : @obj.PALLET_BOX_QTY.ToString().PadLeft(3,'0')</span></td>
+                                         <td><span></span></td>
+                                     </tr>
+                                     <tr>
+                                         <td><span>Pallet Content List No :</span></td>
+                                         <td><span>@obj.CONTENT_NO</span></td>
+                                         <td><span></span></td>
+                                         <td><span></span></td>
+                                     </tr>
+                                     <!--<tr>
+                                         <td><span>Packing date/time :</span></td>
+                                         <td><span>@string.Format("{0:HH:mm}",obj.EST_PACKING_DATETIME)</span></td>
+                                         <td><span>@string.Format("{0:dd/MM/yyyy}",obj.EST_PACKING_DATETIME)</span></td>
+                                         <td><span></span></td>
+                                     </tr>
+                                      -->
+                                     <tr>
+                                         <td><span> &nbsp;</span></td>
+                                         <td><span> &nbsp;</span></td>
+                                         <td><span> &nbsp;</span></td>
+                                         <td><span> &nbsp;</span></td>
+                                     </tr> 
+                                 </table>
+                     </td>
+                 </tr>
+                 <tr>
+                    <td class="domau" style="background-color:@cssbg">
+                            <div>Supplier's name :</div>
+                            <div class="val Supplier_Name">@obj.SUPPLIER_CODE</div>
+                    </td>
+                    <td class="domau" style="background-color:@cssbg">
+                            <div>Renban :</div>
+                            <div class="val Renban">@obj.RENBAN_NO.ToString().PadLeft(5,'0')</div>
+                    </td>
+                     <td class="domau" style="background-color:@cssbg">
+                         <div>Arrival date/time :</div>
+                         <div class="val2 Store_address">
+                             @string.Format("{0:dd/MM/yyyy}", obj.EST_ARRIVAL_DATETIME)
+                             @string.Format("{0:HH:mm}", obj.EST_ARRIVAL_DATETIME)
+                         </div>
+                    </td>
+                     <td class="domau" style="background-color:@cssbg">
+                            <div>Truck destination :</div>
+                            <div class="val Truck_Destination">@obj.DOCK_NO</div>
+                    </td>
+                </tr>
+                 <tr class="data1">
+                     <td colspan="4" >
+                         <div class="tddata1">
+                                <table class="suptb2" cellspacing="0" cellpadding="0">
+                                     <tr>
+                                         <td><span>No</span></td>
+                                         <td><span>Back No.</span></td>
+                                         <td><span>Part No</span></td>
+                                         <td><span>Part name</span></td>
+                                         <td><span>Q'ty</span></td>
+                                         <td><span>Packaging q'ty</span></td>
+                                     </tr>
+                                    @{
+                                                    int no = 0;       
+                                                    string Box_qty = "";
+                                                    string sPART_NO = "";                                           
+                                                    foreach(TB_R_KANBANInfo item in objdetail)
+                                                    {
+                                                        no++;
+                                                        if (item.PART_NO.Length > 10)
+                                                        {
+                                                            sPART_NO = item.PART_NO.Substring(0, 5) + "-" + item.PART_NO.Substring(5, 5) + "-" + item.PART_NO.Substring(10, 2);
+                                                        }
+                                                        else
+                                                        {
+                                                            sPART_NO = item.PART_NO;
+                                                        }
+                                                        Box_qty =  (item.BOX_QTY > 0) ? item.BOX_QTY.ToString().PadLeft(3,'0') : "N/A";                                                                    
+                                                        <tr class='data'> 
+                                                            <td class='No'>@no</td>
+                                                    @{
+                                                        if (!obj.SUPPLIER_CODE.Equals("BSTVN"))
+                                                        {
+                                                            <td class='Back_No'>@item.BACK_NO</td>
+                                                        }
+                                                        else {
+                                                            <td class='Back_No_BSTVN'>@item.BACK_NO</td>
+                                                        }
+                                                    }
+                                                            <td class='Part_No'>@sPART_NO</td>
+                                                            <td class='Part_name'>@item.PART_NAME</td> 
+                                                            <td class='Qty_box'>@item.BOX_SIZE</td> 
+                                                            <!-- <td class='Box_qty'>@string.Format("{0}",Box_qty)</td> -->
+                                                            <td class='Box_qty'>@item.PALLET_BOX_QTY.ToString().PadLeft(3,'0')</td>
+                                                           
+                                                        </tr>
+                                                    }
+                                           
+                                        } 
+                                 </table>
+                        </div>
+                          @{
+                                 if (!string.IsNullOrEmpty(obj.MODULE_NO))
+                                 {
+                                     <div style="clear:both;"></div>  
+                                     <div class="Module_no">
+                                            <span class="module_txt">Module - #:</span>
+                                            <div style="clear:both;"></div>  
+                                            <span class="module_val">@obj.MODULE_NO</span>
+                                     </div>
+                                }
+                             }      
+                         <div class="Supplier_check">
+                             <span>Supplier's check</span> 
+                         </div>
+                     </td>
+                 </tr>
+                 
+             </table>
+              
+
+             <div style="height:30px"></div>
+         </div>
+        
+    <div class="clear"></div> 
+    <div class="PAUSE_TIME myoverlay">  
+            <div class=" mypopup PAUSE_TIME_POP">
+                    <div class="content">PAUSE</div>
+            </div>
+    </div>
+    <div class="clear"></div> 
+    <span class="soundAttribute" soundstart="false" soundtype="" src="" caseno=""></span> 
+</div>
+
+
+ 
+
+<script type="text/javascript">
+    document.title = "CONTENT LIST";
+</script>

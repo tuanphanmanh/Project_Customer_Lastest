@@ -1,0 +1,359 @@
+﻿@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvOrderList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = LSP.Models.Common.PageSize_M(); //10
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = LSP.Models.Common.PageSizeItemSettings(); //new string[] { "10", "20", "50" };
+
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+
+    settings.SettingsResizing.ColumnResizeMode = ColumnResizeMode.Control;
+    settings.SettingsResizing.Visualization = ResizingMode.Live;
+    settings.SettingsBehavior.AllowEllipsisInText = true;
+
+    settings.CallbackRouteValues = new { Controller = "TB_R_CONTENT_LIST", Action = "ORDER_GridCallback" };
+
+    //settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Visible;
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 7;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Left;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+
+    settings.Styles.FocusedRow.BackColor = System.Drawing.Color.LightGray;
+    settings.Styles.Row.ForeColor = System.Drawing.Color.Black;
+
+    //Export
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+    settings.SettingsExport.BeforeExport = (sender, e) =>
+    {
+        MVCxGridView gridView = sender as MVCxGridView;
+        if (sender == null)
+            return;
+        gridView.Columns["Op."].Visible = false;
+    };
+
+    //Toolbar
+    settings.Toolbars.Add(toolbar =>
+    {
+        toolbar.Enabled = true;
+        toolbar.EnableAdaptivity = true;
+        toolbar.Position = GridToolbarPosition.Top;
+        toolbar.ItemAlign = GridToolbarItemAlign.Left;
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                Html.DevExpress().ButtonEdit(s =>
+                {
+                    s.Name = "searchOrder";
+                    s.Properties.NullText = "Search inline...";
+                    s.Width = 100;
+                    s.Properties.Buttons
+                        .Add()
+                        .Image.IconID = DevExpress.Web.ASPxThemes.IconID.FindFind16x16gray;
+                }).Render();
+            });
+        });
+
+        if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+        {
+            toolbar.Items.Add(i =>
+            {
+                i.BeginGroup = true;
+                i.SetTemplateContent(c =>
+                {
+                    @Html.DevExpress().Button(s =>
+                    {
+                        s.Name = "btnGenerateOrderRD";
+                        s.ClientSideEvents.Click = "function(s, e) {  SHOW_GENERATE_MONTHLY_ORDER();  }";
+                        s.Text = "Generate Monthly Order";
+                        s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.SchedulingMonthview16x16office2013;
+                    }).GetHtml();
+                });
+            });
+
+        }
+
+        toolbar.Items.Add(i =>
+        {
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnDownloadMonthlyOrder";
+                    s.ClientSideEvents.Click = "function(s, e) {  SHOW_DOWNLOAD_MONTHLY_ORDER();  }";
+                    s.Text = "Download Monthly Order";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsDownload16x16office2013;
+                }).GetHtml();
+            });
+        });
+
+        toolbar.Items.Add(i =>
+        {
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnDownloadMonthlyOrderFC";
+                    s.ClientSideEvents.Click = "function(s, e) {  SHOW_DOWNLOAD_MONTHLY_ORDER_FC();  }";
+                    s.Text = "Download Monthly Order w/FC";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsDownload16x16office2013;
+                }).GetHtml();
+            });
+        });
+
+        toolbar.Items.Add(i =>
+        {
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnDownloadMonthlyGRN";
+                    s.ClientSideEvents.Click = "function(s, e) {  SHOW_DOWNLOAD_MONTHLY_GRN();  }";
+                    s.Text = "Download Monthly GRN";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsSortbyinvoice16x16devav;
+                }).GetHtml();
+            });
+        });
+
+        if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+        {
+            toolbar.Items.Add(i =>
+            {
+                i.SetTemplateContent(c =>
+                {
+                    @Html.DevExpress().Button(s =>
+                    {
+                        s.Name = "btnSendMultipleOrders";
+                        s.ClientSideEvents.Click = "function(s, e) {  SHOW_SEND_MULTIPLE_ORDER();  }";
+                        s.Text = "Send Multi-Orders";
+                        s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.MailSend16x16office2013;
+                    }).GetHtml();
+                });
+            });
+        }
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnDetails";
+                    s.ClientSideEvents.Click = "showdetail";
+                    s.Text = "Details Order";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.EditCustomization16x16gray;
+                }).GetHtml();
+            });
+        });
+
+
+        toolbar.Items.Add(i =>
+        {
+            i.BeginGroup = true;
+            i.SetTemplateContent(c =>
+            {
+                @Html.DevExpress().Button(s =>
+                {
+                    s.Name = "btnOrderExportXls";
+                    s.ClientSideEvents.Click = "function(s, e) {gvOrderList.ExportTo(ASPxClientGridViewExportFormat.Xls);}";
+                    s.Text = "Export to Xls";
+                    s.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxls16x16;
+                }).GetHtml();
+            });
+        });
+    });
+    //For Search panel
+    settings.SettingsSearchPanel.CustomEditorName = "search";
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "Op.";
+        c.Width = System.Web.UI.WebControls.Unit.Pixel(70);
+        c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        c.SetDataItemTemplateContent(
+            content =>
+            {
+                System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Edit"))
+                {
+                    strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return EditOrder(this)' title='Edit'><i class='fa fa-edit'></i></a>"));
+                }
+                if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+                   (Html.Toyota().Page.ControllerName.ToString(), "Delete"))
+                {
+                    strBuilder.Append(string.Concat(" <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return DeleteOrder(this)'  title='Delete'><i class='fa fa-trash-o'></i></a>"));
+                }
+                Html.ViewContext.Writer.Write(strBuilder.ToString());
+            });
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "RECEIVE DATE";
+        c.FieldName = "WORKING_DATE";
+        c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+        c.Width = 90;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    }
+    );
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "SHIFT";
+        c.FieldName = "SHIFT";
+        c.Width = 70;
+    }
+    );
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "SUPPLIER NAME";
+        c.FieldName = "SUPPLIER_NAME";
+        c.CellStyle.Font.Size = 6;
+        c.Width = 120;
+    }
+    );
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "SUPPLIER CODE";
+        c.FieldName = "SUPPLIER_CODE";
+        c.Width = 80;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    }
+    );
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "ORDER NO";
+        c.FieldName = "ORDER_NO";
+        c.Width = 130;
+    }
+    );
+    settings.FormatConditions.AddHighlight(h =>
+    {
+        h.FieldName = "ORDER_NO";
+        h.Format = GridConditionHighlightFormat.Custom;
+        h.Expression = "Contains([GENERATE_BY], 'AUTO')";
+        h.CellStyle.Font.Size = 8;
+        h.CellStyle.Font.Bold = true;
+        h.CellStyle.BackColor = System.Drawing.Color.Gold;
+    });
+
+    /*settings.Columns.Add(c =>
+        {
+            c.Caption = "ORDER DATETIME";
+            c.FieldName = "ORDER_DATETIME";
+            c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy HH:mm";
+        }
+    );*/
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "TRIP NO";
+        c.FieldName = "TRIP_NO";
+        c.Width = 60;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    }
+    );
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "TRUCK NO";
+        c.FieldName = "TRUCK_NO";
+        c.Width = 80;
+    }
+    );
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "DOCK NO";
+        c.FieldName = "DOCK_NO";
+        c.Width = 70;
+    }
+   );
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "EST ARRIVAL DATETIME";
+        c.FieldName = "EST_ARRIVAL_DATETIME";
+        c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy HH:mm";
+        c.Width = 100;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    }
+    );
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "IS ACTIVE?";
+        c.FieldName = "IS_ACTIVE";
+        c.SetDataItemTemplateContent(cc =>
+        {
+            Html.DevExpress().CheckBox(checkboxSettings =>
+            {
+                checkboxSettings.Name = "_IS_ACTIVE_" + Convert.ToString(DataBinder.Eval(cc.DataItem, "ID"));
+                checkboxSettings.Checked = Convert.ToString(DataBinder.Eval(cc.DataItem, "IS_ACTIVE")) == "Y" ? true : false;
+                checkboxSettings.Properties.ClientSideEvents.CheckedChanged = "function() { return false; }";
+                //checkboxSettings.ClientEnabled = false;
+            }).Render();
+        });
+        c.Width = 70;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;       
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "STATUS";
+        c.FieldName = "STATUS";
+        c.Width = 60;
+    }
+    );
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "GENERATED BY";
+        c.FieldName = "GENERATE_BY";
+        c.Width = 80;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "CREATED DATE";
+        c.FieldName = "CREATED_DATE";
+        c.PropertiesEdit.DisplayFormatString = "dd/MM/yy HH:mm:ss";
+        //c.Width = 110;
+    });
+
+    //Master
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+    settings.SettingsDetail.ShowDetailRow = true;
+    settings.SetDetailRowTemplateContent(c =>
+    {
+        ViewContext.Writer.Write(
+            "<b style='float: left;'>Content List:</b> "
+                                /* +   string.Concat("<a class='btnCollectionNew AssignKanban' href='#edit' data-id='", DataBinder.Eval(c.DataItem, "ID"),
+                                                    "' onclick='return ContentListNew(", DataBinder.Eval(c.DataItem, "ID"), ")' title='New Content List' >Assign Content List</a>",
+
+                                                    "<div class='clear'></div>")*/
+                                );
+
+        Html.RenderAction("CONTENT_LIST_GridCallback",
+                new LSP.Models.TB_R_CONTENT_LIST.TB_R_CONTENT_LISTInfo() { ORDER_ID = DataBinder.Eval(c.DataItem, "ID").ToString() });
+    });
+    settings.PreRender = (sender, e) =>
+    {
+        ((MVCxGridView)sender).DetailRows.ExpandRow(-1);
+    };
+
+
+}).Bind(LSP.Models.TB_R_DAILY_ORDER.TB_R_DAILY_ORDERProvider.Instance.TB_R_DAILY_ORDER_Search_V2(Model ?? new LSP.Models.TB_R_DAILY_ORDER.TB_R_DAILY_ORDERInfo())).GetHtml()
+

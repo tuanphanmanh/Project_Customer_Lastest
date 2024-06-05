@@ -1,0 +1,98 @@
+﻿@{
+    Layout = "~/Views/Shared/_ScreenLayout.cshtml";
+}
+
+<div class="UNLOADING_DETAILS" >
+    <div class="controlMessage">
+        <span class="message1"></span>
+        <span class="message2"></span>
+        <span class="message3"></span>
+    </div>
+ 
+    <div class="clear"></div>
+    <div class="UNLOADING" >
+         <div class="WARP">
+            <div class="ST_TOP"  > 
+                 <div class="TOP_ITEM TOTAL_QTY BOX">
+                    <div class="alt">Box Chưa Scan</div>
+                    <div class="clear"></div>
+                    <div class="TOP_ITEM_SUB title">Total BOX</div>
+                    <div class="TOP_ITEM_SUB val1"></div>
+                </div>                 
+                <div class="TOP_ITEM TOTAL_QTY FORSHIFT">
+                    <div class="alt">Số lượng hàng cần nhận</div>
+                    <div class="clear"></div>
+                    <div class="TOP_ITEM_SUB title">Total Quantity (By Shift)</div>
+                    <div class="TOP_ITEM_SUB val"></div>
+                </div> 
+            </div>
+            <div class="clear"></div>
+            <div class="ST_MAIN"  > 
+                    <div class="alt">Danh mục hàng đã nhận</div><div class="clear"></div>
+                    <div class="MAIN_LEFT">
+                                <div class="ST_HEADER"> 
+                                    <div class="WARP">
+                                        <div class="ST_LINE HEADER"> 
+                                            <div class="ST_COL STT1"><span>No</span></div>
+                                            <div class="ST_COL STT2"><span>Content No</span></div>   
+                                            <div class="ST_COL STT3"><span>EST U/P TIME</span></div>                                                                                     
+                                            <div class="ST_COL STT4"><span>Plan box</span></div>
+                                            <div class="ST_COL STT5"><span>Act. box</span></div>                                                                                        
+                                            <div class="ST_COL STT6"><span>Remark</span></div>  
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="ST_CONTENT">
+                                    <div class="WARP">                            
+                                    </div>
+                                </div>
+                    </div>
+                    <div class="MAIN_RIGHT">
+                                <div class="ST_HEADER"> 
+                                    <div class="WARP">
+                                        <div class="ST_LINE HEADER"> 
+                                            <div class="ST_COL STT1"><span>No</span></div>
+                                            <div class="ST_COL STT2"><span>Content No</span></div>  
+                                            <div class="ST_COL STT3"><span>EST U/P TIME</span></div>                                                                                             
+                                            <div class="ST_COL STT4"><span>Plan box</span></div>
+                                            <div class="ST_COL STT5"><span>Actual box</span></div>
+                                            <div class="ST_COL STT6"><span>Remark</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="ST_CONTENT">
+                                    <div class="WARP">           
+                                    </div>
+                                </div>
+                    </div>
+                    
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="ST_BOTTOM"></div>
+        <div class="clear"></div>
+           
+    </div>
+
+
+    <div class="clear"></div>
+    <div class="PAUSE_TIME myoverlay">
+        <div class=" mypopup PAUSE_TIME_POP">
+            <div class="content">PAUSE</div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <span class="soundAttribute" soundstart="false" soundtype="" src="" caseno=""></span>
+</div>
+
+
+<link rel="Stylesheet" href="@Url.Content("~/Content/Style/App/UNPACKING2.css")" />
+<script src="@Url.Content("~/Content/Scripts/App/UNPACKING2.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    document.title = "UNPACKING DETAILS";
+</script>
+
+
+ 

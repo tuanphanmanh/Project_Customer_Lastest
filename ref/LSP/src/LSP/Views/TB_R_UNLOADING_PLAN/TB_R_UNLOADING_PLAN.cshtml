@@ -1,0 +1,61 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="dxcontent_list">
+	<div class="content-header content-title">
+
+        @Html.Partial("_TB_R_UNLOADING_PLANSearch")
+         
+		<div class="action-area">
+			@if (Html.Toyota().Authorization.IsAuthorizedToAccessFeature
+				(Html.Toyota().Page.ControllerName.ToString(), "New"))
+              {
+				@Html.DevExpress().Button(settings =>
+				{
+					settings.Name = "btnAdd";
+					settings.Text = "Add New";
+                    settings.Images.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsAdd16x16; 
+					settings.ClientSideEvents.Click = "Add";
+				}).GetHtml()
+			}
+		</div>
+	</div>
+
+    @using (Html.BeginForm()) {
+	      	@Html.Partial("_TB_R_UNLOADING_PLANList")
+    }
+	
+	@Html.DevExpress().PopupControl(settings =>
+	{
+		settings.HeaderText = "TB_R_UNLOADING_PLAN Management";
+		settings.Name = "popTB_R_UNLOADING_PLAN";
+		settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+		settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+		settings.Modal = true;
+		//settings.ShowCloseButton = true;
+        settings.CloseAction = CloseAction.CloseButton;
+		settings.PopupAnimationType = AnimationType.Fade;
+		settings.Width = System.Web.UI.WebControls.Unit.Pixel(500);
+		settings.Style.Add("background-color", "rgba(0, 0, 0, 0.5)");
+		settings.SetContent(() =>
+		{
+			Html.RenderPartial("_TB_R_UNLOADING_PLANEdit");
+		});
+		settings.ClientSideEvents.CloseUp = "OnPopTB_R_UNLOADING_PLANCloseUp";
+	}).GetHtml()
+
+     @Html.DevExpress().LoadingPanel(
+                settings =>
+                {
+                settings.Name = "LoadingPanel";
+                settings.Modal = true;
+                settings.Text = "Processing...";
+                settings.Width = 160;
+                settings.ContainerElementID = "";
+      }).GetHtml()
+
+	@section HeadScript {
+		<script src="@Url.Content("~/Content/Scripts/App/TB_R_UNLOADING_PLAN.js")" type="text/javascript"></script>
+	}
+</div>

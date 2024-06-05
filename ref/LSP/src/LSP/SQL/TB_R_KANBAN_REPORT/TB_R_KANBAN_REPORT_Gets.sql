@@ -1,0 +1,1 @@
+﻿EXEC TB_R_KANBAN_REPORT_Gets @id

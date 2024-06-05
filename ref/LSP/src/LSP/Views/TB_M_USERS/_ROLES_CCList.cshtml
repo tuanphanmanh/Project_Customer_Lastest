@@ -1,0 +1,56 @@
+﻿@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvCCList" + Model.USER_NAME;
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = 20;
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.CallbackRouteValues = new { Controller = "TB_M_USERS", Action = "Roles_GridCallback", USER_ID = Model.USER_NAME };
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "CODE";
+            c.FieldName = "TMV_CC";
+        }
+   );
+	settings.Columns.Add(c =>
+        {
+            c.Caption = "COST CENTER";
+            c.FieldName = "TEAM";
+        }
+    );
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "SHIFT";
+        c.FieldName = "ROLE_SHIFT";
+    }
+    );
+	settings.Columns.Add(c =>
+        {
+            c.Caption = "DESCRIPTION";
+            c.FieldName = "CC_DESCRIPTION";
+        }
+    );  
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "";
+            c.Width = System.Web.UI.WebControls.Unit.Pixel(90);
+            c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+            c.SetDataItemTemplateContent(content =>
+                {
+                    System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+                    //strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Edit(this)' title='Edit'><i class='fa fa-edit'></i></a>"));
+                    strBuilder.Append(string.Concat("<a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "ID"), "' onclick='return Delete_USER_ROLES(this)' title='Delete'><i class='fa fa-trash-o'></i></a>"));
+                    Html.ViewContext.Writer.Write(strBuilder.ToString());
+                }
+            );
+        }
+    );
+    
+}).Bind(LSP.Models.TB_M_USER_ROLES.TB_M_USER_ROLESProvider.Instance.TB_M_USER_ROLES_GetsByUSER_ID( LSP.Models.Common._ToString(Model.USER_NAME))).GetHtml()
+
+
+

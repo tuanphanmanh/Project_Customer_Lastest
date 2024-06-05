@@ -1,0 +1,55 @@
+﻿body{ margin:0;padding:0; font-family: Arial; font-weight: 900;  transition: opacity 0.2s ease-in-out 0s; background:url("/Content/Images/App/grain.png") #f2f2f2; }/**/
+.clear{ clear:both; } 
+
+.UNLOADING { width:100%; overflow:hidden; font-size: 20px; position:relative; z-index:1; }
+.UNLOADING .WARP { width:125%; overflow:hidden; }
+.UNLOADING .ST_CONTENT > .WARP { overflow-x:hidden; overflow-y:auto; }
+
+.UNLOADING .alt { font-size:15px; font-weight:normal; line-height:20px; height:20px; }
+
+.UNLOADING .ST_TOP .TOP_ITEM, .UNLOADING .ST_TOP .TOP_ITEM .TOP_ITEM_SUB { float:left; }
+.UNLOADING .ST_TOP .TOP_ITEM .TOP_ITEM_SUB { letter-spacing: -1px; border:2px solid #7E7E7E; background-color: #CECCCC; text-align:center; font-size: 1.1vw;  }
+.UNLOADING .ST_TOP .TOP_ITEM .TOP_ITEM_SUB.val { color:black; font-size: 30px;  letter-spacing: -2px; border-left: none;
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0; border-bottom: 2px solid white; border-right: 2px solid white;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.39) inset, 0 -1px 1px #fff, 0 1px 0 #fff; 
+    text-shadow: 0 0 5px white, 2px 2px 2px black;
+}
+.UNLOADING .ST_TOP .TOP_ITEM .TOP_ITEM_SUB.val1 { color:black; font-size: 30px;  letter-spacing: -2px; border-left: none;
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0; border-bottom: 2px solid white; border-right: 2px solid white;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.39) inset, 0 -1px 1px #fff, 0 1px 0 #fff; 
+    text-shadow: 0 0 5px white, 2px 2px 2px black;
+    color:red;
+}
+.UNLOADING .ST_TOP .TOP_ITEM .TOP_ITEM_SUB.val2 { color:black; font-size: 28px;  letter-spacing: -2px; border-left: none;
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0; border-bottom: 2px solid white; border-right: 2px solid white;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.39) inset, 0 -1px 1px #fff, 0 1px 0 #fff; 
+    text-shadow: 0 0 5px white, 2px 2px 2px black;
+}
+
+.UNLOADING .ST_MAIN  { position:relative; }
+.UNLOADING .ST_MAIN .MAIN_LEFT { position:relative; float:left; overflow: hidden; }
+.UNLOADING .ST_MAIN .ST_LINE { background-color: white; }
+.UNLOADING .ST_MAIN .ST_LINE .ST_COL{ float:left; text-align: center; }
+.UNLOADING .ST_MAIN .ST_HEADER .ST_LINE{ background-color: #C4DFB2; } /*#04AEEF*/
+.UNLOADING .ST_MAIN .ST_HEADER .ST_LINE .ST_COL{ text-align:center; letter-spacing:-1px; overflow:hidden; }
+
+.UNLOADING .ST_MAIN .ST_LINE .ST_COL span { display:block; }
+
+.UNLOADING .ST_MAIN .ST_LINE .ST_COL.STT1 { width:7%; }
+.UNLOADING .ST_MAIN .ST_LINE .ST_COL.STT2 { width:9%; }
+.UNLOADING .ST_MAIN .ST_LINE .ST_COL.STT3 { width:27%; letter-spacing:-1px; }
+.UNLOADING .ST_MAIN .ST_LINE .ST_COL.STT4 { width:10%; }
+.UNLOADING .ST_MAIN .ST_LINE .ST_COL.STT5 { width:16%; }
+.UNLOADING .ST_MAIN .ST_LINE .ST_COL.STT6 { width:16%; }
+.UNLOADING .ST_MAIN .ST_LINE .ST_COL.STT7 { width:13%; font-size: 25px; }
+
+.UNLOADING .ST_MAIN .ST_LINE.STATUS_D { background-color:green; }
+.UNLOADING .ST_MAIN .ST_LINE.STATUS_S { background-color:#ff66ff; } /*#99CCFF*/ 
+.UNLOADING .ST_MAIN .ST_LINE.STATUS_W { background-color:red; } /*#FF99CC*/
+
+/********************************BORDER***********************************/
+.UNLOADING .ST_HEADER .ST_LINE { border-top: 2px solid black; border-bottom: 2px solid black; border-left: 2px solid black; } 
+.UNLOADING .MAIN_LEFT { border-right: 2px solid black; } 
+.UNLOADING .ST_CONTENT .ST_LINE { border-bottom: 2px solid black; border-right: 2px solid black; border-left: 2px solid black;  } 
+.UNLOADING .ST_CONTENT .ST_LINE:last-child { border-bottom:2px solid black; } 
+.UNLOADING .ST_LINE .ST_COL{ border-right:2px solid black; }

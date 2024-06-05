@@ -1,0 +1,1 @@
+﻿EXEC TB_M_TRUCK_SUPPLIER_Delete @id

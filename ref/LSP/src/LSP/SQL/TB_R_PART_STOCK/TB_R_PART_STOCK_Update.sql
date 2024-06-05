@@ -1,0 +1,9 @@
+EXEC TB_R_PART_STOCK_Update
+	@id ,
+	@PART_ID , 
+	@STOCK_QTY , 
+	@IS_ACTIVE , 
+	@CREATED_BY , 
+	@CREATED_DATE , 
+	@UPDATED_BY , 
+	@UPDATED_DATE 

@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+
+.dxpCtrl .dxpPageNumber.dxpCurrentPageNumber::before, 
+.dxpCtrl .dxpPageNumber.dxpCurrentPageNumber::after { background-color:white; content:none;  }
+
+/*.dxgvTable_MetropolisBlue .dxgvControl_MetropolisBlue { width:900px !important; }*/
+.dxgvTable_MetropolisBlue .dxgvTable td.dxgv.dxgvDetailCell { padding:10px 0; }
+.AssignKanban { display: inline-block; margin-bottom: 4px; }
+
+</style>
+
+
+<div class="dxcontent_list">	
+    <div class="content-header content-title">  
+          @Html.Partial("_TB_R_DAILY_ORDER_REPORTSearch") 
+	</div>
+
+     @using (Html.BeginForm()) {
+	   @Html.Partial("_TB_R_DAILY_ORDER_REPORTList")
+    }
+	   
+	@section HeadScript {
+		<script src="@Url.Content("~/Content/Scripts/App/TB_R_DAILY_ORDER_REPORT.js")" type="text/javascript"></script>
+	}
+</div>

@@ -1,0 +1,125 @@
+<ejs-dialog [isModal]='true' #modal id="modal" [visible]='visible' [animationSettings]='animationSettings'
+    [showCloseIcon]='false' [width]="'50%'" [height]="'auto'">
+    <ng-template #content>
+        <div class="frame-1171275211">
+            <div class="frame-1000006348">
+                <div class="frame-1171275284">
+                    <div class="vuesax-linear-close-circle" (click)="hide()">
+                        <div class="vuesax-linear-close-circle2">
+                            <svg class="close-circle" width="36" height="37" viewBox="0 0 36 37" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.7549 22.7439L22.2449 14.2539" stroke="#222222" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M22.2449 22.7439L13.7549 14.2539" stroke="#222222" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="frame-1171275283">
+                    <div class="frame">
+                        <svg class="artboard-copy-2" width="40" height="41" viewBox="0 0 40 41" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M20 0.499023C8.95901 0.499023 0 9.4466 0 20.4899C0 31.5434 8.95901 40.5013 20 40.5013C31.049 40.5013 40 31.5434 40 20.4899C40 9.44546 31.0478 0.499023 20 0.499023ZM20 8.40733C20.7499 8.38969 21.4505 8.77967 21.8306 9.42631C22.2108 10.073 22.2108 10.8748 21.8306 11.5214C21.4505 12.1681 20.7499 12.5581 20 12.5404C18.8776 12.514 17.9815 11.5966 17.9815 10.4739C17.9815 9.35118 18.8776 8.43373 20 8.40733ZM22.0683 29.5815C22.0683 30.83 21.1422 31.8407 20.0011 31.8407C18.8601 31.8407 17.934 30.83 17.934 29.5827V16.9262C17.934 15.68 18.8601 14.6681 20.0011 14.6681C21.1433 14.6681 22.0683 15.6788 22.0683 16.9273V29.5827V29.5815Z"
+                                fill="url(#paint0_linear_483_5310)" />
+                            <defs>
+                                <linearGradient id="paint0_linear_483_5310" x1="1016.79" y1="3181.92" x2="3115.65"
+                                    y2="700.377" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#1A9AFF" />
+                                    <stop offset="0.26349" stop-color="#14A6FD" />
+                                    <stop offset="0.52886" stop-color="#0FB7FF" />
+                                    <stop offset="0.76555" stop-color="#0BBEFF" />
+                                    <stop offset="1" stop-color="#06CAFF" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="the-following-document-s-will-be-sent-to-the-signers">
+                        The following document(s) will be sent to the Signers
+                    </div>
+                </div>
+                <div class="frame-1171275285">
+                    <div class="frame-1171275303">
+                        <ng-container *ngFor="let doc of documentData?.itemList, let i = index">
+                            <div class="frame-1171275286">
+                                <div class="frame-1171275238">
+                                    <div class="_1">{{doc?.fileNum ?? (i + 1)}}</div>
+                                </div>
+                                <div class="frame2">
+                                    <div class="artboard">
+                                        <div class="files-icon-pdf">
+                                            <img class="icon-pdf" src="assets/common/images/files-icon-pdf.svg" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="frame-1171275287">
+                                    <div class="get-approval-121291-1233-pdf">
+                                        {{doc.name}}
+                                    </div>
+                                    <div class="_8-page-s-6-signatures">
+                                        {{doc.page}} page(s) || {{doc?.signatureCount}} Signatures
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="frame-11712752862">
+                    <div class="frame-11712753033">
+                        <ng-container [ngTemplateOutlet]="listSignOff"></ng-container>
+                        <ng-template #listSignOff>
+                            <ng-container *ngFor="let signGroup of documentData?.stepList,let i = index">
+                                <div class="frame-1171275323">
+                                    <div class="search">
+                                        <div class="frame-1000006404">
+                                            <div class="frame-1000006405">
+                                                <div class="_12">{{signGroup.rank ?? (i+1)}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="frame-1171275322">
+                                        <ng-container *ngFor="let signer of signGroup.signers">
+                                            <div class="frame-1171275205"
+                                                [ngStyle]="{'background-color': signer.backgroundColor}">
+                                                <div class="frame-1000006429">
+                                                    <div class="frame-1000006526">
+                                                        <div class="frame-1171275281">
+                                                            <img class="ellipse-2068" [src]="signer.imgUrl" />
+                                                        </div>
+                                                        <div class="frame-1000006366">
+                                                            <div class="frame-1171275275">
+                                                                <div class="pham-thi-xuan-xuanpt-toyotavn-com-vn">
+                                                                    {{signer.fullName}} - &lt;{{signer.email}}&gt;
+                                                                </div>
+                                                                <div class="_10-signatures">{{signer.numOfSign}}
+                                                                    Signatures</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="frame-1000006327">
+                    <div class="frame-1171275332">
+                        <div class="frame-1000006325" (click)="hide()">
+                            <div class="not-now">Not now</div>
+                        </div>
+                        <div class="component-38" (click)="submit()">
+                            <div class="vuesax-bold-send-2">
+                                <img src="assets/common/images/next-action.svg" />
+                            </div>
+                            <div class="esign">Send</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</ejs-dialog>

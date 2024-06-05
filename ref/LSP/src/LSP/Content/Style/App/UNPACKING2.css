@@ -1,0 +1,103 @@
+﻿body{ margin:0;padding:0; font-family: Arial; font-weight: 900;  transition: opacity 0.2s ease-in-out 0s; background:url("/Content/Images/App/grain.png") #f2f2f2; }/**/
+.clear{ clear:both; } 
+
+
+
+.UNLOADING { width:100%; overflow:hidden; font-size: 16px; position:relative; z-index:1; }
+.UNLOADING .WARP { width:125%; overflow:hidden; }
+.UNLOADING .ST_CONTENT > .WARP { overflow-x:hidden; overflow-y:auto; }
+
+.UNLOADING .alt { font-size:12px; font-weight:normal; line-height:20px; height:20px; }
+
+.UNLOADING .ST_TOP .TOP_ITEM, .UNLOADING .ST_TOP .TOP_ITEM .TOP_ITEM_SUB { float:left; }
+.UNLOADING .ST_TOP .TOP_ITEM .TOP_ITEM_SUB { letter-spacing: -1px; border:2px solid #7E7E7E; background-color: #CECCCC; text-align:center; font-size: 14px;  }
+.UNLOADING .ST_TOP .TOP_ITEM .TOP_ITEM_SUB.val { color:black; font-size: 44px;  letter-spacing: -2px; border-left: none;
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0; border-bottom: 2px solid white; border-right: 2px solid white;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.39) inset, 0 -1px 1px #fff, 0 1px 0 #fff; 
+    text-shadow: 0 0 5px white, 2px 2px 2px black;
+}
+.UNLOADING .ST_TOP .TOP_ITEM .TOP_ITEM_SUB.val1 {
+    color:red; font-size: 44px;   border-left: none;
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0; border-bottom: 2px solid white; border-right: 2px solid white;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.39) inset, 0 -1px 1px #fff, 0 1px 0 #fff; 
+    text-shadow: 0 0 5px white, 2px 2px 2px black; 
+    }
+.UNLOADING .ST_MAIN  { position:relative; }
+
+.UNLOADING .ST_MAIN .MAIN_LEFT,
+.UNLOADING .ST_MAIN .MAIN_RIGHT { position:relative; float:left; overflow: hidden;  }
+.UNLOADING .MAIN_RIGHT { margin-left:2px; }
+
+.UNLOADING .ST_MAIN .ST_LINE { background-color: white; }
+.UNLOADING .ST_MAIN .ST_LINE .ST_COL{ float:left; text-align: center; }
+.UNLOADING .ST_MAIN .ST_HEADER .ST_LINE{ background-color: #C4DFB2; } /*#04AEEF*/
+.UNLOADING .ST_MAIN .ST_HEADER .ST_LINE .ST_COL{ text-align:center; letter-spacing:-1px; overflow:hidden; }
+
+.UNLOADING .ST_MAIN .ST_LINE .ST_COL span { display:block; }
+
+.UNLOADING .ST_MAIN .ST_LINE .ST_COL.STT1 { width:4%; }
+.UNLOADING .ST_MAIN .ST_LINE .ST_COL.STT2 { width:19%; letter-spacing:-1px; }
+.UNLOADING .ST_MAIN .ST_LINE .ST_COL.STT3 { width:7%; }
+.UNLOADING .ST_MAIN .ST_LINE .ST_COL.STT4 { width:6%; }
+.UNLOADING .ST_MAIN .ST_LINE .ST_COL.STT5 { width:6%; }
+.UNLOADING .ST_MAIN .ST_LINE .ST_COL.STT6 { width:7%; }
+
+
+.UNLOADING .ST_MAIN .ST_LINE.STATUS_D { background-color:green; }
+.UNLOADING .ST_MAIN .ST_LINE.STATUS_S { background-color:#ff66ff; } /*#99CCFF*/
+.UNLOADING .ST_MAIN .ST_LINE.STATUS_W { background-color:red; } /*#FF99CC*/
+
+.UNLOADING .ST_COL.FULL_BOX,
+.UNLOADING .ST_COL.REMAIN_PART,
+.UNLOADING .ST_COL.REMARK { cursor:pointer;  }
+
+.UNLOADING .ST_LINE.STATUS_0 .ST_COL.FULL_BOX,
+.UNLOADING .ST_LINE.STATUS_0 .ST_COL.REMAIN_PART,
+.UNLOADING .ST_LINE.STATUS_0 .ST_COL.REMARK {  background-color: #F8CBAC;  }
+
+.UNLOADING .ST_LINE .ST_COL.FULL_BOX.active,
+.UNLOADING .ST_LINE .ST_COL.REMAIN_PART.active,
+.UNLOADING .ST_LINE .ST_COL.REMARK.active { background-color: #01CB99; }
+
+
+#_INPUT_TOP { font-size:50px; font-weight:900; }
+#_FINISH,
+#_NEWRACK,
+#_BTN_REMARK { font-size: 20px; font-weight: 600; padding: 0 15px; float:left; letter-spacing:-1px; margin-right:4px; }
+#_BTN_REMARK {  float:none;  }
+
+  
+._input {  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); 
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.39) inset, 0 -1px 1px #fff, 0 1px 0 #fff; 
+    border: 1px solid black; outline: medium none;
+}
+
+ 
+
+/********************************BORDER***********************************/
+.UNLOADING .ST_HEADER .ST_LINE { border-top: 2px solid black; border-bottom: 2px solid black; border-left: 2px solid black; } 
+.UNLOADING .MAIN_RIGHT .ST_HEADER .ST_LINE { border-right: 2px solid black; } 
+.UNLOADING .MAIN_RIGHT,
+.UNLOADING .MAIN_LEFT { border-right: 2px solid black; } 
+.UNLOADING .ST_CONTENT .ST_LINE { border-bottom: 2px solid black; border-right: 2px solid black; border-left: 2px solid black;  } 
+.UNLOADING .ST_CONTENT .ST_LINE:last-child { border-bottom:2px solid black; } 
+
+.UNLOADING .ST_LINE .ST_COL{ border-right:2px solid black; }
+/********************************STOP***********************************/
+ 
+
+
+/********************************STOP***********************************/
+.myoverlay { background-color: rgba(0, 0, 0, 0.1); bottom: 0; left: 0; overflow: auto; position: fixed; right: 0; top: 0; z-index: 10; display:none; }
+.mypopup { margin: 50px auto; position: static; z-index: 11; height: auto; margin-top: 100px; width: 80%; text-align:center; }
+.myoverlay .mypopup .content{  font-size:140px; font-weight:bold; }
+
+/********************************ICON***********************************/
+input.info, textarea.info, select.info, .CARRIER_PROGRESS_EXPORT, .SWITCHING_SCREEN, .START_AUTOMIC { border: 1px solid #59cde2; }	
+input.info:hover,input.info:active, textarea.info:hover,  textarea.info:active, select.info:hover,select.info:active, input.info:focus, textarea.info:focus, select.info:focus, .CARRIER_PROGRESS_EXPORT:focus, .SWITCHING_SCREEN:focus, .START_AUTOMIC:focus { border: 1px solid #1ba1e2; }
+input.success, textarea.success, select.success{ border: 1px solid #60a917; } 
+input.success:hover,input.success:active, textarea.success:hover,  textarea.success:active, select.success:hover,select.success:active,input.success:focus, textarea.success:focus, select.success:focus{ border: 1px solid #128023; }
+input.warning, textarea.warning, select.warning{ border: 1px solid #e3c800; }	
+input.warning:hover,input.warning:active, textarea.warning:hover,  textarea.warning:active, select.warning:hover,select.warning:active, input.warning:focus, textarea.warning:focus, select.warning:focus{ border: 1px solid #bf5a15; }
+input.danger, textarea.danger, select.danger{ border: 1px solid #ce352c; }	
+input.danger:hover,input.danger:active, textarea.danger:hover,  textarea.danger:active, select.danger:hover,select.danger:active,input.danger:focus, textarea.danger:focus, select.danger:focus{ border: 1px solid #9a1616; }

@@ -1,0 +1,59 @@
+<ejs-dialog [header]='dialogHeader' [isModal]='isModal' #createOrEditLogo id="createOrEditLogo" [visible]='visible'
+    (close)="onCloseDialog()"
+    [animationSettings]='animationSettings' [showCloseIcon]='dialogCloseIcon' [width]='dialogWidth'>
+    <ng-template #content>
+        <form #mstPurchasePurposeForm="ngForm" *ngIf="createOrEditForm" [formGroup]="createOrEditForm" novalidate
+            autocomplete="off">
+            <div class="create-edit-form">
+                <div class="col-12 d-flex justify-content-around mt-2">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                        <esign-combobox [text]="l('TenancyName')" [items]="listTenant" key="value" label="displayText"
+                            formControlName="tenantId" name="tenantId" [(ngModel)]="rowdata.tenantId"
+                        ></esign-combobox>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-around mt-2">
+                    <div id='dropAreaMin' style='height: auto; width: 100%;'>
+                        <span id='dropimageMin'> Drop image minimize (JPG, PNG) file here</span>
+                        <ejs-uploader #previewuploadMin id='previewfileuploadMin' [multiple]="false"
+                            [dropArea]='dropElementMin' [allowedExtensions]='allowExtensions' (selected)='onSelectMin($event)'
+                            (progress)='onFileUploadMin($event)' (removing)='onFileMinRemove($event)'>
+                        </ejs-uploader>
+                        <img *ngIf="!fileDetailMin" style="border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; height: 100px;" [src]="rowdata.logoMinUrl" alt="">
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-around mt-2">
+                    <div id='dropAreaMax' style='height: auto; width: 100%;'>
+                        <span id='dropimageMax'> Drop image maximize (JPG, PNG) file here</span>
+                        <ejs-uploader #previewuploadMax id='previewfileuploadMax' [multiple]="false"
+                            [dropArea]='dropElementMax' [allowedExtensions]='allowExtensions' (selected)='onSelectMax($event)'
+                            (progress)='onFileUploadMax($event)' (removing)='onFileMaxRemove($event)'>
+                        </ejs-uploader>
+                        <img *ngIf="!fileDetailMax" style="border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; height: 100px;" [src]="rowdata.logoMaxUrl" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="button-action-form d-flex justify-content-end align-items-center">
+                <div class="button-action mr-2">
+                    <button ejs-button [isPrimary]="true" (click)="save()" iconCss="fas fa-save"
+                        cssClass="e-outline">{{ 'Save' | localize }}</button>
+                    <button class="ghost" #submitBtn></button>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</ejs-dialog>
+<style>
+    .e-upload .e-upload-files {
+        width: 100%;
+        height: 150px;
+    }
+    .upload-image-min, .upload-image-max {
+        height: 50%;
+        display: flex;
+        padding: 0 10px;
+    }
+    .file-name, .file-size {
+        padding: 10px 10px 0px 10px;
+    }
+</style>

@@ -1,0 +1,27 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# IDEs and editors
+.vs/
+.idea/
+obj/
+bin/
+debug/
+.local/
+.settings/
+.project/
+/aspnet-core/src/prod.Web.Mvc/Properties/PublishProfiles/FolderProfile.pubxml
+aspnet-core/test/JMeter/AspNetZeroDotNetCoreSimpleTest.jmx
+/aspnet-core/build/outputs
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+aspnet-core/DeleteBinsAndObjs.bat
+
+*.pubxml
+aspnet-core/src/prod.Web.Host/healthchecksdb
+aspnet-core/src/prod.Web.Public/healthchecksdb
+aspnet-core/src/prod.Web.Mvc/healthchecksdb
+*.pfx
+*.DS_Store

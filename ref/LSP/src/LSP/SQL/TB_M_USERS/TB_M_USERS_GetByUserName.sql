@@ -1,0 +1,1 @@
+﻿EXEC TB_M_USERS_GetByUserName @USER_NAME

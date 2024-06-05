@@ -1,0 +1,278 @@
+﻿@using LSP.Models
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvList";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.KeyFieldName = "ID";
+    settings.SettingsPager.PageSize = LSP.Models.Common.PageSize(); //10
+    settings.SettingsPager.NumericButtonCount = 10;
+    settings.SettingsPager.AllButton.Visible = true;
+    settings.SettingsPager.AlwaysShowPager = true;
+
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = Common.PageSizeItemSettings(); //new string[] { "10", "20", "50" };
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+
+    settings.Settings.HorizontalScrollBarMode = DevExpress.Web.ScrollBarMode.Visible;
+    settings.Styles.Header.Font.Bold = true;
+    settings.Styles.Header.Font.Size = 8;
+    settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+    settings.Styles.Header.Paddings.Padding = 3;
+    settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+    settings.Styles.Header.BackColor = System.Drawing.Color.Black;
+    settings.Styles.Cell.Font.Size = 8;
+    settings.CallbackRouteValues = new { Controller = "TB_R_NQC_RESULT_M", Action = "GridCallback" };
+
+    settings.Columns.Add(c =>
+    {
+        c.Caption = "Op.";
+        c.Width = System.Web.UI.WebControls.Unit.Pixel(90);
+        c.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        c.SetDataItemTemplateContent(content =>
+        {
+            System.Text.StringBuilder strBuilder = new System.Text.StringBuilder();
+            strBuilder.Append(string.Concat("<a class='btnCollectionEdit' href='#edit' data-id='", DataBinder.Eval(content.DataItem, "id"), "' onclick='return Edit(this)' title='Edit'><i class='fa fa-pencil'></i></a>"));
+            strBuilder.Append(string.Concat(" | <a class='btnCollectionDelete' href='#delete' data-id='", DataBinder.Eval(content.DataItem, "id"), "' onclick='return Delete(this)' title='Delete'><i class='fa fa-trash-o'></i></a>"));
+            Html.ViewContext.Writer.Write(strBuilder.ToString());
+        }
+        );
+    }
+    );
+
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "No.";
+            c.FieldName = "Row_No";
+            c.Width = 60;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "CFC";
+            c.FieldName = "CFC";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "Part no";
+            c.FieldName = "PART_NO";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "Prod. SFX";
+            c.FieldName = "PROD_SFX";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "Production month";
+            c.FieldName = "PRODUCTION_MONTH";
+            c.PropertiesEdit.DisplayFormatString = "MM/yyyy";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "Parts matching key";
+            c.FieldName = "PARTS_MATCHING_KEY";
+            c.Width = 120;           
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY01";
+            c.FieldName = "DAILY_QTY01";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY02";
+            c.FieldName = "DAILY_QTY02";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY03";
+            c.FieldName = "DAILY_QTY03";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY04";
+            c.FieldName = "DAILY_QTY04";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY05";
+            c.FieldName = "DAILY_QTY05";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY06";
+            c.FieldName = "DAILY_QTY06";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY07";
+            c.FieldName = "DAILY_QTY07";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY08";
+            c.FieldName = "DAILY_QTY08";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY09";
+            c.FieldName = "DAILY_QTY09";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY10";
+            c.FieldName = "DAILY_QTY10";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY11";
+            c.FieldName = "DAILY_QTY11";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY12";
+            c.FieldName = "DAILY_QTY12";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY13";
+            c.FieldName = "DAILY_QTY13";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY14";
+            c.FieldName = "DAILY_QTY14";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY15";
+            c.FieldName = "DAILY_QTY15";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY16";
+            c.FieldName = "DAILY_QTY16";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY17";
+            c.FieldName = "DAILY_QTY17";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY18";
+            c.FieldName = "DAILY_QTY18";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY19";
+            c.FieldName = "DAILY_QTY19";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY20";
+            c.FieldName = "DAILY_QTY20";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY21";
+            c.FieldName = "DAILY_QTY21";
+            c.Width = 120;
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY22";
+            c.FieldName = "DAILY_QTY22";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY23";
+            c.FieldName = "DAILY_QTY23";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY24";
+            c.FieldName = "DAILY_QTY24";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY25";
+            c.FieldName = "DAILY_QTY25";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY26";
+            c.FieldName = "DAILY_QTY26";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY27";
+            c.FieldName = "DAILY_QTY27";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY28";
+            c.FieldName = "DAILY_QTY28";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY29";
+            c.FieldName = "DAILY_QTY29";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY30";
+            c.FieldName = "DAILY_QTY30";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "DAILY_QTY31";
+            c.FieldName = "DAILY_QTY31";
+        }
+    );
+    settings.Columns.Add(c =>
+        {
+            c.Caption = "TOTAL_QTY";
+            c.FieldName = "TOTAL_QTY";
+        }
+    );
+
+}).Bind(LSP.Models.TB_R_NQC_RESULT_M.TB_R_NQC_RESULT_MProvider.Instance.TB_R_NQC_RESULT_M_Search(Model ?? new LSP.Models.TB_R_NQC_RESULT_M.TB_R_NQC_RESULT_MInfo())).GetHtml()
+

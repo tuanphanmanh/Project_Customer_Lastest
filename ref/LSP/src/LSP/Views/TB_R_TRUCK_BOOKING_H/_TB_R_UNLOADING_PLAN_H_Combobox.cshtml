@@ -1,0 +1,19 @@
+﻿@Html.DevExpress().ComboBox(settings =>
+{
+    settings.Name = "_UNLOADING_PLAN_H_ID"; 
+    settings.Width = 400;    
+    settings.ControlStyle.CssClass = "textbox val-required";
+    
+    settings.Properties.ValueField = "ID";
+    settings.Properties.ValueType = typeof(string);
+    settings.Properties.Columns.Add("DOCK", "DOCK", 60);
+    settings.Properties.Columns.Add("TRUCK", "TRUCK", 70);
+    settings.Properties.Columns.Add("SUPPLIERS", "SUPPLIERS", 140);
+    settings.Properties.Columns.Add("TRIP_NO", "TRIP NO", 60);
+    settings.Properties.Columns.Add("PLAN_START_UL_TIME_Str_HHMMSS", "PLAN START U/L");
+    settings.Properties.Columns.Add("PLAN_FINISH_UL_TIME_Str_HHMMSS", "PLAN FINISH U/L");
+    settings.Properties.TextFormatString = "{0} - {1} - {2} - {3} - {4} - {5}";
+    settings.SelectedIndex = 0;    
+    settings.CallbackRouteValues = new { Controller = "TB_R_TRUCK_BOOKING_H", Action = "UNLOADING_PLAN_GridCallback" };
+
+ }).BindList(LSP.Models.TB_R_UNLOADING_PLAN_H.TB_R_UNLOADING_PLAN_HProvider.Instance.TB_R_UNLOADING_PLAN_H_GetsActiveTruckBooking((string)Model ?? "")).GetHtml()
